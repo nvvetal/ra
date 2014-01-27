@@ -1,0 +1,13 @@
+.rec_forum{ }
+.rec_forum li{
+	list-style-type:decimal;
+	list-style-position:inside;
+	padding-top:5px;
+	margin-left:-40px;
+	font-family:Tahoma, Geneva, sans-serif;
+}
+.rec_forum li a{
+    color:#001b72; 
+    text-decoration:underline;
+}
+

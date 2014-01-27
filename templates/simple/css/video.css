@@ -1,0 +1,132 @@
+.album{
+    padding-top: 10px;
+}
+
+.album .album-title{
+    float: left;
+    display: inline;
+    font-weight: bold;
+    padding-right: 5px;   
+}
+
+.album .album-title{
+    float: left;
+    display: inline;
+    font-weight: bold;
+    padding-right: 5px;   
+}
+
+
+.album .album-video-name{
+    float: left;
+    display: inline;
+    padding-right: 5px; 
+    
+}
+
+.album .album-video-divider{
+    float: left;
+    display: inline;
+    padding-right: 5px; 
+}
+
+.album .album-album{
+    float: left;
+    display: inline;
+    padding-right: 5px; 
+}
+
+.album .album-album a{
+
+}
+
+.video_container {
+    float:left;
+    padding-right: 10px;
+    display: inline;
+}
+
+.videoData{
+    float:left;
+    padding: 5px 20px 5px 105px;
+    display: inline;
+    width: 600px;		
+
+}
+
+
+
+.videoDataVideo{
+
+}
+.videoDataInfo{
+	font-size: 13px;
+}
+
+.videoDataTitle{
+	font-weight: bold;
+	display: inline;
+	float: left;	
+}
+
+.videoDataTitleContainer:after{
+	clear:all;
+}
+
+.videoDataEdit{
+	display: inline;
+	float: right;
+	padding-right: 120px;	
+}
+
+.videoCommentAuthor{
+	display: inline;
+	float: left;
+	padding-right: 100px;
+	font-weight: bold;	
+}
+
+.videoCommentData{
+	display: inline;
+	float: left;
+}
+
+.videoComment{
+	min-height: 25px;
+	padding: 5px 0px 5px 0px;	
+}
+
+.videoTopContainer{
+	display: inline;
+	float:left;
+	padding-right: 10px;
+}
+
+.videoDataTop{
+	max-width: 350px;
+}
+
+.videoTopTitle{
+	text-align: center;
+	font-weight: bold;
+	margin-left: -15px;
+	text-decoration: none;
+}
+
+.videoTopTitle a{
+	text-decoration: none;
+}
+
+.videoDataTag{
+	display: inline;
+	float: left;
+	padding-right: 10px;
+	font-weight: bold;
+	color: blue;	
+}
+
+.videoCommentsTitle{
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;	
+}

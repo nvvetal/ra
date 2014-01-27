@@ -1,0 +1,54 @@
+.album{
+    padding-top: 10px;
+}
+
+.album .album-title{
+    float: left;
+    display: inline;
+    font-weight: bold;
+    padding-right: 5px;   
+}
+
+.album .album-title{
+    float: left;
+    display: inline;
+    font-weight: bold;
+    padding-right: 5px;   
+}
+
+
+.album .album-photo-name{
+    float: left;
+    display: inline;
+    padding-right: 5px; 
+    
+}
+
+.album .album-photo-divider{
+    float: left;
+    display: inline;
+    padding-right: 5px; 
+}
+
+.album .album-album{
+    float: left;
+    display: inline;
+    padding-right: 5px; 
+}
+
+.album .album-album a{
+
+}
+
+.galleria-image img{
+	cursor: pointer;	
+}
+
+.photo_menu_links ul{
+	padding-left: 0px;
+}
+
+.photo_menu_links ul li{
+	padding-bottom: 10px;
+	padding-left: 0px;
+}

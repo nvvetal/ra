@@ -1,0 +1,52 @@
+.calendar{
+    width:100%;
+}
+
+.calenmenu{
+    border:1px solid #000;
+}
+
+.calenmenu td{
+    background:#fcf8c4;
+
+}
+
+.calenmenu td a{
+    text-decoration:none;
+}
+
+.calenmenu td:hover{
+    color:#fcf8c4;
+    background:#121b6c;
+}
+
+.calenmenu td a:hover{
+    color:#fcf8c4;
+}
+
+.calenmenu .calenmenu_selected{
+    color:#ffffff;
+    background:#121b6c;
+}
+
+.calenmenu .calenmenu_selected a{
+    color:#fcf8c4;
+    background:#121b6c;
+}
+
+
+.caltable{
+    border:1px solid #000;
+    border-collapse: collapse;
+}
+
+
+.caltable tr{
+    border:1px solid #000;
+}
+
+
+.caltable td{
+    border:1px solid #000;
+    padding:2px 0 2px 5px;
+}

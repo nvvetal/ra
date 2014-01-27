@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)?(.*)$ /shop/shop_user.php?$2 [QSA,L]

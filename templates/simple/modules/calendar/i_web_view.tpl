@@ -1,0 +1,1 @@
+{"WEB"|i18n}{$value|default:''}

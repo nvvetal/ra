@@ -1,0 +1,1 @@
+ALTER TABLE `calendar` ADD `edate` DATE NOT NULL AFTER `bdate` ;

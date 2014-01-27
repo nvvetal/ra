@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `act_key` CHAR( 32 ) NOT NULL AFTER `state` ;

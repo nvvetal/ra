@@ -1,0 +1,1 @@
+{"LFM"|i18n}{$value|default:''}<br/>{"Phone"|i18n}{$phone_value}

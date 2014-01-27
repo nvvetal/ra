@@ -1,0 +1,1 @@
+{"EMAIL"|i18n}{$value|default:''}

@@ -1,0 +1,11 @@
+.banners-main {
+
+}
+
+.banners-main > div {
+    display: inline;
+}
+
+.banners-main img {
+    vertical-align: middle;
+}

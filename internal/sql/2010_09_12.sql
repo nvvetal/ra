@@ -1,0 +1,7 @@
+CREATE TABLE `rakscom`.`schools_premium` (
+`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`school_id` BIGINT UNSIGNED NOT NULL ,
+`begin_time` INT NOT NULL ,
+`end_time` INT NOT NULL
+) ENGINE = MYISAM;
+

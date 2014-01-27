@@ -1,0 +1,67 @@
+.schoolname{
+	font-weight: bold;
+	cursor:pointer;
+	font-family:"Trebuchet, Arial, sans-serif";
+	font-size: 16px;
+	margin-bottom:5px;
+}
+
+.premium_schoolname{
+	font-weight: bold;
+	color:#121b6c;	
+	cursor:pointer;
+	font-family:"Trebuchet, Arial, sans-serif";
+	font-size: 16px;
+	margin-bottom:5px;
+}
+
+.schoolname a{
+    text-decoration: underline;
+    color: black;
+}
+.premium_schoolname a{
+    text-decoration: underline;
+}
+
+.school-description{
+	cursor:pointer;
+	margin-bottom:5px;
+	font-family:"Trebuchet, Arial, sans-serif";
+	font-size: 14px;	
+}
+
+.school-address{
+	cursor:pointer;
+	margin-bottom:5px;
+	font-family:"Trebuchet, Arial, sans-serif";
+	font-size: 14px;	
+}
+
+.school-address a{
+	text-decoration: none;
+	color: black;	
+}
+
+.premium_school-description{
+	color:#121b6c;	
+	cursor:pointer;
+	margin-bottom:5px;
+	font-family:"Trebuchet, Arial, sans-serif";
+	font-size: 14px;
+	font-weight: bold;	
+}
+
+
+
+.title_school{
+	font-weight:bold;
+	text-align:center;
+	padding: 5px 5px 10px 5px;
+}
+
+.title_premium_school{
+	font-weight:bold;
+	color:#121b6c;
+	text-align:center;
+	padding: 5px 5px 10px 5px;
+}

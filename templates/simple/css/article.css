@@ -1,0 +1,91 @@
+.article-page {
+    text-align: center;
+}
+
+.article-container {
+    margin: 10px 0px;
+}
+
+.article-container-section-items {
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.article-container-filters {
+    text-align: center;
+}
+
+.article-add {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.article-container-title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 120%;
+}
+
+.article
+{
+    margin-bottom: 10px;
+}
+
+.article-title {
+    font-weight: bold;
+}
+
+.article-text {
+    text-align: justify;
+}
+
+.article-section-item {
+    display: inline-block;
+    width: 160px;
+    font-size: 120%;
+    vertical-align: middle;
+}
+
+.article-name {
+    font-weight: bold;
+    text-align: center;
+    font-size: 130%;
+}
+
+.article-section {
+    font-weight: bold;
+    font-size: 110%;
+
+}
+
+.article-edit {
+    text-align: right;
+}
+
+.article-content {
+    text-align: justify;
+}
+
+.article-pager{
+    text-align: center;
+}
+
+.article-moderation-wait {
+     text-align: center;
+     font-weight: bold;
+}
+
+.article-moderation-error {
+    text-align: center;
+    font-weight: bold;
+    background-color: red;
+    color: white;
+}
+
+.article-public-description {
+    text-align: center;
+    font-weight: bold;
+}

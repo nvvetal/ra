@@ -1,0 +1,1 @@
+{"IMAGE"|i18n}<input type="file" name="{$name|default:'image'}" value="{$value|default:''}" />{if $delete_url ne ''} <a href="#" onclick="{$delete_url}">{"Delete IMAGE"|i18n}</a>{/if}

@@ -1,0 +1,1 @@
+{"WEB"|i18n}<input type="text" name="{$name|default:'web'}" value="{$value|default:''}" />{if $delete_url ne ''} <a href="#" onclick="{$delete_url}">{"Delete WEB"|i18n}</a>{/if}
