@@ -2,7 +2,6 @@
 function photoViewSchoolAlbumPhotoAdd(View $View){
     $returnParams               = array();
     $albumId                    = isset($_REQUEST['album_id']) ? $_REQUEST['album_id'] : 0;
-    $schoolId                   = isset($_REQUEST['school_id']) ? $_REQUEST['school_id'] : 0;
     $DBFactory                  = Registry::get('DBFactory');
     $Session                    = Registry::get('Session');
     $sessionId                  = Registry::get('s');
