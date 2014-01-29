@@ -2,7 +2,7 @@
 $module_name = "shop";
 require_once("../../lib/config.php");
 set_time_limit(500);
-$dir = 'D:\shop_vetal';
+$dir = $GLOBALS['PROJECT_ROOT'].'/internal/shop_vetal/';
 $DBFactory = Registry::get('DBFactory');
 $dbh = $DBFactory->get_db_handle('rakscom');
 
@@ -59,9 +59,3 @@ try {
 }catch(Exception $e){
     exception_handler($e);        
 }
-
-        
-
-
-
-?>
