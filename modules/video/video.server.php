@@ -289,14 +289,12 @@ function setVideoAlbumName($fields)
     $DBFactory   = Registry::get('DBFactory');
     $Session     = Registry::get('Session');
     $userId      = $Session->get_value($data['s'], 'user_id');
-    if($userId != $data['video_album_id'] ){
+    $videoAlbum = new VideoAlbum($DBFactory->get_db_handle('rakscom'));
+    $videoAlbum->findById($data['video_album_id']);
+    if($userId != $videoAlbum->owner_id ){
         $objResponse->addAlert('You are not allowed!');
         return $objResponse;
     }
-
-    $videoAlbum = new VideoAlbum($DBFactory->get_db_handle('rakscom'));
-    $videoAlbum->findById($data['video_album_id']);
-
     $videoAlbum->name 		= $data['name'];
 
     $smarty->assign('s', $data['s']);

@@ -197,14 +197,13 @@ function setPhotoAlbumName($fields)
     $DBFactory   = Registry::get('DBFactory');
     $Session     = Registry::get('Session');
     $userId      = $Session->get_value($data['s'], 'user_id');
-    if($userId != $data['photo_album_id'] ){
-        $objResponse->addAlert('You are not allowed!');
-        return $objResponse;
-    }
-
     $photoAlbum = new Album($DBFactory->get_db_handle('rakscom'));
     $photoAlbum->findById($data['photo_album_id']);
 
+    if($userId != $photoAlbum->owner_id ){
+        $objResponse->addAlert('You are not allowed!');
+        return $objResponse;
+    }
     $photoAlbum->name 		= $data['name'];
 
     $smarty->assign('s', $data['s']);
