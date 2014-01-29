@@ -2,7 +2,8 @@
 //exit;
 set_time_limit(2);
 
-$src = @$_SERVER['REDIRECT_URL'];
+$src = @$_SERVER['REQUEST_URI'];
+//var_dump($_SERVER);
 if( $src == '' ) exit;
 
 require_once("../../lib/config.php");

@@ -106,12 +106,11 @@ $SERVER_HOST = $_SERVER['HTTP_HOST'];
 //echo $GLOBALS['LIB_ROOT'].'/config/'.$SERVER_HOST.'.php';
 
 $GLOBALS['INCLUDED_HOST_CONFIG'] = $GLOBALS['LIB_ROOT'].'/config/'.$SERVER_HOST.'.php';
-
+//echo $GLOBALS['INCLUDED_HOST_CONFIG'];
 
 
 
 $is_host_config_included = -1; 
-
 if(file_exists($GLOBALS['INCLUDED_HOST_CONFIG'])){
     require_once($GLOBALS['INCLUDED_HOST_CONFIG']);
     $is_host_config_included = 1;
@@ -119,13 +118,11 @@ if(file_exists($GLOBALS['INCLUDED_HOST_CONFIG'])){
     $is_host_config_included = 0;
 }
 
-
 $GLOBALS['XAJAX_PATH'] = $GLOBALS['LIB_ROOT'].'/xajax/'; 
 $GLOBALS['XAJAX_JS_PATH'] = $GLOBALS['HTTP_PROJECT_ROOT'].'/xajax/'; 
 
 $GLOBALS['HTTP_PROJECT_PATH'] = $GLOBALS['HTTP_PROJECT_ROOT'];
 $GLOBALS['HTTP_FORUM_IMAGES_PATH'] = $GLOBALS['HTTP_PROJECT_ROOT']."forum/images/";
-
 
 #Misc
 require_once("misc.php");
@@ -260,4 +257,5 @@ if(!empty($userId)){
     $_SESSION['KCFINDER']['uploadURL'] = "/users/" . $userId . "/images/upload";
     $_SESSION['KCFINDER']['uploadDir'] = "";
 }
+
 ?>
