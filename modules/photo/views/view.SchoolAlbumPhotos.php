@@ -8,6 +8,10 @@ function photoViewSchoolAlbumPhotos(View $View){
     $Session                    = Registry::get('Session');
     $sessionId                  = Registry::get('s');
     $userId                     = $Session->get_value($sessionId,'user_id');
+    if(empty($userId)) {
+        header('Location: /');
+        exit;
+    }
     $Photos                     = new Photos($DBFactory->get_db_handle('rakscom'));
     $schoolAlbum                = new Album($DBFactory->get_db_handle('rakscom'));
     $schoolAlbum->findById($albumId);

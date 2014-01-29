@@ -11,7 +11,10 @@ function videoViewMyAlbumVideos(View $View){
     $Videos                    	= new Videos($DBFactory->get_db_handle('rakscom'));
     $userVideos               	= $Videos->byOwner('user', $userId, $albumId, 'DESC', $page, $perPage);
     $userAlbum                  = new VideoAlbum($DBFactory->get_db_handle('rakscom'));
-	
+    if(empty($userId)) {
+        header('Location: /');
+        exit;
+    }
 	if(empty($albumId)){
 		header('Location: ?go=my_albums&s='.$sessionId);
 		exit;

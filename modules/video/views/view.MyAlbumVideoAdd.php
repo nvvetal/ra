@@ -6,6 +6,10 @@ function videoViewMyAlbumVideoAdd(View $View){
     $Session                    = Registry::get('Session');
     $sessionId                  = Registry::get('s');
     $userId                     = $Session->get_value($sessionId,'user_id');
+    if(empty($userId)) {
+        header('Location: /');
+        exit;
+    }
     $userAlbum                  = new VideoAlbum($DBFactory->get_db_handle('rakscom'));
     $userAlbums                 = new VideoAlbums($DBFactory->get_db_handle('rakscom'));
     $userAlbum->findById($albumId);
