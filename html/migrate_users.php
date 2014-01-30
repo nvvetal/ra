@@ -54,7 +54,7 @@ foreach ($data as $userData){
             if(preg_match('/\.(\w+)$/i', $pData['path'], $m)){
                 $ext = $m[1];
             }
-            $file = '../modules/forum/img_ext/'.md5(microtime(true).mt_rand(10000,1000000)).'.'.$ext;
+            $file = $GLOBALS['IMAGE_UPLOAD_FORUM_ORIGINAL_PATH'].md5(microtime(true).mt_rand(10000,1000000)).'.'.$ext;
             file_put_contents($file, $data);
         }
         $t = 1;

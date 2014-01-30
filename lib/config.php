@@ -55,7 +55,8 @@ $GLOBALS['SMARTY_MODULES_DIR'] = $GLOBALS['SMARTY_TEMPLATE_DIR']."modules/";
 #IMAGES                                                                                                                                           
                                                                                                                                            
 $GLOBALS['IMAGE_UPLOAD_ORIGINAL_PATH'] = $GLOBALS['PROJECT_ROOT'].'/img_store/portal/';                                                                       
-$GLOBALS['PHOTO_UPLOAD_ORIGINAL_PATH'] = $GLOBALS['PROJECT_ROOT'].'/img_store/photo/';                                                                       
+$GLOBALS['IMAGE_UPLOAD_FORUM_ORIGINAL_PATH'] = $GLOBALS['PROJECT_ROOT'].'/img_store/forum/';
+$GLOBALS['PHOTO_UPLOAD_ORIGINAL_PATH'] = $GLOBALS['PROJECT_ROOT'].'/img_store/photo/';
 $GLOBALS['IMAGE_CACHE_PATH'] = $GLOBALS['PROJECT_ROOT'].'/cache/portal/images/';                                                                           
 $GLOBALS['IMAGE_FORUM_AVATAR_PATH'] = $GLOBALS['PROJECT_ROOT'].'/images/forum/avatars/';
 $GLOBALS['IMAGEMAGICK_PATH'] = '/usr/local/bin/';
