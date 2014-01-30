@@ -8,7 +8,7 @@
                     <b>{"Enter user nickname"|i18n}</b>
                 </td>
                 <td>
-                    <input type="text" name="user" id="user" value="" width="100%" />
+                    <input type="text" name="user" id="user" value="" style="width:100%" />
                 </td>
             </tr>
             <tr>
@@ -16,7 +16,7 @@
                     <b>{"Private message"|i18n}</b>
                 </td>
                 <td>
-                    <textarea name="message" style="height:100%; width:100%;"></textarea>
+                    <textarea name="message" style="height:100%;width:100%;min-height:100%;"></textarea>
                 </td>
             </tr>
         </table>
