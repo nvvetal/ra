@@ -60,19 +60,7 @@ class Images {
 		$dir 	= $data['dir'];
 		$name	= $data['name'];
         list($width, $height, $type, $attr) = getimagesize($image['tmp_name']);
-        $ext = '';
-        switch($type){
-            case IMAGETYPE_GIF:
-                $ext = 'gif';
-                break;
-            case IMAGETYPE_JPEG:
-            case IMAGETYPE_JPEG2000:
-                $ext = 'jpg';
-                break;
-            case IMAGETYPE_PNG:
-                $ext = 'png';
-                break;
-        }
+        $ext = $this->get_image_extension_by_file($image['tmp_name']);
         $fname = $name.'.'.$ext;
         $uploadfile = $path_original."$path/" . $fname;
         $image_id = 0;
@@ -158,28 +146,6 @@ class Images {
         }
         return true;
     }
-
-    function get_image_extension_by_type($type){
-        $type = strtolower($type);
-
-        $ext = 'none';
-        switch ($type){
-            case "image/gif":
-            $ext = 'gif';
-            break;
-
-            case "image/jpeg":
-            $ext = 'jpg';
-            break;
-            
-            case "image/png":
-            $ext = 'png';
-            break;			
-        }
-
-        return $ext;
-    }
-
 
     function get_type_by_extension($ext){
         $ext = strtolower($ext);
@@ -369,6 +335,33 @@ class Images {
 
     }
 
-}
+    function get_image_extension_by_file($filename)
+    {
+        list($width, $height, $type, $attr) = getimagesize($filename);
+        $ext = '';
+        switch($type){
+            case IMAGETYPE_GIF:
+                $ext = 'gif';
+                break;
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                $ext = 'jpg';
+                break;
+            case IMAGETYPE_PNG:
+                $ext = 'png';
+                break;
+        }
+        return $ext;
+    }
 
-?>
+    function get_image_extension_by_type($type)
+    {
+        $ext = 'png';
+        if(mb_stripos($type, 'gif', 'UTF-8') !== false) return 'gif';
+        if(mb_stripos($type, 'jpg', 'UTF-8') !== false) return 'jpg';
+        if(mb_stripos($type, 'jpeg', 'UTF-8') !== false) return 'jpg';
+        return $ext;
+    }
+
+
+}
