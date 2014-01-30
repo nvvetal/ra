@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_REQUEST['pass']) || $_REQUEST['pass'] != 'sdafs34dtw43w645') exit;
+if(!isset($_REQUEST['pass']) || $_REQUEST['pass'] != 'sdafs34dtw43w645') exit;
 set_time_limit(3600);
 require_once ('../lib/config.php');
 require_once ('../lib/CurlWrapper.php');
