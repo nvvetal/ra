@@ -70,8 +70,9 @@ th	{
 }
 
 td.cat,td.catHead,td.catSides,td.catLeft,td.catRight,td.catBottom {
-			background-image: url('./images/cellpic1.gif');
-			background-color:#80BBEC; border: #FFFFFF; border-style: solid; height: 28px;
+	background-image: url('./images/cellpic1.gif');
+	background-color:#80BBEC; border: #FFFFFF; border-style: solid; height: 28px;
+    background-size: contain;
 }
 
 /*
