@@ -99,9 +99,10 @@ class Images {
         SQLInsert("images",$fields,$this->dbh);
         $image_id = SQLInsId($this->dbh);
 		$index = '';
-		if(preg_match("/\.gif/i", $params['uploadfile'])) $index = "[0]";
-        $ret = @system("{$this->imagemagick}convert {$params['uploadfile']}$index -quality 95 ".$params['path_original']."{$params['path']}/".$params['name'].".png",$convert_result);
-        add_to_log("[ID $image_id][res $convert_result][ret $ret]","image_convert");
+	if(preg_match("/\.gif/i", $params['uploadfile'])) $index = "[0]";
+	$command = "{$this->imagemagick}convert {$params['uploadfile']}$index -quality 95 ".$params['path_original']."{$params['path']}/".$params['name'].".png";
+        $ret = @system($command, $convert_result);
+        add_to_log("[ID $image_id][command $command][res $convert_result][ret $ret]", "image_convert");
         $h = fopen($params['path_original']."{$params['path']}/".$params['name'].".dat","w");
         if($h){
             $fields['ID'] = $image_id;
