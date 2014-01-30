@@ -211,6 +211,7 @@ class User {
         $is_user_exists = $this->is_user_exists( $params );
         if( $is_user_exists == true ) return false;
         $state = $GLOBALS['NEED_ACTIVATION_TO_REGISTER'] == false ? 'active' : 'not_active';
+        if(isset($params['state'])) $state = $params['state'];
         $fields = array(
             'login'         => $params['login'],
             'password'      => md5($params['password']),
