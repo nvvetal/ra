@@ -149,6 +149,4 @@ if(preg_match("/(\w{3})\/(\w+)\/scenter_(\d+)_(\d{2,4})\.(\w{3})$/",$src,$match)
 
 
 
-add_to_log("[src $src]","error_image");
-
-?>
+add_to_log("[src $src]", "error_image");

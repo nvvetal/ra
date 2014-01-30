@@ -72,14 +72,10 @@ function bwls($go,$action,$params){
                             $params['smarty']->assign('user_id',$res);
                             $params['smarty']->assign('key',$key);
                             $email_content = $params['smarty']->fetch('register_key_text.tpl');
-                            $headers  = 'MIME-Version: 1.0' . "\r\n";
-                            $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-                            $headers .= 'From: Администрация RAKS.com.ua <admin@raks.com.ua>' . "\r\n";
                             $u_params = array(
                                 'email'=>$email,
                                 'email_content'=>$email_content,
                                 'email_subject'=>'Account activation - RAKS.COM.UA',
-                                'email_headers'=>$headers,
                                 'key'=>$key,
                             );
                             $params['User']->set_value($res,'activation_key',$key);
@@ -192,14 +188,10 @@ function bwls($go,$action,$params){
                     $password_new = substr(md5(time().'huy'),0,7);
                     $params['smarty']->assign('password',$password_new);
                     $email_content = $params['smarty']->fetch('password_back_text.tpl');
-                    $headers  = 'MIME-Version: 1.0' . "\r\n";
-                    $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-                    $headers .= 'From: Администрация RAKS.com.ua <admin@raks.com.ua>' . "\r\n";
                     $u_params = array(
                         'email'=>$email,
                         'email_content'=>$email_content,
-                        'email_subject'=>'Pasword reminder - RAKS.COM.UA',
-                        'email_headers'=>$headers,
+                        'email_subject'=>'Password reminder - RAKS.COM.UA',
                         'email_password'=>$password_new,
                     );
                     $res = $user_container_class->call_method("password_back",$u_params);

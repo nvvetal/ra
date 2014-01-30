@@ -31,15 +31,33 @@ class User {
         $is_exists = $this->is_user_exists($params);
         //var_dump($params);
         if($is_exists == false) return false;
-        @mail($params['email'],$params['email_subject'],$params['email_content'],$params['email_headers']);
+        $mailParams = array(
+            'from'      => 'admin@'.$_SERVER['HTTP_HOST'],
+            'fromName'  => 'Администрация RAKS.com.ua',
+            'subject'   =>  $params['email_subject'],
+            'body'      =>  $params['email_content'],
+            'to'        => array(array('email' => $params['email'])),
+        );
+        /** @var $mailer Mail */
+        $mailer = Registry::get('mailer');
+        $mailer->sendMail($mailParams);
         $user = $this->find_user_by_email($params['email']);
         $this->set_value($user['user_id'],'password',md5($params['email_password']));        
         return true;
     }
     
     function send_register_key($params){
-        @mail($params['email'],$params['email_subject'],$params['email_content'],$params['email_headers']);
-        return true;       
+        $mailParams = array(
+            'from'      => 'admin@'.$_SERVER['HTTP_HOST'],
+            'fromName'  => 'Администрация RAKS.com.ua',
+            'subject'   =>  $params['email_subject'],
+            'body'      =>  $params['email_content'],
+            'to'        => array(array('email' => $params['email'])),
+        );
+        /** @var $mailer Mail */
+        $mailer = Registry::get('mailer');
+        $mailer->sendMail($mailParams);
+        return true;
     }
 
     function init_values($user_id, $u_data=array(),$is_need_data=1){

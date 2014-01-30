@@ -20,4 +20,11 @@ $GLOBALS['CAPTCHA'] = array(
     'public'    => '6LdGt8kSAAAAAErFDLTmu5bJd9XpQtx7FjjrU7t8',
     'private'   => '6LdGt8kSAAAAALXA8cG77QeFSfsiBAWkTNXAoo-j',
 );
-?>
+
+//SMTP
+$GLOBALS['mailParams'] = array(
+    'port'      => '465',
+    'username'  => '',
+    'password'  => '',
+    'host'      => '',
+);

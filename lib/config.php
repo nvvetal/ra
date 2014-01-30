@@ -258,4 +258,8 @@ if(!empty($userId)){
     $_SESSION['KCFINDER']['uploadDir'] = "";
 }
 
-?>
+/**
+ * @var $mailer Mail
+ */
+$mailer = new Mail($GLOBALS['mailParams']);
+Registry::set('mailer', $mailer);
