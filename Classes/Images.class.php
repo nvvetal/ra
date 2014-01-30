@@ -359,9 +359,9 @@ class Images {
     function get_image_extension_by_type($type)
     {
         $ext = 'png';
-        if(mb_stripos($type, 'gif', 'UTF-8') !== false) return 'gif';
-        if(mb_stripos($type, 'jpg', 'UTF-8') !== false) return 'jpg';
-        if(mb_stripos($type, 'jpeg', 'UTF-8') !== false) return 'jpg';
+        if(mb_stripos($type, 'gif', 0, 'UTF-8') !== false) return 'gif';
+        if(mb_stripos($type, 'jpg', 0, 'UTF-8') !== false) return 'jpg';
+        if(mb_stripos($type, 'jpeg', 0, 'UTF-8') !== false) return 'jpg';
         return $ext;
     }
 
