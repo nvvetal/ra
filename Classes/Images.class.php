@@ -58,9 +58,21 @@ class Images {
 		$data 	= $this->make_image_path($path_original);
 		$path 	= $data['path'];
 		$dir 	= $data['dir'];
-		$name	= $data['name'];         
-
-        $ext = $this->get_image_extension_by_type($image['type']);
+		$name	= $data['name'];
+        list($width, $height, $type, $attr) = getimagesize($image['tmp_name']);
+        $ext = '';
+        switch($type){
+            case IMAGETYPE_GIF:
+                $ext = 'gif';
+                break;
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                $ext = 'jpg';
+                break;
+            case IMAGETYPE_PNG:
+                $ext = 'png';
+                break;
+        }
         $fname = $name.'.'.$ext;
         $uploadfile = $path_original."$path/" . $fname;
         $image_id = 0;

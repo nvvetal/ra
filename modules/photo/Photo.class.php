@@ -41,6 +41,9 @@ class Photo extends API_Item
     public function uploadPhoto($name)
     {
 
+        /**
+         * @var $Images Images
+         */
         $Images = Registry::get('Images');
         $res = $Images->upload_image($_FILES[$name], $GLOBALS['IMAGE_UPLOAD_ORIGINAL_PATH'], 'upload');
         if($res != true ) return false;
