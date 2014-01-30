@@ -89,11 +89,12 @@ class Images {
     }
 
     function prepare_image($params){
+        $size = getimagesize($params['uploadfile']);
         $fields = array(
             "owner_id"=>0,
             "owner_type"=>"unknown",
             "path"=>$params['path'],
-            "img_type"=>$params['image']['type'],
+            "img_type"=>$size['mime'],
             "fname"=>$params['name'],
         );
         SQLInsert("images",$fields,$this->dbh);
