@@ -63,4 +63,3 @@ function sendUserGift($dataParse){
 }
 
 $xajax->processRequests();
-?>
