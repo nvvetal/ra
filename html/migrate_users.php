@@ -49,7 +49,7 @@ foreach ($data as $userData){
         if( $ch->curlErrno() ){
             add_to_log('[error fetch image '.$userData['user_avatar'].'][error '.$ch->curlError().']', 'migrate');
             $file = '';
-        }elseif($ch->curlGetInfo(CURLINFO_HTTP_CODE) !== 200){
+        }elseif($ch->curlGetInfo('http_code') !== 200){
             add_to_log('[error fetch image by curl code '.$userData['user_avatar'].']', 'migrate');
             $file = '';
         }else{
