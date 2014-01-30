@@ -44,9 +44,13 @@ foreach ($data as $userData){
         $ch->setOpt(CURLOPT_URL, $userData['user_avatar']);
         $ch->setOpt(CURLOPT_TIMEOUT, 5);
         $ch->setOpt(CURLOPT_RETURNTRANSFER, 1);
+
         $data = $ch->execute();
         if( $ch->curlErrno() ){
-            add_to_log('[error fetch image '.$userData['user_avatar'].']', 'migrate');
+            add_to_log('[error fetch image '.$userData['user_avatar'].'][error '.$ch->curlError().']', 'migrate');
+            $file = '';
+        }elseif($ch->curlGetInfo(CURLINFO_HTTP_CODE) !== 200){
+            add_to_log('[error fetch image by curl code '.$userData['user_avatar'].']', 'migrate');
             $file = '';
         }else{
             $pData = parse_url($userData['user_avatar']);
