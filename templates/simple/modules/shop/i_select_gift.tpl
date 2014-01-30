@@ -12,11 +12,11 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td width="200">
                     <b>{"Private message"|i18n}</b>
                 </td>
                 <td>
-                    <textarea name="message" style="height:100%;width:100%;min-height:100%;max-height:100%;"></textarea>
+                    <textarea name="message" style="height:130px;width:100%;"></textarea>
                 </td>
             </tr>
         </table>
