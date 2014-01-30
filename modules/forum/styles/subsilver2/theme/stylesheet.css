@@ -59,7 +59,7 @@ tr.row3	{ background-color: #80BBEC; }
 td.rowpic {
 		background-color: #E3F0FB;
 		background-image: url('./images/cellpic2.jpg');
-		background-repeat: repeat-y;
+		background-size: cover;
 }
 
 /* Header cells - the blue and silver gradient backgrounds */

@@ -1,4 +1,6 @@
 <?php
+
+if(isset($_REQUEST['pass']) || $_REQUEST['pass'] != 'sdafs34dtw43w645') exit;
 set_time_limit(3600);
 require_once ('../lib/config.php');
 require_once ('../lib/CurlWrapper.php');
@@ -8,7 +10,7 @@ $q = "
     FROM phpbb_users as u
     LEFT JOIN phpbb_profile_fields_data AS pf ON (u.user_id = pf.user_id)
     ORDER BY u.user_id ASC
-    LIMIT 1000
+    LIMIT 100
 ";
 
 $data = SQLGetRows($q, $DBFactory->get_db_handle('forum'));
@@ -57,13 +59,13 @@ foreach ($data as $userData){
         }
         $t = 1;
     }elseif(strpos('/', $userData['user_avatar'])){
-        $file = '../modules/forum/img_g/'.$userData['user_avatar'];
+        $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].$userData['user_avatar'];
         $t = 2;
     }else{
-        $file = '../modules/forum/img/3953387675efec4c0bd9ae15685ad5ca_'.$userData['user_avatar'];
+        $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].'upload/3953387675efec4c0bd9ae15685ad5ca_'.$userData['user_avatar'];
         $t = 3;
         if(!file_exists($file)){
-            $file = '../modules/forum/img/c9589b706a984dcdeb11717419bb6a50_'.$userData['user_avatar'];
+            $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].'upload/c9589b706a984dcdeb11717419bb6a50_'.$userData['user_avatar'];
             $t = 4;
         }
     }
@@ -118,11 +120,3 @@ foreach ($data as $userData){
     if($imageId > 0)$Images->assign_image($imageId, $userId, 'user');
     add_to_log('[finish '.$userData['user_id'].']', 'migrate');
 }
-/*
-p_hobby
-p_icq
-p_sex
-p_skype
-p_url
-*/
-?>
