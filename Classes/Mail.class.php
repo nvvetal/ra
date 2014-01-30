@@ -1,6 +1,6 @@
 <?php
 
-require_once(MODULES_DIR.'mailer/class.phpmailer.php');
+require_once($GLOBALS['MODULES_DIR'].'mailer/class.phpmailer.php');
 
 class Mail
 {
