@@ -8,7 +8,7 @@
                 <input value="{"type password"|i18n:'default'}" name="password" type="text" onfocus="if(this.value == '{"type password"|i18n:'default'}')this.value='';"/>
             </div>
             <div>
-                <label for="is_autologin">{"remember me"|i18n}</label>
+                <label for="is_autologin">{"remember me"|i18n:'default'}</label>
                 <input type="checkbox" id="is_autologin" name="is_autologin" value="1" />
             </div>
             <input src="{$http_images_static_path}authbutton.jpg" class="button" value="{"Enter"|i18n:'default'}" type="image"/>
