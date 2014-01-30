@@ -1,4 +1,5 @@
 <?php
+exit;
 $module_name = "shop";
 require_once("../../lib/config.php");
 set_time_limit(500);
@@ -18,7 +19,7 @@ try {
         if(!is_dir($category) || $file == '.' || $file == '..') continue;
         $shopCategory = new ShopCategory($dbh);
         $data = array(
-            'name'      => iconv('cp1251','utf-8',$categoryName),
+            'name'      => $categoryName,
             'shop_id'   => 1,
             'is_enabled'=> 'Y',
         );
@@ -44,11 +45,11 @@ try {
                     'name'          => '',
                     'image_id'      => $imageId,
                     'category_id'   => $categoryId,
-                    'price'         => iconv('cp1251','utf-8',$price),
+                    'price'         => $price,
                     'is_enabled'    => 'Y',
                 );
                 $res = $shopItem->create($data);
-                $Images->assign_image($imageId, $res['id'], 'shop_item');
+                $Images->assign_image($imageId, $res['id'], 'shop');
             }            
             closedir($dh3);
         }
