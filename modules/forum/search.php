@@ -1087,11 +1087,6 @@ if ($auth->acl_get('a_search'))
 	}
 	$db->sql_freeresult($result);
 }
-require_once('_lm8ea8f138e7abf12fd3b69de62a906877/linkmoney.php');
-$moneylinks = get_linkmoney_links();
-$template->assign_vars(array(
-    'LINKMONEY'	=> $moneylinks,
-));
 // Output the basic page
 page_header($user->lang['SEARCH']);
 

@@ -32,11 +32,6 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup('ucp');
 
-require_once('_lm8ea8f138e7abf12fd3b69de62a906877/linkmoney.php');
-$moneylinks = get_linkmoney_links();
-$template->assign_vars(array(
-    'LINKMONEY'	=> $moneylinks,
-));
 
 // Setting a variable to let the style designer know where he is...
 $template->assign_var('S_IN_UCP', true);

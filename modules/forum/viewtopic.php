@@ -1753,13 +1753,6 @@ if ($config['similar_topics_viewtopic'])
 }
 //[end] 'Advanced Similar Topics'
 $bodyTpl = ($view == 'print') ? 'viewtopic_print.html' : 'viewtopic_body.html';
-if($bodyTpl == 'viewtopic_body.html'){
-    require_once('_lm8ea8f138e7abf12fd3b69de62a906877/linkmoney.php');
-    $moneylinks = get_linkmoney_links();  
-    $template->assign_vars(array(
-        'LINKMONEY'	=> $moneylinks,
-	));      
-}
 $template->set_filenames(
     array(
 	   'body' => $bodyTpl,

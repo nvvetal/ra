@@ -143,8 +143,6 @@ if ($config['load_birthdays'] && $config['allow_birthdays'])
 
 }
 
-require_once('_lm8ea8f138e7abf12fd3b69de62a906877/linkmoney.php');
-$moneylinks = get_linkmoney_links();
 
 // Assign index specific vars
 $template->assign_vars(array(
@@ -155,7 +153,6 @@ $template->assign_vars(array(
 
 	'LEGEND'		=> $legend,
 	'BIRTHDAY_LIST'	=> $birthday_list,
-	'LINKMONEY'     => $moneylinks,
 
 	'FORUM_IMG'				=> $user->img('forum_read', 'NO_NEW_POSTS'),
 	'FORUM_NEW_IMG'			=> $user->img('forum_unread', 'NEW_POSTS'),
