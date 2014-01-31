@@ -1,11 +1,13 @@
 <div>
-    <table>
-        <tr align="center">
-            <td width="100">{"Date"|i18n}</td>
-            <td width="200">{"Gift sent"|i18n}</td>
-            <td>{"Gift sent by"|i18n}</td>
-        </tr>
-        {foreach from=$userGifts.items item=item}
+    <table style="width: 100%;">
+        {foreach name="gifts" from=$userGifts.items item=item}
+            {if $smarty.foreach.gifts.first == true}
+                <tr align="center">
+                    <td width="100">{"Date"|i18n}</td>
+                    <td width="200">{"Gift sent"|i18n}</td>
+                    <td>{"Gift sent by"|i18n}</td>
+                </tr>
+            {/if}
             {assign var="good" value=$item.good}
             {assign var="gift" value=$item.giftItem}
             {assign var="giftSawTime" value=$gift->saw_time}
@@ -25,7 +27,7 @@
             </tr>
             {foreachelse}
             <tr>
-                <td colspan="3" align="center">
+                <td align="center">
                     {if $canShowPrivateComment == 1}{"You have no gifts from users"|i18n shop}{else}{"User have no gifts yet."|i18n shop}{/if}
                 </td>
             </tr>
@@ -36,6 +38,4 @@
             {/if}
         {/foreach}
     </table>
-
-
     <br clear="all"/>
