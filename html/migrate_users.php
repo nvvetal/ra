@@ -10,7 +10,7 @@ $q = "
     FROM phpbb_users as u
     LEFT JOIN phpbb_profile_fields_data AS pf ON (u.user_id = pf.user_id)
     ORDER BY u.user_id ASC
-    LIMIT 20
+    LIMIT 10000
 ";
 
 $data = SQLGetRows($q, $DBFactory->get_db_handle('forum'));
