@@ -15,7 +15,7 @@ class User {
 			SELECT *
 			FROM users
 			WHERE login=".SQLQuote($login)." AND password = '$pass'
-			LIMIT 1 
+			LIMIT 1
 		";
 
         $user = SQLGet($query,$this->dbh);
@@ -26,7 +26,7 @@ class User {
     function login($params){
         return $this->authorize_user_by_login_pass($params['login'],$params['password']);
     }
-    
+
     function password_back($params){
         $is_exists = $this->is_user_exists($params);
         //var_dump($params);
@@ -42,10 +42,10 @@ class User {
         $mailer = Registry::get('mailer');
         $mailer->sendMail($mailParams);
         $user = $this->find_user_by_email($params['email']);
-        $this->set_value($user['user_id'],'password',md5($params['email_password']));        
+        $this->set_value($user['user_id'],'password',md5($params['email_password']));
         return true;
     }
-    
+
     function send_register_key($params){
         $mailParams = array(
             'from'      => 'admin@'.$_SERVER['HTTP_HOST'],
@@ -100,7 +100,7 @@ class User {
         }
 
         //forum_data
-        
+
         $q = "
             SELECT user_reputation
             FROM phpbb_users
@@ -110,13 +110,13 @@ class User {
         //echo $q;
         $DBFactory = Registry::get('DBFactory');
         $data = SQLGet($q, $DBFactory->get_db_handle('forum'));
-        if(isset($data['user_reputation'])) $values['user_reputation'] = $data['user_reputation'];       
+        if(isset($data['user_reputation'])) $values['user_reputation'] = $data['user_reputation'];
 
         $this->user_values[$user_id]=$values;
     }
 
     function get_value($user_id,$key){
-      
+
         if(!isset($this->user_values[$user_id])){
             $this->init_values($user_id);
         }
@@ -137,11 +137,11 @@ class User {
             case "act_key":
                 $this->set_user_value($user_id,$key,$value);
 
-            break;
+                break;
 
             default:
                 $this->set_user_data($user_id,$key,$value);
-            break;
+                break;
         }
 
 
@@ -159,7 +159,7 @@ class User {
 
     function set_user_data($user_id,$key,$value){
         $query = "
-			REPLACE INTO users_data (user_id,u_param,u_value) 
+			REPLACE INTO users_data (user_id,u_param,u_value)
 			VALUES (".SQLQuote($user_id).",".SQLQuote($key).",".SQLQuote($value).")
 		";
 
@@ -177,9 +177,9 @@ class User {
                 WHERE username = ".SQLQuote($username)."
             ";
             SQLQuery($query,$dbh_forum);
-        }  
-        
-        if($key == 'state' && in_array($value,array('not_active','active'))){                  
+        }
+
+        if($key == 'state' && in_array($value,array('not_active','active'))){
             $username = $this->get_value($user_id,'login');
             if($value=='not_active'){
                 $new_key = md5(microtime(true).mt_rand(1000,1000000));
@@ -197,16 +197,16 @@ class User {
             SQLQuery($query,$dbh_forum);
             $this->set_value($user_id,'act_key',$new_key);
         }
-        
+
         $query = "
 			UPDATE users
-			SET $key = ".SQLQuote($value)." 
+			SET $key = ".SQLQuote($value)."
 			WHERE user_id = ".SQLQuote($user_id)."
 		";
         SQLQuery($query,$this->dbh);
     }
 
-    function register_user($params){
+    function register_user($params, $encodePassword = true){
 
         $is_user_exists = $this->is_user_exists( $params );
         if( $is_user_exists == true ) return false;
@@ -214,7 +214,7 @@ class User {
         if(isset($params['state'])) $state = $params['state'];
         $fields = array(
             'login'         => $params['login'],
-            'password'      => md5($params['password']),
+            'password'      => ($encodePassword) ? md5($params['password']) : $params['password'],
             'email'         => $params['email'],
             'type'          => 'user',
             'state'         => $state,
@@ -252,26 +252,26 @@ class User {
         if(isset($params['login'])){
             $check[] = 'login = '.SQLQuote($params['login']);
         }
-        
+
         if(isset($params['email'])){
             $check[] = 'email = '.SQLQuote($params['email']);
-        }        
+        }
         $query="
             SELECT *
-            FROM users 
+            FROM users
             WHERE ".implode(' OR ',$check)."
             LIMIT 1
-        ";    
+        ";
         return (SQLGet($query,$this->dbh)!==false) ? true : false;
     }
 
     function is_user_id_exists( $user_id ){
         $query="
                 SELECT *
-                FROM users 
+                FROM users
                 WHERE user_id = ".SQLQuote($user_id)."
                 LIMIT 1
-            ";    
+            ";
         return (SQLGet($query,$this->dbh)!==false) ? true : false;
     }
 
@@ -286,7 +286,7 @@ class User {
         $user_id = ($user === false) ? 0 : $user['user_id'];
         return $user_id;
     }
-    
+
     function find_user_by_email($email){
         $query = "
             SELECT *
@@ -295,7 +295,7 @@ class User {
         ";
         return SQLGet($query,$this->dbh);
     }
-    
+
     function find_forum_by_user_id($user_id){
         $query = "
             SELECT u_value
@@ -315,9 +315,9 @@ class User {
             LIMIT 1
         ";
         $data = SQLGet($query,$this->dbh);
-        return (isset($data['user_id'])) ? $data['user_id'] : false;    			
+        return (isset($data['user_id'])) ? $data['user_id'] : false;
     }
-    
+
     function get_users($search='*',$page=0,$per_page=30){
         if($per_page < 1) $per_page = 30;
         $per_page = intval($per_page);
@@ -363,11 +363,11 @@ class User {
         SQLQuery($query,$this->dbh);
         $this->delete_user_params($user_id);
         if(empty($forum_id)) return true;
-        $dbh_forum = Registry::get('DBFactory')->get_db_handle("forum");        
+        $dbh_forum = Registry::get('DBFactory')->get_db_handle("forum");
         $query = "
             DELETE FROM phpbb_users
             WHERE user_id = ".SQLQuote($forum_id)."
-        ";        
+        ";
         SQLQuery($query,$dbh_forum);
     }
 
@@ -375,105 +375,105 @@ class User {
         $query = "DELETE FROM users_data WHERE user_id = ".SQLQuote($user_id);
         SQLQuery($query,$this->dbh);
     }
-    
+
     function find_inactive_users(){
         $query = "
             SELECT *
             FROM users
-            WHERE state = 'not_active' AND lastEnterTime < UNIX_TIMESTAMP(FROM_UNIXTIME(UNIX_TIMESTAMP()) - INTERVAL 1 DAY) 
+            WHERE state = 'not_active' AND lastEnterTime < UNIX_TIMESTAMP(FROM_UNIXTIME(UNIX_TIMESTAMP()) - INTERVAL 1 DAY)
         ";
         return SQLGetRows($query,$this->dbh);
     }
-    
+
     function get_raks_money($user_id){
         $raksMoney = $this->get_value($user_id,'raks_money');
         if(is_null($raksMoney)) $raksMoney = 0;
         return $raksMoney;
     }
-    
+
     function set_raks_money($user_id,$money){
         $this->set_value($user_id,'raks_money',$money);
     }
-    
+
     function can_pay_raks_money($user_id,$cost){
         $raksMoney = $this->get_raks_money($user_id);
         $canPay = ($raksMoney >= $cost) ? true : false;
         return array(
             'ok' => $canPay,
             'needMoney' => ($canPay == false) ? ($raksMoney-$cost)*-1: 0,
-        );        
+        );
     }
-    
+
     function pay_raks_money($user_id,$amount){
         $raksMoney = $this->get_raks_money($user_id);
         $this->set_raks_money($user_id,$raksMoney-$amount);
     }
-    
+
     function inc_raks_money($user_id,$amount){
         $raksMoney = $this->get_raks_money($user_id) + $amount;
         $this->set_raks_money($user_id,$raksMoney);
     }
-    
+
     function set_session_data($key,$value){
         $_SESSION[$key] = $value;
     }
-    
+
     function get_session_data($key){
         return isset($_SESSION[$key]) ? $_SESSION[$key] : false;
     }
-	
-	function findUsersBy($params)
-	{
-		$where = array();
-		$join  = '';
+
+    function findUsersBy($params)
+    {
+        $where = array();
+        $join  = '';
         $cnt   = 0;
-		switch ($params['type']){
-			case "login":
-				$where[] = 'u.login LIKE '.SQLQuote('%'.$params['search'].'%');
-			break;
-			case "first_name":
-				$join = 'INNER JOIN users_data as ud ON (u.user_id = ud.user_id)';
-				$where[] = 'ud.u_param = "p_first_name" AND u_value LIKE '.SQLQuote('%'.$params['search'].'%');
-			break;
+        switch ($params['type']){
+            case "login":
+                $where[] = 'u.login LIKE '.SQLQuote('%'.$params['search'].'%');
+                break;
+            case "first_name":
+                $join = 'INNER JOIN users_data as ud ON (u.user_id = ud.user_id)';
+                $where[] = 'ud.u_param = "p_first_name" AND u_value LIKE '.SQLQuote('%'.$params['search'].'%');
+                break;
             case "city":
                 $join = "
                     INNER JOIN users_data as ud ON (u.user_id = ud.user_id)
                     INNER JOIN cities as c ON (c.name LIKE ".SQLQuote('%'.$params['search'].'%').")
                 ";
                 $where[] = 'ud.u_param = "p_city_id" AND ud.u_value = c.id';
-            break;
-			
-			case "user_letter":
-				$where[] = 'u.login LIKE '.SQLQuote($params['search'].'%');
-			break;
-            
+                break;
+
+            case "user_letter":
+                $where[] = 'u.login LIKE '.SQLQuote($params['search'].'%');
+                break;
+
             case "all":
-                
-            break;
-		}
-        
+
+                break;
+        }
+
         $qCnt = "
             SELECT COUNT(u.user_id) as cnt
             FROM  users as u
             $join
         ";
-		
-		$q = "
-			SELECT u.*			
-			FROM users as u		
-			$join				
-		";	
-        
-		if(count($where) > 0) {
-		    $q = $q."WHERE ".implode(' AND ', $where);
+
+        $q = "
+			SELECT u.*
+			FROM users as u
+			$join
+		";
+
+        if(count($where) > 0) {
+            $q = $q."WHERE ".implode(' AND ', $where);
             $qCnt = $qCnt."WHERE ".implode(' AND ', $where);
         }
-		$q = $q.' ORDER BY u.login ASC';
+        $q = $q.' ORDER BY u.login ASC';
         if(isset($params['page'])){
             $q = $q." LIMIT ".($params['page']*$params['perPage']).', '.$params['perPage'];
         }
-        //echo $q;    
-		$data = SQLGetRows($q, $this->dbh);
+        //echo $q;
+        $data = SQLGetRows($q, $this->dbh);
         $dataCnt = SQLGet($qCnt, $this->dbh);
         if(isset($dataCnt['cnt']) && $dataCnt['cnt'] > 0){
             $cnt = $dataCnt['cnt'];
@@ -483,8 +483,8 @@ class User {
             'items' => $data,
         );
         if(isset($params['perPage'])) $res['pages'] = ceil($cnt / $params['perPage']);
-		return $res;	
-	}
+        return $res;
+    }
 
     function getUsersLetters()
     {
@@ -495,24 +495,24 @@ class User {
         ";
         return SQLGetRows($query, $this->dbh);
     }
-    
+
     function getUserForumFiendsList($userId)
-	{
-		$forumUserId = $this->get_value($userId, 'forum');
+    {
+        $forumUserId = $this->get_value($userId, 'forum');
         $DBFactory = Registry::get('DBFactory');
-		$dbh = $DBFactory->get_db_handle('forum');
-		$q = '
+        $dbh = $DBFactory->get_db_handle('forum');
+        $q = '
 			SELECT zebra_id as friendForumUserId
 			FROM `phpbb_zebra`
 			WHERE user_id = '.SQLQuote($forumUserId).'
 				AND friend = 1
 		';
         $data = SQLGetRows($q, $dbh);
-		foreach ($data as $key=>$value){
-			$data[$key]['friendUserId'] = $this->findUserIdByForumId($value['friendForumUserId']);
-		}
-		return $data;
-	}
+        foreach ($data as $key=>$value){
+            $data[$key]['friendUserId'] = $this->findUserIdByForumId($value['friendForumUserId']);
+        }
+        return $data;
+    }
 }
 
 ?>

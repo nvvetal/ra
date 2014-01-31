@@ -16,6 +16,7 @@ $q = "
 $data = SQLGetRows($q, $DBFactory->get_db_handle('forum'));
 
 $Images = Registry::get('Images');
+
 $User = new User($DBFactory->get_db_handle('rakscom'));
 
 foreach ($data as $userData){
@@ -26,7 +27,7 @@ foreach ($data as $userData){
         'email'     => $userData['user_email'],
         'state'     => 'active',
     );
-    $userId = $User->register_user($uParams);
+    $userId = $User->register_user($uParams, false);
     if($userId === false) {
         add_to_log('[exists '.$userData['user_id'].']', 'migrate');
         continue;
