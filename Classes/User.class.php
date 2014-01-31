@@ -1,6 +1,7 @@
 <?php
 
-class User {
+class User
+{
     var $dbh;
 
     var $user_values = array();
@@ -9,18 +10,19 @@ class User {
         $this->dbh = $dbh;
     }
 
-    function authorize_user_by_login_pass($login,$password){
-        $pass = md5($password);
+    function authorize_user_by_login_pass($login, $password){
+        $phpBB = new PHPBB();
         $query = "
-			SELECT *
-			FROM users
-			WHERE login=".SQLQuote($login)." AND password = '$pass'
-			LIMIT 1
-		";
-
+            SELECT *
+            FROM users
+            WHERE login=".SQLQuote($login)."
+            LIMIT 1
+        ";
         $user = SQLGet($query,$this->dbh);
-
-        return isset($user['user_id']) ? $user : false;
+        if(!isset($user['user_id'])) return false;
+        if($user['password'] == md5($password)) return true;
+        if($phpBB->checkHash($password, $user['password'])) return true;
+        return false;
     }
 
     function login($params){
@@ -66,13 +68,11 @@ class User {
             $values = $u_data;
         }else{
             $query="
-				SELECT *
-				FROM users
-				WHERE user_id = ".SQLQuote($user_id)."
-			";
-
+                SELECT *
+                FROM users
+                WHERE user_id = ".SQLQuote($user_id)."
+            ";
             $u_data = SQLGet($query,$this->dbh);
-
             if($u_data!==false){
                 foreach ($u_data as $key=>$value){
                     $values[$key]=$value;
@@ -86,21 +86,14 @@ class User {
         }
 
         $query="
-			SELECT *
-			FROM users_data
-			WHERE user_id = ".SQLQuote($user_id)."
-		";
-
-
+            SELECT *
+            FROM users_data
+            WHERE user_id = ".SQLQuote($user_id)."
+        ";
         $rows = SQLGetRows($query,$this->dbh);
-
-
         foreach ($rows as $key=>$row){
             $values[$row['u_param']] = $row['u_value'];
         }
-
-        //forum_data
-
         $q = "
             SELECT user_reputation
             FROM phpbb_users
@@ -159,10 +152,9 @@ class User {
 
     function set_user_data($user_id,$key,$value){
         $query = "
-			REPLACE INTO users_data (user_id,u_param,u_value)
-			VALUES (".SQLQuote($user_id).",".SQLQuote($key).",".SQLQuote($value).")
-		";
-
+            REPLACE INTO users_data (user_id,u_param,u_value)
+            VALUES (".SQLQuote($user_id).",".SQLQuote($key).",".SQLQuote($value).")
+        ";
         SQLQuery($query,$this->dbh);
     }
 
@@ -199,10 +191,10 @@ class User {
         }
 
         $query = "
-			UPDATE users
-			SET $key = ".SQLQuote($value)."
-			WHERE user_id = ".SQLQuote($user_id)."
-		";
+            UPDATE users
+            SET $key = ".SQLQuote($value)."
+            WHERE user_id = ".SQLQuote($user_id)."
+        ";
         SQLQuery($query,$this->dbh);
     }
 
@@ -281,7 +273,7 @@ class User {
             FROM users
             WHERE login = ".SQLQuote($login)."
             LIMIT 1
-	    ";
+        ";
         $user = SQLGet($query,$this->dbh);
         $user_id = ($user === false) ? 0 : $user['user_id'];
         return $user_id;
@@ -335,7 +327,7 @@ class User {
             WHERE login LIKE ".SQLQuote($search)."
             ORDER BY login ASC
             LIMIT $cur_page, $per_page
-	    ";
+        ";
         return SQLGetRows($query,$this->dbh);
     }
 
@@ -348,10 +340,10 @@ class User {
             $search = str_replace('*','%',$search).'%';
         }
         $query = "
-		  SELECT COUNT(*) AS cnt
-		  FROM users
-		  WHERE login LIKE ".SQLQuote($search)."
-	    ";
+          SELECT COUNT(*) AS cnt
+          FROM users
+            WHERE login LIKE ".SQLQuote($search)."
+        ";
         $data = SQLGet($query,$this->dbh);
         $pages = ceil($data['cnt'] / $per_page);
         return $pages;
@@ -459,10 +451,10 @@ class User {
         ";
 
         $q = "
-			SELECT u.*
-			FROM users as u
-			$join
-		";
+            SELECT u.*
+            FROM users as u
+            $join
+        ";
 
         if(count($where) > 0) {
             $q = $q."WHERE ".implode(' AND ', $where);
@@ -502,11 +494,11 @@ class User {
         $DBFactory = Registry::get('DBFactory');
         $dbh = $DBFactory->get_db_handle('forum');
         $q = '
-			SELECT zebra_id as friendForumUserId
-			FROM `phpbb_zebra`
-			WHERE user_id = '.SQLQuote($forumUserId).'
-				AND friend = 1
-		';
+            SELECT zebra_id as friendForumUserId
+            FROM `phpbb_zebra`
+            WHERE user_id = '.SQLQuote($forumUserId).'
+                AND friend = 1
+        ';
         $data = SQLGetRows($q, $dbh);
         foreach ($data as $key=>$value){
             $data[$key]['friendUserId'] = $this->findUserIdByForumId($value['friendForumUserId']);
