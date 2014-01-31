@@ -35,6 +35,13 @@ foreach ($data as $userData){
     $needConvert = true;
     $t = 0;
     $file = '';
+    $avatarExt = "";
+    $avatarFilename	= "";
+    if(!empty($userData['user_avatar']) && substr($userData['user_avatar'], 0, 4) != 'http'){
+        $avatarExt	= substr(strrchr($userData['user_avatar'], '.'), 1);
+        $avatarFilename	= intval($userData['user_avatar']);
+    }
+
     if(empty($userData['user_avatar'])){
 //nothing
         $needConvert = false;
@@ -67,10 +74,10 @@ foreach ($data as $userData){
         $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].$userData['user_avatar'];
         $t = 2;
     }else{
-        $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].'upload/3953387675efec4c0bd9ae15685ad5ca_'.$userData['user_avatar'];
+        $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].'upload/3953387675efec4c0bd9ae15685ad5ca_'.$avatarFilename.'.'.$avatarExt;
         $t = 3;
         if(!file_exists($file)){
-            $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].'upload/c9589b706a984dcdeb11717419bb6a50_'.$userData['user_avatar'];
+            $file = $GLOBALS['IMAGE_FORUM_AVATAR_PATH'].'upload/c9589b706a984dcdeb11717419bb6a50_'.$avatarFilename.'.'.$avatarExt;
             $t = 4;
         }
     }
