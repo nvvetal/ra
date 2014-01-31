@@ -129,6 +129,10 @@ foreach ($data as $userData){
         $User->set_value($userId, $pk, $pval);
     }
 
+    $User->inc_raks_money($userId, 50);
+    $Payment = Registry::get('Payment');
+    $Payment->addStats($userId, 'raks_in', 'migrate');
+
     if($imageId > 0)$Images->assign_image($imageId, $userId, 'user');
     add_to_log('[finish '.$userData['user_id'].']', 'migrate');
 }
