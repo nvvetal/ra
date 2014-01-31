@@ -21,12 +21,12 @@ class User
         $user = SQLGet($query,$this->dbh);
         if(!isset($user['user_id'])) return false;
         if($user['password'] == md5($password)) return true;
-        if($phpBB->checkHash($password, $user['password'])) return true;
+        if($phpBB->checkHash($password, $user['password']) == true) return true;
         return false;
     }
 
     function login($params){
-        return $this->authorize_user_by_login_pass($params['login'],$params['password']);
+        return $this->authorize_user_by_login_pass($params['login'], $params['password']);
     }
 
     function password_back($params){
