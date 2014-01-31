@@ -10,7 +10,7 @@ $q = "
     FROM phpbb_users as u
     LEFT JOIN phpbb_profile_fields_data AS pf ON (u.user_id = pf.user_id)
     ORDER BY u.user_id ASC
-    LIMIT 10000
+    LIMIT 20
 ";
 
 $data = SQLGetRows($q, $DBFactory->get_db_handle('forum'));
@@ -19,7 +19,7 @@ $Images = Registry::get('Images');
 $User = new User($DBFactory->get_db_handle('rakscom'));
 
 foreach ($data as $userData){
-    add_to_log('[starting '.$userData['user_id'].']', 'migrate');
+    add_to_log('[starting '.$userData['user_id'].']'.'[fulldata '.print_r($userData,true).']', 'migrate');
     $uParams = array(
         'login'     => $userData['username'],
         'password'  => $userData['user_password'],
