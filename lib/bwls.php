@@ -121,13 +121,12 @@ function bwls($go,$action,$params){
                     $user_container_class = new User_container($params['Validator'],$params['User']);
 
                     $u_params = array(
-                        'login'=>@$_REQUEST['login'],
-                        'password'=>@$_REQUEST['password'],
+                        'login'     => isset($_REQUEST['login']) ? $_REQUEST['login'] : '',
+                        'password'  => isset($_REQUEST['password']) ? $_REQUEST['password'] : '',
                     );
                     $user = $user_container_class->call_method("login",$u_params);
                     if($user_container_class->is_valid($user)){
                         if($user !== false){
-
                             if($user['state'] != 'active'){
                                 switch($user['state']){
                                     case "not_active":

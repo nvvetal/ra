@@ -20,8 +20,8 @@ class User
         ";
         $user = SQLGet($query,$this->dbh);
         if(!isset($user['user_id'])) return false;
-        if($user['password'] == md5($password)) return true;
-        if($phpBB->checkHash($password, $user['password']) == true) return true;
+        if($user['password'] == md5($password)) return $user;
+        if($phpBB->checkHash($password, $user['password']) == true) return $user;
         return false;
     }
 
