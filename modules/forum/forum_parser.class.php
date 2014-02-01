@@ -38,7 +38,7 @@ class forum_parser {
             $topics[$i] ['topic_title'] = $topic['topic_title'];
             $topics[$i] ['topic_views'] = $topic['topic_views'];
             $topics[$i] ['topic_replies'] = $topic['topic_replies'];
-            if($i == $maxCount) break;
+            if($i == $maxCount - 1) break;
             $i++;
         }
         return $topics;
