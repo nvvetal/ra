@@ -3,7 +3,7 @@
         <img src="{$http_images_static_path}line.png" alt="" style="width: 100%; height: 5px;"/>
     </td>
     <td>
-        <table style="width: 100%">
+        <table style="width: 100%; height:190px;">
             <tr>
                 <td align="center" id="banner_165_1">
                     <span id="banner_165_1_flash" style="padding:0px;margin:0px;"></span>
