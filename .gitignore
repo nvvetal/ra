@@ -31,4 +31,5 @@
 /users/
 !/users/.gitkeep
 /modules/forum/config.php
-
+/images/forum/avatars/upload/
+!/images/forum/avatars/upload/.gitkeep

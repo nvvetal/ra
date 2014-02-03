@@ -18,5 +18,3 @@ $actionProcessor = new ActionProcessor($module_name, $params);
 $actionProcessor->setGoName('go');
 $actionProcessor->showContent();
 require_once($GLOBALS['LIB_ROOT'].'/debug.php'); 
-
-?>

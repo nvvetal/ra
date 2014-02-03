@@ -65,6 +65,7 @@ if (isset($_GET['avatar']))
  	$last_load 	=  isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime(trim($_SERVER['HTTP_IF_MODIFIED_SINCE'])) : false;
  	if (strpos(strtolower($browser), 'msie 6.0') === false)
  	{
+                if(!isset($stamp)) $stamp = time();
  		if ($last_load !== false && $last_load <= $stamp)
  		{
  			header('Not Modified', true, 304);
