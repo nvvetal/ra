@@ -103,7 +103,6 @@
             banner_165_4[0]   = new Array ('<a href="http://dancebox.com.ua/" target="_blank" ><img src="images/dbx_.gif" alt=""/></a>', 'html', 165, 190);
             showBannerData('banner_165_4', banner_165_4);
         }
-        {/literal}
     </script>
 </head>
 <body>
