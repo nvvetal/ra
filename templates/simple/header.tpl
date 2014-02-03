@@ -54,9 +54,6 @@
     <script type="text/javascript">
         {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};
         swfobject.embedSWF("{/literal}{$http_images_static_path}{literal}raks.swf", "flash", "100%", "480", "10.0.0", "swfobject/expressInstall.swf");
-
-        {literal}
-
         function setCookie(c_name, value, exdays)
         {
             var exdate=new Date();
