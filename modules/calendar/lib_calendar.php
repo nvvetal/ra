@@ -58,7 +58,7 @@ function calendar_actions($go,$action,$params){
                 'post_text'         => $messParser->add_bbcode_uid($bbcodeUID, $fields['full_info']),
                 'bbcode_uid'        => $bbcodeUID,
                 'bbcode_bitfield'   => $bitField,
-                'enable_sig'        => 0,
+                'enable_sig'        => 1,
             );
            
             $postId = $calendarForum->postMessage(0, $forumMessageData);
