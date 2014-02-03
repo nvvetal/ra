@@ -26,7 +26,7 @@ function bwls($go,$action,$params){
                         add_to_log("[error pass not equals]".prepare_array_to_log($u_params),"error_register");
                         return $go;
                     }
-                    $resp = recaptcha_check_answer($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+                    $resp = recaptcha_check_answer($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
                     if (!$resp->is_valid) {
                         $params['smarty']->assign('errors',array('register'=>array('message'=>'Wrong captcha!')));
                         add_to_log("[error wrong captcha]".prepare_array_to_log($u_params),"error_register");
