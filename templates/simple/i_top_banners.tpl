@@ -17,9 +17,6 @@
                 <td align="center">
                     <a href="#"><img src="http://raks.com.ua/forum/images/165_190.png"  alt="" /></a>
                 </td>
-                <td align="center">
-                    <a href="#"><img src="http://raks.com.ua/forum/images/165_190.png"  alt="" /></a>
-                </td>
             </tr>
         </table>
     </td>
