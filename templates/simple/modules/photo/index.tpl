@@ -30,7 +30,7 @@
     {foreach name="photo" from=$photoItems item=photo}
         {if $smarty.foreach.photo.first == true}
             <hr/>
-            <div style="display: inline; float:left;">
+            <div style="display: inline; float:left;width:70px;">
                 {if $photo->owner_type == 'user'}
                     {assign var="ownerUserImageId" value=$User->get_value($photo->owner_id, 'image_id')}
                     {assign var="ownerUserNoImageId" value=$User->get_value($photo->owner_id, 'p_sex')}
