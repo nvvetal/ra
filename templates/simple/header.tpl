@@ -56,6 +56,34 @@
         swfobject.embedSWF("{$http_images_static_path}raks.swf", "flash", "100%", "480", "10.0.0", "swfobject/expressInstall.swf");
 
         {literal}
+
+        function setCookie(c_name, value, exdays)
+        {
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+            document.cookie=c_name + "=" + c_value;
+        }
+
+        function getCookie(c_name)
+        {
+            var i,x,y,ARRcookies=document.cookie.split(";");
+            for (i=0;i<ARRcookies.length;i++)
+            {
+                x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+                y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+                x=x.replace(/^\s+|\s+$/g,"");
+                if (x==c_name)
+                {
+                    return unescape(y);
+                }
+            }
+        }
+
+        function randomFromTo(from, to){
+            return Math.floor(Math.random() * (to - from + 1) + from);
+        }
+
         function showBannerData(name, banners)
         {
             var currentId = getCookie(name);
@@ -103,6 +131,7 @@
             banner_165_4[0]   = new Array ('<a href="http://dancebox.com.ua/" target="_blank" ><img src="images/dbx_.gif" alt=""/></a>', 'html', 165, 190);
             showBannerData('banner_165_4', banner_165_4);
         }
+        {/literal}
     </script>
 </head>
 <body>
