@@ -233,4 +233,3 @@ function showPhotoAlbumEdit($photoAlbumId, $s)
 }
 
 $xajax->processRequests();
-?>

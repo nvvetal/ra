@@ -53,7 +53,7 @@ function saveVideo($fields)
         }
         $fields = array(
             'album_id' 		=> $albumId,
-            'name' 			=> isset($data['name'][$key]) ? isset($data['name'][$key]) : '',
+            'name' 			=> isset($data['name'][$key]) ? $data['name'][$key] : '',
             'description' 	=> isset($data['description'][$key]) ? $data['description'][$key] : '',
             'youtube_id'	=> $parsedLink,
             'owner_id'		=> $userId,
