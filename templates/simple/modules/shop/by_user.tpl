@@ -9,7 +9,7 @@ document.write(''+
             '<div style="float:left;display:inline;text-align:center;margin-right:5px;">'+
                 {assign var="itemGood" value=$item.good}{assign var="itemGift" value=$item.giftItem}
                 '<div><img src="{$http_images_path}{$itemGood->getImageUrl(150, 100, 'jpg')}" alt="" width="150" height="100" /></div>'+
-                '<div>{"Gift by"|i18n} '+
+                '<div style="width:150px;">{"Gift by"|i18n} '+
                     '<a href="{$http_project_path}?go=profile&user_id={$itemGift->from_user_id}">{$User->get_value($itemGift->from_user_id,'login')}</a>'+
                 '</div>'+
             '</div>'+
