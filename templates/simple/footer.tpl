@@ -2,6 +2,7 @@
 </tr>
 </table>
 <div style="text-align: center">
+{literal}
 <!--Openstat-->
 <span id="openstat2355154"></span>
 <script type="text/javascript">
@@ -12,6 +13,7 @@
         var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(j, s);
     })(document, "script", document.location.protocol);
 </script>
+{/literal}
 </div>
 <!--/Openstat-->
 <div class="buttons">{"All rights reserved"|i18n:'default'}</div>
