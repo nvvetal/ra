@@ -1,6 +1,19 @@
 </td>
 </tr>
 </table>
+<div style="text-align: center">
+<!--Openstat-->
+<span id="openstat2355154"></span>
+<script type="text/javascript">
+    var openstat = { counter: 2355154, image: 5083, color: "3400cd", next: openstat, track_links: "all" };
+    (function(d, t, p) {
+        var j = d.createElement(t); j.async = true; j.type = "text/javascript";
+        j.src = ("https:" == p ? "https:" : "http:") + "//openstat.net/cnt.js";
+        var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(j, s);
+    })(document, "script", document.location.protocol);
+</script>
+</div>
+<!--/Openstat-->
 <div class="buttons">{"All rights reserved"|i18n:'default'}</div>
 <br clear="left"/>
 <div class="corner_bottom_left">&nbsp;</div>
