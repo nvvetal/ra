@@ -5,17 +5,17 @@
     <td>
         <table style="width: 100%">
             <tr>
-                <td align="center">
-                    <a href="#"><img src="http://raks.com.ua/forum/images/165_190.png"  alt="" /></a>
+                <td align="center" id="banner_165_1">
+                    <span id="banner_165_1_flash" style="padding:0px;margin:0px;"></span>
                 </td>
-                <td align="center">
-                    <a href="#"><img src="http://raks.com.ua/forum/images/165_190.png"  alt="" /></a>
+                <td align="center"id="banner_165_2">
+                    <span id="banner_165_2_flash" style="padding:0px;margin:0px;"></span>
                 </td>
-                <td align="center">
-                    <a href="#"><img src="http://raks.com.ua/forum/images/165_190.png"  alt="" /></a>
+                <td align="center"id="banner_165_3">
+                    <span id="banner_165_3_flash" style="padding:0px;margin:0px;"></span>
                 </td>
-                <td align="center">
-                    <a href="#"><img src="http://raks.com.ua/forum/images/165_190.png"  alt="" /></a>
+                <td align="center"id="banner_165_4">
+                    <span id="banner_165_4_flash" style="padding:0px;margin:0px;"></span>
                 </td>
             </tr>
         </table>

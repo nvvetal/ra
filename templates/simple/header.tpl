@@ -52,8 +52,58 @@
     {/literal}
     {/if}
     <script type="text/javascript">
-                {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};{/literal}
+        {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};
         swfobject.embedSWF("{$http_images_static_path}raks.swf", "flash", "100%", "480", "10.0.0", "swfobject/expressInstall.swf");
+
+        {literal}
+        function showBannerData(name, banners)
+        {
+            var currentId = getCookie(name);
+            var max = banners.length - 1;
+            if(max < 0) return false;
+            if(currentId != null){
+
+                if(currentId >= max ){
+                    currentId = 0;
+                }else{
+                    currentId++;
+                }
+            }else{
+                currentId = randomFromTo(0, max);
+            }
+            if(banners[currentId][1] == 'html'){
+                document.getElementById(name).innerHTML = banners[currentId][0];
+            }
+            if(banners[currentId][1] == 'swf'){
+                swfobject.embedSWF(banners[currentId][0], name+"_flash", banners[currentId][2], banners[currentId][3], "10.0.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
+            }
+            if(banners[currentId][1] == 'container'){
+                document.getElementById(name).innerHTML = banners[currentId][0];
+
+            }
+            setCookie(name, currentId, 1);
+        }
+
+        function loadBanners(){
+            var banner_165_1  = new Array();
+            banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16387" target="_blank"><img src="images/banner_konk.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=16420" target="_blank"><img src="images/banner_mk.jpg" alt=""/></a>', 'html', 165, 190);
+            showBannerData('banner_165_1', banner_165_1);
+
+            var banner_165_2  = new Array();
+            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16005" target="_blank"><img src="images/maket_new.gif" alt=""/></a>', 'html', 165, 190);
+            showBannerData('banner_165_2', banner_165_2);
+
+            var banner_165_3  = new Array();
+            banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=14530" target="_blank"><img src="images/konk.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16350" target="_blank"><img src="images/banner_bn2.gif" alt=""/></a>', 'html', 165, 190);
+            showBannerData('banner_165_3', banner_165_3);
+
+            var banner_165_4  = new Array();
+            banner_165_4[0]   = new Array ('<a href="http://dancebox.com.ua/" target="_blank" ><img src="images/dbx_.gif" alt=""/></a>', 'html', 165, 190);
+            showBannerData('banner_165_4', banner_165_4);
+        }
+        {/literal}
     </script>
 </head>
 <body>
