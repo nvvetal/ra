@@ -14,6 +14,7 @@
     <td>{"School Up"|i18n}</td>
     <td>{"Calendar Premium"|i18n}</td>
     <td>{"Articles Enabled"|i18n}</td>
+    <td>{"Gift"|i18n}</td>
     <td>{"Forum Message"|i18n}</td>
     <td>{"Forum Enter"|i18n}</td>
     <td>{"Forum Enter Daily"|i18n}</td>
@@ -32,6 +33,7 @@
     <td>{$stats.school_up|default:0}</td>
     <td>{$stats.calendar_premium|default:0}</td>
     <td>{$stats.article_enabled|default:0}</td>
+    <td>{$stats.gift|default:0}</td>
     <td>{$stats.forumMessage|default:0}</td>
     <td>{$stats.forumEnter|default:0}</td>
     <td>{$stats.forumEnterDaily|default:0}</td>

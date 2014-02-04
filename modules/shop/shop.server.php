@@ -50,6 +50,9 @@ function sendUserGift($dataParse){
 
 
     $User->pay_raks_money($userId, $giftPrice);
+    $Payment = Registry::get('Payment');
+    $Payment->addStats($userId, 'gift', $giftPrice);
+    $Payment->addStats($userId,'raks_out', $giftPrice);
     //send gift
     $ShopUserItem = new ShopUserItem($dbh);
     $ShopUserItem->addUserGift($userId, $toUserId, $giftId, $message);
