@@ -1406,7 +1406,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
     {
         $s_first_unread = $first_unread = true;
     }
-    $editLink = (!$user->data['is_registered']) ? '' : ((($user->data['user_id'] == $poster_id && $auth->acl_get('f_edit', $forum_id) && ($row['post_time'] > time() - ($config['edit_time'] * 60) || !$config['edit_time'])) || $auth->acl_get('m_edit', $forum_id)) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=edit&amp;f=$forum_id&amp;p={$row['post_id']}") : '');
+    $editLink = (!$user->data['is_registered']) ? '' : ((($user->data['user_id'] == $poster_id && $auth->acl_get('f_edit', $forum_id) && ($row['post_time'] > time() - ($config['edit_time'] * 60) || !$config['edit_time'])) || $auth->acl_get('m_edit', $forum_id)) ? append_sid("forum/posting.$phpEx", "mode=edit&f=$forum_id&p={$row['post_id']}") : '');
     $editLinkUrl = !empty($editLink) ? RAKS_EDIT_POST_URL."&amp;post_id={$row['post_id']}&amp;url=".urlencode($editLink) : '';
     //
     $postrow = array(
