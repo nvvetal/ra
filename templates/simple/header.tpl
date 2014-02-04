@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>{$title|default:'RAKS'}</title>
-    <meta name="title" content="" />
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="title" content="{$title|default:'RAKS'}" />
+    <meta name="keywords" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+    <meta name="description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
     <link type="text/css" href="{$http_project_path}jQuery/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="{$http_project_path}select2/select2.css" type="text/css" media="screen, projection" />
 
