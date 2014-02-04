@@ -22,5 +22,5 @@ if($userId === false){
 }
 
 $Raks = new Raks($DBFactory->get_db_handle('rakscom'));
-$Raks->addMoneyByRule($userId, $rule, $params);
+$Raks->addMoneyByRule($userId, $rule, $params, true);
 ?>
