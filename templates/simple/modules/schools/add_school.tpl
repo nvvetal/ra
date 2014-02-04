@@ -21,7 +21,7 @@
 		<table style="width:100%;" >
 			<tr valign="top">
 				<td width="170">{"Name"|i18n}<span class="required">*</span></td>
-				<td><input type="text" style="width:100%" name="name" value="{$smarty.request.name}" /></td>
+				<td><input type="text" style="width:100%" name="name" value='{$smarty.request.name}' /></td>
 			</tr>
 			<tr valign="top">
 			     <td>{"Country"|i18n}</td>
