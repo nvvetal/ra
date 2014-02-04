@@ -7,9 +7,9 @@
         {if $firstPhotoUrl == false}
             {assign var="firstPhotoUrl" value=$http_images_static_path|cat:'no_album.jpg'}
         {/if}
-        <div class="photo_container" style="width:100px;">
-            <div><a href="{$http_project_path}photo/?go=user_album_photos&s={$s}&album_id={$albumData->id}&user_id={$smarty.request.user_id}"><img src="{$firstPhotoUrl}" alt="" width="100" height="100" /></a></div>
-            <div style="text-align: center;word-wrap: break-word;text-overflow: clip;overflow: hidden;"><a href="{$http_project_path}photo/?go=user_album_photos&s={$s}&album_id={$albumData->id}&user_id={$smarty.request.user_id}">{$albumData->name}</a></div>
+        <div class="photo_container" style="width:100px;height:176px;">
+            <div><a href="{$http_project_path}photo/?go=user_album_photos&s={$s}&album_id={$albumData->id}&user_id={$smarty.request.user_id}"><img src="{$firstPhotoUrl}" alt="{$albumData->name}" title="{$albumData->name}" width="100" height="100" /></a></div>
+            <div style="text-align: center;word-wrap: break-word;text-overflow: clip;overflow: hidden;"><a href="{$http_project_path}photo/?go=user_album_photos&s={$s}&album_id={$albumData->id}&user_id={$smarty.request.user_id}" title="{$albumData->name}">{$albumData->name}</a></div>
         </div>
         {foreachelse}
         {"No user albums"|i18n}
