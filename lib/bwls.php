@@ -313,6 +313,22 @@ function page_content($go,$action,$params){
             exit;
             break;
 
+        case "forum_edit_post":
+            $postId    = isset($_REQUEST['post_id']) ? intval($_REQUEST['post_id']) : 0;
+            $url        = isset($_REQUEST['url']) ? $_REQUEST['url'] : '';
+            $dbh        = Registry::get('DBFactory')->get_db_handle("rakscom");
+            require_once($GLOBALS['MODULES_DIR'].'calendar/calendar.class.php');
+            $calendar   = new calendar($dbh);
+            $data   = $calendar->getCategoryByPostId($postId);
+            if($data === false){
+                header('Location: '.$url);
+                exit;
+            }
+            $url = $GLOBALS['HTTP_PROJECT_ROOT'].'/calendar/index.php?go=edit_calendar&calendar_id='.$data['id'];
+            header('Location: '.$url);
+            exit;
+            break;
+
         case "profile":
             $DBFactory                  = Registry::get('DBFactory');
             $dbh 						= $DBFactory->get_db_handle('rakscom');

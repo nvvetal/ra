@@ -69,6 +69,18 @@ class calendar {
         return ($data['cnt'] > 0) ? true : false;
     }
 
+    function getCategoryByPostId($postId)
+    {
+        $query = "
+            SELECT *
+            FROM calendar
+            WHERE forum_post_id = ".SQLQuote($postId)."
+            LIMIT 1
+        ";
+        $data = SQLGet($query, $this->dbh);
+        return isset($data['id']) ? $data : false;
+    }
+
     function get_calendar($calendar_id){
         $query = "
 	       SELECT *
