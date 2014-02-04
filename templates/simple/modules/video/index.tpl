@@ -35,7 +35,7 @@
 	{foreach name="video" from=$videoItems item=video}
 	{if $smarty.foreach.video.first == true}
 	<hr/>
-	<div style="display: inline; float:left;">
+	<div style="display: inline; float:left;width:70px;">
 		{if $video->owner_type == 'user'}
             {assign var="ownerUserImageId" value=$User->get_value($video->owner_id, 'image_id')}
             {assign var="ownerUserNoImageId" value=$User->get_value($video->owner_id, 'p_sex')}
