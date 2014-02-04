@@ -34,13 +34,13 @@
                 {if $photo->owner_type == 'user'}
                     {assign var="ownerUserImageId" value=$User->get_value($photo->owner_id, 'image_id')}
                     {assign var="ownerUserNoImageId" value=$User->get_value($photo->owner_id, 'p_sex')}
+                    {assign var="pAlbum" value=$photo->getAlbum()}
                     {if $User->get_value($photo->owner_id,'image_id') > 0}
                         <img title="{$pAlbum->getOwnerLogin()}" src="{$http_images_path}{$Images->get_image_url_center_square($ownerUserImageId, 70, 'jpg')}" alt="" width="70" height="70" />
                     {else}
                         <img  title="{$pAlbum->getOwnerLogin()}" src="{$http_images_static_path}u_{$ownerUserNoImageId}.png" width="70" height="70" alt="" / >
                     {/if}
                     <br/>
-                    {assign var="pAlbum" value=$photo->getAlbum()}
                     <a href="{$http_project_path}?s={$s}&go=profile&user_id={$photo->owner_id}" title="{$pAlbum->getOwnerLogin()}">{$pAlbum->getOwnerLogin()}</a>
                 {elseif  $photo->owner_type == 'school'}
                     {assign var="school" value=$schoolObj->get_school($photo->owner_id)}
