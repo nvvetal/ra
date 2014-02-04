@@ -167,7 +167,7 @@ function calendar_actions($go,$action,$params){
             $postId = $calendar_data['forum_post_id'];
             $topicData = array(
                 'topic_title'       => $forumDate."::".$cityData['name']."::".$fields['name'],
-                'topic_time'        => time(),
+                //'topic_time'        => time(),
             );
             $topicId = $calendarForum->setTopic($topicId, $topicData);
             $bbcodeUID = substr(base_convert(uniqid(), 16, 36), 0, 8);
@@ -176,13 +176,13 @@ function calendar_actions($go,$action,$params){
             $bitField = $messParser->get_bitfield();
             $forumMessageData = array(
                 'poster_ip'         => $_SERVER['REMOTE_ADDR'],
-                'post_time'         => time(),
+                //'post_time'         => time(),
                 'post_approved'     => 1,
                 'post_subject' 	    => $fields['name'],
                 'post_text'         => $messParser->add_bbcode_uid($bbcodeUID, $fields['full_info']),
                 'bbcode_uid'        => $bbcodeUID,
                 'bbcode_bitfield'   => $bitField,
-                'enable_sig'        => 0,
+                'enable_sig'        => 1,
             );
            
             $postId = $calendarForum->postMessage($postId, $forumMessageData);    
