@@ -4,8 +4,12 @@
         $(document).ready(function() {
             $( "#user_select" ).autocomplete({
                 source: "search.php",
-                minLength: 2
+                minLength: 2,
+                open: function () {
+                    $(this).autocomplete('widget').zIndex(10);
+                }
             });
+
         });
     </script>
 {/literal}
