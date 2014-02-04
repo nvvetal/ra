@@ -336,7 +336,8 @@ function page_content($go,$action,$params){
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
             $forumUserId                = $params['User']->get_value($userId, 'forum');
             var_dump($userId, $currentUserId);
-            $params['smarty']->assign('isUserEqual', ($userId == $currentUserId) ? 1 : 0);
+            $isUserEqual = ($userId == $currentUserId) ? 1 : 0;
+            $params['smarty']->assign('isUserEqual', $isUserEqual);
 
             //albums
 
