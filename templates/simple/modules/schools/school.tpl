@@ -38,7 +38,7 @@
     <b>{"School phone 1"|i18n}</b> {$current_school.phone_1}
     {if $current_school.phone_2 ne ''}
         <br/>
-        <b>{"School phone 2"|i18n} {$current_school.phone_2}</b>
+        <b>{"School phone 2"|i18n}</b> {$current_school.phone_2}
     {/if}
     <br/>
     <br/>
