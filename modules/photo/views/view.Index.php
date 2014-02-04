@@ -15,6 +15,7 @@ function photoViewIndex(View $View){
     require_once('../schools/school.class.php');
     $schoolObj                      = new school($DBFactory->get_db_handle('rakscom'));
     $returnParams['schoolObj']      = $schoolObj;
+    $returnParams['page']           = $page;
     return $returnParams;
 }
 

@@ -63,11 +63,15 @@
     {"no photos available"|i18n}
 {/foreach}
 {if $photosData.pages > 1}
-    <center>
+    <div style="text-align: center">
         {section name=pager start=1 loop=$photosData.pages+1 step=1}
-            {if $page != $smarty.section.pager.index}<a href="?s={$s}&page={$smarty.section.pager.index}">{$smarty.section.pager.index}</a>{else}{$smarty.section.pager.index}{/if}&nbsp;
+            {if $page != $smarty.section.pager.index}
+                <a href="?s={$s}&page={$smarty.section.pager.index}">{$smarty.section.pager.index}</a>
+            {else}
+                {$smarty.section.pager.index}
+            {/if}&nbsp;
         {/section}
-    </center>
+    </div>
 {/if}
 
 {include file='footer.tpl'}
