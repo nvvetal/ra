@@ -29,7 +29,7 @@
         <tr valign="top">
                 <div class="schoolname"><a href="{$http_project_path}schools/?s={$s}&go=school&school_id={$simple_school.id}">{math equation="(page - 1) * per_page + cur_pos" page=$page per_page=$per_page cur_pos = $smarty.foreach.simple.iteration}. {$simple_school.name}</a></div>
                 <div class="school-address"><a href="{$http_project_path}schools/?s={$s}&go=school&school_id={$simple_school.id}">{$schoolCountry.name}, {$schoolCity.name}, {$simple_school.address}</a></div>
-                <div class="school-description" onclick="window.location.href='{$http_project_path}schools/?s={$s}&go=school&school_id={$simple_school.id}'">{$simple_school.description|strip_tags|bbcode|maxstring:100}</div>
+                <div class="school-description" onclick="window.location.href='{$http_project_path}schools/?s={$s}&go=school&school_id={$simple_school.id}'">{$simple_school.description|strip_tags|maxstring:100}</div>
             </td>
 		</tr>
 	{foreachelse}
