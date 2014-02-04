@@ -83,7 +83,7 @@ class calendar_forum_message_parser
             '[/b:'.$bbcode_uid.']',
             '[i:'.$bbcode_uid.']',
             '[/i:'.$bbcode_uid.']',
-            '[url:'.$bbcode_uid.']',
+            '[url:'.$bbcode_uid.'=',
             '[/url:'.$bbcode_uid.']',
             '[img:'.$bbcode_uid.']',
             '[/img:'.$bbcode_uid.']',
