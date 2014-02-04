@@ -335,7 +335,6 @@ function page_content($go,$action,$params){
             $userId                     = isset($_REQUEST['user_id']) ? intval($_REQUEST['user_id']) : 0;
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
             $forumUserId                = $params['User']->get_value($userId, 'forum');
-            var_dump($userId, $currentUserId);
             $isUserEqual = ($userId == $currentUserId) ? 1 : 0;
             $params['smarty']->assign('isUserEqual', $isUserEqual);
 
