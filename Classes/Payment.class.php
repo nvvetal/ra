@@ -49,10 +49,15 @@ class Payment {
         $begin_date = sprintf("%04d-%02d-%02d 00:00:00",$y,$m,$d);
         $end_date = sprintf("%04d-%02d-%02d 23:59:59",$y,$m,$d);
         $query = "
-            SELECT `type`, SUM(amount) as amount
+            (SELECT `type`, SUM(amount) as amount
             FROM payment_stats
             WHERE FROM_UNIXTIME(time_created) BETWEEN '$begin_date' AND '$end_date'
-            GROUP BY `type` ASC
+            GROUP BY `type` ASC)
+            UNION
+            (SELECT `rule` as `type`, SUM(amount) as amount
+            FROM raks_history
+            WHERE FROM_UNIXTIME(time_action) BETWEEN '$begin_date' AND '$end_date'
+            GROUP BY `rule` ASC)
         ";
         $data = SQLGetRows($query,$this->dbh);
         if(!is_array($data)) return false;
