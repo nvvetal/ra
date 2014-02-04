@@ -499,3 +499,7 @@ h2.main {
     margin: 40px 0px 20px 0px;
     text-align: center;
 }
+
+.ui-autocomplete {
+    z-index: 9999 !important;
+}
