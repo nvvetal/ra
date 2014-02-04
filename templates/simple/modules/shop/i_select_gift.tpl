@@ -8,7 +8,7 @@
                     <b>{"Enter user nickname"|i18n}</b>
                 </td>
                 <td>
-                    <input type="text" name="user" id="user" value="" style="width:100%" />
+                    <input type="text" name="user" id="user_select" value="" style="width:100%" />
                 </td>
             </tr>
             <tr>

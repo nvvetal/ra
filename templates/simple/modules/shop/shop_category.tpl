@@ -1,19 +1,10 @@
 {include file='header.tpl' script='modules/shop/i_javascript.tpl'}
 {literal}
     <script>
-        $(function() {
-            function log( message ) {
-                $( "<div/>" ).text( message ).prependTo( "#log" );
-                $( "#log" ).scrollTop( 0 );
-            }
-            $( "#user" ).autocomplete({
+        $(document).ready(function() {
+            $( "#user_select" ).autocomplete({
                 source: "search.php",
-                minLength: 2,
-                select: function( event, ui ) {
-                    log( ui.item ?
-                            "Selected: " + ui.item.value + " aka " + ui.item.id :
-                            "Nothing selected, input was " + this.value );
-                }
+                minLength: 2
             });
         });
     </script>
