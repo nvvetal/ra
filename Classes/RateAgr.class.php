@@ -40,7 +40,7 @@ class RateAgr extends API_Item
             }elseif($data['rateAvg'] > 0.5){
                 $data['rateAvgRound'] = 1;
             }elseif($data['rateAvg'] > 0){
-                $data['rateAvgRound'] = 1;
+                $data['rateAvgRound'] = 0.5;
             }else{
                 $data['rateAvgRound'] = 1;
             }
