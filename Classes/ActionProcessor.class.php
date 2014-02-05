@@ -124,7 +124,7 @@ class ActionProcessor {
             }
         }
         $redirectUrl = $GLOBALS['HTTP_PROJECT_ROOT'].$this->moduleName.'/index.php?'.implode('&',$urlParams);
-        add_to_log("[action redirect][module ".$this->moduleName."][go ".$res[$this->getGoName()]."][url $redirectUrl]","sitemap");
+        add_to_log("[action redirect][module ".$this->moduleName."][go ".(isset($res[$this->getGoName()]) ? $res[$this->getGoName()] : '')."][url $redirectUrl]","sitemap");
         header("Location: $redirectUrl");
         exit;
     }
