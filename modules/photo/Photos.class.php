@@ -42,7 +42,7 @@ class Photos extends API_List
         return $total;
     }
 
-    public function byOwnerGroupedLine($order = 'DESC', $page = 0, $perPage = 0)
+    public function byOwnerGroupedLine($order = 'DESC', $page = 0, $perPage = 0, $perOneUser = 0)
     {
         $cnt = 0;
         if($page < 1) $page = 1;
@@ -66,7 +66,8 @@ class Photos extends API_List
         $total = array(
             'cnt'   => $cnt,
             'items' => array(),
-            'pages' => $perPage > 0 ? ceil($cnt / $perPage) : 0,
+            //'pages' => $perPage > 0 ? ceil($cnt / $perPage) : 0,
+            'pages' => 0,
         );
         if(count($items) == 0) return $total;
         if($cnt == 0) $total['cnt'] = count($items);
@@ -74,7 +75,6 @@ class Photos extends API_List
             'ownerId'   => 0,
             'ownerType' => 0,
         );
-        $lines = array();
         $ownerCnt = 0;
         foreach ($items as $item)
         {
@@ -85,10 +85,16 @@ class Photos extends API_List
                 $prevOwner['ownerType'] = $item['owner_type'];
                 $ownerCnt++;
             }
+            if($perOneUser > 0 && $perOneUser > count( $total['items'][$ownerCnt])) continue;
             $itemObj = new $this->_itemObjName($this->_dbh);
             $itemObj->findById($item['id']);
             $total['items'][$ownerCnt][] = $itemObj;
         }
+        $itemsCnt = 0;
+        foreach($total['items'] as $items){
+            $itemsCnt += count($items);
+        }
+        $total['pages'] = $perPage > 0 ? ceil($itemsCnt / $perPage) : 0;
         return $total;
     }
     

@@ -4,7 +4,7 @@ function photoViewIndex(View $View){
     $DBFactory                      = Registry::get('DBFactory');
     $page                           = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
     $Photos                         = new Photos($DBFactory->get_db_handle('rakscom'));
-    $photosData                     = $Photos->byOwnerGroupedLine('DESC', $page, 21);
+    $photosData                     = $Photos->byOwnerGroupedLine('DESC', $page, 21, 9);
     $photoRandom                    = $Photos->getRandomPhoto();
     $photoMaxRated                  = $Photos->getMaxRatedPhoto();
     $photoOfDay                     = $Photos->getPhotoOfDay();
