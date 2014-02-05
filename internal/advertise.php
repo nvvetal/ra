@@ -112,10 +112,10 @@ foreach ($users as $key=>$user){
     if(search_email($advertise_company_id, $user['email'])) continue;
     $cnt ++;
     if($cnt > 3) exit;
-    $sent = @unserialize(file_get_contents('cache/portal/mail/sent_'.$advertise_company_id));
+    $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
-    file_put_contents('cache/portal/mail/sent_'.$advertise_company_id, serialize($sent));
+    file_put_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id, serialize($sent));
 
     echo $user['email']."<br/>";
     $mail->From = "admin@raks.com.ua";
@@ -182,7 +182,7 @@ foreach ($users as $key=>$user){
 
 
 function search_email($advertise_company_id, $email){
-    $sent = @unserialize(file_get_contents('cache/portal/mail/sent_'.$advertise_company_id));
+    $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) return false;
     return isset($sent[$email]) ? true : false;
 }
