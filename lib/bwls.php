@@ -388,7 +388,6 @@ function page_content($go,$action,$params){
                     if($userGood['giftItem']->saw_time == 0) $userGood['giftItem']->saw_time = time();
                 }
             }
-var_dump($canShowPrivateComment, $currentUserId, $userId);
             $params['smarty']->assign('userGifts', $userGoods);
             $params['smarty']->assign('canShowGiftPrivateComment', $canShowPrivateComment);
 

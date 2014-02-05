@@ -1,4 +1,5 @@
 <div>
+    {$canShowPrivateComment}
     <table style="width: 100%;">
         {foreach name="gifts" from=$userGifts.items item=item}
             {if $smarty.foreach.gifts.first == true}
@@ -21,8 +22,6 @@
                 </td>
                 <td>
                     <a href="{$http_project_path}?go=profile&user_id={$gift->from_user_id}">{$User->get_value($gift->from_user_id,'login')}</a>
-                    <br/>
-                    <a href="{$http_project_path}shop/?s={$s}&go=shop_category&shop_id={$good->getShopId()}&category_id={$good->category_id}">{"Gift byed here"|i18n}<a/>
                 </td>
                 {if $canShowPrivateComment == 1}<td>{$gift->message}</td>{/if}
             </tr>
