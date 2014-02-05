@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv221';
+$advertise_company_id = 'adv222';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -100,7 +100,7 @@ $users = array(
 
 );
 
-//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
 $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise77.tpl');
@@ -111,7 +111,7 @@ $cnt = 0;
 foreach ($users as $key=>$user){
     if(search_email($advertise_company_id, $user['email'])) continue;
     $cnt ++;
-    if($cnt > 3) exit;
+    if($cnt > 5) exit;
     $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
