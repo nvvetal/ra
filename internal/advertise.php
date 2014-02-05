@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv219';
+$advertise_company_id = 'adv220';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -27,12 +27,12 @@ $mail->IsSMTP();
 $mail->CharSet = 'UTF-8';
 $mail->ContentType ="text/html";
 
-$mail->Host       = $params['host']; // SMTP server example
+$mail->Host       = $GLOBALS['mailParams']['host']; // SMTP server example
 $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->Port       = $params['port'];                    // set the SMTP port for the GMAIL server
-$mail->Username   = $params['username']; // SMTP account username example
-$mail->Password   = $params['password'];        // SMTP account password example
+$mail->Port       = $GLOBALS['mailParams']['port'];                    // set the SMTP port for the GMAIL server
+$mail->Username   = $GLOBALS['mailParams']['username']; // SMTP account username example
+$mail->Password   = $GLOBALS['mailParams']['password'];        // SMTP account password example
 
 //$mail->ContentType ="multipart/mixed";
 
@@ -112,10 +112,10 @@ foreach ($users as $key=>$user){
     if(search_email($advertise_company_id, $user['email'])) continue;
     $cnt ++;
     if($cnt > 3) exit;
-    $sent = @unserialize(file_get_contents('sent_'.$advertise_company_id));
+    $sent = @unserialize(file_get_contents('cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
-    file_put_contents('sent_'.$advertise_company_id, serialize($sent));
+    file_put_contents('cache/portal/mail/sent_'.$advertise_company_id, serialize($sent));
 
     echo $user['email']."<br/>";
     $mail->From = "admin@raks.com.ua";
@@ -182,7 +182,7 @@ foreach ($users as $key=>$user){
 
 
 function search_email($advertise_company_id, $email){
-    $sent = @unserialize(file_get_contents('sent_'.$advertise_company_id));
+    $sent = @unserialize(file_get_contents('cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) return false;
     return isset($sent[$email]) ? true : false;
 }
