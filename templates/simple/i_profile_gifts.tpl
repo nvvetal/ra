@@ -3,9 +3,10 @@
         {foreach name="gifts" from=$userGifts.items item=item}
             {if $smarty.foreach.gifts.first == true}
                 <tr align="center">
-                    <td width="100">{"Date"|i18n}</td>
-                    <td width="200">{"Gift sent"|i18n}</td>
-                    <td>{"Gift sent by"|i18n}</td>
+                    <td width="100">{"Date"|i18n:'shop'}</td>
+                    <td width="200">{"Gift good"|i18n:'shop'}</td>
+                    <td>{"Gift sent by"|i18n:'shop'}</td>
+                    {if $canShowPrivateComment == 1}<td>{"Gift text"|i18n:'shop'}</td>{/if}
                 </tr>
             {/if}
             {assign var="good" value=$item.good}
@@ -16,14 +17,14 @@
                     {$gift->action_time|date_format:'%d.%m.%Y'} {if $giftSawTime|isGiftNew == 'new'}<img src="{$http_images_static_path}new.gif" alt=""/>{/if}
                 </td>
                 <td>
-                    <img src="{$http_images_path}{$good->getImageUrl(150,100,'gif')}" alt="" /><br/>
-                    {if $canShowPrivateComment == 1}{$gift->message}{/if}
+                    <img src="{$http_images_path}{$good->getImageUrl(150,100,'gif')}" alt="" />
                 </td>
                 <td>
                     <a href="{$http_project_path}?go=profile&user_id={$gift->from_user_id}">{$User->get_value($gift->from_user_id,'login')}</a>
                     <br/>
                     <a href="{$http_project_path}shop/?s={$s}&go=shop_category&shop_id={$good->getShopId()}&category_id={$good->category_id}">{"Gift byed here"|i18n}<a/>
                 </td>
+                {if $canShowPrivateComment == 1}<td>{$gift->message}</td>{/if}
             </tr>
             {foreachelse}
             <tr>
