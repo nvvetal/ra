@@ -1,5 +1,4 @@
 <div>
-    {$canShowPrivateComment}
     <table style="width: 100%;">
         {foreach name="gifts" from=$userGifts.items item=item}
             {if $smarty.foreach.gifts.first == true}
@@ -7,7 +6,7 @@
                     <td width="100">{"Date"|i18n:'shop'}</td>
                     <td width="200">{"Gift good"|i18n:'shop'}</td>
                     <td>{"Gift sent by"|i18n:'shop'}</td>
-                    {if $canShowPrivateComment == 1}<td>{"Gift text"|i18n:'shop'}</td>{/if}
+                    {if $canShowGiftPrivateComment == 1}<td>{"Gift text"|i18n:'shop'}</td>{/if}
                 </tr>
             {/if}
             {assign var="good" value=$item.good}
@@ -23,12 +22,12 @@
                 <td>
                     <a href="{$http_project_path}?go=profile&user_id={$gift->from_user_id}">{$User->get_value($gift->from_user_id,'login')}</a>
                 </td>
-                {if $canShowPrivateComment == 1}<td>{$gift->message}</td>{/if}
+                {if $canShowGiftPrivateComment == 1}<td>{$gift->message}</td>{/if}
             </tr>
             {foreachelse}
             <tr>
                 <td align="center">
-                    {if $canShowPrivateComment == 1}{"You have no gifts from users"|i18n shop}{else}{"User have no gifts yet."|i18n shop}{/if}
+                    {if $canShowGiftPrivateComment == 1}{"You have no gifts from users"|i18n shop}{else}{"User have no gifts yet."|i18n shop}{/if}
                 </td>
             </tr>
             {if $userGifts.cnt > 0}
