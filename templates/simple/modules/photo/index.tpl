@@ -49,13 +49,14 @@
                     <a href="{$http_project_path}schools/?s={$s}&go=school&school_id={$school.id}">{$school.name}</a>
                 {else}
                 {/if}
-
             </div>
             <div style="display: inline;margin-left:50px;float:left;max-width:530px;padding-right:5px;">
         {/if}
+        {if $smarty.foreach.photo.index < 10}
         <div style="display: inline; float: left;">
         <a href="{$http_project_path}photo/?s={$s}&go=user_album_photos&album_id={$photo->album_id}&photo_id={$photo->id}&user_id={$photo->owner_id}"><img src="{$photo->getUrlCenterSquare(170)}" alt="{$photo->name}" width="170" height="170" /></a>
         </div>
+        {/if}
         {if $smarty.foreach.photo.last == true}</div><br clear="all"/>{/if}
     {/foreach}
     <br/>

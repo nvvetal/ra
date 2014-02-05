@@ -60,7 +60,7 @@ class Photos extends API_List
             ORDER BY created_time ".$order."
         ";
         if($perPage > 0){
-            $q .= "LIMIT ".(($page-1)*$perPage).",".$perPage;
+//            $q .= "LIMIT ".(($page-1)*$perPage).",".$perPage;
         }
         $items = SQLGetRows($q, $this->_dbh);
         $total = array(
@@ -85,7 +85,7 @@ class Photos extends API_List
                 $prevOwner['ownerType'] = $item['owner_type'];
                 $ownerCnt++;
             }
-            if($perOneUser > 0 && isset($total['items'][$ownerCnt][0]) && count( $total['items'][$ownerCnt]) >= $perOneUser) continue;
+            if($perOneUser > 0 && isset($total['items'][$ownerCnt][0]) && count( $total['items'][$ownerCnt]) >= $perOneUser+1) continue;
             $itemObj = new $this->_itemObjName($this->_dbh);
             $itemObj->findById($item['id']);
             $total['items'][$ownerCnt][] = $itemObj;
