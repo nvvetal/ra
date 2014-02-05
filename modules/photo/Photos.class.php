@@ -85,7 +85,7 @@ class Photos extends API_List
                 $prevOwner['ownerType'] = $item['owner_type'];
                 $ownerCnt++;
             }
-            if($perOneUser > 0 && $perOneUser > count( $total['items'][$ownerCnt])) continue;
+            if($perOneUser > 0 && isset($total['items'][$ownerCnt][0]) && $perOneUser > count( $total['items'][$ownerCnt])) continue;
             $itemObj = new $this->_itemObjName($this->_dbh);
             $itemObj->findById($item['id']);
             $total['items'][$ownerCnt][] = $itemObj;
