@@ -1,4 +1,4 @@
-<h2 class="main"><img src="{$http_images_static_path}hmeropriayatia.jpg" alt=""/></h2>
+<h2 class="main"><a href="{$http_project_path}calendar/index.php?s={$s}"><img src="{$http_images_static_path}hmeropriayatia.jpg" alt=""/></a></h2>
 {if isset($smarty.request.current_month) && $smarty.request.current_month != ''}
     {assign var="current_year" value=$smarty.request.current_year}
     {assign var="current_month" value=$smarty.request.current_month}

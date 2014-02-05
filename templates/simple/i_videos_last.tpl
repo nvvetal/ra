@@ -1,4 +1,4 @@
-<h2 class="main"><img src="{$http_images_static_path}rec_video.jpg" alt=""/></h2>
+<h2 class="main"><a href="{$http_project_path}video/index.php?s={$s}"><img src="{$http_images_static_path}rec_video.jpg" alt=""/></a></h2>
 <div>
     {foreach from=$lastVideos.items item=video}
         <div class="videoTopContainer">

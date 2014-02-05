@@ -1,4 +1,4 @@
-<h2 class="main"><img src="{$http_images_static_path}rec_forumthem.jpg" alt=""></h2>
+<h2 class="main"><a href="{$http_project_path}forum/"><img src="{$http_images_static_path}rec_forumthem.jpg" alt=""></a></h2>
 {assign var="forum_parser" value=$ClassLoader->loadModuleClass('forum_parser','forum')}
 <ul class="rec_forum">
     {foreach from=$forum_parser->get_last_posts_by_topic() item=post}
