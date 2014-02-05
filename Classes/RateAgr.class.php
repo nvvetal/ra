@@ -46,13 +46,14 @@ class RateAgr extends API_Item
             }
             
             $this->_cache->setData($data);
-            $this->_itemData = $data;                    
+            $this->_itemData = $data;
         }else{          
             $fields = array(
                 'rateToId'      => $rateToId,
                 'rateToType'    => $rateToType,
             );
             $this->create($fields);
+            return $this->findByRateIdAndType($rateToId, $rateToType);
         }
         return true;
     }
