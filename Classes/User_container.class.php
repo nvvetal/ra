@@ -22,7 +22,7 @@ class User_container extends ValidatorContainer {
                         "is_not_empty"=>array(),
                         "is_char_min"=>array(
                             'params'=>array(
-                                "min"=>5,
+                                "min"=>3,
                              ),
                         ),
                     ),
