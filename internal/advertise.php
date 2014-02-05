@@ -2,30 +2,38 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv216';
+$advertise_company_id = 'adv219';
 
 require_once('../lib/config.php');
-require_once(CLASSES_DIR."DBFactory.class.php");
+require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
 
-require_once(SMARTY_DIR."Smarty.class.php");
+require_once($GLOBALS['SMARTY_DIR']."Smarty.class.php");
 #SMARTY
 $smarty = new Smarty();
-$smarty->template_dir = SMARTY_TEMPLATE_DIR;
-$smarty->compile_dir = SMARTY_COMPILE_DIR;
-$smarty->config_dir = SMARTY_CONFIG_DIR;
-$smarty->cache_dir = SMARTY_CACHE_DIR;
+$smarty->template_dir = $GLOBALS['SMARTY_TEMPLATE_DIR'];
+$smarty->compile_dir = $GLOBALS['SMARTY_COMPILE_DIR'];
+$smarty->config_dir = $GLOBALS['SMARTY_CONFIG_DIR'];
+$smarty->cache_dir = $GLOBALS['SMARTY_CACHE_DIR'];
 $smarty->caching=false;
 
-require_once(MODULES_DIR.'mailer/class.phpmailer.php');
+require_once($GLOBALS['MODULES_DIR'].'mailer/class.phpmailer.php');
 
 $mail = new PHPMailer();
 
-$mail->SetLanguage('en',MODULES_DIR."mailer/language/");
+$mail->SetLanguage('en',$GLOBALS['MODULES_DIR']."mailer/language/");
 
 
-$mail->IsMail();
+$mail->IsSMTP();
 $mail->CharSet = 'UTF-8';
 $mail->ContentType ="text/html";
+
+$mail->Host       = $params['host']; // SMTP server example
+$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+$mail->SMTPAuth   = true;                  // enable SMTP authentication
+$mail->Port       = $params['port'];                    // set the SMTP port for the GMAIL server
+$mail->Username   = $params['username']; // SMTP account username example
+$mail->Password   = $params['password'];        // SMTP account password example
+
 //$mail->ContentType ="multipart/mixed";
 
 
@@ -87,15 +95,15 @@ $users = array(
     ),
     "3"=>array(
         'login'=>'nvveta3',
-        'email'=>'nvvetal@ukr.net',
+        'email'=>'vitaliy.grinchishin@gmail.com',
     ),
 
 );
 
-$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
-$mail_html_body = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise76.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise77.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -146,7 +154,7 @@ foreach ($users as $key=>$user){
 
     if($mail->IsError())$err.="|".$mail->ErrorInfo;
     //if($mail->IsError())$err.="|".$mail->ErrorInfo;
-    $mail->Subject = 'ISADORA WINTER CAMP';
+    $mail->Subject = 'Raks.com.ua - теперь не только форум!!!';
 
     if($mail->IsError())$err.="|".$mail->ErrorInfo;
 
