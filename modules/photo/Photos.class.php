@@ -98,7 +98,7 @@ class Photos extends API_List
         $q = "
             SELECT *, CONCAT_WS(  '_',  `owner_type` ,  `owner_id` ) as owner
             FROM ".$this->_tableName."
-            WHERE id >= {$data['from']} AND id <= {$data['to']}
+            WHERE id >= {$data['from']} AND {$data['to']} >= id
             ORDER BY id ".$order."
         ";
         $items = SQLGetRows($q, $this->_dbh);
