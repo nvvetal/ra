@@ -16,7 +16,6 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
-
 $starttime = explode(' ', microtime());
 $starttime = $starttime[1] + $starttime[0];
 
@@ -222,8 +221,6 @@ foreach ($cache->obtain_hooks() as $hook)
 {
 	@include($phpbb_root_path . 'includes/hooks/' . $hook . '.' . $phpEx);
 }
-
-
 
 function sendRaksMoney($forumUserId, $rule, $params = array())
 {
