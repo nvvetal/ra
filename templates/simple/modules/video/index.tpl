@@ -58,7 +58,7 @@
             </div>
             <div style="display: inline;margin-left:50px;float:left;max-width:550px;">
         {/if}
-        {if $smarty.foreach.video.index < 3}
+        {if $smarty.foreach.video.index < 2}
         <div style="display: inline; float: left;padding-right:5px;margin-bottom:15px;">
             {include file="modules/video/i_video.tpl" video=$video videoWidth=270 videoHeight=200
             disableVoting=true disableDescription=true disableAlbum=true
@@ -67,7 +67,7 @@
             }
         </div>
         {else}
-            <div><a href="{$http_project_path}video/?s={$s}&go=user_album_videos&album_id={$video->album_id}">{"See more..."|i18n:'video'}</a></div>
+            <div><a href="{$http_project_path}video/?s={$s}&go=user_album_videos&album_id={$video->album_id}&user_id={$video->owner_id}">{"See more..."|i18n:'video'}</a></div>
         {/if}
         {if $smarty.foreach.video.last == true}</div><br clear="all"/>{/if}
 
