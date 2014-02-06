@@ -4,7 +4,8 @@ function videoViewIndex(View $View){
     $DBFactory                      = Registry::get('DBFactory');
     $Videos                         = new Videos($DBFactory->get_db_handle('rakscom'));
     $page                           = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
-    $videosData                     = $Videos->byOwnerGroupedLine('DESC', $page, 21, 3);
+    $maxPerLine                     = 3;
+    $videosData                     = $Videos->byOwnerGroupedLine('DESC', $page, 21, $maxPerLine);
     $videoRandom                    = $Videos->getRandomVideo();
     $videoMaxRated                  = $Videos->getMaxRatedVideo();
     $videoOfDay                     = $Videos->getVideoOfDay();

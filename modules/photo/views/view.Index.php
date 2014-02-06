@@ -4,7 +4,8 @@ function photoViewIndex(View $View){
     $DBFactory                      = Registry::get('DBFactory');
     $page                           = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
     $Photos                         = new Photos($DBFactory->get_db_handle('rakscom'));
-    $photosData                     = $Photos->byOwnerGroupedLine('DESC', $page, 21, 9);
+    $maxPerLine                     = 9;
+    $photosData                     = $Photos->byOwnerGroupedLine('DESC', $page, 21, $maxPerLine);
     $photoRandom                    = $Photos->getRandomPhoto();
     $photoMaxRated                  = $Photos->getMaxRatedPhoto();
     $photoOfDay                     = $Photos->getPhotoOfDay();
@@ -16,6 +17,7 @@ function photoViewIndex(View $View){
     $schoolObj                      = new school($DBFactory->get_db_handle('rakscom'));
     $returnParams['schoolObj']      = $schoolObj;
     $returnParams['page']           = $page;
+    $returnParams['maxPerLine']           = $maxPerLine;
     return $returnParams;
 }
 
