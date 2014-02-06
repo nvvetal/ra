@@ -74,7 +74,6 @@ class Photos extends API_List
         $lastMinId = 0;
         foreach($items as $item){
             if($tot == 0){
-                $minId = $item['min_id'];
                 $maxId = $item['max_id'];
             }
             $tot += $item['img_cnt'];
@@ -95,7 +94,6 @@ class Photos extends API_List
                 'to'    => $maxId,
             );
         }
-        var_dump($data);
         $q = "
             SELECT *, CONCAT_WS(  '_',  `owner_type` ,  `owner_id` ) as owner
             FROM ".$this->_tableName."
