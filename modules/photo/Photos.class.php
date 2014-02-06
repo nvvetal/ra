@@ -89,12 +89,13 @@ class Photos extends API_List
                 'to'    => $maxId,
             );
         }
-        if(is_null($data) && $page == $total['pages']){
+        if(is_null($data) && ($page == $total['pages'] || $page == $total['pages']+1)){
             $data = array(
                 'from'  => $lastMinId,
                 'to'    => $maxId,
             );
         }
+        var_dump($data);
         $q = "
             SELECT *, CONCAT_WS(  '_',  `owner_type` ,  `owner_id` ) as owner
             FROM ".$this->_tableName."
