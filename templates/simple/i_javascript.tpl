@@ -30,7 +30,7 @@
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
                 { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                { name: 'insert', items: [ 'Image', 'Table', 'Smiley' ] },
+                { name: 'insert', items: [ 'Image', 'Youtube', 'Table', 'Smiley' ] },
                 { name: 'styles', items: [ 'Format', 'FontSize' ] },
                 { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
                 { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
@@ -40,7 +40,6 @@
         if(params.bbcode) data.extraPlugins = 'bbcode';
         if(params.youtube) {
             data.extraPlugins = 'youtube';
-            console.log('zz');
         }
         CKEDITOR.replace( containers, data);
     }
