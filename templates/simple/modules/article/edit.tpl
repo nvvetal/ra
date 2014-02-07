@@ -2,7 +2,7 @@
 {literal}
     <script type="text/javascript">
         $(document).ready(function(){
-            getEditor("content");
+            getArticleEditor("content");
             $("#section_id").select2();
         });
     </script>

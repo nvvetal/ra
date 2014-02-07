@@ -20,6 +20,7 @@
     {
         params = params || {};
         params.bbcode = params.bbcode || false;
+        params.youtube = params.youtube || false;
         var data = {
             language: 'ru',
             uiColor: '#AADC6E',
@@ -37,6 +38,7 @@
             ]
         };
         if(params.bbcode) data.extraPlugins = 'bbcode';
+        if(params.youtube) data.extraPlugins = 'youtube';
         CKEDITOR.replace( containers, data);
     }
 
@@ -48,5 +50,11 @@
         getEditor(containers, params);
     }
 
+    function getArticleEditor(containers, params)
+    {
+        params = params || {};
+        params.youtube = true;
+        getEditor(containers, params);
+    }
 </script>
 {/literal}
