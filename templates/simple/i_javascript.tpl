@@ -38,7 +38,10 @@
             ]
         };
         if(params.bbcode) data.extraPlugins = 'bbcode';
-        if(params.youtube) data.extraPlugins = 'youtube';
+        if(params.youtube) {
+            data.extraPlugins = 'youtube';
+            console.log('zz');
+        }
         CKEDITOR.replace( containers, data);
     }
 
