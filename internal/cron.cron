@@ -1,0 +1,1 @@
+*/2 * * * * /usr/bin/GET 'http://raks.com.ua/internal/advertise.php'  >> /var/www/raks/log/cron_mail.log

@@ -17,7 +17,7 @@
         <tr>
             <td style="width:100px">{"Article name"|i18n}<span class="required">*</span></td>
             <td>
-                <input type="text" name="name" value="{$smarty.request.name}" style="width:100%" />
+                <input type="text" name="name" value="{$smarty.request.name|escape}" style="width:100%" />
             </td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@
         <tr>
             <td colspan="2" style="text-align: center">
                 <input type="submit" name="btnSubmit" value="{"Add"|i18n}" />
-                <input type="button" name="btnBack" value="{"Back"|i18n}" onclick="location.href='?s={$s}'" />
+                <input type="button" name="btnBack" value="{"Back back"|i18n}" onclick="location.href='?s={$s}'" />
             </td>
         </tr>
     </table>
