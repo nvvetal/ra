@@ -59,6 +59,7 @@
         params = params || {};
         params.youtube = true;
         getEditor(containers, params);
+        CKEDITOR.replace( containers, {height: '1000px'});
     }
 </script>
 {/literal}
