@@ -39,7 +39,7 @@
         <tr>
             <td>{"Content"|i18n}<span class="required">*</span></td>
             <td>
-                <textarea name="content" id="content" style="width:100%">{$smarty.request.content}</textarea>
+                <textarea name="content" id="content" style="width:100%;height:1000px;">{$smarty.request.content}</textarea>
             </td>
         </tr>
         <tr>

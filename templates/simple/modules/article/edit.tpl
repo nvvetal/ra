@@ -42,7 +42,7 @@
         <tr>
             <td>{"Content"|i18n}<span class="required">*</span></td>
             <td>
-                <textarea name="content" id="content" style="width:100%">{$article->content}</textarea>
+                <textarea name="content" id="content" style="width:100%;height:1000px;">{$article->content}</textarea>
             </td>
         </tr>
         <tr>
