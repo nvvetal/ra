@@ -69,13 +69,15 @@ class API_List {
         $q = "
             SELECT *
             FROM ".$this->_tableName."
-            ORDER BY created_time ".$order."
         ";
         if(count($where) > 0){
             $q .= "
                     WHERE ".implode(" AND ", $where)."
                 ";
         }
+        $q .= "
+            ORDER BY created_time ".$order."
+        ";
         if($perPage > 0){
             $q .= "LIMIT ".(($page-1)*$perPage).",".$perPage;
         }
