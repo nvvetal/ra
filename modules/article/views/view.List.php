@@ -10,10 +10,11 @@ function articleViewList(View $View){
     $perPage = isset($_REQUEST['perPage']) ? $_REQUEST['perPage'] : 5;
     $sectionId = isset($_REQUEST['section_id']) ? (int) $_REQUEST['section_id'] : 0;
     $params = array(
-        'order' => $sortOrder,
-        'page'  => $page,
-        'perPage' => $perPage,
+        'order'     => $sortOrder,
+        'page'      => $page,
+        'perPage'   => $perPage,
         'sectionId' => $sectionId,
+        'enabled'   => true,
     );
     if(in_array($sortBy, array('author','name','time'))) $params['orderBy'] = $sortBy;
     $returnParams['lastArticles'] = $articles->sortByParams($params);

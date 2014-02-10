@@ -489,7 +489,7 @@ function page_content($go,$action,$params){
             require_once($GLOBALS['MODULES_DIR'].'article/ArticleSection.class.php');
             require_once($GLOBALS['MODULES_DIR'].'article/ArticleSections.class.php');
             $articles = new Articles($dbh);
-            $articles = $articles->byTime('DESC', 1, 5);
+            $articles = $articles->byTime('DESC', 1, 5, array('enabled' => true));
             $params['smarty']->assign('lastArticles', $articles);
             break;
     }

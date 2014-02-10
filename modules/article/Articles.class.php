@@ -71,6 +71,7 @@ class Articles extends API_List
         if($page < 1) $page = 1;
         $whereArr = array('a.owner_id = u.user_id');
         if(!empty($sectionId)) $whereArr[] = "(a.section_id = ".SQLQuote($sectionId).")";
+        if(isset($params['enabled'])) $whereArr[] = "(a.is_enabled = 'Y')";
         $where = '';
         if(count($whereArr) > 0) $where = "WHERE ".implode(" AND ", $whereArr);
         if($perPage > 0){

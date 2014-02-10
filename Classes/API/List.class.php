@@ -45,15 +45,24 @@ class API_List {
         return $total;
     }
 
-    public function byTime($order = 'DESC', $page = 1, $perPage = 0)
+    public function byTime($order = 'DESC', $page = 1, $perPage = 0, $params = array())
     {
         $cnt = 0;
         if($page < 1) $page = 1;
+        $where = array();
+        if(isset($params['enabled']) && $params['enabled'] == true){
+            $where[] = "is_enabled = 'Y'";
+        }
         if($perPage > 0){
             $q = "
                 SELECT COUNT(*) as cnt
                 FROM ".$this->_tableName."
             ";
+            if(count($where) > 0){
+                $q .= "
+                    WHERE ".implode(" AND ", $where)."
+                ";
+            }
             $data = SQLGet($q, $this->_dbh);
             $cnt = isset($data['cnt']) ? $data['cnt'] : 0;
         }
@@ -62,6 +71,11 @@ class API_List {
             FROM ".$this->_tableName."
             ORDER BY created_time ".$order."
         ";
+        if(count($where) > 0){
+            $q .= "
+                    WHERE ".implode(" AND ", $where)."
+                ";
+        }
         if($perPage > 0){
             $q .= "LIMIT ".(($page-1)*$perPage).",".$perPage;
         }
@@ -124,25 +138,43 @@ class API_List {
         return $total;
     }
 
-    public function getMaxRated($type, $page = 1, $perPage = 0)
+    public function getMaxRated($type, $page = 1, $perPage = 0, $params = array())
     {
         $cnt = 0;
         if($page < 1) $page = 1;
         $total = $this->prepareTotal(array(), $perPage, 0);
+        $where = array(
+            "p.id" => "r.rateToId",
+            "r.rateToType" => SQLQuote($type),
+        );
+        if(isset($params['enabled']) && $params['enabled'] == true){
+            $where[] = "p.is_enabled = 'Y'";
+        }
         try {
             if($perPage > 0){
                 $q = "
                     SELECT COUNT(*) as cnt
                     FROM ".$this->_tableName." as p, rates_agr as r
-                    WHERE p.id = r.rateToId AND r.rateToType = ".SQLQuote($type)."
                 ";
+                if(count($where) > 0){
+                    $q .= "
+                        WHERE ".implode(" AND ", $where)."
+                    ";
+                }
                 $data = SQLGet($q, $this->_dbh);
                 $cnt = isset($data['cnt']) ? $data['cnt'] : 0;
             }
             $q = "
                 SELECT p.*
                 FROM ".$this->_tableName." as p, rates_agr as r
-                WHERE p.id = r.rateToId AND r.rateToType = ".SQLQuote($type)."
+
+            ";
+            if(count($where) > 0){
+                $q .= "
+                    WHERE ".implode(" AND ", $where)."
+                ";
+            }
+            $q .= "
                 ORDER BY r.rateAvg DESC, r.ratePoints DESC
             ";
             if($perPage > 0){
