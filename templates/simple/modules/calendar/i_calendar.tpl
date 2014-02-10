@@ -26,8 +26,8 @@
                     <td>{"Date"|i18n:'calendar'}</td>
                     <td>{"City"|i18n:'calendar'}</td>
                     <td>{"Category"|i18n:'calendar'}</td>
-                    <td>{"Name"|i18n:'calendar'}</td>
-                    <td>{"Organizator"|i18n:'calendar'}</td>
+                    <td width="300">{"Name"|i18n:'calendar'}</td>
+                    <td width="125">{"Organizator"|i18n:'calendar'}</td>
                 </tr>
                 {assign var="counter" value=0}
                 {foreach from=$Utils->get_month_days($current_year,$month_data.month_short) item=day_data}
