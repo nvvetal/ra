@@ -8,7 +8,7 @@
 {/if}
 <div class="videoDataOwner">{"Owner"|i18n} <a href="{$http_project_path}?s={$s}&go=profile&user_id={$video->owner_id}">{$video->getOwnerLogin()}</a></div>
 {if $disableTitle != true}
-    <div class="videoDataTitleContainer" style="width:{$videoWidth};overflow: hidden;">
+    <div class="videoDataTitleContainer" style="width:{$videoWidth}px;overflow: hidden;">
         <div class="videoDataTitle" {if $disableContentEdit != true}id="videoDataTitle_{$video->id}"{/if}><a href="{$http_project_path}video/?go=video_comments&s={$s}&video_id={$video->id}&from={$video->getCommentBackUrl()}">{$video->name|default:$defaultTitle}</a></div>
         {if $video->owner_id == $user_id && $disableContentEdit != true}<div class="videoDataEdit"><a href="javascript:void(0);" onclick="showVideoEdit({$video->id},'{$s}');"><img src="{$http_images_static_path}icons/edit_24x24.png" alt="" /></a></div>{/if}
         <br/>
