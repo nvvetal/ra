@@ -104,6 +104,7 @@ $GLOBALS['HTTP_IMAGES_PATH'] = $GLOBALS['HTTP_PROJECT_ROOT']."i/";
 $GLOBALS['DEBUG'] = 0;
 
 if($_SERVER['HTTP_HOST'] == 'rakscom:8080') $_SERVER['HTTP_HOST'] = 'rakscom';
+if(empty($_SERVER['HTTP_HOST'])) exit;
 $SERVER_HOST = $_SERVER['HTTP_HOST'];
 //echo $GLOBALS['LIB_ROOT'].'/config/'.$SERVER_HOST.'.php';
 
