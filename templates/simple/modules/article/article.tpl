@@ -1,4 +1,4 @@
-{include file='header.tpl' script='modules/article/i_javascript.tpl'}
+{include file='header.tpl' script='modules/article/i_javascript.tpl' article_description=$article->name}
 {literal}
     <script>
         $(document).ready(function(){

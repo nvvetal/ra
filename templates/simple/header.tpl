@@ -12,7 +12,7 @@
     <meta property="og:type" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}article{else}website{/if}" />
     <meta property="og:image" content="{$http_images_static_path}logo_real_krug_1024.png" />
     <meta property="og:url" content="{$http_project_path}" />
-    <meta property="og:description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+    <meta property="og:description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{elseif $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_description}{else}{/if}" />
     <meta property="fb:app_id" content="{$facebook_app_id}" />
 
     <link type="text/css" href="{$http_project_path}jQuery/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
