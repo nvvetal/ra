@@ -25,7 +25,7 @@
 {/if}
 <div class="article-container article-name">
     <div>{$article->name}</div>
-    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+    <div class="fb-like" data-href="http://raks.com.ua/article/?go=article&article_id={$article_id}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 </div>
 
 <div class="article-container article-content">
