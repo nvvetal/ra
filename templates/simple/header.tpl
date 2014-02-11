@@ -6,6 +6,15 @@
     <meta name="title" content="{$title|default:'RAKS'}" />
     <meta name="keywords" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
     <meta name="description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+
+    <!-- for Facebook -->
+    <meta property="og:title" content="{$title|default:'RAKS'}" />
+    <meta property="og:type" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}article{else}website{/if}" />
+    <meta property="og:image" content="{$http_images_static_path}logo_real_krug_1024.png" />
+    <meta property="og:url" content="{$http_project_path}" />
+    <meta property="og:description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+    <meta property="fb:app_id" content="{$facebook_app_id}" />
+
     <link type="text/css" href="{$http_project_path}jQuery/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="{$http_project_path}select2/select2.css" type="text/css" media="screen, projection" />
 
@@ -138,6 +147,17 @@
     </script>
 </head>
 <body>
+<div id="fb-root"></div>
+{literal}
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId={/literal}{$facebook_app_id}{literal}";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+{/literal}
 <div id="header">
     <div id="flash"></div>
 </div>

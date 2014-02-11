@@ -266,3 +266,5 @@ if(!empty($userId)){
  */
 $mailer = new Mail($GLOBALS['mailParams']);
 Registry::set('mailer', $mailer);
+
+$smarty->assign("facebook_app_id", $GLOBALS['FACEBOOK_APP_ID']);
