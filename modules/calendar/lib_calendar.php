@@ -132,7 +132,11 @@ function calendar_actions($go,$action,$params){
             $calendar_id = isset($_REQUEST['calendar_id']) ? $_REQUEST['calendar_id'] : 0;
             $calendar_data = $params['calendar']->get_calendar($calendar_id);
             $creator_id = $params['Session']->get_value($params['s'],'user_id');
-            if($creator_id == 0 || $creator_id != $calendar_data['creator_id'] ){
+            if($creator_id == 0 ||
+                ($creator_id != $calendar_data['creator_id'] &&
+                    !in_array($params['User']->get_value($creator_id,'type'), array('admin','moderator'))
+                )
+            ){
                 $params['smarty']->assign('errors',array(0=>array('message'=>'Error owner')));
                 return $go;
             }
@@ -148,7 +152,6 @@ function calendar_actions($go,$action,$params){
                 'category_id'=>isset($_REQUEST['category_id'])?$_REQUEST['category_id']:0,
 //                'small_info'=>isset($_REQUEST['small_info'])?$_REQUEST['small_info']:'',
                 'full_info'=>isset($_REQUEST['full_info'])?$_REQUEST['full_info']:'',
-                'creator_id'=>$creator_id,
                 'organizator_name'=>isset($_REQUEST['organizator_name'])?$_REQUEST['organizator_name']:'',
                 'is_approved'=>1,
             );
