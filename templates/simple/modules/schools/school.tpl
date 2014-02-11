@@ -69,8 +69,8 @@
             {assign var="firstPhotoUrl" value=$http_images_static_path|cat:'no_album.jpg'}
         {/if}
         <div class="photo_container">
-            <a href="{$http_project_path}photo/?go=school_album_photos&s={$s}&album_id={$albumData->id}&school_id={$smarty.request.school_id}"><img src="{$firstPhotoUrl}" alt="" width="100" height="100" /></a><br/>
-            <center><a href="{$http_project_path}photo/?go=school_album_photos&s={$s}&album_id={$albumData->id}&school_id={$smarty.request.school_id}">{$albumData->name}</a></center>
+            <div><a href="{$http_project_path}photo/?go=school_album_photos&s={$s}&album_id={$albumData->id}&school_id={$smarty.request.school_id}"><img src="{$firstPhotoUrl}" alt="" width="100" height="100" /></a></div>
+            <div style="text-align:center; width: 100px; overflow: hidden"><a href="{$http_project_path}photo/?go=school_album_photos&s={$s}&album_id={$albumData->id}&school_id={$smarty.request.school_id}">{$albumData->name}</a></div>
         </div>
     {/foreach}
 </div>
