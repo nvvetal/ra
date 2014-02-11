@@ -64,7 +64,7 @@ class Photos extends API_List
             'cnt'   => $cnt,
             'items' => array(),
             //'pages' => $perPage > 0 ? ceil($cnt / $perPage) : 0,
-            'pages' => 0,
+            'pages' => 1,
         );
         if(count($items) == 0) return $total;
         //if($cnt == 0) $total['cnt'] = count($items);
@@ -79,16 +79,18 @@ class Photos extends API_List
             $tot += $item['img_cnt'];
             if($tot >= $perPage) {
                 $tot = 0;
+                if($page == $total['pages']){
+                    $data = array(
+                        'from'  => $item['min_id'],
+                        'to'    => $maxId,
+                    );
+                }
                 $total['pages']++;
             }
             $lastMinId = $item['min_id'];
-            if($page != $total['pages']) continue;
-            $data = array(
-                'from'  => $lastMinId,
-                'to'    => $maxId,
-            );
+
         }
-        if(is_null($data) && ($page == $total['pages'] || $page == $total['pages']+1)){
+        if(is_null($data) && ($page == $total['pages'])){
             $data = array(
                 'from'  => $lastMinId,
                 'to'    => $maxId,
