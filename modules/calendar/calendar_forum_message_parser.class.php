@@ -73,7 +73,7 @@ class calendar_forum_message_parser
             '[/size]',
             '[u]',
             '[/u]',
-            '[color=',
+//            '[color=',
             '[/color]',
         );
         $replace = array(
@@ -91,10 +91,12 @@ class calendar_forum_message_parser
             '[/size:'.$bbcode_uid.']',
             '[u:'.$bbcode_uid.']',
             '[/u:'.$bbcode_uid.']',
-            '[color:'.$bbcode_uid.'=',
+//            '[color:'.$bbcode_uid.'=',
             '[/color:'.$bbcode_uid.']',
         );
-        return str_replace($codes, $replace, $message);
+        $data = str_replace($codes, $replace, $message);
+        $data = preg_replace('/\[color\=(^[\]]+)\]/i', '[color:$1='.$bbcode_uid, $data);
+        return $data;
     }
 }
 
