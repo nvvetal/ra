@@ -504,6 +504,12 @@ h2.main {
     z-index: 9999 !important;
 }
 
-.fb_edge_widget_with_comment span.fb_edge_comment_widget {
-    top: 15px !important;
-    left: -250px !important;}
+.fb-like iframe {
+    max-width: inherit;
+}
+
+/* the same issue with the "send" button */
+
+.fb-send iframe {
+    max-width: inherit;
+}
