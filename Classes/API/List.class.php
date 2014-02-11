@@ -146,8 +146,8 @@ class API_List {
         if($page < 1) $page = 1;
         $total = $this->prepareTotal(array(), $perPage, 0);
         $where = array(
-            "p.id" => "r.rateToId",
-            "r.rateToType" => SQLQuote($type),
+            "p.id = r.rateToId",
+            "r.rateToType = ".SQLQuote($type),
         );
         if(isset($params['enabled']) && $params['enabled'] == true){
             $where[] = "p.is_enabled = 'Y'";
@@ -183,6 +183,7 @@ class API_List {
                 $q .= "LIMIT ".(($page-1)*$perPage).",".$perPage;
             }
             $items = SQLGetRows($q, $this->_dbh);
+//var_dump($q);
             $total = $this->prepareTotal($items, $perPage, $cnt);
         }catch(Exception $e){
             exception_handler($e);
