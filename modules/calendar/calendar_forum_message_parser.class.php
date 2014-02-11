@@ -95,7 +95,7 @@ class calendar_forum_message_parser
             '[/color:'.$bbcode_uid.']',
         );
         $data = str_replace($codes, $replace, $message);
-        $data = preg_replace('/\[color\=(#[0-9a-f]{6}|[a-z\-]+)\]/ims', '[color:$1='.$bbcode_uid.']', $data);
+        $data = preg_replace('/\[color\=(#[0-9a-f]{6}|[a-z\-]+)\]/ims', '[color=$1:'.$bbcode_uid.']', $data);
         return $data;
     }
 }
