@@ -1,5 +1,14 @@
 {include file='header.tpl' script='modules/article/i_javascript.tpl'}
 {literal}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=584036961679011";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <script>
         $(document).ready(function(){
             {/literal}xajax_getArticleAdditional('{$article_id}', '{$s}');{literal}
@@ -15,7 +24,8 @@
 </div>
 {/if}
 <div class="article-container article-name">
-    {$article->name}
+    <div>{$article->name}</div>
+    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 </div>
 
 <div class="article-container article-content">
@@ -29,7 +39,7 @@
 </div>
 
 <div class="article-container" id="votings"></div>
-<br style="clear:all">
+<br/>
 <div class="article-container" id="comments"></div>
 
 {include file='footer.tpl'}
