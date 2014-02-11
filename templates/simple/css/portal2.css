@@ -503,13 +503,3 @@ h2.main {
 .ui-autocomplete {
     z-index: 9999 !important;
 }
-
-.fb-like iframe {
-    max-width: inherit;
-}
-
-/* the same issue with the "send" button */
-
-.fb-send iframe {
-    max-width: inherit;
-}
