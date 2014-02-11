@@ -7,7 +7,7 @@ function photoActionSchoolAlbumPhotoAdd( ActionProcessor $actionProcessor ){
    
     $albumId   = isset($_REQUEST['album_id']) ? $_REQUEST['album_id'] : '';
     $schoolId   = isset($_REQUEST['school_id']) ? $_REQUEST['school_id'] : '';
-    $name      = isset($_REQUEST['name']) ? $_REQUEST['name'] : '';
+    $name      = '';
 
     $DBFactory  = Registry::get('DBFactory');
     $Album      = new Album($DBFactory->get_db_handle('rakscom'));
