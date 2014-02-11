@@ -9,7 +9,11 @@
 <div class="article-container article-section">
     <a href="?s={$s}">{"Articles"|i18n}</a> - <a href="?s={$s}&go=list&section_id={$articleSection->id}">{$articleSection->name}</a>
 </div>
-
+{if $article->owner_id == $user_id}
+<div class="article-container article-edit">
+    <a href="?s={$s}&article_id={$article_id}&go=edit"><img src="{$http_images_static_path}icons/edit_24x24.png" alt="" /></a>
+</div>
+{/if}
 <div class="article-container article-name">
     {$article->name}
 </div>
