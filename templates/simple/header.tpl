@@ -8,12 +8,16 @@
     <meta name="description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
 
     <!-- for Facebook -->
-    <meta property="og:title" content="{$title|default:'RAKS'}" />
+    <meta property="og:title" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_name}{else}{$title|default:'RAKS'}{/if}" />
     <meta property="og:type" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}article{else}website{/if}" />
     <meta property="og:image" content="{$http_images_static_path}logo_real_krug_1024.png" />
     <meta property="og:url" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}{$http_project_path}article/?go=article&article_id={$smarty.request.article_id}{else}{$http_project_path}{/if}" />
     <meta property="og:description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{elseif $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_description}{else}{/if}" />
     <meta property="fb:app_id" content="{$facebook_app_id}" />
+
+    <!-- for Vkontakte -->
+    <meta property="vk:app_id" content="{$vkontakte_app_id}" />
+
 
     <link type="text/css" href="{$http_project_path}jQuery/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="{$http_project_path}select2/select2.css" type="text/css" media="screen, projection" />
@@ -38,7 +42,12 @@
     {if $xjs ne ''}
         {$xjs}
     {/if}
-
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
+    {literal}
+    <script type="text/javascript">
+        VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
+    </script>
+    {/literal}
     {include file='i_javascript.tpl'}
     <script type="text/javascript" src="{$http_project_path}swfobject/swfobject.js"></script>
     <script type="text/javascript" src="{$http_project_path}select2/select2.js"></script>
