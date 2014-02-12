@@ -22,7 +22,7 @@
                 <div style="vertical-align: middle" class="fb-like" data-href="{$http_project_path}article/?go=article&article_id={$article_id}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
             </td>
             <td align="left">
-                <div id="vk_share_button" style="display:inline;vertical-align: middle"></div>
+                <div id="vk_share_button" style="margin-top: 4px;"></div>
             </td>
         </tr>
     </table>
