@@ -18,11 +18,11 @@
     <div>{$article->name}</div>
     <table style="width:100%">
         <tr>
-            <td align="right" style="vertical-align: middle">
-                <div class="fb-like" data-href="{$http_project_path}article/?go=article&article_id={$article_id}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+            <td align="right">
+                <div style="vertical-align: middle" class="fb-like" data-href="{$http_project_path}article/?go=article&article_id={$article_id}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
             </td>
-            <td align="left" style="vertical-align: middle">
-                <div id="vk_share_button" style="display:inline"></div>
+            <td align="left">
+                <div id="vk_share_button" style="display:inline;vertical-align: middle"></div>
             </td>
         </tr>
     </table>
