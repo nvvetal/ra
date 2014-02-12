@@ -22,7 +22,7 @@
     <script type="text/javascript">
         window.onload = function () {
             VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
-            VK.Widgets.Like('vk_like', {type: "button", height: 20, width: 500, pageTitle: '{/literal}{$article->name}{literal}', pageDescription: '{/literal}{$article->content|strip_tags|truncate:255:"..."}{literal}'}, {/literal}{$article->id}{literal});
+            VK.Widgets.Like('vk_like', {type: "button", height: 20, width: 500, pageTitle: '{/literal}{$article->name}{literal}', pageDescription: '{/literal}{$article->content|strip_tags|truncate:255:"..."}{literal}'});
         }
     </script>
     {/literal}
