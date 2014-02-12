@@ -17,7 +17,7 @@
 <div class="article-container article-name">
     <div>{$article->name}</div>
     <div class="fb-like" data-href="{$http_project_path}article/?go=article&article_id={$article_id}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-    <div id="vk_share_button"></div>
+    <div id="vk_share_button" style="display:inline"></div>
     {literal}
     <script type="text/javascript">
         window.onload = function () {
