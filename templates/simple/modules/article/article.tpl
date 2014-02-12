@@ -17,12 +17,12 @@
 <div class="article-container article-name">
     <div>{$article->name}</div>
     <div class="fb-like" data-href="{$http_project_path}article/?go=article&article_id={$article_id}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-    <div id="vk_like"></div>
+    <div id="vk_share_button"></div>
     {literal}
     <script type="text/javascript">
         window.onload = function () {
             VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
-            document.write(VK.Share.button({
+            $('#vk_share_button').html(VK.Share.button({
                 url: '{/literal}{$http_project_path}article/?go=article&article_id={$article_id}{literal}',
                 title: '{/literal}{$article->name}{literal}',
                 description: '{/literal}{$article->content|strip_tags|truncate:255:"..."}{literal}',
