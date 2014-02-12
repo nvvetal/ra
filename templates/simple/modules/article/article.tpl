@@ -58,5 +58,7 @@
 <div class="article-container" id="votings"></div>
 <br/>
 <div class="article-container" id="comments"></div>
+{literal}
 <script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+{/literal}
 {include file='footer.tpl'}
