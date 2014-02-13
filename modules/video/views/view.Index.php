@@ -16,6 +16,7 @@ function videoViewIndex(View $View){
     require_once('../schools/school.class.php');
     $schoolObj                      = new school($DBFactory->get_db_handle('rakscom'));
     $returnParams['schoolObj']      = $schoolObj;
-    $returnParams['maxPerLine']           = $maxPerLine;
+    $returnParams['maxPerLine']     = $maxPerLine;
+    $returnParams['page']           = $page;
     return $returnParams;
 }
