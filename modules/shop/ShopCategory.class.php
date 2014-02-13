@@ -23,7 +23,7 @@ class ShopCategory extends API_Item {
         $q = "
             SELECT *
             FROM ".$this->_itemTable."
-            WHERE 'shop_id' = ".SQLQuote($shopId)." AND name = ".SQLQuote($name)."
+            WHERE shop_id = ".SQLQuote($shopId)." AND name = ".SQLQuote($name)."
             LIMIT 1
         ";
         $data = SQLGet($q, $this->_dbh);

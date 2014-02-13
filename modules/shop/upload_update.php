@@ -23,6 +23,7 @@ try {
         if(!is_dir($category) || $file == '.' || $file == '..') continue;
         $shopCategory = new ShopCategory($dbh);
         $res = $shopCategory->findByShopAndName(1, $categoryName);
+var_dump($res);
         if($res == false) continue;
         $categoryId = $shopCategory->id;
         $dh2 = opendir($category);
