@@ -71,7 +71,6 @@ class Photos extends API_List
         $data = array();
         $tot = 0;
         $maxId = 0;
-        $minId = 0;
         foreach($items as $item){
             if($tot == 0){
                 $maxId = $item['max_id'];
@@ -85,9 +84,8 @@ class Photos extends API_List
                     'to'    => $maxId,
                 );
             }
-            $minId = $item['min_id'];
             $data[$total['pages']] = array(
-                'from'  => $minId,
+                'from'  => $item['min_id'],
                 'to'    => $maxId,
             );
         }

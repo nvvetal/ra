@@ -64,14 +64,13 @@ class Videos extends API_List
             'cnt'   => $cnt,
             'items' => array(),
             //'pages' => $perPage > 0 ? ceil($cnt / $perPage) : 0,
-            'pages' => 0,
+            'pages' => 1,
         );
         if(count($items) == 0) return $total;
         //if($cnt == 0) $total['cnt'] = count($items);
-        $data = NULL;
+        $data = array();
         $tot = 0;
         $maxId = 0;
-        $lastMinId = 0;
         foreach($items as $item){
             if($tot == 0){
                 $maxId = $item['max_id'];
@@ -80,24 +79,23 @@ class Videos extends API_List
             if($tot >= $perPage) {
                 $tot = 0;
                 $total['pages']++;
+                $data[$total['pages']-1] = array(
+                    'from'  => $item['min_id'],
+                    'to'    => $maxId,
+                );
             }
-            $lastMinId = $item['min_id'];
-            if($page != $total['pages']) continue;
-            $data = array(
-                'from'  => $lastMinId,
+            $data[$total['pages']] = array(
+                'from'  => $item['min_id'],
                 'to'    => $maxId,
             );
         }
-        if(is_null($data) && ($page == $total['pages'] || $page == $total['pages']+1)){
-            $data = array(
-                'from'  => $lastMinId,
-                'to'    => $maxId,
-            );
-        }
+        if(count($data) == 0) return $total;
+        if($page > $total['pages']) $page = $total['pages'];
+
         $q = "
             SELECT *, CONCAT_WS(  '_',  `owner_type` ,  `owner_id` ) as owner
             FROM ".$this->_tableName."
-            WHERE id >= {$data['from']} AND {$data['to']} >= id
+            WHERE id >= {$data[$page]['from']} AND {$data[$page]['to']} >= id
             ORDER BY id ".$order."
         ";
         $items = SQLGetRows($q, $this->_dbh);
