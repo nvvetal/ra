@@ -75,7 +75,6 @@ class Photos extends API_List
         foreach($items as $item){
             if($tot == 0){
                 $maxId = $item['max_id'];
-                $minId = $item['min_id'];
             }
             $tot += $item['img_cnt'];
             if($tot >= $perPage) {
