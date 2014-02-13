@@ -1,11 +1,25 @@
 <?php
 
+/**
+ * @param $s
+ * @param $Session Session
+ */
 function sess_auth(&$s, &$Session){
 
     $remote_addr = $_SERVER['REMOTE_ADDR'];
     $user_agent = @$_SERVER['HTTP_USER_AGENT'];
     $type = 'web';
-
+    $User = Registry::get('User');
+    $c_user_id = isset($_COOKIE['rakscom_user_id']) ? intval($_COOKIE['rakscom_user_id']) : 0;
+    if($c_user_id > 0 &&
+        $User->get_value($c_user_id,'is_autologin') == 1){
+        $sess_id = $User->get_value($c_user_id,'cookie_session');
+        $sess_key = $User->get_value($c_user_id,'cookie_session_key');
+        if($sess_id == $_COOKIE['rakscom_s'] && $sess_key == $_COOKIE['rakscom_s_key']){
+            $s = $sess_id;
+            $user_id = $c_user_id;
+        }
+    }
     $user_id = 0;
     if(empty($s)){
         $s = $Session->session_create($user_id,$remote_addr,$user_agent,$type);

@@ -4,7 +4,6 @@ require_once('shop.common.php');
 
 sess_auth($s, $Session);
 Registry::set('s', $s);
-Registry::set('s', $s);
 user_auth($s, $User, $Session);
 
 $go = bwls($go, $action, $params);                                                                                                      
