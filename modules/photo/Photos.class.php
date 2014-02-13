@@ -81,7 +81,7 @@ class Photos extends API_List
                 $tot = 0;
                 $total['pages']++;
                 $data[$total['pages']-1] = array(
-                    'from'  => $minId,
+                    'from'  => $item['min_id'],
                     'to'    => $maxId,
                 );
             }
