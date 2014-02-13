@@ -8,7 +8,7 @@
                     <b>{"Enter user nickname"|i18n}</b>
                 </td>
                 <td>
-                    <input name="user" id="user_select" style="width:100%" />
+                    <input name="user" id="user_select" style="width:100%" value="{$toUsername}" />
                 </td>
             </tr>
             <tr>

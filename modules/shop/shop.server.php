@@ -61,7 +61,9 @@ function sendUserGift($dataParse){
         $i18n->get_translate(Registry::get('lang'), 'Send more gifts!').
         '</a>';
     $objResponse->addAssign('user-send-result-success', 'innerHTML', $text);
-
+    if($Session->get_value($sessId, 'shop_user_id') != NULL){
+        $Session->set_value($sessId, 'shop_user_id', NULL);
+    }
     return $objResponse;
 }
 
