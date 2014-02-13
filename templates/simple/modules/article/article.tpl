@@ -31,7 +31,7 @@
         window.onload = function () {
             VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
             $('#vk_share_button').html(VK.Share.button({
-                url: '{/literal}{$http_project_path}article/?go=article&article_id={$article_id}{literal}',
+                url: '{/literal}{$http_project_path}article/?go=article&amp;article_id={$article_id}{literal}',
                 title: '{/literal}{$article->name|escape:'javascript'}{literal}',
                 description: '{/literal}{$article->content|strip_tags|truncate:255:"..."|escape:'javascript'}{literal}',
                 image: '{/literal}{$http_images_static_path}logo_real_krug_1024.png{literal}',
