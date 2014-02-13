@@ -17,7 +17,7 @@ function photoViewIndex(View $View){
     $schoolObj                      = new school($DBFactory->get_db_handle('rakscom'));
     $returnParams['schoolObj']      = $schoolObj;
     $returnParams['page']           = $page;
-    $returnParams['maxPerLine']           = $maxPerLine;
+    $returnParams['maxPerLine']     = $maxPerLine;
     return $returnParams;
 }
 
