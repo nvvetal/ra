@@ -80,9 +80,12 @@ class Photos extends API_List
             if($tot >= $perPage) {
                 $tot = 0;
                 $total['pages']++;
-                $minId = $item['min_id'];
+                $data[$total['pages']-1] = array(
+                    'from'  => $minId,
+                    'to'    => $maxId,
+                );
             }
-
+            $minId = $item['min_id'];
             $data[$total['pages']] = array(
                 'from'  => $minId,
                 'to'    => $maxId,
