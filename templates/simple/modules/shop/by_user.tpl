@@ -3,7 +3,7 @@ document.write(''+
 {/literal}
 '<hr/>'+
 '<div>'+
-    '<span style="color:red">{"user gifts count"|i18n} {$goods.cnt}</span>&nbsp;&nbsp;<a href="{$http_project_path}?go=my_profile">{"gift all list"|i18n}</a>&nbsp;&nbsp;<a href="{$http_project_path}shop/?user_id=">{"send gift to somebody"|i18n}</a></div>'+
+    '<span style="color:red">{"user gifts count"|i18n} {$goods.cnt}</span>&nbsp;&nbsp;<a href="{$http_project_path}?go=my_profile">{"gift all list"|i18n}</a>&nbsp;&nbsp;<a href="{$http_project_path}shop/?user_id={$userId}">{"send gift to somebody"|i18n}</a></div>'+
     '<div>'+
         {foreach from=$goods.items item=item}
             '<div style="float:left;display:inline;text-align:center;margin-right:5px;">'+
