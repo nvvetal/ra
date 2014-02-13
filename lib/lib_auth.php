@@ -10,6 +10,7 @@ function sess_auth(&$s, &$Session){
     $user_agent = @$_SERVER['HTTP_USER_AGENT'];
     $type = 'web';
     $User = Registry::get('User');
+    $user_id = 0;
     $c_user_id = isset($_COOKIE['rakscom_user_id']) ? intval($_COOKIE['rakscom_user_id']) : 0;
     if($c_user_id > 0 &&
         $User->get_value($c_user_id,'is_autologin') == 1){
@@ -20,7 +21,6 @@ function sess_auth(&$s, &$Session){
             $user_id = $c_user_id;
         }
     }
-    $user_id = 0;
     if(empty($s)){
         $s = $Session->session_create($user_id,$remote_addr,$user_agent,$type);
     }else{
