@@ -91,8 +91,6 @@ class Photos extends API_List
                 'to'    => $maxId,
             );
         }
-        echo "<pre>";
-        var_dump($data);
         if(count($data) == 0) return $total;
         if($page > $total['pages']) $page = $total['pages'];
 
