@@ -49,13 +49,13 @@ class Photos extends API_List
         if($perPage < 10) $perPage = 10;
         if($perOneUser < 3) $perOneUser = 3;
         $q = "
-            SELECT  CONCAT_WS(  '_',  `owner_type` ,  `owner_id` ) as owner,
+            SELECT  CONCAT_WS(  '_',  `owner_type` ,  `owner_id`,LEFT(FROM_UNIXTIME(created_time), 10) ) as owner,
                 FROM_UNIXTIME( created_time ) AS dt,
                 MIN( id ) AS min_id, MAX( id ) AS max_id,
                 IF( COUNT( CONCAT_WS(  '_',  `owner_type` ,  `owner_id` ) ) >9, 9, COUNT( CONCAT_WS(  '_', `owner_type` ,  `owner_id` ) ) ) AS img_cnt,
                 COUNT( CONCAT_WS(  '_',  `owner_type` ,  `owner_id` )) as img_cnt_real
             FROM ".$this->_tableName."
-            GROUP BY CONCAT_WS(  '_',  `owner_type` ,  `owner_id` )
+            GROUP BY CONCAT_WS(  '_',  `owner_type` ,  `owner_id`,LEFT(FROM_UNIXTIME(created_time), 10) )
             ORDER BY dt ".$order."
             LIMIT 0, ".(100*$perOneUser-1)."
         ";
