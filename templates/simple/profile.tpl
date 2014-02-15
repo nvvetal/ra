@@ -7,12 +7,6 @@
     </script>
 {/literal}
 <center><h2><img src="{$http_images_static_path}hprofile.jpg" alt=""/></h2></center>
-{if isset($smarty.request.user_id)}
-    {assign var="profile_user_id" value=$smarty.request.user_id}
-{elseif isset($smarty.request.user_name)}
-    {assign var="profile_user_id" value=$User->find_user_id_by_login($smarty.request.user_name)}
-{/if}
-
 {if $User->is_user_id_exists($profile_user_id)}
     <div id="tabs">
         <ul>
