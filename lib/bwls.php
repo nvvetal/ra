@@ -331,10 +331,16 @@ function page_content($go,$action,$params){
 
         case "profile":
             $DBFactory                  = Registry::get('DBFactory');
-            $dbh 						= $DBFactory->get_db_handle('rakscom');
+            $dbh                        = $DBFactory->get_db_handle('rakscom');
             $userId                     = isset($_REQUEST['user_id']) ? intval($_REQUEST['user_id']) : 0;
+            $forumUserId                = isset($_REQUEST['user_forum_id']) ? intval($_REQUEST['user_forum_id']) : 0;
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
-            $forumUserId                = $params['User']->get_value($userId, 'forum');
+            if(empty($currentUserId) && !empty($forumUserId)){
+                $foundUserId = $params['User']->findUserIdByForumId($forumUserId);
+                if($foundUserId !== false) $userId = $foundUserId;
+            }
+
+            $forumUserId = empty($forumUserId) ? $params['User']->get_value($userId, 'forum') : $forumUserId;
             $isUserEqual = ($userId == $currentUserId) ? 1 : 0;
             $params['smarty']->assign('isUserEqual', $isUserEqual);
 
