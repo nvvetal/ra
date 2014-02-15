@@ -334,15 +334,24 @@ function page_content($go,$action,$params){
             $dbh                        = $DBFactory->get_db_handle('rakscom');
             $userId                     = isset($_REQUEST['user_id']) ? intval($_REQUEST['user_id']) : 0;
             $forumUserId                = isset($_REQUEST['user_forum_id']) ? intval($_REQUEST['user_forum_id']) : 0;
+            $username                = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
             if(empty($currentUserId) && !empty($forumUserId)){
                 $foundUserId = $params['User']->findUserIdByForumId($forumUserId);
                 if($foundUserId !== false) $currentUserId = $foundUserId;
+            }elseif(empty($currentUserId) && !empty($username)){
+                $currentUserId =  $params['User']->find_user_id_by_login($username);
             }
 
             $forumUserId = empty($forumUserId) ? $params['User']->get_value($userId, 'forum') : $forumUserId;
-            $isUserEqual = ($userId == $currentUserId) ? 1 : 0;
+            $isUserEqual = 1;
+            $profileUserId = $userId;
+            if($userId != $currentUserId){
+                $isUserEqual = 0;
+                $profileUserId = $currentUserId;
+            }
             $params['smarty']->assign('isUserEqual', $isUserEqual);
+            $params['smarty']->assign('profile_user_id', $profileUserId);
 
             //albums
 
