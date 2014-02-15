@@ -336,11 +336,11 @@ function page_content($go,$action,$params){
             $forumUserId                = isset($_REQUEST['user_forum_id']) ? intval($_REQUEST['user_forum_id']) : 0;
             $username                = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
-            if(empty($currentUserId) && !empty($forumUserId)){
+            if(empty($userId) && !empty($forumUserId)){
                 $foundUserId = $params['User']->findUserIdByForumId($forumUserId);
                 if($foundUserId !== false) $userId = $foundUserId;
-            }elseif(empty($currentUserId) && !empty($username)){
-                $currentUserId =  $params['User']->find_user_id_by_login($username);
+            }elseif(empty($userId) && !empty($username)){
+                $userId =  $params['User']->find_user_id_by_login($username);
             }
 
             $forumUserId = empty($forumUserId) ? $params['User']->get_value($userId, 'forum') : $forumUserId;
