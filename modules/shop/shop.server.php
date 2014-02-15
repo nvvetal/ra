@@ -13,7 +13,7 @@ function sendUserGift($dataParse){
     $sessId			= isset($data['s']) ? $data['s'] : '';
     $userId 		= $Session->get_value($sessId,'user_id');
     //check user is logged
-    if(is_null($userId)){
+    if(is_null($userId) || empty($userId)){
         $text = $i18n->get_translate(Registry::get('lang'), 'Please login!');
         $objResponse->addAssign('user-send-result', 'innerHTML', $text);
         return $objResponse;
