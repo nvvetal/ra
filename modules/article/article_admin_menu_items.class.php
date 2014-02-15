@@ -75,6 +75,17 @@ class article_admin_menu_items extends MenuItem{
         if(empty($sectionId)) $errors['section_id'] = array('message'=>'Please set section!');
         if(empty($contentShort)) $errors['content_short'] = array('message'=>'Please set short content!');
         if(empty($content)) $errors['content'] = array('message'=>'Please set content!');
+        /**
+         * @var $images Images
+         */
+        $Images = Registry::get('Images');
+        $imageSaveData = NULL;
+        if(isset($_FILES['article_image_file']['tmp_name']) && is_uploaded_file($_FILES['article_image_file']['tmp_name'])) {
+            $imageSaveData = $Images->upload_image($_FILES['article_image_file'],$GLOBALS['IMAGE_UPLOAD_ORIGINAL_PATH'],'upload');
+            if($imageSaveData['res'] != true ){
+                $errors['image'] = 'Wrong image!';
+            }
+        }
         if (count($errors) > 0) {
             $params['smarty']->assign('errors', $errors);
             return 'edit';
@@ -87,6 +98,12 @@ class article_admin_menu_items extends MenuItem{
         $article->content_short = $contentShort;
         $article->content = $content;
         $article->reason = $reason;
+
+        if(!is_null($imageSaveData)){
+            $Images->assign_image($imageSaveData['ID'], $articleId, 'article');
+            $article->image_id = $imageSaveData['ID'];
+        }
+
         return $params['ago'];
     }
 

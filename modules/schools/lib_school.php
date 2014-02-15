@@ -2,9 +2,9 @@
 
 function school_actions($go,$action,$params){
     switch ($action){
-        case "add_school":        
+        case "add_school":
             $city_id = isset($_REQUEST['city_id'])?$_REQUEST['city_id']:"";
-     
+
             $s_params = array(
                 "name"=>isset($_REQUEST['name'])?$_REQUEST['name']:"",
                 "city_id"=>$city_id,
@@ -19,7 +19,7 @@ function school_actions($go,$action,$params){
                 "description"=>isset($_REQUEST['description'])?$_REQUEST['description']:"",
                 "created_date_time"=>time(),
                 "last_updated_date"=>time(),
-            	'is_approved'		=> 1,
+                'is_approved'=> 1,
             );
             $s_params['owner_id']=$params['Session']->get_value($params['s'],'user_id');
             require_once('school_container.class.php');
@@ -41,12 +41,12 @@ function school_actions($go,$action,$params){
                 }
             }
             if(!empty($errors)){
-            	header('Location: ?go=edit_school&school_id='.$school_id.'&s='.$params['s'].$errors);
+                header('Location: ?go=edit_school&school_id='.$school_id.'&s='.$params['s'].$errors);
             }else{
-            	header('Location: ?go=school&school_id='.$school_id.'&s='.$params['s']);
+                header('Location: ?go=school&school_id='.$school_id.'&s='.$params['s']);
             }
-            exit;           
-        break;
+            exit;
+            break;
 
         case "edit_school":
             $school_id = isset($_REQUEST['school_id'])?$_REQUEST['school_id']:"";
@@ -56,7 +56,7 @@ function school_actions($go,$action,$params){
             if($school['owner_id'] != $user_id && $params['User']->get_value($user_id,'admin_schools') != 1 ){
                 return $go = 'school_bad_user';
             }
-           
+
             $s_params = array(
                 "name"=>isset($_REQUEST['name'])?$_REQUEST['name']:"",
                 "city_id"=>$city_id,
@@ -75,7 +75,7 @@ function school_actions($go,$action,$params){
             require_once('school_container.class.php');
             $school_container_class = new school_container($params['Validator'],$params['school']);
             $res = $school_container_class->call_method_by_id("edit_school",$school_id,$s_params);
-            $errors = '';            
+            $errors = '';
             if($school_container_class->is_valid($res) == false){
                 $params['smarty']->assign('errors',$school_container_class->get_errors($res));
                 $go = "edit_school";
@@ -91,8 +91,8 @@ function school_actions($go,$action,$params){
                 }
             }
             header('Location: ?go=edit_school&school_id='.$school_id.'&s='.$params['s'].$errors);
-            exit;        
-        break;
+            exit;
+            break;
 
         case "delete_school":
             $school_id = isset($_REQUEST['school_id'])?$_REQUEST['school_id']:"";
@@ -102,7 +102,7 @@ function school_actions($go,$action,$params){
                 return $go = 'school_bad_user';
             }
             $params['school']->delete_school($school_id);
-        break;
+            break;
 
         case "enable_school":
             $user_id = $params['Session']->get_value($params['s'],'user_id');
@@ -111,7 +111,7 @@ function school_actions($go,$action,$params){
             }
             $school_id = isset($_REQUEST['school_id'])?$_REQUEST['school_id']:"";
             $params['school']->approve_school($school_id, 1);
-        break;
+            break;
 
         case "disable_school":
             $user_id = $params['Session']->get_value($params['s'],'user_id');
@@ -120,7 +120,7 @@ function school_actions($go,$action,$params){
             }
             $school_id = isset($_REQUEST['school_id'])?$_REQUEST['school_id']:"";
             $params['school']->approve_school($school_id, 0);
-        break;
+            break;
 
         case "add_blog":
             $b_params = array(
@@ -137,7 +137,7 @@ function school_actions($go,$action,$params){
                 $go = "add_blog";
                 return $go;
             }
-        break;
+            break;
 
         case "makeSchoolVIP":
             //1.Check is user have this school
@@ -149,24 +149,24 @@ function school_actions($go,$action,$params){
             if(!$isOwner){
                 $params['smarty']->assign('errors',array('VIP'=>array('message'=>'You are not owner of this school!')));
                 $go = "schoolVip";
-                return $go;                
+                return $go;
             }
             $canPay = $params['User']->can_pay_raks_money($user_id,$params['school']->get_cost('makeSchoolVIP'));
             if(!$canPay['ok']){
                 $params['smarty']->assign('errors',array('VIP'=>array('message'=>'You dont have enought raks money to pay!')));
                 $go = "schoolVip";
-                return $go;                
+                return $go;
             }
             $raksMoney = $params['school']->get_cost('makeSchoolVIP');
-            $params['User']->pay_raks_money($user_id,$raksMoney); 
+            $params['User']->pay_raks_money($user_id,$raksMoney);
             $params['school']->set_vip($school_id);
             $params['smarty']->assign('is_success',1);
             $Payment = Registry::get('Payment');
             $Payment->addStats($user_id,'school_premium',1);
             $Payment->addStats($user_id,'raks_out',$raksMoney);
             header('Location: ?go=schoolVIP&s='.$params['s'].'&is_success=1&school_id='.$school_id);
-            exit;          
-        break;
+            exit;
+            break;
 
         case "makeSchoolTop":
             //1.Check is user have this school
@@ -178,35 +178,35 @@ function school_actions($go,$action,$params){
             if(!$isOwner){
                 $params['smarty']->assign('errors',array('VIP'=>array('message'=>'You are not owner of this school!')));
                 $go = "schoolTop";
-                return $go;                
+                return $go;
             }
             $canPay = $params['User']->can_pay_raks_money($user_id,$params['school']->get_cost('makeSchoolTop'));
             if(!$canPay['ok']){
                 $params['smarty']->assign('errors',array('VIP'=>array('message'=>'You dont have enought raks money to pay!')));
                 $go = "schoolTop";
-                return $go;                
+                return $go;
             }
             $raksMoney = $params['school']->get_cost('makeSchoolTop');
-            $params['User']->pay_raks_money($user_id,$raksMoney); 
+            $params['User']->pay_raks_money($user_id,$raksMoney);
             $params['school']->set_top($school_id);
             $params['smarty']->assign('is_success',1);
             $Payment = Registry::get('Payment');
             $Payment->addStats($user_id,'school_up',1);
-            $Payment->addStats($user_id,'raks_out',$raksMoney);            
+            $Payment->addStats($user_id,'raks_out',$raksMoney);
             header('Location: ?go=schoolTop&s='.$params['s'].'&is_success=1&school_id='.$school_id);
             exit;
-        break;
-        
+            break;
+
 
 
     }
-    
+
     switch($go){
         case "schools":
             if(empty($action) && is_array($params['User']->get_session_data('schoolsSearchData'))) return $go;
             $order_by = (isset($_REQUEST['order_by']) && in_array($_REQUEST['order_by'],array('last','name'))) ? $_REQUEST['order_by'] : 'last';
-            $city_id = (isset($_REQUEST['city_id'])) ? intval($_REQUEST['city_id']) : '';          
-            $subdivision_id = (isset($_REQUEST['subdivision_id'])) ? intval($_REQUEST['subdivision_id']) : '';          
+            $city_id = (isset($_REQUEST['city_id'])) ? intval($_REQUEST['city_id']) : '';
+            $subdivision_id = (isset($_REQUEST['subdivision_id'])) ? intval($_REQUEST['subdivision_id']) : '';
             $country_id = (isset($_REQUEST['country_id'])) ? intval($_REQUEST['country_id']) : '';
             $page = (isset($_REQUEST['page'])) ? intval($_REQUEST['page']) : 1;
             $per_page = (isset($_REQUEST['per_page'])) ? intval($_REQUEST['per_page']) : 25;
@@ -219,12 +219,10 @@ function school_actions($go,$action,$params){
                 'page' => $page,
             );
             $params['User']->set_session_data('schoolsSearchData',$schoolsSearchData);
-        break;        
+            break;
     }
 
 
     return $go;
 
 }
-
-?>

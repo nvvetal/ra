@@ -4,6 +4,7 @@
     <tr>
         <td>{"ID"|i18n}</td>
         <td>{"Name"|i18n}</td>
+        <td>{"Image"|i18n}</td>
         <td>{"Short Content"|i18n}</td>
         <td>{"Owner"|i18n}</td>
         <td>{"Created"|i18n}</td>
@@ -17,6 +18,9 @@
             </td>
             <td>
                 {$article->name}
+            </td>
+            <td>
+                <img src="{$Images->get_image_url($article->image_id,70,70,'jpg')}" alt=""/>
             </td>
             <td style="width: 60%">
                 {$article->content_short}

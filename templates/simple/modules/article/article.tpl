@@ -16,6 +16,7 @@
 {/if}
 <div class="article-container article-name">
     <div>{$article->name}</div>
+    {if $article->is_enabled eq 'Y'}
     <table style="width:100%">
         <tr>
             <td align="right">
@@ -26,6 +27,7 @@
             </td>
         </tr>
     </table>
+    {/if}
     {literal}
     <script type="text/javascript">
         window.onload = function () {
@@ -46,6 +48,7 @@
 </div>
 
 <div class="article-container article-content">
+    <img style="float:left;margin: 5px 10px 10px 0px;" src="{$articleImage}" alt="{"Article Image"|i18n}" width="200" height="200" />
     {$article->content}
 </div>
 
