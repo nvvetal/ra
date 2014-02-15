@@ -36,5 +36,5 @@
         {/section}
     </div>
 {/if}
-
+{include file='modules/article/i_article_warning.tpl'}
 {include file='footer.tpl'}

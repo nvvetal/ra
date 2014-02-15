@@ -89,3 +89,8 @@
     text-align: center;
     font-weight: bold;
 }
+
+.article-warning {
+    text-transform: uppercase;
+    color: red;
+}
