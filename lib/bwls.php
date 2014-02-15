@@ -338,17 +338,17 @@ function page_content($go,$action,$params){
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
             if(empty($currentUserId) && !empty($forumUserId)){
                 $foundUserId = $params['User']->findUserIdByForumId($forumUserId);
-                if($foundUserId !== false) $currentUserId = $foundUserId;
+                if($foundUserId !== false) $userId = $foundUserId;
             }elseif(empty($currentUserId) && !empty($username)){
                 $currentUserId =  $params['User']->find_user_id_by_login($username);
             }
 
             $forumUserId = empty($forumUserId) ? $params['User']->get_value($userId, 'forum') : $forumUserId;
             $isUserEqual = 1;
-            $profileUserId = $userId;
+            $profileUserId = $currentUserId;
             if($userId != $currentUserId){
                 $isUserEqual = 0;
-                $profileUserId = $currentUserId;
+                $profileUserId = $userId;
             }
             $params['smarty']->assign('isUserEqual', $isUserEqual);
             $params['smarty']->assign('profile_user_id', $profileUserId);
