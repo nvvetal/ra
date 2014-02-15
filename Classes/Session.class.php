@@ -6,7 +6,7 @@ class Session{
 	var $sess_length;	
 	var $sess_values = array();
 	
-	function Session($dbh, $sess_timeout = 3600, $sess_length = 16){
+	function Session($dbh, $sess_timeout = 432000, $sess_length = 16){
 		$this->dbh = $dbh;
 		$this->sess_timeout = $sess_timeout;
 		$this->sess_length = $sess_length;
