@@ -337,7 +337,7 @@ function page_content($go,$action,$params){
             $currentUserId              = intval($params['Session']->get_value($params['s'], 'user_id'));
             if(empty($currentUserId) && !empty($forumUserId)){
                 $foundUserId = $params['User']->findUserIdByForumId($forumUserId);
-                if($foundUserId !== false) $userId = $foundUserId;
+                if($foundUserId !== false) $currentUserId = $foundUserId;
             }
 
             $forumUserId = empty($forumUserId) ? $params['User']->get_value($userId, 'forum') : $forumUserId;
