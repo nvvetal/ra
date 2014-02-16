@@ -15,7 +15,7 @@
     {foreach from=$lastArticles.items item=article}
         <div class="article">
             {if $article->image_id > 0}
-                {assign var="articleImage" value=$Images->get_image_url($article->image_id, 70, 70,'jpg')}
+                {assign var="articleImage" value=$Images->get_image_url_center_square($article->image_id, 70,'jpg')}
                 {assign var="articleImage" value=$http_images_path|cat:$articleImage}
             {else}
                 {assign var="articleImage" value=$http_images_static_path|cat:'logo_real_krug_1024.png'}

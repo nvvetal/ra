@@ -48,7 +48,6 @@
 </div>
 
 <div class="article-container article-content">
-    <img style="float:left;margin: 5px 10px 10px 0px;" src="{$articleImage}" alt="{"Article Image"|i18n}" width="200" height="200" />
     {$article->content}
 </div>
 
