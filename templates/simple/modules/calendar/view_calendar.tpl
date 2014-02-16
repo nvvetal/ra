@@ -89,6 +89,7 @@
     {/foreach}
     {foreach name="email" from=$calendar->get_calendar_additional_info($smarty.request.calendar_id,'email') item=email }
         {assign var="email_iteration" value=$smarty.foreach.email.iteration-1}
+        {if $email ne ''}
         <tr valign="top">
             <td>
                 {"EMAIL"|i18n}
@@ -97,6 +98,7 @@
                 {mailto address=$email encode="hex"}
             </td>
         </tr>
+        {/if}
     {/foreach}
 </table>
 
