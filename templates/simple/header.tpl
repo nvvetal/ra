@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>{$title|default:'RAKS'}</title>
     <meta name="title" content="{$title|default:'RAKS'}" />
-    <meta name="keywords" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+    <meta name="keywords" content="восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс{if $module_name eq 'schools'}, школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
     <meta name="description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
 
     <!-- for Facebook -->
