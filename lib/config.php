@@ -119,6 +119,8 @@ if(file_exists($GLOBALS['INCLUDED_HOST_CONFIG'])){
     require_once($GLOBALS['INCLUDED_HOST_CONFIG']);
     $is_host_config_included = 1;
 }else{
+    echo "Wrong host";
+    exit;
     $is_host_config_included = 0;
 }
 

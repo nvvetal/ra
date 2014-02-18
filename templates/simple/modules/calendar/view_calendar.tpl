@@ -1,7 +1,9 @@
 {include file='header.tpl' script='modules/calendar/i_javascript.tpl'}
 {assign var="calendar_data" value=$calendar->get_calendar($smarty.request.calendar_id)}
+{assign var="category" value=$calendar->get_category($calendar_data.category_id)}
 <center><h2><img src="{$http_images_static_path}hmeropriayatia.jpg" alt=""/></h2></center>
 <div class="title" style="font-size: 120%;font-weight: bold">{$calendar_data.name|strip_tags}{if $calendar_data.is_vip == 'Y'}<img src="{$http_images_static_path}icons/star_24x24.png" alt="{"VIP"|i18n}"/>{/if}</div>
+<button onclick="window.location='{$http_project_path}forum/viewtopic.php?f={$category.forum_id}&p={$calendar_data.forum_post_id}'" style="float: right;">{"Discuss"|i18n}</button>
 <br/><br/>
 <table align="center" width="100%">
     <tr valign="top">
@@ -28,7 +30,6 @@
     <tr valign="top">
         <td>{"Category"|i18n}</td>
         <td>
-            {assign var="category" value=$calendar->get_category($calendar_data.category_id)}
             {$category.name}
         </td>
     </tr>
