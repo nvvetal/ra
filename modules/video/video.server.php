@@ -40,12 +40,10 @@ function saveVideo($fields)
             $albumId = $album->id;
         }
     }
-
     foreach ($data['link'] as $key => $curData){
-
-        if(empty($data['link'][$key])) continue;
+        if(empty($curData)) continue;
         $video = new Video($DBFactory->get_db_handle('rakscom'));
-        $parsedLink = $video->parseLink($data['link'][$key]);
+        $parsedLink = $video->parseLink($curData);
         if($parsedLink === false){
             $objResponse->addAlert('Cannot parse YouTube Code!');
             $objResponse->addScript('$("#btnSubmit").attr("disabled", false);');
@@ -75,9 +73,9 @@ function saveVideo($fields)
         $smarty->assign('youtubeId', $parsedLink);
         $smarty->assign('videoWidth', 560);
         $smarty->assign('videoHeight', 314);
-        $data = $smarty->fetch('modules/video/i_youtube_video.tpl');
+        $dataRes = $smarty->fetch('modules/video/i_youtube_video.tpl');
 
-        $objResponse->addAppend('videoUploaded', 'innerHTML', $data);
+        $objResponse->addAppend('videoUploaded', 'innerHTML', $dataRes);
 
     }
     //$objResponse->addAlert('ololo');
@@ -305,4 +303,3 @@ function setVideoAlbumName($fields)
 }
 
 $xajax->processRequests();
-?>

@@ -57,10 +57,10 @@
         {include file="modules/video/i_video_line.tpl" lineId=2}
         {include file="modules/video/i_video_line.tpl" lineId=3}
     </div>
-    <center>
+    <div style="text-align:center">
         <input type="button" onclick="xajax_addMoreVideo();" value="{"Add more videos"|i18n}" />
         <input type="submit" id="btnSubmit" name="btnSubmit" value="{"Add video"|i18n}" />
-    </center>
+    </div>
     <input type="hidden" name="s" value="{$s}" />
     {if $smarty.request.no_album != 1}
         <input type="hidden" name="album_id" value="{$smarty.request.album_id}" />
