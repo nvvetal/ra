@@ -9,8 +9,15 @@ function getPhotoComments($photoId, $s){
     $DBFactory  = Registry::get('DBFactory');
     $Session  = Registry::get('Session');
     $userId = $Session->get_value($s, 'user_id');    
+    $PhotoObj = new Photo($DBFactory->get_db_handle('rakscom'));
+    $photoCurrent = $PhotoObj->findById($photoId);
     $Comments = new Comments($DBFactory->get_db_handle('rakscom'));
     $photoComments = $Comments->getCommentsByPhoto($photoId);
+    if($userId == $photoCurrent->owner_id){
+        foreach($photoComments as $photoComment){
+            if($photoComment->sawTime == 0) $photoComment->sawTime = time();
+        }
+    }
     $smarty->assign('s', $s);
     $smarty->assign('user_id', $userId);
     $smarty->assign('photoId', $photoId);

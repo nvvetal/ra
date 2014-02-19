@@ -12,8 +12,8 @@
         <ul>
             <li><a href="#tabs-1">{"User profile"|i18n}</a></li>
             <li><a href="#tabs-2">{"User schools"|i18n}</a></li>
-            <li><a href="#user_photoalbums">{"User photo"|i18n}</a></li>
-            <li><a href="#tabs-4">{"User video"|i18n:'video'}</a></li>
+            <li><a href="#user_photoalbums">{"User photo"|i18n}{if "photoComments"|eventsCount > 0 && $profile_user_id == $user_id} (<img src="{$http_images_static_path}new.gif" alt=""/> {"photoComments"|eventsCount}!){/if}</a></li>
+            <li><a href="#tabs-4">{"User video"|i18n:'video'}{if "videoComments"|eventsCount > 0 && $profile_user_id == $user_id} (<img src="{$http_images_static_path}new.gif" alt=""/> {"videoComments"|eventsCount}!){/if}</a></li>
             <li><a href="#tabs-5">{"User achievements"|i18n}</a></li>
             <li><a href="#tabs-6">{"User friends"|i18n}</a></li>
             <li><a href="#tabs-7">{"User gits"|i18n}{if "gifts"|eventsCount > 0 && $profile_user_id == $user_id} (<img src="{$http_images_static_path}new.gif" alt=""/> {"gifts"|eventsCount}!){/if}</a></li>

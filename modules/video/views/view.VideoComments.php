@@ -6,15 +6,20 @@ function videoViewVideoComments(View $View){
     $Session                    	= Registry::get('Session');
     $sessionId                  	= Registry::get('s');
     $userId                     	= $Session->get_value($sessionId,'user_id');
-	$video							= new Video($DBFactory->get_db_handle('rakscom'));
-	$video->findById($videoId);
+    $video							= new Video($DBFactory->get_db_handle('rakscom'));
+    $video->findById($videoId);
     $videoAlbum                 	= new VideoAlbum($DBFactory->get_db_handle('rakscom'));
     $videoAlbum->findById($video->album_id);
-	$videoComments					= $video->getComments();
-	$returnParams['video']  		= $video;   
-    $returnParams['videoAlbum']  	= $videoAlbum;     
-    $returnParams['videoComments'] 	= $videoComments;    
-	 
+    $videoComments					= $video->getComments();
+    if($userId == $video->owner_id){
+        foreach($videoComments as $videoComment){
+            if($videoComment->sawTime == 0) $videoComment->sawTime = time();
+        }
+    }
+    $returnParams['video']  		= $video;
+    $returnParams['videoAlbum']  	= $videoAlbum;
+    $returnParams['videoComments'] 	= $videoComments;
+
     return $returnParams;
 }
 

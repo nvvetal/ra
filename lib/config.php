@@ -254,6 +254,10 @@ $PhotosAuth = array('login' => 'vitaliy.grinchishin@gmail.com', 'password' => '5
 Registry::set('PhotosAuth', $PhotosAuth);
 $GiftMaxNewPeriod = 600;
 Registry::set('GiftMaxNewPeriod', $GiftMaxNewPeriod);
+$CommentMaxNewPeriod = 600;
+Registry::set('CommentMaxNewPeriod', $CommentMaxNewPeriod);
+
+
 $userId = isset($_REQUEST['s']) && $Session->get_value($_REQUEST['s'], 'user_id') ? $Session->get_value($_REQUEST['s'], 'user_id') : '';
 if(!empty($userId)){
     $dir = $GLOBALS['PROJECT_ROOT']."/users/" . $userId . "/images/upload";

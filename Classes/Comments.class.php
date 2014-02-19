@@ -69,6 +69,22 @@ class Comments extends API_List
         }
         return $comments;
     }
+
+    public function getUserNewCommentsCount($userId, $type, $maxPeriodSecs)
+    {
+        if(!is_array($type, array('photo', 'video'))) return 0;
+        $addTable = $type.'_'.$type.'s';
+        $q = "
+            SELECT COUNT(c.id) as cnt
+            FROM ".$this->_tableName." as c, $addTable as a
+            WHERE c.createdBy <> ".SQLQuote($userId)."
+                AND (c.sawTime > ".SQLQuote(time() - $maxPeriodSecs)." OR c.sawTime = 0)
+                AND c.itemType = ".SQLQuote(type)."
+                AND c.itemId = a.id AND a.owner_id = ".SQLQuote($userId)."
+        ";
+        $data = SQLGet($q, $this->_dbh);
+        return $cnt = isset($data['cnt']) ? $data['cnt'] : 0;
+    }
 }
 
 ?>

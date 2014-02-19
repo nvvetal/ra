@@ -179,7 +179,5 @@ class Photos extends API_List
             exception_handler($e);
         }
         return $itemObj;        
-    }    
+    }
 }
-
-?>
