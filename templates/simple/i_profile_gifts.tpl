@@ -22,7 +22,7 @@
                 <td>
                     <a href="{$http_project_path}?go=profile&user_id={$gift->from_user_id}">{$User->get_value($gift->from_user_id,'login')}</a>
                 </td>
-                {if $canShowGiftPrivateComment == 1}<td>{$gift->message}</td>{/if}
+                {if $canShowGiftPrivateComment == 1}<td>{$gift->message|strip_tags}</td>{/if}
             </tr>
             {foreachelse}
             <tr>
