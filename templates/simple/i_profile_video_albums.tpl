@@ -25,7 +25,7 @@
                 {$comment->timeCreated|date_format:'%d.%m.%Y'}
             </td>
             <td>
-                <a href="{$http_project_path}video/?go=user_album_videos&s={$s}&album_id={$commentItem->id}&user_id={$profile_user_id}"><img src="{$firstVideoUrl}" alt="" width="100" height="100" /></a>
+                <a href="{$http_project_path}video/?go=user_album_videos&s={$s}&album_id={$commentItem->album_id}&user_id={$profile_user_id}"><img src="{$firstVideoUrl}" alt="" width="100" height="100" /></a>
             </td>
             <td>
                 <a href="{$http_project_path}?go=profile&user_id={$comment->createdBy}&s={$s}">{$User->get_value($comment->createdBy, 'login')}</a>
