@@ -366,7 +366,7 @@ function page_content($go,$action,$params){
             if($isUserEqual){
                 $maxPeriod                  = Registry::get('CommentMaxNewPeriod');
                 $commentsObj = new Comments($dbh);
-                $userPhotoLastComments = $commentsObj->getUserNewCommentsCountByType($userId, 'photo', $maxPeriod);
+                $userPhotoLastComments = $commentsObj->getUserNewCommentsByType($userId, 'photo', $maxPeriod);
                 $params['smarty']->assign('userPhotoLastComments', $userPhotoLastComments);
             }
             //schools
@@ -390,7 +390,7 @@ function page_content($go,$action,$params){
             if($isUserEqual){
                 $maxPeriod                  = Registry::get('CommentMaxNewPeriod');
                 $commentsObj = new Comments($dbh);
-                $userVideoLastComments = $commentsObj->getUserNewCommentsCountByType($userId, 'video', $maxPeriod);
+                $userVideoLastComments = $commentsObj->getUserNewCommentsByType($userId, 'video', $maxPeriod);
                 $params['smarty']->assign('userVideoLastComments', $userVideoLastComments);
             }
 

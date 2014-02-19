@@ -90,7 +90,7 @@ class Comments extends API_List
     {
         require_once($GLOBALS['MODULES_DIR'].'photo/Photo.class.php');
         require_once($GLOBALS['MODULES_DIR'].'video/Video.class.php');
-        if(!is_array($type, array('photo', 'video'))) return 0;
+        if(!in_array($type, array('photo', 'video'))) return 0;
         $addTable = $type.'_'.$type.'s';
         $q = "
             SELECT c.*
@@ -109,8 +109,18 @@ class Comments extends API_List
             try {
                 $itemObj = new $this->_itemObjName($this->_dbh);
                 $itemObj->findById($comment['id']);
-                $comments[]['comment'] = $itemObj;
-                $comments[]['commentItem'] = $type == 'photo' ? $photo->findById($comment['itemId']) : $video->findById($comment['itemId']);
+                $commentItem = NULL;
+                if($type == 'photo') {
+                    $photo->findById($comment['itemId']);
+                    $commentItem = $photo;
+                }else{
+                    $video->findById($comment['itemId']);
+                    $commentItem = $video;
+                }
+                $comments[] = array(
+                    'comment' => $itemObj,
+                    'commentItem' => $commentItem,
+                );
             }catch(Exception $e){
                 exception_handler($e);
             }

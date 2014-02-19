@@ -14,17 +14,19 @@
     {/foreach}
     {foreach name="lastComment" from=$userPhotoLastComments item=lastComment}
         {assign var="comment" value=$lastComment.comment}
-        {assign var="item" value=$lastComment.commentItem}
+        {assign var="commentItem" value=$lastComment.commentItem}
         {if $smarty.foreach.lastComment.first == true}
-            <table style="width: 100%;">
+            <table style="width: 100%;margin-top:20px;">
+                <tr>
+                    <td colspan="4" align="center">{"New comments"|i18n:'photo'}</td>
+                </tr>
         {/if}
-
         <tr valign="top" align="center">
             <td>
                 {$comment->timeCreated|date_format:'%d.%m.%Y'}
             </td>
             <td>
-                <a href="{$http_project_path}photo/?s={$s}&go=user_album_photos&album_id={$item->album_id}&photo_id={$item->id}&user_id={$item->owner_id}"><img src="{$item->getUrlCenterSquare(150)}" alt="{$item->name}"/></a>
+                <a href="{$http_project_path}photo/?s={$s}&go=user_album_photos&album_id={$commentItem->album_id}&photo_id={$commentItem->id}&user_id={$commentItem->owner_id}"><img src="{$commentItem->getUrlCenterSquare(150)}" alt="{$commentIitem->name}"/></a>
             </td>
             <td>
                 <a href="{$http_project_path}?go=profile&user_id={$comment->createdBy}&s={$s}">{$User->get_value($comment->createdBy, 'login')}</a>
@@ -38,6 +40,5 @@
             </table>
         {/if}
     {/foreach}
-    </table>
 </div>
 <div style="clear:both; float:none"></div>
