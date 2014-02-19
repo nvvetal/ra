@@ -79,7 +79,7 @@ class Comments extends API_List
             FROM ".$this->_tableName." as c, $addTable as a
             WHERE c.createdBy <> ".SQLQuote($userId)."
                 AND (c.sawTime > ".SQLQuote(time() - $maxPeriodSecs)." OR c.sawTime = 0)
-                AND c.itemType = ".SQLQuote(type)."
+                AND c.itemType = ".SQLQuote($type)."
                 AND c.itemId = a.id AND a.owner_id = ".SQLQuote($userId)."
         ";
         $data = SQLGet($q, $this->_dbh);
@@ -97,7 +97,7 @@ class Comments extends API_List
             FROM ".$this->_tableName." as c, $addTable as a
             WHERE c.createdBy <> ".SQLQuote($userId)."
                 AND (c.sawTime > ".SQLQuote(time() - $maxPeriodSecs)." OR c.sawTime = 0)
-                AND c.itemType = ".SQLQuote(type)."
+                AND c.itemType = ".SQLQuote($type)."
                 AND c.itemId = a.id AND a.owner_id = ".SQLQuote($userId)."
             ORDER BY c.timeCreated DESC
         ";
