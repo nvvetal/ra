@@ -11,7 +11,7 @@
             </div>
             <div style="text-align: center;word-wrap: break-word;text-overflow: clip;overflow: hidden;">
                 <a href="{$http_project_path}video/?go=my_album_videos&s={$s}&album_id={$albumData->id}">{$albumData->name}</a>
-                <a href="javascript:void(0);" onclick="showVideoAlbumEdit({$albumData->id},'{$s}');"><img src="{$http_images_static_path}icons/edit_24x24.png" alt="" onclick="showVideoAlbumEdit({$albumData->id}, '{$s}')" /></a>
+                <img src="{$http_images_static_path}icons/edit_24x24.png" alt="" onclick="showVideoAlbumEdit({$albumData->id}, '{$s}')" />
             </div>
         </div>
         {foreachelse}
