@@ -59,7 +59,7 @@
             <div style="display: inline;margin-left:50px;float:left;max-width:550px;">
         {/if}
         {if $smarty.foreach.video.index < $maxPerLine}
-        <div style="display: inline; float: left;padding-right:5px;margin-bottom:15px;height:265px;overflow:hidden;">
+        <div style="display: inline; float: left;padding-right:5px;margin-bottom:15px;height:260px;overflow:hidden;">
             {include file="modules/video/i_video.tpl" video=$video videoWidth=270 videoHeight=200
             disableVoting=true disableDescription=true disableAlbum=true
             disableComments=true disableTags=true disableContentEdit=true
