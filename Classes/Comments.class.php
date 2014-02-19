@@ -72,7 +72,7 @@ class Comments extends API_List
 
     public function getUserNewCommentsCountByType($userId, $type, $maxPeriodSecs)
     {
-        if(!is_array($type, array('photo', 'video'))) return 0;
+        if(!in_array($type, array('photo', 'video'))) return 0;
         $addTable = $type.'_'.$type.'s';
         $q = "
             SELECT COUNT(c.id) as cnt
