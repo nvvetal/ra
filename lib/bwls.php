@@ -330,6 +330,8 @@ function page_content($go,$action,$params){
             break;
 
         case "profile":
+            require_once($GLOBALS['CLASSES_DIR'].'Comments.class.php');
+
             $DBFactory                  = Registry::get('DBFactory');
             $dbh                        = $DBFactory->get_db_handle('rakscom');
             $userId                     = isset($_REQUEST['user_id']) ? intval($_REQUEST['user_id']) : 0;
@@ -353,19 +355,20 @@ function page_content($go,$action,$params){
             $params['smarty']->assign('isUserEqual', $isUserEqual);
             $params['smarty']->assign('profile_user_id', $profileUserId);
 
-            //albums
-
+            //photos
             require_once($GLOBALS['MODULES_DIR'].'photo/Albums.class.php');
             require_once($GLOBALS['MODULES_DIR'].'photo/Album.class.php');
             require_once($GLOBALS['MODULES_DIR'].'photo/Photos.class.php');
             require_once($GLOBALS['MODULES_DIR'].'photo/Photo.class.php');
-
-
-
             $Albums                     = new Albums($dbh);
             $userAlbums                 = $Albums->byOwner('user', $userId, 'DESC', 1, 100);
             $params['smarty']->assign('userAlbums', $userAlbums);
-
+            if($isUserEqual){
+                $maxPeriod                  = Registry::get('CommentMaxNewPeriod');
+                $commentsObj = new Comments($dbh);
+                $userPhotoLastComments = $commentsObj->getUserNewCommentsCountByType($userId, 'photo', $maxPeriod);
+                $params['smarty']->assign('userPhotoLastComments', $userPhotoLastComments);
+            }
             //schools
             require_once($GLOBALS['MODULES_DIR'].'schools/school.class.php');
             $school = new school($dbh);
@@ -375,7 +378,6 @@ function page_content($go,$action,$params){
 
 
             //videos
-
             require_once($GLOBALS['MODULES_DIR'].'video/VideoAlbums.class.php');
             require_once($GLOBALS['MODULES_DIR'].'video/VideoAlbum.class.php');
             require_once($GLOBALS['MODULES_DIR'].'video/Videos.class.php');
@@ -385,6 +387,12 @@ function page_content($go,$action,$params){
             $userAlbums                 = $Albums->byOwner('user', $userId, 'DESC', 1, 100);
             $params['smarty']->assign('userVideoAlbums', $userAlbums);
             $params['smarty']->assign('canAddVideoAlbum', ($currentUserId == $userId) ? 1 : 0);
+            if($isUserEqual){
+                $maxPeriod                  = Registry::get('CommentMaxNewPeriod');
+                $commentsObj = new Comments($dbh);
+                $userVideoLastComments = $commentsObj->getUserNewCommentsCountByType($userId, 'video', $maxPeriod);
+                $params['smarty']->assign('userVideoLastComments', $userVideoLastComments);
+            }
 
             //gifts
             require_once($GLOBALS['MODULES_DIR'].'shop/ShopUserItems.class.php');
@@ -468,7 +476,6 @@ function page_content($go,$action,$params){
             $dbh                        = $DBFactory->get_db_handle('rakscom');
 
             //photos
-
             require_once($GLOBALS['MODULES_DIR'].'photo/Albums.class.php');
             require_once($GLOBALS['MODULES_DIR'].'photo/Album.class.php');
             require_once($GLOBALS['MODULES_DIR'].'photo/Photos.class.php');
@@ -479,7 +486,6 @@ function page_content($go,$action,$params){
             $params['smarty']->assign('lastPhotos', $lastPhotos);
 
             //videos
-
             require_once($GLOBALS['MODULES_DIR'].'video/VideoAlbums.class.php');
             require_once($GLOBALS['MODULES_DIR'].'video/VideoAlbum.class.php');
             require_once($GLOBALS['MODULES_DIR'].'video/Videos.class.php');

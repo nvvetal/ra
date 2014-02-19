@@ -70,7 +70,7 @@ class Comments extends API_List
         return $comments;
     }
 
-    public function getUserNewCommentsCount($userId, $type, $maxPeriodSecs)
+    public function getUserNewCommentsCountByType($userId, $type, $maxPeriodSecs)
     {
         if(!is_array($type, array('photo', 'video'))) return 0;
         $addTable = $type.'_'.$type.'s';
@@ -85,6 +85,36 @@ class Comments extends API_List
         $data = SQLGet($q, $this->_dbh);
         return $cnt = isset($data['cnt']) ? $data['cnt'] : 0;
     }
-}
 
-?>
+    public function getUserNewCommentsByType($userId, $type, $maxPeriodSecs)
+    {
+        require_once($GLOBALS['MODULES_DIR'].'photo/Photo.class.php');
+        require_once($GLOBALS['MODULES_DIR'].'video/Video.class.php');
+        if(!is_array($type, array('photo', 'video'))) return 0;
+        $addTable = $type.'_'.$type.'s';
+        $q = "
+            SELECT c.*
+            FROM ".$this->_tableName." as c, $addTable as a
+            WHERE c.createdBy <> ".SQLQuote($userId)."
+                AND (c.sawTime > ".SQLQuote(time() - $maxPeriodSecs)." OR c.sawTime = 0)
+                AND c.itemType = ".SQLQuote(type)."
+                AND c.itemId = a.id AND a.owner_id = ".SQLQuote($userId)."
+            ORDER BY c.timeCreated DESC
+        ";
+        $data = SQLGetRows($q, $this->_dbh);
+        $comments = array();
+        $photo = new Photo($this->_dbh);
+        $video = new Video($this->_dbh);
+        foreach ($data as $comment){
+            try {
+                $itemObj = new $this->_itemObjName($this->_dbh);
+                $itemObj->findById($comment['id']);
+                $comments[]['comment'] = $itemObj;
+                $comments[]['commentItem'] = $type == 'photo' ? $photo->findById($comment['itemId']) : $video->findById($comment['itemId']);
+            }catch(Exception $e){
+                exception_handler($e);
+            }
+        }
+        return $comments;
+    }
+}

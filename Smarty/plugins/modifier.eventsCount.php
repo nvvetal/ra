@@ -28,10 +28,10 @@ function smarty_modifier_eventsCount($type)
     require_once($GLOBALS['CLASSES_DIR'].'Comments.class.php');
     $commentsObj = new Comments($dbh);
     $maxPeriod                  = Registry::get('CommentMaxNewPeriod');
-    $cnt = $commentsObj->getUserNewCommentsCount($currentUserId, 'photo', $maxPeriod);
+    $cnt = $commentsObj->getUserNewCommentsCountByType($currentUserId, 'photo', $maxPeriod);
     $data['photoComments'] += $cnt;
     $data['all'] += $cnt;
-    $cnt = $commentsObj->getUserNewCommentsCount($currentUserId, 'video', $maxPeriod);
+    $cnt = $commentsObj->getUserNewCommentsCountByType($currentUserId, 'video', $maxPeriod);
     $data['videoComments'] += $cnt;
     $data['all'] += $cnt;
 
