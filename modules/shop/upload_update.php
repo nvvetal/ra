@@ -23,15 +23,18 @@ try {
         if(!is_dir($category) || $file == '.' || $file == '..') continue;
         $shopCategory = new ShopCategory($dbh);
         $res = $shopCategory->findByShopAndName(1, $categoryName);
-        if($res == true) continue;
-        $data = array(
-            'name'      => $categoryName,
-            'shop_id'   => 1,
-            'is_enabled'=> 'Y',
-        );
-        $res = $shopCategory->create($data);
-        $categoryId = $res['id'];
-        //$categoryId = $shopCategory->id;
+        if($res == false) {
+            $categoryId = $shopCategory->id;
+        }else{
+            $data = array(
+                'name'      => $categoryName,
+                'shop_id'   => 1,
+                'is_enabled'=> 'Y',
+            );
+            $res = $shopCategory->create($data);
+            $categoryId = $res['id'];
+
+        }
         $dh2 = opendir($category);
         while (($file2 = readdir($dh2)) !== false) {
             $pricePath = $category.'/'.$file2;
