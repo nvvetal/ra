@@ -368,7 +368,7 @@ function page_content($go,$action,$params){
                 $commentsObj = new Comments($dbh);
                 $userPhotoLastComments = $commentsObj->getUserNewCommentsByType($userId, 'photo', $maxPeriod);
                 foreach($userPhotoLastComments as $comment){
-                    if($comment->sawTime == 0) $comment->sawTime = time();
+                    if($comment['comment']->sawTime == 0) $comment['comment']->sawTime = time();
                 }
                 $params['smarty']->assign('userPhotoLastComments', $userPhotoLastComments);
             }
@@ -395,7 +395,7 @@ function page_content($go,$action,$params){
                 $commentsObj = new Comments($dbh);
                 $userVideoLastComments = $commentsObj->getUserNewCommentsByType($userId, 'video', $maxPeriod);
                 foreach($userVideoLastComments as $comment){
-                    if($comment->sawTime == 0) $comment->sawTime = time();
+                    if($comment['comment']->sawTime == 0) $comment['comment']->sawTime = time();
                 }
                 $params['smarty']->assign('userVideoLastComments', $userVideoLastComments);
             }
