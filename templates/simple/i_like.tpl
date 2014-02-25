@@ -10,7 +10,7 @@
 </table>
 {literal}
 <script type="text/javascript">
-    window.onload = function () {
+//    window.onload = function () {
         VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
         $('#vk_share_button').html(VK.Share.button({
             url: '{/literal}{$url|urlencode}{literal}',
@@ -22,6 +22,6 @@
             type: "round",
             text: "Поделиться"
         }));
-    }
+//    }
 </script>
 {/literal}
