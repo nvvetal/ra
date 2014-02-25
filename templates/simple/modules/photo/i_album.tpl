@@ -27,7 +27,7 @@
 </div>
 <div class="album">
     {include file='i_like.tpl'
-        url=$http_project_path|cat:'article/?go=user_album_photos&amp;album_id='|cat:$albumObj->id|cat:'&amp;photo_id='|cat:$photoObj->id|cat:'&amp;user_id='|cat:$albumObj->owner_id
+        url=$http_project_path|cat:'photo/?go=user_album_photos&amp;album_id='|cat:$albumObj->id|cat:'&amp;photo_id='|cat:$photoObj->id|cat:'&amp;user_id='|cat:$albumObj->owner_id
         title=$photoObj->name|default:$unknown_photo description=$photoObj->description
         image=$photoObj->getUrlCenterSquare(500)
     }
