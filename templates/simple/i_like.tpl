@@ -11,7 +11,7 @@
 </table>
 {literal}
 <script type="text/javascript">
-    {/literal}{if $init == true}{literal}window.onload = function () {
+    {/literal}{if $init == true}{literal}window.onload = function () {{/literal}{/if}{literal}
         VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
         $('#vk_share_button').html(VK.Share.button({
             url: '{/literal}{$url|urlencode}{literal}',
