@@ -1,3 +1,4 @@
+{assign var="init" value=$init|default:true}
 <table style="width:100%">
     <tr>
         <td align="right">
@@ -10,7 +11,7 @@
 </table>
 {literal}
 <script type="text/javascript">
-    window.onload = function () {
+    {/literal}{if $init == true}{literal}window.onload = function () {
         VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
         $('#vk_share_button').html(VK.Share.button({
             url: '{/literal}{$url|urlencode}{literal}',
@@ -22,6 +23,6 @@
             type: "round",
             text: "Поделиться"
         }));
-    }
+    {/literal}{if $init == true}{literal}}{/literal}{/if}{literal}
 </script>
 {/literal}
