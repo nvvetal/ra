@@ -5,14 +5,15 @@
     <title>{$title|default:'RAKS'}</title>
     <meta name="title" content="{$title|default:'RAKS'}" />
     <meta name="keywords" content="восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс{if $module_name eq 'schools'}, школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
-    <meta name="description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+    <meta name="description" content="{$metaDescription|strip_tags|escape:'javascript'|truncate:255}" />
 
     <!-- for Facebook -->
-    <meta property="og:title" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_name}{else}{$title|default:'RAKS'}{/if}" />
-    <meta property="og:type" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}article{else}website{/if}" />
-    <meta property="og:image" content="{$http_images_static_path}logo_real_krug_1024.png" />
-    <meta property="og:url" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}{$http_project_path}article/?go=article&article_id={$smarty.request.article_id}{else}{$http_project_path}{/if}" />
-    <meta property="og:description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{elseif $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_description}{else}{/if}" />
+    <meta property="og:title" content="{$metaTitle|default:'RAKS'}" />
+    <meta property="og:type" content="{$module_name|default:'website'}" />
+    {assign var="defaultMetaIMG" value=$http_images_static_path|cat:'logo_real_krug_1024.png'}
+    <meta property="og:image" content="{$metaIMG|default:$defaultMetaIMG}" />
+    <meta property="og:url" content="{$metaURL|default:$http_project_path}" />
+    <meta property="og:description" content="{$metaDescription|strip_tags|escape:'javascript'|truncate:255}" />
     <meta property="fb:app_id" content="{$facebook_app_id}" />
 
     <!-- for Vkontakte -->
@@ -70,7 +71,7 @@
     {/literal}
     {/if}
     <script type="text/javascript">
-        {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};
+                {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};
         swfobject.embedSWF("{/literal}{$http_images_static_path}{literal}raks.swf", "flash", "100%", "480", "10.0.0", "swfobject/expressInstall.swf");
         function setCookie(c_name, value, exdays)
         {

@@ -276,3 +276,4 @@ Registry::set('mailer', $mailer);
 
 $smarty->assign("facebook_app_id", $GLOBALS['FACEBOOK_APP_ID']);
 $smarty->assign("vkontakte_app_id", $GLOBALS['VKONTAKTE_APP_ID']);
+

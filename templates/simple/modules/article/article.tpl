@@ -1,4 +1,7 @@
-{include file='header.tpl' script='modules/article/i_javascript.tpl' article_name=$article->name article_description=$article->content|strip_tags|truncate:255:"..."}
+{include file='header.tpl' script='modules/article/i_javascript.tpl'
+    article_name=$article->name
+    article_description=$article->content|strip_tags|truncate:255:"..."
+}
 {literal}
 <script>
     $(document).ready(function(){

@@ -48,6 +48,9 @@ $smarty->assign_by_ref('Utils',$Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
 
+$metaDescription = 'школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота';
+$smarty->assign('metaDescription', $metaDescription);
+
 require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 
 $xajax = new xajax("school.server.php");                                                                                                 
 $xajax->debugOff();                                                                                                                        
@@ -59,6 +62,3 @@ $xajax->registerFunction('get_school_country_subdivisions_search');
 
 $xjs=$xajax->getJavascript($GLOBALS['XAJAX_JS_PATH']);                                                                                                 
 $smarty->assign("xjs",$xjs);
-
-
-?>
