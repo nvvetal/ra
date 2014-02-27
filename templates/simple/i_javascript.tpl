@@ -75,7 +75,7 @@
             'width="90px" ' +
             'share="'+facebook.data('share')+' "></fb:like>'
         ;
-
+        console.log(data);
         facebook.html(data);
         FB.XFBML.parse();
     }
