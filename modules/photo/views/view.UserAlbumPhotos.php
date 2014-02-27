@@ -1,7 +1,7 @@
 <?php
 function photoViewUserAlbumPhotos(View $View){
     $returnParams               = array();
-    $Images  = Registry::get('Images');
+
     $albumId                    = isset($_REQUEST['album_id']) ? $_REQUEST['album_id'] : 0;
     $photoId                    = isset($_REQUEST['photo_id']) ? $_REQUEST['photo_id'] : 0;
     $userId                     = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : 0;
@@ -27,11 +27,12 @@ function photoViewUserAlbumPhotos(View $View){
         exit;
     }
 
-    $Photo->findById($photoId);
 
     $returnParams['userAlbum']  = $userAlbum;
     $returnParams['userPhotos'] = $userPhotos;
 
+    $Images  = Registry::get('Images');
+    $Photo->findById($photoId);
     $templator = Registry::get('templator');
     $templator->assign('metaTitle', $Photo->name);
     $templator->assign('metaDescription', $Photo->description);
