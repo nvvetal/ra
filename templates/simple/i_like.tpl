@@ -2,27 +2,15 @@
 <table style="width:100%">
     <tr>
         <td align="right">
-            <div style="vertical-align: middle" class="fb-like" data-href="{$url}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+            <div class="fb-like" data-href="{$url}" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
         </td>
         <td align="left">
-            <div id="vk_share_button" style="margin-top: 4px;"></div>
+            <div id="vk_share_button" class="vk_share"
+                 data-url="{$url|urlencode}" data-title="{$title|escape:'javascript'}"
+                 data-description="{$description|strip_tags|truncate:255:"..."|escape:'javascript'}"
+                 data-image="{$image}" data-noparse="true" data-text="Поделиться" data-type="round"
+                 >
+            </div>
         </td>
     </tr>
 </table>
-{literal}
-<script type="text/javascript">
-    {/literal}{if $init == true}{literal}window.onload = function () {{/literal}{/if}{literal}
-        VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
-        $('#vk_share_button').html(VK.Share.button({
-            url: '{/literal}{$url|urlencode}{literal}',
-            title: '{/literal}{$title|escape:'javascript'}{literal}',
-            description: '{/literal}{$description|strip_tags|truncate:255:"..."|escape:'javascript'}{literal}',
-            image: '{/literal}{$image}{literal}',
-            noparse: true
-        },{
-            type: "round",
-            text: "Поделиться"
-        }));
-    {/literal}{if $init == true}{literal}}{/literal}{/if}{literal}
-</script>
-{/literal}

@@ -210,6 +210,13 @@ function get_raks_money_name($amount)
 function getMetaURL($s)
 {
     $metaURL = substr($GLOBALS['HTTP_PROJECT_ROOT'],0,-1).$_SERVER['REQUEST_URI'];
+    $metaURL = str_replace('s='.$s.'&', '', $metaURL);
     $metaURL = str_replace('s='.$s, '', $metaURL);
+    return $metaURL;
+}
+
+function getMetaURLFromArray($module, array $data = array())
+{
+    $metaURL = substr($GLOBALS['HTTP_PROJECT_ROOT'],0,-1).'/'.$module.'/?'.http_build_query($data, '', '&');
     return $metaURL;
 }

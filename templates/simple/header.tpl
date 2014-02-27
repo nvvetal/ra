@@ -9,11 +9,11 @@
 
     <!-- for Facebook -->
     <meta property="og:title" content="{$metaTitle|default:'RAKS'}" />
-    <meta property="og:type" content="{$module_name|default:'website'}" />
     {assign var="defaultMetaIMG" value=$http_images_static_path|cat:'logo_real_krug_1024.png'}
     <meta property="og:image" content="{$metaIMG|default:$defaultMetaIMG}" />
     <meta property="og:url" content="{$metaURL|default:$http_project_path}" />
     <meta property="og:description" content="{$metaDescription|strip_tags|escape:'javascript'|truncate:255}" />
+    <meta property="og:type" content="{$module_name|default:'website'}" />
     <meta property="fb:app_id" content="{$facebook_app_id}" />
 
     <!-- for Vkontakte -->
@@ -43,10 +43,16 @@
     {if $xjs ne ''}
         {$xjs}
     {/if}
-    <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
+    <script src="//vk.com/js/api/openapi.js?105"></script>
     {literal}
-    <script type="text/javascript">
-        VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
+        <script src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+    {/literal}
+
+    {literal}
+    <script>
+        $(document).ready(function(){
+            VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
+        });
     </script>
     {/literal}
     {include file='i_javascript.tpl'}
@@ -151,6 +157,7 @@
 
         $(document).ready(function(){
             loadBanners();
+            refreshSocialButtons();
         });
         {/literal}
 
@@ -159,18 +166,25 @@
 <body>
 <div id="fb-root"></div>
 {literal}
-<script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId={/literal}{$facebook_app_id}{literal}";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({appId: '{/literal}{$facebook_app_id}{literal}', status: true, cookie: true,
+            xfbml: true});
+    };
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/ru_RU/all.js";
+        ref.parentNode.insertBefore(js, ref);
+
+    }(document));
 </script>
 {/literal}
 <div id="header">
     <div id="flash"></div>
 </div>
+<div id="new-social-meta" style="height:0px;"></div>
 <table style="width: 100%">
     {include file='i_top_banners.tpl'}
     <tr>
