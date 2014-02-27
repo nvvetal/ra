@@ -13,7 +13,7 @@
     <meta property="og:image" content="{$metaIMG|default:$defaultMetaIMG}" />
     <meta property="og:url" content="{$metaURL|default:$http_project_path}" />
     <meta property="og:description" content="{$metaDescription|strip_tags|escape:'javascript'|truncate:255}" />
-    <meta property="og:type" content="{$metaType|default:$module_name|default:'website'}" />
+    <meta property="og:type" content="raks_portal:{$metaType|default:$module_name|default:'website'}" />
     <meta property="fb:app_id" content="{$facebook_app_id}" />
 
     <!-- for Vkontakte -->
