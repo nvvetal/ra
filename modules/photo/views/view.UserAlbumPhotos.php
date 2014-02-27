@@ -38,6 +38,7 @@ function photoViewUserAlbumPhotos(View $View){
     $templator->assign('metaDescription', $Photo->description);
     $metaIMG = $GLOBALS['HTTP_IMAGES_PATH'].$Images->get_image_url_center_square($Photo->image_id, 500, 'jpg');
     $templator->assign('metaIMG', $metaIMG);
+    $templator->assign('metaType', 'photo:'.$photoId);
 
     return $returnParams;
 }
