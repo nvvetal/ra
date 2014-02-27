@@ -184,7 +184,6 @@
 <div id="header">
     <div id="flash"></div>
 </div>
-<div id="new-social-meta" style="height:0px;"></div>
 <table style="width: 100%">
     {include file='i_top_banners.tpl'}
     <tr>

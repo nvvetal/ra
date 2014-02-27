@@ -160,9 +160,8 @@ function getPhotoAdditional($photoId, $s, $showWithoutAlbum = false)
     $metaURL = getMetaURLFromArray('photo', $urlData);
     $smarty->assign("metaURL", $metaURL);
     $data = $smarty->fetch('i_social_meta.tpl');
-//    $objResponse->addAssign('new-social-meta', 'innerHTML', $data);
-    $objResponse->addScript('refreshSocialButtons();');
     $objResponse->addScript('reloadSocialMetaTags(\''.json_encode(json_decode($data)).'\');');
+    $objResponse->addScript('refreshSocialButtons();');
 
     return $objResponse;
 }
