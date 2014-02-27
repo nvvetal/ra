@@ -67,6 +67,7 @@
             setTimeout(function(){refreshFacebookButtons()}, 10);
             return false;
         }
+        var facebook = $('.fb-like');
         var data = '<fb:like href="'+facebook.data('href')+'" layout="'+facebook.data('layout')+'" ' +
             'colorscheme="'+facebook.data('colorscheme')+'" action="'+facebook.data('action')+'" ' +
             'show_faces="'+facebook.data('show_faces')+'" ' +
@@ -74,7 +75,7 @@
             'width="90px" ' +
             'share="'+facebook.data('share')+' "></fb:like>'
         ;
-        console.log(data);
+
         facebook.html(data);
         FB.XFBML.parse();
     }
