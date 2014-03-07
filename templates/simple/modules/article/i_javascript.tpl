@@ -53,5 +53,11 @@
             return false;
         }
 
+        function getArticleEditor(containers, params)
+        {
+            params = params || {};
+            params.youtube = true;
+            getEditor(containers, params);
+        }
     </script>
 {/literal}

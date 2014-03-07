@@ -5,14 +5,15 @@
     <title>{$title|default:'RAKS'}</title>
     <meta name="title" content="{$title|default:'RAKS'}" />
     <meta name="keywords" content="восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс{if $module_name eq 'schools'}, школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
-    <meta name="description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{/if}" />
+    <meta name="description" content="{$metaDescription|strip_tags|escape:'javascript'|truncate:255}" />
 
     <!-- for Facebook -->
-    <meta property="og:title" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_name}{else}{$title|default:'RAKS'}{/if}" />
-    <meta property="og:type" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}article{else}website{/if}" />
-    <meta property="og:image" content="{$http_images_static_path}logo_real_krug_1024.png" />
-    <meta property="og:url" content="{if $module_name eq 'article' && $smarty.request.go eq 'article'}{$http_project_path}article/?go=article&article_id={$smarty.request.article_id}{else}{$http_project_path}{/if}" />
-    <meta property="og:description" content="{if $module_name eq 'schools'}школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота{elseif $module_name eq 'article' && $smarty.request.go eq 'article'}{$article_description}{else}{/if}" />
+    <meta property="og:title" content="{$metaTitle|default:'RAKS'}" />
+    {assign var="defaultMetaIMG" value=$http_images_static_path|cat:'logo_real_krug_1024.png'}
+    <meta property="og:image" content="{$metaIMG|default:$defaultMetaIMG}" />
+    <meta property="og:url" content="{$metaURL|default:$http_project_path}" />
+    <meta property="og:description" content="{$metaDescription|strip_tags|escape:'javascript'|truncate:255}" />
+    <meta property="og:type" content="website" />
     <meta property="fb:app_id" content="{$facebook_app_id}" />
 
     <!-- for Vkontakte -->
@@ -42,10 +43,16 @@
     {if $xjs ne ''}
         {$xjs}
     {/if}
-    <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
+    <script src="//vk.com/js/api/openapi.js?105"></script>
     {literal}
-    <script type="text/javascript">
-        VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
+        <script src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+    {/literal}
+
+    {literal}
+    <script>
+        $(document).ready(function(){
+            VK.init({apiId: {/literal}{$vkontakte_app_id}{literal}, onlyWidgets: true});
+        });
     </script>
     {/literal}
     {include file='i_javascript.tpl'}
@@ -70,7 +77,7 @@
     {/literal}
     {/if}
     <script type="text/javascript">
-        {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};
+                {literal}var flashvars = {bannerLink: "{/literal}{$http_project_path}{literal}"};
         swfobject.embedSWF("{/literal}{$http_images_static_path}{literal}raks.swf", "flash", "100%", "480", "10.0.0", "swfobject/expressInstall.swf");
         function setCookie(c_name, value, exdays)
         {
@@ -135,12 +142,15 @@
             showBannerData('banner_165_1', banner_165_1);
 
             var banner_165_2  = new Array();
-            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16005" target="_blank"><img src="http://raks.com.ua/forum/images/el_faum.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16005" target="_blank"><img src="http://raks.com.ua/forum/images/el_faum3.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/banner_skidka.gif" alt=""/></a>', 'html', 165, 190);
+
             showBannerData('banner_165_2', banner_165_2);
 
             var banner_165_3  = new Array();
             banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=14530" target="_blank"><img src="http://raks.com.ua/forum/images/konk.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16350" target="_blank"><img src="http://raks.com.ua/forum/images/banner_bn2.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_3[1]   = new Array ('<a href="http://bellystar.com.ua/" target="_blank"><img src="http://raks.com.ua/forum/images/premia_banner.gif" alt=""/></a>', 'html', 165, 190);
+
             showBannerData('banner_165_3', banner_165_3);
 
             var banner_165_4  = new Array();
@@ -150,6 +160,7 @@
 
         $(document).ready(function(){
             loadBanners();
+            refreshSocialButtons();
         });
         {/literal}
 
@@ -158,13 +169,19 @@
 <body>
 <div id="fb-root"></div>
 {literal}
-<script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId={/literal}{$facebook_app_id}{literal}";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({appId: '{/literal}{$facebook_app_id}{literal}', status: true, cookie: true,
+            xfbml: true});
+    };
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/ru_RU/all.js";
+        ref.parentNode.insertBefore(js, ref);
+
+    }(document));
 </script>
 {/literal}
 <div id="header">

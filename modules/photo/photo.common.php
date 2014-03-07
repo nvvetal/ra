@@ -34,6 +34,8 @@ $smarty->assign_by_ref('Images', $Images);
 $smarty->assign_by_ref('Utils',$Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
+$metaURL = getMetaURL($s);
+$smarty->assign("metaURL", $metaURL);
 require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 
 $xajax = new xajax("photo.server.php");                                                                                                 
 $xajax->debugOff(); 
@@ -53,5 +55,3 @@ $xajax->registerFunction('showPhotoAlbumEdit');
 
 $xjs=$xajax->getJavascript($GLOBALS['XAJAX_JS_PATH']);                                                                                                 
 $smarty->assign("xjs",$xjs);
-
-?>

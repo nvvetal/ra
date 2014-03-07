@@ -23,7 +23,10 @@ function photoViewSchoolAlbumPhotos(View $View){
     $returnParams['isOwner']        = ($schoolCurrent['owner_id'] == $userId) ? 1 : 0; 
     $returnParams['schoolCurrent']  = $schoolCurrent;    
     $returnParams['schoolAlbum']    = $schoolAlbum;     
-    $returnParams['schoolPhotos']   = $schoolPhotos;      
+    $returnParams['schoolPhotos']   = $schoolPhotos;
+
+
+
     return $returnParams;
 }
 

@@ -8,7 +8,7 @@ function getPhotoComments($photoId, $s){
     $objResponse = new xajaxResponse();
     $DBFactory  = Registry::get('DBFactory');
     $Session  = Registry::get('Session');
-    $userId = $Session->get_value($s, 'user_id');    
+    $userId = $Session->get_value($s, 'user_id');
     $PhotoObj = new Photo($DBFactory->get_db_handle('rakscom'));
     $photoCurrent = $PhotoObj->findById($photoId);
     $Comments = new Comments($DBFactory->get_db_handle('rakscom'));
@@ -24,7 +24,7 @@ function getPhotoComments($photoId, $s){
     $smarty->assign('photoComments', $photoComments);
     $data = $smarty->fetch('modules/photo/i_comments.tpl');
     $objResponse->addAssign('comments', 'innerHTML', $data);
-    return $objResponse; 
+    return $objResponse;
 }
 
 function addPhotoComment($dataParse, $s)
@@ -33,7 +33,7 @@ function addPhotoComment($dataParse, $s)
     parse_str($dataParse, $data);
     if(empty($data['comment'])){
         $objResponse->addScript('xajax_getPhotoComments('.$data['photo_id'].', "'.$s.'")');
-        return $objResponse;        
+        return $objResponse;
     }
     $DBFactory  = Registry::get('DBFactory');
     $Session  = Registry::get('Session');
@@ -48,7 +48,7 @@ function addPhotoComment($dataParse, $s)
     );
     $Comment->create($commentData);
     $objResponse->addScript('xajax_getPhotoComments('.$data['photo_id'].', "'.$s.'")');
-    return $objResponse; 
+    return $objResponse;
 }
 
 function getPhotoRating($photoId, $s)
@@ -58,22 +58,22 @@ function getPhotoRating($photoId, $s)
     $DBFactory  = Registry::get('DBFactory');
     $Session  = Registry::get('Session');
     $userId = $Session->get_value($s, 'user_id');
-    
+
     $RateAgr = new RateAgr($DBFactory->get_db_handle('rakscom'));
     $RateAgr->findByRateIdAndType($photoId, 'photo');
     $Rates = new Rates($DBFactory->get_db_handle('rakscom'));
     $lastRate = $Rates->getLastRateByFrom($photoId, 'photo', $userId, 'user');
     if($lastRate !== false){
         $smarty->assign('cannotVote', 1);
-    }  
+    }
 
     $smarty->assign('s', $s);
     $smarty->assign('user_id', $userId);
-    $smarty->assign('photoId', $photoId);        
-    $smarty->assign('rateAgr', $RateAgr);        
+    $smarty->assign('photoId', $photoId);
+    $smarty->assign('rateAgr', $RateAgr);
     $data = $smarty->fetch('modules/photo/i_rating.tpl');
     $objResponse->addAssign('votings', 'innerHTML', $data);
-    return $objResponse;     
+    return $objResponse;
 }
 
 function setPhotoRating($photoId, $points, $s)
@@ -85,13 +85,13 @@ function setPhotoRating($photoId, $points, $s)
     $DBFactory  = Registry::get('DBFactory');
     $Session  = Registry::get('Session');
     $userId = $Session->get_value($s, 'user_id');
-    if(empty($userId)) return $objResponse; 
-    
+    if(empty($userId)) return $objResponse;
+
     $Rates = new Rates($DBFactory->get_db_handle('rakscom'));
     $lastRate = $Rates->getLastRateByFrom($photoId, 'photo', $userId, 'user');
-    if($lastRate !== false /*&& $lastRate->rateTime + 60 > time()*/) {    
+    if($lastRate !== false /*&& $lastRate->rateTime + 60 > time()*/) {
         $objResponse->addScript('xajax_getPhotoRating('.$photoId.', "'.$s.'")');
-        return $objResponse;             
+        return $objResponse;
     }
     $Rate = new Rate($DBFactory->get_db_handle('rakscom'));
     $rateData = array(
@@ -104,7 +104,7 @@ function setPhotoRating($photoId, $points, $s)
     );
     $Rate->create($rateData);
     $objResponse->addScript('xajax_getPhotoRating('.$photoId.', "'.$s.'")');
-    return $objResponse; 
+    return $objResponse;
 }
 
 function getPhotoAdditional($photoId, $s, $showWithoutAlbum = false)
@@ -116,21 +116,21 @@ function getPhotoAdditional($photoId, $s, $showWithoutAlbum = false)
     $userId = $Session->get_value($s, 'user_id');
     $smarty->assign('s', $s);
     $smarty->assign('user_id', $userId);
-    $smarty->assign('photoId', $photoId); 
+    $smarty->assign('photoId', $photoId);
     $RateAgr = new RateAgr($DBFactory->get_db_handle('rakscom'));
-    $RateAgr->findByRateIdAndType($photoId, 'photo');    
+    $RateAgr->findByRateIdAndType($photoId, 'photo');
     $Comments = new Comments($DBFactory->get_db_handle('rakscom'));
-    $photoComments = $Comments->getCommentsByPhoto($photoId); 
-    
+    $photoComments = $Comments->getCommentsByPhoto($photoId);
+
     $Photo    = new Photo($DBFactory->get_db_handle('rakscom'));
     $Photo->findById($photoId);
-    
+
     $Rates = new Rates($DBFactory->get_db_handle('rakscom'));
     $lastRate = $Rates->getLastRateByFrom($photoId, 'photo', $userId, 'user');
     if($lastRate !== false){
         $smarty->assign('cannotVote', 1);
-    }      
-     
+    }
+
     $smarty->assign('photoObj', $Photo);
     $smarty->assign('albumObj', $Photo->getAlbum());
     $smarty->assign('photoComments', $photoComments);
@@ -138,62 +138,80 @@ function getPhotoAdditional($photoId, $s, $showWithoutAlbum = false)
     $smarty->assign('showWithoutAlbum', $showWithoutAlbum);
     $smarty->assign('isOwner', ($userId == $Photo->getOwnerUserId()));
     $data = $smarty->fetch('modules/photo/i_rating.tpl');
-    $objResponse->addAssign('votings', 'innerHTML', $data);   
-    
+    $objResponse->addAssign('votings', 'innerHTML', $data);
+
     $data = $smarty->fetch('modules/photo/i_comments.tpl');
-    $objResponse->addAssign('comments', 'innerHTML', $data);     
-    
+    $objResponse->addAssign('comments', 'innerHTML', $data);
+
     $data = $smarty->fetch('modules/photo/i_album.tpl');
-    $objResponse->addAssign('album', 'innerHTML', $data);       
-    return $objResponse;                 
+    $objResponse->addAssign('album', 'innerHTML', $data);
+
+    $Images  = Registry::get('Images');
+    $smarty->assign('metaTitle', $Photo->name);
+    $smarty->assign('metaDescription', $Photo->description);
+    $metaIMG = $GLOBALS['HTTP_IMAGES_PATH'].$Images->get_image_url_center_square($Photo->image_id, 500, 'jpg');
+    $smarty->assign('metaIMG', $metaIMG);
+    $urlData = array(
+        'go'        => 'user_album_photos',
+        'album_id'  => $Photo->album_id,
+        'photo_id'  => $Photo->id,
+        'user_id'   => $Photo->owner_id,
+    );
+    $metaURL = getMetaURLFromArray('photo', $urlData);
+    $smarty->assign("metaURL", $metaURL);
+    $data = $smarty->fetch('i_social_meta.tpl');
+    $objResponse->addScript('reloadSocialMetaTags(\''.json_encode(json_decode($data)).'\');');
+    $objResponse->addScript('refreshSocialButtons();');
+
+    return $objResponse;
 }
 
 function showEditPhoto($photoId, $s)
 {
-	global $smarty;
-	$objResponse = new xajaxResponse();
-	$DBFactory  = Registry::get('DBFactory');
-	$Session    = Registry::get('Session');
-	$userId     = $Session->get_value($s, 'user_id');
-	$smarty->assign('s', $s);
-	$smarty->assign('user_id', $userId);
-	$smarty->assign('photoId', $photoId);
-	$Photo      = new Photo($DBFactory->get_db_handle('rakscom'));
-	$Photo->findById($photoId);
-	$smarty->assign('photoObj', $Photo);
-	$Albums     = new Albums($DBFactory->get_db_handle('rakscom'));
-	$userAlbums = $Albums->byOwner($Photo->owner_type, $Photo->owner_id, 'DESC', 1, 10000);
-	$smarty->assign('albums', $userAlbums);
-	$smarty->assign('album_id', $Photo->album_id);
-	$data = $smarty->fetch('modules/photo/i_photo_edit.tpl');
-	$objResponse->addAssign('ajax-dialog', 'innerHTML', $data);
-	$objResponse->addScript('showEditPhoto("'.$photoId.'","'.$s.'")');
-	return $objResponse;
+    global $smarty;
+    $objResponse = new xajaxResponse();
+    $DBFactory  = Registry::get('DBFactory');
+    $Session    = Registry::get('Session');
+    $userId     = $Session->get_value($s, 'user_id');
+    $smarty->assign('s', $s);
+    $smarty->assign('user_id', $userId);
+    $smarty->assign('photoId', $photoId);
+    $Photo      = new Photo($DBFactory->get_db_handle('rakscom'));
+    $Photo->findById($photoId);
+    $smarty->assign('photoObj', $Photo);
+    $Albums     = new Albums($DBFactory->get_db_handle('rakscom'));
+    $userAlbums = $Albums->byOwner($Photo->owner_type, $Photo->owner_id, 'DESC', 1, 10000);
+    $smarty->assign('albums', $userAlbums);
+    $smarty->assign('album_id', $Photo->album_id);
+    $data = $smarty->fetch('modules/photo/i_photo_edit.tpl');
+    $objResponse->addAssign('ajax-dialog', 'innerHTML', $data);
+    $objResponse->addScript('showEditPhoto("'.$photoId.'","'.$s.'")');
+    return $objResponse;
 }
 
 function savePhotoData($dataParse, $s)
 {
-	global $smarty;
-	parse_str($dataParse, $data);
-	$objResponse = new xajaxResponse();
-	$DBFactory  = Registry::get('DBFactory');
-	$Session    = Registry::get('Session');
-	$userId     = $Session->get_value($s, 'user_id');
-	$smarty->assign('s', $s);
-	$smarty->assign('user_id', $userId);
-	$smarty->assign('photoId', $data['photo_id']);
-	$Photo      = new Photo($DBFactory->get_db_handle('rakscom'));
-	$Photo->findById($data['photo_id']);
-	if($userId != $Photo->getOwnerUserId()){
-		$objResponse->addAlert('You are not owner of this photo!!!');
-		return $objResponse;
-	}
-	$Photo->name = $data['name'];
-	$Photo->album_id = $data['album_id'];
-	$Photo->description = $data['description'];
-	//$objResponse->addAlert('Data saved successfully!');
+    global $smarty;
+    parse_str($dataParse, $data);
+    $objResponse = new xajaxResponse();
+    $DBFactory  = Registry::get('DBFactory');
+    $Session    = Registry::get('Session');
+    $userId     = $Session->get_value($s, 'user_id');
+    $smarty->assign('s', $s);
+    $smarty->assign('user_id', $userId);
+    $smarty->assign('photoId', $data['photo_id']);
+    $Photo      = new Photo($DBFactory->get_db_handle('rakscom'));
+    $Photo->findById($data['photo_id']);
+    if($userId != $Photo->getOwnerUserId()){
+        $objResponse->addAlert('You are not owner of this photo!!!');
+        return $objResponse;
+    }
+    $Photo->name = $data['name'];
+    $Photo->album_id = $data['album_id'];
+    $Photo->description = $data['description'];
+    //$objResponse->addAlert('Data saved successfully!');
     $objResponse->addScript('xajax_getPhotoAdditional('.$data['photo_id'].', "'.$s.'")');
-	return $objResponse;
+    return $objResponse;
 }
 
 function setPhotoAlbumName($fields)
