@@ -35,10 +35,13 @@ class calendar_forum
     public function incrementForumTopicCount($forumId)
     {
         $q = 'SELECT forum_topics, forum_topics_real  FROM phpbb_forums WHERE forum_id = '.SQLQuery($forumId);
-        $forumData = SQLGet($q, $this->_dbh);
+        $forumData = SQLGet($q,  $this->_dbh);
+        add_to_log(print_r($forumData,true), 'zzz');
+        /*
         $forumData['forum_topics']++;
         $forumData['forum_topics_real']++;
         SQLUpdate('phpbb_forums', $forumData, 'WHERE forum_id = '.SQLQuote($forumId), $this->_dbh);
+        */
     }
     
     public function setTopic($topicId, $params)

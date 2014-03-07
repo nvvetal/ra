@@ -159,21 +159,10 @@ function SQLConnect($params) {
 
 
 function SQLGet($query, $id=0) {
-
-    global $L3Config;
-
-## Return hashe with one row of result set
-
-    $h=SQLQuery( $query, $id ? $id:$L3Config['db.link_id'] );
-
-    //$id==0 ? $h=SQLQuery( $query ) : $h=SQLQuery( $query, $id );
-
+    $h=SQLQuery( $query, $id );
     $ret=SQLFetchRow($h);
-
     SQLFree($h);
-
     return $ret;
-
 }
 
 
