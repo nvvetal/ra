@@ -28,7 +28,17 @@ class calendar_forum
     public function createTopic($params)
     {
         $topicId = SQLInsert('phpbb_topics', $params, $this->_dbh);
+        $this->incrementForumTopicCount($params['forum_id']);
         return $topicId;
+    }
+
+    public function incrementForumTopicCount($forumId)
+    {
+        $q = 'SELECT forum_topics, forum_topics_real  FROM phpbb_forums WHERE forum_id = '.SQLQuery($forumId);
+        $forumData = SQLGet($q, $this->_dbh);
+        $forumData['forum_topics']++;
+        $forumData['forum_topics_real']++;
+        SQLUpdate('phpbb_forums', $forumData, 'WHERE forum_id = '.SQLQuote($forumId), $this->_dbh);
     }
     
     public function setTopic($topicId, $params)
