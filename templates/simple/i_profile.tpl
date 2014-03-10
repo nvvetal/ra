@@ -21,6 +21,23 @@
             {/if}
         </td>
     </tr>
+    <tr valign="top" style="background-color: #ffeebc;">
+        <td>
+            {"Status"|i18n}
+        </td>
+        <td>
+            {foreach name="userStatus" from=$userStatuses.items item=userStatus}
+                {if $smarty.foreach.userStatus.first == true}
+                    <div>{$userStatus->status|strip_tags} ({$userStatus->created_time|date_format:'%d.%m.%Y %H:%I'})</div>
+                {/if}
+                {if $smarty.foreach.userStatus.first == false}
+                    <hr/>
+                    <div style="margin-left:30px;">{$userStatus->status|strip_tags} ({$userStatus->created_time|date_format:'%d.%m.%Y %H:%I'})</div>
+                {/if}
+            {/foreach}
+        </td>
+    </tr>
+
     <tr valign="top">
         <td>
             {"Sex"|i18n}

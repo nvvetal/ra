@@ -24,7 +24,12 @@
                 <input type="file" name="p_avatar_file" />
             </td>
         </tr>
-
+        <tr>
+            <td>{"Status"|i18n}</td>
+            <td>
+                <textarea name="status" style="width:100%;">{$status}</textarea>
+            </td>
+        </tr>
         <tr>
             <td>{"Sex"|i18n}<span class="required">*</span></td>
             <td>

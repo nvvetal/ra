@@ -253,12 +253,17 @@ function bwls($go,$action,$params){
 }
 
 
-function page_content($go,$action,$params){
+function page_content($go, $action, $params){
 
     switch ($go){
 
         case "my_profile":
             if($params['Session']->get_value($params['s'],'is_logged') != 1) return 'login';
+            $dbh        = Registry::get('DBFactory')->get_db_handle("rakscom");
+            $userStatusObj = new UserStatus($dbh);
+            $userStatus = $userStatusObj->getLastActiveStatus($params['Session']->get_value($params['s'],'user_id'));
+            $status = isset($_REQUEST['status']) ? $_REQUEST['status'] : $userStatus;
+            $params['smarty']->assign('status', $status);
             switch ($action){
                 case "my_profile_save":
                     require_once($GLOBALS['CLASSES_DIR']."User_container.class.php");
@@ -288,6 +293,16 @@ function page_content($go,$action,$params){
                     $v_result = $user_container_class->validate_params("my_profile_save",$p_params);
                     if($user_container_class->is_valid($v_result)){
                         $params['User']->set_values($params['Session']->get_value($params['s'],'user_id'),$p_params);
+                        if($userStatus != $status){
+                            $statusData = array(
+                                'user_id'       => $params['Session']->get_value($params['s'],'user_id'),
+                                'status'        => $status,
+                                'is_active'     => 'Y',
+                                'created_time'  => time(),
+                            );
+                            $userStatusObj->create($statusData);
+                        }
+
                         header('Location: ?go=profile&user_id='.$params['Session']->get_value($params['s'],'user_id'));
                         exit;
                     }else{
@@ -354,7 +369,10 @@ function page_content($go,$action,$params){
             }
             $params['smarty']->assign('isUserEqual', $isUserEqual);
             $params['smarty']->assign('profile_user_id', $profileUserId);
-
+            $userStatusObj = new UserStatus($dbh);
+            $userStatusesObj = new UserStatuses($dbh);
+            $userStatuses = $userStatusesObj->byUserAndTime($profileUserId, 'DESC', 1, 5);
+            $params['smarty']->assign('userStatuses', $userStatuses);
             //photos
             require_once($GLOBALS['MODULES_DIR'].'photo/Albums.class.php');
             require_once($GLOBALS['MODULES_DIR'].'photo/Album.class.php');

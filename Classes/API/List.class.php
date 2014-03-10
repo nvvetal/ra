@@ -211,5 +211,3 @@ class API_List {
         return $total;
     }
 }
-
-?>
