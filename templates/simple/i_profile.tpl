@@ -25,7 +25,7 @@
         <td>
             {"Status"|i18n}
         </td>
-        <td>
+        <!--td>
             {foreach name="userStatus" from=$userStatuses.items item=userStatus}
                 {if $smarty.foreach.userStatus.first == true}
                     <div>{$userStatus->status|strip_tags} ({$userStatus->created_time|date_format:'%d.%m.%Y %H:%I'})</div>
@@ -35,7 +35,7 @@
                     <div style="margin-left:30px;">{$userStatus->status|strip_tags} ({$userStatus->created_time|date_format:'%d.%m.%Y %H:%I'})</div>
                 {/if}
             {/foreach}
-        </td>
+        </td-->
     </tr>
 
     <tr valign="top">

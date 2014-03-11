@@ -293,7 +293,7 @@ function page_content($go, $action, $params){
                     $v_result = $user_container_class->validate_params("my_profile_save",$p_params);
                     if($user_container_class->is_valid($v_result)){
                         $params['User']->set_values($params['Session']->get_value($params['s'],'user_id'),$p_params);
-                        if($userStatus != $status){
+                        if($userStatus != $status && !empty($status)){
                             $statusData = array(
                                 'user_id'       => $params['Session']->get_value($params['s'],'user_id'),
                                 'status'        => $status,

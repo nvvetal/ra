@@ -1,5 +1,5 @@
 <?php
-
+exit;
 require_once('config.php');
 
 $go = 'user_status';
