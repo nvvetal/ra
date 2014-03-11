@@ -75,8 +75,8 @@ $smarty->assign_by_ref('Images',$Images);
 $smarty->assign_by_ref('Utils',$Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
-$metaDescription = 'Фестивали восточного танца, конкурсы по восточному танцу';
-$smarty->assign('metaDescription', $metaDescription);
+$metaKeywords = 'Фестивали восточного танца, конкурсы по восточному танцу';
+$smarty->assign('metaKeywords', $metaKeywords);
 
 
 require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 

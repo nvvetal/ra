@@ -33,8 +33,8 @@ $smarty->assign_by_ref('Utils',$Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
 
-$metaDescription = 'Статьи о восточном танце, статьи о танце живота, история танца живота';
-$smarty->assign('metaDescription', $metaDescription);
+$metaKeywords = 'Статьи о восточном танце, статьи о танце живота, история танца живота';
+$smarty->assign('metaKeywords', $metaKeywords);
 
 $metaURL = getMetaURL($s);
 $smarty->assign("metaURL", $metaURL);

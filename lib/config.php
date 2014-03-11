@@ -277,3 +277,5 @@ Registry::set('mailer', $mailer);
 $smarty->assign("facebook_app_id", $GLOBALS['FACEBOOK_APP_ID']);
 $smarty->assign("vkontakte_app_id", $GLOBALS['VKONTAKTE_APP_ID']);
 
+$metaKeywords = 'восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс';
+$smarty->assign('metaKeywords', $metaKeywords);
