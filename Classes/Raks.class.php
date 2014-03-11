@@ -34,6 +34,10 @@ class Raks{
                 '3rd' => 60,
             ),
         ),
+        'profileEditFirst' => array(
+            'count' => 20,
+            'type' => 'once',
+        ),
     );
 
     public function __construct($dbh){
@@ -92,6 +96,17 @@ class Raks{
     {
         if(!isset($this->_rules[$rule])) return false;
         $ruleData = $this->_rules[$rule];
+        //checking once
+        if(isset($ruleData['type']) && $ruleData['type'] == 'once'){
+            $canAdd = $this->_canAddRaksOnce($userId, $rule);
+            if(!$canAdd) return false;
+            if($addStats){
+                $Payment = Registry::get('Payment');
+                $Payment->addStats($userId, $rule, $ruleData['count']);
+            }
+            return $this->addMoney($userId, $ruleData['count'], $rule);
+        }
+
         if(!is_array($ruleData['count']) && !isset($ruleData['period']))
             if($addStats){
                 $Payment = Registry::get('Payment');
@@ -99,7 +114,8 @@ class Raks{
             }
             return $this->addMoney($userId, $ruleData['count'], $rule);
 
-        //cheking only period
+
+        //checking only period
         if(!is_array($ruleData['count'])){
             $canAdd = $this->_canAddRaksByPeriod($userId, $rule, $ruleData['period']);
             if(!$canAdd) return false;
@@ -110,7 +126,7 @@ class Raks{
             return $this->addMoney($userId, $ruleData['count'], $rule);
         }
 
-        //not chek period
+        //not check period
         if(is_array($ruleData['count'])){
             if(!isset($params['countType'])) return false;
             $amount = $ruleData['count'][$params['countType']];
@@ -141,4 +157,18 @@ class Raks{
         $data = SQLGet($q, $this->_dbh);
         return (!isset($data['time_action']) || strtotime($period, $data['time_action']) < time()) ? true : false;
     }
+
+    private function _canAddRaksOnce($userId, $rule)
+    {
+        $q = "
+			SELECT *
+			FROM raks_history
+			WHERE user_id = ".SQLQuote($userId)." AND rule = ".SQLQuote($rule)."
+			LIMIT 1
+		";
+
+        $data = SQLGet($q, $this->_dbh);
+        return isset($data['time_action']) ? false : true;
+    }
+
 }

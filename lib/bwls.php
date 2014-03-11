@@ -302,7 +302,8 @@ function page_content($go, $action, $params){
                             );
                             $userStatusObj->create($statusData);
                         }
-
+                        $Raks = new Raks($dbh);
+                        $Raks->addMoneyByRule($params['Session']->get_value($params['s'],'user_id'), 'profileEditFirst', array());
                         header('Location: ?go=profile&user_id='.$params['Session']->get_value($params['s'],'user_id'));
                         exit;
                     }else{

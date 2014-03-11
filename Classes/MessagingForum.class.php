@@ -9,11 +9,11 @@ class MessagingForum{
     
     public function sendMessage($params){
         $User = Registry::get('User');
-        $fromUserId = $params['fromUserId'];
-        $fromForumUserId = $User->find_forum_by_user_id($fromUserId);
+        $fromUserId = isset($params['fromUserId']) ? $params['fromUserId'] : 0;
+        $fromForumUserId = isset($params['fromForumUserId']) ? $params['fromForumUserId'] : $User->find_forum_by_user_id($fromUserId);
         
-        $toUserId = $params['toUserId'];
-        $toForumUserId = $User->find_forum_by_user_id($toUserId);        
+        $toUserId = isset($params['toUserId']) ? $params['toUserId'] : 0;
+        $toForumUserId = isset($params['toForumUserId']) ? $params['toForumUserId']: $User->find_forum_by_user_id($toUserId);
         $fields = array(
             'root_level'=>0,
             'author_id' => $fromForumUserId,
@@ -40,5 +40,3 @@ class MessagingForum{
     
     
 }
-
-?>
