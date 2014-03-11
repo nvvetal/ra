@@ -369,7 +369,6 @@ function page_content($go, $action, $params){
             }
             $params['smarty']->assign('isUserEqual', $isUserEqual);
             $params['smarty']->assign('profile_user_id', $profileUserId);
-            $userStatusObj = new UserStatus($dbh);
             $userStatusesObj = new UserStatuses($dbh);
             $userStatuses = $userStatusesObj->byUserAndTime($profileUserId, 'DESC', 1, 5);
             $params['smarty']->assign('userStatuses', $userStatuses);
