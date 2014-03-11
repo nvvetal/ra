@@ -36,6 +36,10 @@ $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
 $metaURL = getMetaURL($s);
 $smarty->assign("metaURL", $metaURL);
+
+$metaDescription = 'Танец живота фото, восточный танец фото, индийский танец фото, трайбл фото, восточные танцы фото';
+$smarty->assign('metaDescription', $metaDescription);
+
 require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 
 $xajax = new xajax("photo.server.php");                                                                                                 
 $xajax->debugOff(); 

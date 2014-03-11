@@ -27,6 +27,10 @@ $smarty->assign_by_ref('Images', $Images);
 $smarty->assign_by_ref('Utils', $Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
+
+$metaDescription = 'Танец живота видео, восточный танец видео, восточные танцы видео, обучающее видео, индийский танец видео, трайбл видео, видео уроки';
+$smarty->assign('metaDescription', $metaDescription);
+
 require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 
 $xajax = new xajax("video.server.php");                                                                                                 
 $xajax->debugOff(); 

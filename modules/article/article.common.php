@@ -32,10 +32,13 @@ $smarty->assign_by_ref('Images',$Images);
 $smarty->assign_by_ref('Utils',$Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
+
+$metaDescription = 'Статьи о восточном танце, статьи о танце живота, история танца живота';
+$smarty->assign('metaDescription', $metaDescription);
+
 $metaURL = getMetaURL($s);
 $smarty->assign("metaURL", $metaURL);
-
-require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 
+require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");
 $xajax = new xajax("article.server.php");
 $xajax->debugOff(); 
                                                                                                                      

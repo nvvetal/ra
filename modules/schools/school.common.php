@@ -48,7 +48,7 @@ $smarty->assign_by_ref('Utils',$Utils);
 $user_id = $Session->get_value($s, 'user_id');
 $smarty->assign_by_ref('user_id', $user_id);
 
-$metaDescription = 'школы восточного танца, обучение восточному танцу, школы танца живота, обучение танцу живота';
+$metaDescription = 'Танец живота обучение, обучение восточному танцу, школы танца живота, школы восточного танца, школы индийского танца, обучение индийскому танцу, школы трайбла, обучение трайблу, школа танца Аллы Кушнир, Школа танца Марты Корзун, школа танца Дарьи Мицкевич';
 $smarty->assign('metaDescription', $metaDescription);
 
 require_once ($GLOBALS['XAJAX_PATH']."xajax.inc.php");                                                                                                 
