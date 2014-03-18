@@ -6,7 +6,7 @@
         <a href="{$http_project_path}?s={$s}&go=profile&user_name={$User->get_value($comment->createdBy,'login')}" target="_blank">{$User->get_value($comment->createdBy,'login')}</a>
     </div>
     <div class="comment">
-        {$comment->comment|strip_tags}
+        {$comment->comment|strip_tags|url}
     </div>
 </div>
 {foreachelse}
