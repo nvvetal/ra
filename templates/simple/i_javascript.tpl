@@ -55,7 +55,7 @@
         CKEDITOR.on('instanceReady', function() {
             $(".cke_button__source_label").text("BBCODE");
         });
-        CKEDITOR.config.startupMode = 'source';
+        //CKEDITOR.config.startupMode = 'source';
 
     }
 
