@@ -28,7 +28,7 @@
             uiColor: '#AADC6E',
             toolbar: [
                 { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-                { name: 'editing', groups: [ 'find', 'selection'], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+                { name: 'editing', groups: [ 'find', 'selection'], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt', 'Source' ] },
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
                 { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
@@ -52,6 +52,11 @@
         params = params || {};
         params.bbcode = true;
         getEditor(containers, params);
+        CKEDITOR.on('instanceReady', function() {
+            $(".cke_button__source_label").text("BBCODE");
+        });
+        CKEDITOR.config.startupMode = 'source';
+
     }
 
     function refreshSocialButtons(){
