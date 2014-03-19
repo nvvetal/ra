@@ -14,7 +14,13 @@
         <td>
             <strong>{$User->get_value($profile_user_id,'p_last_name')} {$User->get_value($profile_user_id,'p_first_name')}</strong>
             <div class="linkDiv"></div>
-            <a href="{$http_project_path}forum/ucp.php?i=pm&mode=compose&u={$User->get_value($profile_user_id,'forum')}">{"Send Message"|i18n}</a>
+            <a href="{$http_project_path}forum/memberlist.php?mode=viewprofile&u={$User->get_value($profile_user_id,'forum')}"><img src="{$http_images_static_path}icon_user_profile.gif" alt=""/></a>
+            <div class="linkDiv"></div>
+            <a href="{$http_project_path}shop/?user_id={$profile_user_id}&s={$s}"><img src="{$http_images_static_path}icon_gift.png" alt=""></a>
+            <div class="linkDiv"></div>
+            <a href="{$http_project_path}forum/ucp.php?i=pm&mode=compose&u={$User->get_value($profile_user_id,'forum')}"><img src="{$http_project_path}/forum/styles/subsilver2/imageset/ru/icon_contact_pm.gif" alt=""/></a>
+            <div class="linkDiv"></div>
+            <a href="mailto:{$User->get_value($profile_user_id,'email')}"><img src="{$http_project_path}/forum/styles/subsilver2/imageset/ru/icon_contact_email.gif" alt=""/></a>
             <div class="linkDiv"></div>
             {if $profile_user_id == $user_id}
                 <a href="{$http_project_path}?s={$s}&go=my_profile">{"Edit Profile"|i18n}</a>
