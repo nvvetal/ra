@@ -1,4 +1,5 @@
 <div>
+    <div style="text-align:center"><a href="{$http_project_path}shop/?s={$s}&go=shop&shop_id=1">{"send gift to users"|i18n:'shop'}</a></div>
     <table style="width: 100%;">
         {foreach name="gifts" from=$userGifts.items item=item}
             {if $smarty.foreach.gifts.first == true}
