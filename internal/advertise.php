@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv224';
+$advertise_company_id = 'adv225';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -82,28 +82,19 @@ $query = "
 $users = array(
     "0"=>array(
         'login'=>'nvvetal',
-        'email'=>'nv-vetal@rambler.ru',
+        'email'=>'vitaliy.grinchishin@gmail.com',
     ),
 
     "1"=>array(
         'login'=>'khalisy',
         'email'=>'khalisy@mail.ru',
     ),
-    "2"=>array(
-        'login'=>'nvvetal2',
-        'email'=>'nvvetal@jumbuck.com.ua',
-    ),
-    "3"=>array(
-        'login'=>'nvveta3',
-        'email'=>'vitaliy.grinchishin@gmail.com',
-    ),
-
 );
 
-$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise78.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise79.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -140,10 +131,12 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/03_bd_sudak_2013_dopolnenie_k_pologeniyu_o_festivale.doc",'03_bd_sudak_2013_dopolnenie_k_pologeniyu_o_festivale.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/04_bd_sudak_2013_deti_spisok_kompoziciy_dlya_orkestra.doc",'04_bd_sudak_2013_deti_spisok_kompoziciy_dlya_orkestra.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/05_bd_sudak_2013_spisok_kompoziciy_dlya_orkestra.doc",'05_bd_sudak_2013_spisok_kompoziciy_dlya_orkestra.doc','base64','application/msword');
-    //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/06_bd_sudak_2013_zayavka_orkestr.doc",'06_bd_sudak_2013_zayavka_orkestr.doc','base64','application/msword');
+    $mail->AddAttachment(PROJECT_ROOT."/images/mailer/second/POLOZHENIE_festival.doc",'POLOZHENIE_festival.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/oriental/Spisok_nominaciy_Oriental_Dance_2011.xls",'Spisok_nominaciy_Oriental_Dance_2011.xls','base64','application/vnd.ms-excel');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/AIDA.ppt",'AIDA.ppt','base64','application/vnd.ms-powerpoint');
-    //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/afisha.jpg",'afisha','afisha.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/second/1_v.jpg",'1_v','1_v.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/second/novyy-3.jpg",'novyy-3','novyy-3.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/second/novyy-11.jpg",'novyy-11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/karavan/Karavan_2013_polniy.doc",'Karavan_2013_polniy.doc','base64','application/msword');
@@ -154,7 +147,7 @@ foreach ($users as $key=>$user){
 
     if($mail->IsError())$err.="|".$mail->ErrorInfo;
     //if($mail->IsError())$err.="|".$mail->ErrorInfo;
-    $mail->Subject = 'Голосуем за номинантов танцевальной Премии';
+    $mail->Subject = '1-й Международный  фестиваль танца "Хоровод друзей"';
 
     if($mail->IsError())$err.="|".$mail->ErrorInfo;
 
