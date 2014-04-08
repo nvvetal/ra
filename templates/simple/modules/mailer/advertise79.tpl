@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body>
+<body style="color: black;">
 <div style="text-align: center">
     <img src="cid:novyy11" alt="" /><br/>
     <img src="cid:novyy3" alt="" /><br/>
@@ -13,9 +13,9 @@
 </div>
 <br/>
 <div style="text-align: center">
-    <div style="font-size: 14px">
+    <div style="font-size: 120%">
         <b>Несравненная Амира Ханна Абди!</b><br/>
-        <div style="font-size: 13px">
+        <div style="font-size: 110%">
             Впервые в Украине! Владимир Кызыл-оодович Биче-оол и Samer Hesein - Mahmoud Reda Troup, Giza, Cairo, Egypt<br/>
         </div>
         <br/>
