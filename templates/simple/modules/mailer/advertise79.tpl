@@ -13,7 +13,7 @@
 </div>
 <br/>
 <div style="text-align: center">
-    <div style="font-size: 120%">
+    <div style="font-size: 180%">
         <b>Несравненная Амира Ханна Абди!</b><br/>
         <div style="font-size: 110%">
             Впервые в Украине! Владимир Кызыл-оодович Биче-оол и Samer Hesein - Mahmoud Reda Troup, Giza, Cairo, Egypt<br/>
