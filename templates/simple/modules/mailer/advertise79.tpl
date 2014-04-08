@@ -6,21 +6,22 @@
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
 <body>
-<center>
-    <img src="cid:novyy-11" alt="1-й Международный  фестиваль танца 'Хоровод друзей'" /><br/>
-    <img src="cid:novyy-3" alt="1-й Международный  фестиваль танца 'Хоровод друзей'" /><br/>
-    <img src="cid:1_v" alt="1-й Международный  фестиваль танца 'Хоровод друзей'" /><br/>
-</center>
+<div style="text-align: center">
+    <img src="cid:novyy11" alt="" /><br/>
+    <img src="cid:novyy3" alt="" /><br/>
+    <img src="cid:1v" alt="" /><br/>
+</div>
 <br/>
-<center>
-    <font size="16px">
+<div style="text-align: center">
+    <div style="font-size: 14px">
         <b>Несравненная Амира Ханна Абди!</b><br/>
-        <font size="14px">
+        <div style="font-size: 13px">
             Впервые в Украине! Владимир Кызыл-оодович Биче-оол и Samer Hesein - Mahmoud Reda Troup, Giza, Cairo, Egypt<br/>
-        </font>
+        </div>
         <br/>
-    </font>
-</center>
+    </div>
+</div>
+<div>
 &nbsp;&nbsp;&nbsp;1-й Международный  фестиваль танца "Хоровод друзей" состоится с 17 по 18 мая 2014 года  на сцене Дома культуры п. Белогородка по адресу: Киевская  обл. Киево- Святошинский район, п. Белогородка, ул. Ленина, 31.<br/>
 &nbsp;&nbsp;&nbsp;Организаторы:  ансамбли  "«Навруз», «Эрцог», «Нохчалла».Совет нацменьшин Украины,диаспоры Украины<br/>
 В рамках фестиваля проводятся:<br/>
@@ -33,7 +34,7 @@
 <br/>
 Заявки на конкурс принмаются (см положение в аттаче)<br/><br/>
 <a href="http://horovoddruzey.blogspot.com/p/blog-page_30.html">http://horovoddruzey.blogspot.com/p/blog-page_30.html</a>
-
+</div>
 <br/>
 <br/>
 -------------------------------<br/>
