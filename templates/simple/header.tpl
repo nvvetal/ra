@@ -138,7 +138,6 @@
         {
             var banner_165_1  = new Array();
             banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16387" target="_blank"><img src="http://raks.com.ua/forum/images/banner_konk.jpg" alt=""/></a>', 'html', 165, 190);
-            banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=16420" target="_blank"><img src="http://raks.com.ua/forum/images/banner_mk.jpg" alt=""/></a>', 'html', 165, 190);
             showBannerData('banner_165_1', banner_165_1);
 
             var banner_165_2  = new Array();
