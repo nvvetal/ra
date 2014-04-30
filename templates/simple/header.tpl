@@ -154,7 +154,7 @@
 
             var banner_165_4  = new Array();
             banner_165_4[0]   = new Array ('<a href="http://dancebox.com.ua/" target="_blank" ><img src="http://raks.com.ua/forum/images/dbx_.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=121&t=16172" target="_blank" ><img src="http://raks.com.ua/forum/images/FT_KsrGyhNA.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[1]   = new Array ('<a href="http://rakselcairo.com/" target="_blank" ><img src="http://raks.com.ua/forum/images/FT_KsrGyhNA.jpg" alt=""/></a>', 'html', 165, 190);
             showBannerData('banner_165_4', banner_165_4);
         }
 
