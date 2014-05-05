@@ -22,7 +22,7 @@
 
     <link type="text/css" href="{$http_project_path}jQuery/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="{$http_project_path}select2/select2.css" type="text/css" media="screen, projection" />
-
+    <link rel="stylesheet" href="{$http_project_path}sceditor/minified/themes/default.min.css" type="text/css" media="all" />
     <link rel="stylesheet" href="{$http_css_path}portal2.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="{$http_css_path}banner.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="{$http_css_path}forum.css" type="text/css" media="screen, projection" />
@@ -37,6 +37,7 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="{$http_project_path}jQuery/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="{$http_project_path}ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="{$http_project_path}sceditor/minified/jquery.sceditor.bbcode.min.js"></script>
     {if $script ne ''}
         {include file=$script}
     {/if}
@@ -138,6 +139,7 @@
         {
             var banner_165_1  = new Array();
             banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16387" target="_blank"><img src="http://raks.com.ua/forum/images/banner_konk.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16397" target="_blank"><img src="http://raks.com.ua/forum/images/amirra.jpg" alt=""/></a>', 'html', 165, 190);
             showBannerData('banner_165_1', banner_165_1);
 
             var banner_165_2  = new Array();
