@@ -47,7 +47,12 @@ class calendar_forum_message_parser
             'u'				=> array('bbcode_id' => 7,	'regexp' => array('#\[u\](.*?)\[/u\]#ise' => "\$this->bbcode_underline('\$1')")),
             'list'			=> array('bbcode_id' => 9,	'regexp' => array('#\[list(?:=(?:[a-z0-9]|disc|circle|square))?].*\[/list]#ise' => "\$this->bbcode_parse_list('\$0')")),
             'email'			=> array('bbcode_id' => 10,	'regexp' => array('#\[email=?(.*?)?\](.*?)\[/email\]#ise' => "\$this->validate_email('\$1', '\$2')")),
-            'flash'			=> array('bbcode_id' => 11,	'regexp' => array('#\[flash=([0-9]+),([0-9]+)\](.*?)\[/flash\]#ie' => "\$this->bbcode_flash('\$1', '\$2', '\$3')"))
+            'flash'			=> array('bbcode_id' => 11,	'regexp' => array('#\[flash=([0-9]+),([0-9]+)\](.*?)\[/flash\]#ie' => "\$this->bbcode_flash('\$1', '\$2', '\$3')")),
+            'youtube'	    => array('bbcode_id' => 13,	'regexp' => array('!\[youtube\]([a-zA-Z0-9-+.,_ ]+)\[/youtube\]!i' => "")),
+            'hide'	        => array('bbcode_id' => 14,	'regexp' => array('!\[hide\](.*?)\[/hide\]!ies' => "")),
+            'center'	    => array('bbcode_id' => 16,	'regexp' => array('!\[center\](.*?)\[/center\]!ies' => "")),
+            'right'	        => array('bbcode_id' => 18,	'regexp' => array('!\[right\](.*?)\[/right\]!ies' => "")),
+            's'	            => array('bbcode_id' => 19,	'regexp' => array('!\[s\](.*?)\[/s\]!ies' => "")),
         );
     }
 
@@ -56,7 +61,7 @@ class calendar_forum_message_parser
         return $this->bbcode_bitfield;
     }
 
-    function add_bbcode_uid($bbcode_uid, $message)
+    function add_bbcode_uid($bbcode_uid, $data)
     {
         $codes = array(
             '[quote=',
@@ -69,12 +74,20 @@ class calendar_forum_message_parser
 //            '[/url]',
             '[img]',
             '[/img]',
-            '[size=',
+//            '[size=',
             '[/size]',
             '[u]',
             '[/u]',
 //            '[color=',
             '[/color]',
+            '[center]',
+            '[/center]',
+            '[left]',
+            '[/left]',
+            '[right]',
+            '[/right]',
+            '[s]',
+            '[/s]',
         );
         $replace = array(
             '[quote:'.$bbcode_uid.'=',
@@ -87,23 +100,34 @@ class calendar_forum_message_parser
 //            '</a><!-- m -->',
             '[img:'.$bbcode_uid.']',
             '[/img:'.$bbcode_uid.']',
-            '[size:'.$bbcode_uid.'=',
+//            '[size:'.$bbcode_uid.'=',
             '[/size:'.$bbcode_uid.']',
             '[u:'.$bbcode_uid.']',
             '[/u:'.$bbcode_uid.']',
 //            '[color:'.$bbcode_uid.'=',
             '[/color:'.$bbcode_uid.']',
+            '[center:'.$bbcode_uid.']',
+            '[/center:'.$bbcode_uid.']',
+            '',
+            '',
+            '[right:'.$bbcode_uid.']',
+            '[/right:'.$bbcode_uid.']',
+            '[s:'.$bbcode_uid.']',
+            '[/s:'.$bbcode_uid.']',
         );
+        /*
         $pattern = '(?<!\])(?xi)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
         $data = preg_replace_callback("#$pattern#i", function($matches) {
             $input = $matches[0];
             $url = preg_match('!^https?://!i', $input) ? $input : "http://$input";
             return '<!-- m --><a class="postlink" href="' . $url . '">'.$url.'</a><!-- m -->';
-        }, $message);
+        }, $data);
+        */
         $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$1</a><!-- m -->', $data);
 
         $data = str_replace($codes, $replace, $data);
         $data = preg_replace('/\[color\=(#[0-9a-f]{6}|[a-z\-]+)\]/ims', '[color=$1:'.$bbcode_uid.']', $data);
+        $data = preg_replace('/\[size\=([0-9a-z]+)\]/ims', '[size=$1:'.$bbcode_uid.']', $data);
         return $data;
     }
 }

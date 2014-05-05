@@ -1,8 +1,19 @@
 {include file='header.tpl' script='modules/calendar/i_javascript.tpl'}
 {literal}
     <script type="text/javascript">
-        $(document).ready(function(){
-            getBBEditor("full_info");
+        //$(document).ready(function(){
+        //    getBBEditor("full_info");
+        //});
+
+
+        $(function() {
+            $("#full_info").sceditor({
+                plugins: "bbcode",
+                style: "{/literal}{$http_project_path}{literal}sceditor/minified/jquery.sceditor.default.min.css",
+                locale: "ru",
+                emoticonsRoot: "{/literal}{$http_project_path}{literal}sceditor/"
+            });
+            $("#full_info").sceditor('instance').sourceMode(true);
         });
     </script>
 {/literal}
@@ -81,7 +92,7 @@
         <tr>
             <td valign="top">{"Full info"|i18n}</td>
             <td>
-                <textarea name="full_info" style="width:100%;height:1000px;">{$smarty.request.full_info}</textarea>
+                <textarea name="full_info" id="full_info" style="width:100%;height:1000px;">{$smarty.request.full_info}</textarea>
             </td>
         </tr>
 

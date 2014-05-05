@@ -1,8 +1,20 @@
 {include file='header.tpl' script='modules/calendar/i_javascript.tpl'}
 {literal}
 <script type="text/javascript">
-    $(document).ready(function(){
-        getBBEditor("full_info");
+    //$(document).ready(function(){
+    //    getBBEditor("full_info");
+    //});
+
+    $(function() {
+        // Replace all textarea's
+        // with SCEditor
+        $("#full_info").sceditor({
+            plugins: "bbcode",
+            style: "{/literal}{$http_project_path}{literal}sceditor/minified/jquery.sceditor.default.min.css",
+            locale: "ru",
+            emoticonsRoot: "{/literal}{$http_project_path}{literal}sceditor/"
+        });
+        $("#full_info").sceditor('instance').sourceMode(true);
     });
 </script>
 {/literal}
