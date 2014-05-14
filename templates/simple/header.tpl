@@ -38,7 +38,7 @@
     <script type="text/javascript" src="{$http_project_path}jQuery/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="{$http_project_path}ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="{$http_project_path}sceditor/minified/jquery.sceditor.bbcode.min.js"></script>
-    <script src="{$http_project_path}sceditor/languages/ru.js"></scrip>
+    <script src="{$http_project_path}sceditor/languages/ru.js"></script>
     {if $script ne ''}
         {include file=$script}
     {/if}
