@@ -1,12 +1,18 @@
 <?php
-require_once('common.php');
+error_reporting(E_ALL);
+require_once('../lib/config.php');
 
 require_once($GLOBALS['CLASSES_DIR']."/Dropbox.class.php");
+require_once($GLOBALS['CLASSES_DIR']."/DropboxAccount.class.php");
+require_once($GLOBALS['CLASSES_DIR']."/DropboxFiles.class.php");
 require_once($GLOBALS['LIB_ROOT']."/CurlWrapper.php");
 require_once($GLOBALS['MODULES_DIR']."/calendar/calendar_forum_message_parser.class.php");
+$dbhForum = $DBFactory->get_db_handle('forum');
+$dbhRaks = $DBFactory->get_db_handle('rakscom');
 $curl = new CurlWrapper();
 $dropbox = new Dropbox($curl);
-$dbhForum = $DBFactory->get_db_handle('forum');
+$dropboxAccount = new DropboxAccount($dbhRaks);
+$dropboxFiles = new DropboxFiles($dbhRaks);
 //Getting few posts with attachments which is not processed yet
 $q = "
     SELECT *
@@ -19,12 +25,47 @@ $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
 echo "<pre>";
 foreach($rows as $row){
-    echo $row['post_id']."<br/>";
     $names = getAttachmentNames($row['post_text']);
-    var_dump($names);
-    foreach($names as $name){
+    if(is_null($names)) continue;
+    $text = preg_replace('/\:[a-z0-9]+\]/ims', ']', $row['post_text']);
+    $calendarParser = new calendar_forum_message_parser($text);
+    $newBitfield = $calendarParser->get_bitfield();
+    $bbcodeUid = $row['bbcode_uid'];
+    foreach($names[1] as $key => $name){
+        $dropboxAccountBest = $dropboxAccount->getBestAccount();
+        if(is_null($dropboxAccount)){
+            echo "Please create new dropbox accounts, no space available in current";
+            exit;
+        }
+        $dropbox->setAccessToken($dropboxAccountBest['access_token']);
         $data = fetchForumAttachment($row['post_id'], $name, $dbhForum);
-        var_dump($data);
+        $comment = $data['attach_comment'];
+        $filename = $data['physical_filename'];
+        $ext = $data['extension'];
+        $dir = substr(md5(microtime(true)), 0, 3).'/'.substr(md5(mt_rand(100,10000000)), 0, 10);
+        $isOk = $dropbox->createFolder($dir);
+        if(!$isOk) {
+            echo "Cannot create folder !<br/>";
+            continue 2;
+        }
+        $newFilename = $dir.'/'.$data['attach_id'].'.'.strtolower($ext);
+        $oldFilename = $GLOBALS['PROJECT_ROOT'].'/files/forum/'.$filename;
+        $res = $dropbox->storeFile($newFilename, $oldFilename);
+        if(!file_exists($oldFilename)){
+            echo "Old file not exists ".$oldFilename." in attachmentId ".$data['attach_id']."<br/>";
+            continue 2;
+        }
+        if(is_null($res) || $res['bytes'] == 0) {
+            echo "Cannot save new file ".$newFilename." from ".$filename.' attachmentId '.$data['attach_id']."<br/>";
+            continue 2;
+        }
+        //TODO: remove old file, replace [attachment] to [img] and recalculate bitcode
+        $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
+        $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
+        $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
+        exit;
+        //var_dump($data);
+
     }
 }
 
@@ -33,8 +74,9 @@ function getAttachmentNames($text)
 {
     //var_dump($text);
     $names = NULL;
-    if(preg_match_all("/\[attachment\=[^\]]+\]\<\!\-\-[^\>]+\>([^\<]+)\<\!/ims", $text, $m)){
-        $names = $m[1];
+    if(preg_match_all("/\[attachment\=[^\]]+\]\<\!\-\-[^\>]+\>([^\<]+)\<\!\-\-[^\>]+\>\[\/attachment\:[^\]]+\]/ims", $text, $m)){
+        $names = $m;
+        //var_dump($m);
     }
     return $names;
 }

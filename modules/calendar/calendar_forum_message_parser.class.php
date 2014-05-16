@@ -7,12 +7,10 @@ class calendar_forum_message_parser
 
     public function __construct($message)
     {
-
+//        var_dump($message);
         $this->bbcode_init();
-
         require_once('calendar_forum_bitfield.class.php');
         $bitfield = new calendar_forum_bitfield();
-
         foreach ($this->bbcodes as $bbcode_name => $bbcode_data)
         {
             foreach ($bbcode_data['regexp'] as $regexp => $replacement)
