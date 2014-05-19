@@ -24,10 +24,17 @@ $DBFactory->add_db_handle("rakscom",$db_params['rakscom']['server'],$db_params['
 $Images = new Images($DBFactory->get_db_handle('rakscom'),$GLOBALS['IMAGEMAGICK_PATH'],$image_rules); 
 
 if(preg_match("/attachment\/real\/(\d+)\.(\w{3})$/", $src, $match)){
+    $dbhRaks = $DBFactory->get_db_handle('rakscom');
     require_once($GLOBALS['CLASSES_DIR']."/Dropbox.class.php");
     require_once($GLOBALS['CLASSES_DIR']."/DropboxAccount.class.php");
     require_once($GLOBALS['CLASSES_DIR']."/DropboxFiles.class.php");
-
+    require_once($GLOBALS['LIB_ROOT']."/CurlWrapper.php");
+    $curl = new CurlWrapper();
+    $dropbox = new Dropbox($curl);
+    $dropboxAccount = new DropboxAccount($dbhRaks);
+    $dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $dbhRaks);
+    $dropboxFiles->showFile($match[1]);
+    exit;
 }
 
 if(preg_match("/(\w{3})\/(\w+)\/(\d+)_(\d{2,4})_(\d{2,4})\.(\w{3})$/",$src,$match)){

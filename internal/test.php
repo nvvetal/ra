@@ -12,14 +12,14 @@ $dbhRaks = $DBFactory->get_db_handle('rakscom');
 $curl = new CurlWrapper();
 $dropbox = new Dropbox($curl);
 $dropboxAccount = new DropboxAccount($dbhRaks);
-$dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $dbhRaks);
+$dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $curl, $dbhRaks);
 //Getting few posts with attachments which is not processed yet
 $q = "
     SELECT *
     FROM phpbb_posts
     WHERE post_attachment = 1 AND post_text LIKE ".SQLQuote('%[attachment%')."
     ORDER BY post_id ASC
-    LIMIT 1
+    LIMIT 2
 ";
 $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
@@ -27,12 +27,12 @@ echo "<pre>";
 foreach($rows as $row){
     $names = getAttachmentNames($row['post_text']);
     if(is_null($names)) continue;
-    echo $row['post_id'];
+    echo $row['post_id']."<br/>";
     $bbcodeUid = $row['bbcode_uid'];
     $postText = $row['post_text'];
     foreach($names[1] as $key => $name){
         $dropboxAccountBest = $dropboxAccount->getBestAccount();
-        if(is_null($dropboxAccount)){
+        if(is_null($dropboxAccountBest)){
             echo "Please create new dropbox accounts, no space available in current";
             exit;
         }
@@ -56,13 +56,14 @@ foreach($rows as $row){
         }
         if(is_null($res) || $res['bytes'] == 0) {
             echo "Cannot save new file ".$newFilename." from ".$filename.' attachmentId '.$data['attach_id']."<br/>";
+            var_dump($dropbox->getErrorInfo());
             continue 2;
         }
-        //TODO: replace [attachment] to [img] and recalculate bitfield
+        $info = $dropbox->getAccountInfo();
         $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
         $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
         $fileId = $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
-        unlink($oldFilename);
+        @unlink($oldFilename);
         $toReplace = '[img:'.$bbcodeUid.']http://raks.com.ua/i/attachment/real/'.$fileId.'.'.$ext.'[/img:'.$bbcodeUid.']';
         if(!empty($comment)) $toReplace .= "\r\n".'('.$comment.')'."\r\n";
         $postText = str_replace($names[0][$key], $toReplace, $postText);
@@ -73,7 +74,7 @@ foreach($rows as $row){
             'post_text'         => $postText,
             'bbcode_bitfield'   => $newBitfield,
         );
-        SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
+        //SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
     }
 }
 
