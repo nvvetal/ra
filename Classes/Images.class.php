@@ -253,7 +253,7 @@ class Images {
         header('Accept-Ranges: bytes');
         header('Content-Length: '.$length);
         header('Content-Type: '.$type);
-	header("Cache-Control: max-age=3600");
+	    header("Cache-Control: max-age=3600");
         echo $imagedata;
     }
 

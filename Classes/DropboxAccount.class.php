@@ -26,6 +26,23 @@ class DropboxAccount
         return $rows;
     }
 
+
+    /**
+     * Getting all account which is not full
+     * @param $accountId
+     * @return array
+     */
+    public function getAccountById($accountId)
+    {
+        $q = "
+            SELECT *
+            FROM dropbox_accounts
+            WHERE id = ".SQLQuote($accountId)."
+        ";
+        $row = SQLGet($q, $this->dbh);
+        return isset($row['id']) ? $row : NULL;
+    }
+
     /**
      * Getting first small account by size
      * @return null|string

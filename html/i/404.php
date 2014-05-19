@@ -23,6 +23,13 @@ $DBFactory->add_db_handle("rakscom",$db_params['rakscom']['server'],$db_params['
 
 $Images = new Images($DBFactory->get_db_handle('rakscom'),$GLOBALS['IMAGEMAGICK_PATH'],$image_rules); 
 
+if(preg_match("/attachment\/real\/(\d+)\.(\w{3})$/", $src, $match)){
+    require_once($GLOBALS['CLASSES_DIR']."/Dropbox.class.php");
+    require_once($GLOBALS['CLASSES_DIR']."/DropboxAccount.class.php");
+    require_once($GLOBALS['CLASSES_DIR']."/DropboxFiles.class.php");
+
+}
+
 if(preg_match("/(\w{3})\/(\w+)\/(\d+)_(\d{2,4})_(\d{2,4})\.(\w{3})$/",$src,$match)){
 	//print_r($match);
 	

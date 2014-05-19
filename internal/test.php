@@ -12,14 +12,14 @@ $dbhRaks = $DBFactory->get_db_handle('rakscom');
 $curl = new CurlWrapper();
 $dropbox = new Dropbox($curl);
 $dropboxAccount = new DropboxAccount($dbhRaks);
-$dropboxFiles = new DropboxFiles($dbhRaks);
+$dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $dbhRaks);
 //Getting few posts with attachments which is not processed yet
 $q = "
     SELECT *
     FROM phpbb_posts
     WHERE post_attachment = 1 AND post_text LIKE ".SQLQuote('%[attachment%')."
     ORDER BY post_id ASC
-    LIMIT 10
+    LIMIT 1
 ";
 $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
@@ -27,10 +27,9 @@ echo "<pre>";
 foreach($rows as $row){
     $names = getAttachmentNames($row['post_text']);
     if(is_null($names)) continue;
-    $text = preg_replace('/\:[a-z0-9]+\]/ims', ']', $row['post_text']);
-    $calendarParser = new calendar_forum_message_parser($text);
-    $newBitfield = $calendarParser->get_bitfield();
+    echo $row['post_id'];
     $bbcodeUid = $row['bbcode_uid'];
+    $postText = $row['post_text'];
     foreach($names[1] as $key => $name){
         $dropboxAccountBest = $dropboxAccount->getBestAccount();
         if(is_null($dropboxAccount)){
@@ -59,13 +58,22 @@ foreach($rows as $row){
             echo "Cannot save new file ".$newFilename." from ".$filename.' attachmentId '.$data['attach_id']."<br/>";
             continue 2;
         }
-        //TODO: remove old file, replace [attachment] to [img] and recalculate bitcode
+        //TODO: replace [attachment] to [img] and recalculate bitfield
         $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
         $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
-        $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
-        exit;
-        //var_dump($data);
-
+        $fileId = $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
+        unlink($oldFilename);
+        $toReplace = '[img:'.$bbcodeUid.']http://raks.com.ua/i/attachment/real/'.$fileId.'.'.$ext.'[/img:'.$bbcodeUid.']';
+        if(!empty($comment)) $toReplace .= "\r\n".'('.$comment.')'."\r\n";
+        $postText = str_replace($names[0][$key], $toReplace, $postText);
+        $text = preg_replace('/\:[a-z0-9]+\]/ims', ']', $postText);
+        $calendarParser = new calendar_forum_message_parser($text);
+        $newBitfield = $calendarParser->get_bitfield();
+        $fields = array(
+            'post_text'         => $postText,
+            'bbcode_bitfield'   => $newBitfield,
+        );
+        SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
     }
 }
 
