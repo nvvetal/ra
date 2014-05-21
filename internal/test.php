@@ -13,13 +13,14 @@ $curl = new CurlWrapper();
 $dropbox = new Dropbox($curl);
 $dropboxAccount = new DropboxAccount($dbhRaks);
 $dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $curl, $dbhRaks);
+$minPostTime = time() - 365*24*3600*3;
 //Getting few posts with attachments which is not processed yet
 $q = "
     SELECT *
     FROM phpbb_posts
-    WHERE post_attachment = 1 AND post_text LIKE ".SQLQuote('%[attachment%')."
+    WHERE post_attachment = 1 AND post_text LIKE ".SQLQuote('%[attachment%')." AND post_time < ".$minPostTime."
     ORDER BY post_id ASC
-    LIMIT 2
+    LIMIT 1
 ";
 $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
@@ -56,20 +57,20 @@ foreach($rows as $row){
         }
         if(is_null($res) || $res['bytes'] == 0) {
             echo "Cannot save new file ".$newFilename." from ".$filename.' attachmentId '.$data['attach_id']."<br/>";
-            var_dump($dropbox->getErrorInfo());
             continue 2;
         }
         $info = $dropbox->getAccountInfo();
         $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
         $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
         $fileId = $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
-        @unlink($oldFilename);
+        //@unlink($oldFilename);
         $toReplace = '[img:'.$bbcodeUid.']http://raks.com.ua/i/attachment/real/'.$fileId.'.'.$ext.'[/img:'.$bbcodeUid.']';
         if(!empty($comment)) $toReplace .= "\r\n".'('.$comment.')'."\r\n";
         $postText = str_replace($names[0][$key], $toReplace, $postText);
         $text = preg_replace('/\:[a-z0-9]+\]/ims', ']', $postText);
         $calendarParser = new calendar_forum_message_parser($text);
         $newBitfield = $calendarParser->get_bitfield();
+        echo $postText;
         $fields = array(
             'post_text'         => $postText,
             'bbcode_bitfield'   => $newBitfield,

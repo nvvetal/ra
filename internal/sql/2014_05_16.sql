@@ -15,10 +15,10 @@ CREATE TABLE IF NOT EXISTS `dropbox_accounts` (
 
 CREATE TABLE IF NOT EXISTS `dropbox_items` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `attachment_id` bigint(20) unsigned NOT NULL,
-  `path` int(11) NOT NULL,
-  `image_type` varchar(6) NOT NULL,
-  `create_time` int(11) NOT NULL,
   `dropbox_id` int(11) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `image_type` varchar(6) NOT NULL,
+  `attachment_id` int(10) unsigned NOT NULL,
+  `created_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

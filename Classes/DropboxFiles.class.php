@@ -64,7 +64,19 @@ class DropboxFiles
         if($code != 200) throw new Exception($data['error'], $code);
         $curl->close();
         $length = strlen($res);
-        $type = '';
+        switch($data['image_type']){
+            case "png":
+                $type = 'image/png';
+                break;
+            case "gif":
+                $type = 'image/gif';
+                break;
+
+            case "jpg":
+            default:
+                $type = 'image/jpeg';
+                break;
+        }
         header('Last-Modified: '.date('r'));
         header('Accept-Ranges: bytes');
         header('Content-Length: '.$length);
