@@ -21,7 +21,7 @@ $q = "
     FROM phpbb_posts
     WHERE post_attachment = 1 AND post_text LIKE ".SQLQuote('%[attachment%')." AND post_time < ".$minPostTime."
     ORDER BY post_id ASC
-    LIMIT 10
+    LIMIT 25
 ";
 $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
