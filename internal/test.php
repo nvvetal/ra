@@ -25,17 +25,20 @@ $q = "
 ";
 $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
-echo "<pre>";
 foreach($rows as $row){
     $names = getAttachmentNames($row['post_text']);
     if(is_null($names)) continue;
     echo $row['post_id']."<br/>";
+    add_to_log('[postId '.$row['post_id'].']', "attachment_dropbox_migrate");
+
     $bbcodeUid = $row['bbcode_uid'];
     $postText = $row['post_text'];
     foreach($names[1] as $key => $name){
         $dropboxAccountBest = $dropboxAccount->getBestAccount();
         if(is_null($dropboxAccountBest)){
-            echo "Please create new dropbox accounts, no space available in current";
+            $error = "Please create new dropbox accounts, no space available in current";
+            echo $error;
+            add_to_log('[fatal][error '.$error.']', "attachment_dropbox_migrate");
             exit;
         }
         $dropbox->setAccessToken($dropboxAccountBest['access_token']);
@@ -46,18 +49,21 @@ foreach($rows as $row){
         $dir = substr(md5(microtime(true)), 0, 3).'/'.substr(md5(mt_rand(100,10000000)), 0, 10);
         $isOk = $dropbox->createFolder($dir);
         if(!$isOk) {
-            echo "Cannot create folder !<br/>";
+            echo $error = "Cannot create folder !<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
             continue 2;
         }
         $newFilename = $dir.'/'.$data['attach_id'].'.'.strtolower($ext);
         $oldFilename = $GLOBALS['PROJECT_ROOT'].'/files/forum/'.$filename;
         $res = $dropbox->storeFile($newFilename, $oldFilename);
         if(!file_exists($oldFilename)){
-            echo "Old file not exists ".$oldFilename." in attachmentId ".$data['attach_id']."<br/>";
+            echo $error = "Old file not exists ".$oldFilename." in attachmentId ".$data['attach_id']."<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
             continue 2;
         }
         if(is_null($res) || $res['bytes'] == 0) {
-            echo "Cannot save new file ".$newFilename." from ".$filename.' attachmentId '.$data['attach_id']."<br/>";
+            echo $error = "Cannot save new file ".$newFilename." from ".$filename.' attachmentId '.$data['attach_id']."<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
             continue 2;
         }
         $info = $dropbox->getAccountInfo();
