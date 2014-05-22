@@ -63,19 +63,19 @@ foreach($rows as $row){
         $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
         $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
         $fileId = $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
-        //@unlink($oldFilename);
+        @unlink($oldFilename);
         $toReplace = '[img:'.$bbcodeUid.']http://raks.com.ua/i/attachment/real/'.$fileId.'.'.$ext.'[/img:'.$bbcodeUid.']';
         if(!empty($comment)) $toReplace .= "\r\n".'('.$comment.')'."\r\n";
         $postText = str_replace($names[0][$key], $toReplace, $postText);
         $text = preg_replace('/\:[a-z0-9]+\]/ims', ']', $postText);
         $calendarParser = new calendar_forum_message_parser($text);
         $newBitfield = $calendarParser->get_bitfield();
-        echo $postText;
+        //echo $postText;
         $fields = array(
             'post_text'         => $postText,
             'bbcode_bitfield'   => $newBitfield,
         );
-        //SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
+        SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
     }
 }
 
