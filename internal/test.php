@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+ini_set('max_execution_time', 600);
 require_once('../lib/config.php');
 
 require_once($GLOBALS['CLASSES_DIR']."/Dropbox.class.php");
