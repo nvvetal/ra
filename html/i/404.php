@@ -32,7 +32,7 @@ if(preg_match("/attachment\/real\/(\d+)\.(\w{3})$/", $src, $match)){
     $curl = new CurlWrapper();
     $dropbox = new Dropbox($curl);
     $dropboxAccount = new DropboxAccount($dbhRaks);
-    $dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $dbhRaks);
+    $dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $curl, $dbhRaks);
     $dropboxFiles->showFile($match[1]);
     exit;
 }
