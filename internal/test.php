@@ -20,7 +20,7 @@ $q = "
     FROM phpbb_posts
     WHERE post_attachment = 1 AND post_text LIKE ".SQLQuote('%[attachment%')." AND post_time < ".$minPostTime."
     ORDER BY post_id ASC
-    LIMIT 1
+    LIMIT 10
 ";
 $rows = SQLGetRows($q, $dbhForum);
 if(count($rows) == 0) exit;
@@ -74,6 +74,7 @@ foreach($rows as $row){
         $fields = array(
             'post_text'         => $postText,
             'bbcode_bitfield'   => $newBitfield,
+            'post_attachment'   => 0,
         );
         SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
     }
