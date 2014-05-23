@@ -43,6 +43,11 @@ foreach($rows as $row){
         }
         $dropbox->setAccessToken($dropboxAccountBest['access_token']);
         $data = fetchForumAttachment($row['post_id'], $name, $dbhForum);
+        if(is_null($data)){
+            echo $error = "Cannot fetch ".$name."<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
+            continue 2;
+        }
         $comment = $data['attach_comment'];
         $filename = $data['physical_filename'];
         $ext = $data['extension'];
