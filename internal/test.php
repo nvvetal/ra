@@ -92,7 +92,7 @@ function getAttachmentNames($text)
 {
     //var_dump($text);
     $names = NULL;
-    if(preg_match_all("/\[attachment\=[^\]]+\]\<\!\-\-[^\>]+\>([^\<]+)\<\!\-\-[^\>]+\>\[\/attachment\:[^\]]+\]/ims", $text, $m)){
+    if(preg_match_all("/\[attachment\=[^\]]+\]\<\!\-\-[^\>]+\>([^\<]+)\<\!\-\-[^\>]+\>\[\/attachment\:[^\]]+\]/imsu", $text, $m)){
         $names = $m;
         //var_dump($m);
     }
