@@ -46,6 +46,11 @@ foreach($rows as $row){
         if(is_null($data)){
             echo $error = "Cannot fetch ".$name."<br/>";
             add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
+            $fields = array(
+                'post_attachment'   => 0,
+            );
+            SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
+
             continue;
         }
         $comment = $data['attach_comment'];
