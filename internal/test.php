@@ -50,6 +50,11 @@ foreach($rows as $row){
         }
         $comment = $data['attach_comment'];
         $filename = $data['physical_filename'];
+        if(empty($filename)){
+            echo $error = "Cannot fetch filename<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
+            continue;
+        }
         $ext = $data['extension'];
         $dir = substr(md5(microtime(true)), 0, 3).'/'.substr(md5(mt_rand(100,10000000)), 0, 10);
         $isOk = $dropbox->createFolder($dir);
