@@ -14,7 +14,7 @@ $curl = new CurlWrapper();
 $dropbox = new Dropbox($curl);
 $dropboxAccount = new DropboxAccount($dbhRaks);
 $dropboxFiles = new DropboxFiles($dropbox, $dropboxAccount, $curl, $dbhRaks);
-$minPostTime = time() - 365*24*3600*3;
+$minPostTime = time() - 365*24*3600;
 //Getting few posts with attachments which is not processed yet
 $q = "
     SELECT *
