@@ -24,9 +24,22 @@ $q = "
     LIMIT 25
 ";
 $rows = SQLGetRows($q, $dbhForum);
-if(count($rows) == 0) exit;
+$selectType = 1;
+if(count($rows) == 0) {
+    $q = "
+        SELECT *
+        FROM phpbb_posts
+        WHERE post_attachment = 1 AND post_text NOT LIKE ".SQLQuote('%[attachment%')." AND post_time < ".$minPostTime."
+        ORDER BY post_id ASC
+        LIMIT 25
+    ";
+
+    $selectType = 2;
+    $rows = SQLGetRows($q, $dbhForum);
+    if(count($rows) == 0) exit;
+}
 foreach($rows as $row){
-    $names = getAttachmentNames($row['post_text']);
+    $names = $selectType == 1 ? getAttachmentNames($row['post_text']) : getAttachmentNamesFromAttachments($row['post_id'], $dbhForum);
     if(is_null($names)) continue;
     echo $row['post_id']."<br/>";
     add_to_log('[postId '.$row['post_id'].']', "attachment_dropbox_migrate");
@@ -97,7 +110,11 @@ foreach($rows as $row){
         @unlink($oldFilename);
         $toReplace = '[img:'.$bbcodeUid.']http://raks.com.ua/i/attachment/real/'.$fileId.'.'.$ext.'[/img:'.$bbcodeUid.']';
         if(!empty($comment)) $toReplace .= "\r\n".'('.$comment.')'."\r\n";
-        $postText = str_replace($names[0][$key], $toReplace, $postText);
+        if($selectType == 1) {
+            $postText = str_replace($names[0][$key], $toReplace, $postText);
+        }elseif($selectType == 2){
+            $postText .= "\r\n".$toReplace;
+        }
         $text = preg_replace('/\:[a-z0-9]+\]/ims', ']', $postText);
         $calendarParser = new calendar_forum_message_parser($text);
         $newBitfield = $calendarParser->get_bitfield();
@@ -119,6 +136,22 @@ function getAttachmentNames($text)
     if(preg_match_all("/\[attachment\=[^\]]+\]\<\!\-\-[^\>]+\>([^\<]+)\<\!\-\-[^\>]+\>\[\/attachment\:[^\]]+\]/imsu", $text, $m)){
         $names = $m;
         //var_dump($m);
+    }
+    return $names;
+}
+
+function getAttachmentNamesFromAttachments($postId, $dbhForum)
+{
+    $names = NULL;
+    $query = "
+        SELECT real_filename
+        FROM phpbb_attachments
+        WHERE post_msg_id = ".SQLQuote($postId)."
+    ";
+    $rows = SQLGetRows($query, $dbhForum);
+    if(count($rows) == 0) return $names;
+    foreach($rows as $row){
+        $names[] = $row['real_filename'];
     }
     return $names;
 }
