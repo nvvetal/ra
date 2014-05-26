@@ -61,6 +61,15 @@ foreach($rows as $row){
             continue;
         }
         $ext = $data['extension'];
+        if($ext == 'rar'){
+            echo $error = "Archive ext".$ext."<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
+            $fields = array(
+                'post_attachment'   => 0,
+            );
+            SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
+            continue;
+        }
         $dir = substr(md5(microtime(true)), 0, 3).'/'.substr(md5(mt_rand(100,10000000)), 0, 10);
         $isOk = $dropbox->createFolder($dir);
         if(!$isOk) {
