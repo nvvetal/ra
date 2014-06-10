@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('max_execution_time', 0);
 require_once('../lib/config.php');
-
+header('Content-Type: text/html; charset=utf-8');
 require_once($GLOBALS['CLASSES_DIR']."/Dropbox.class.php");
 require_once($GLOBALS['CLASSES_DIR']."/DropboxAccount.class.php");
 require_once($GLOBALS['CLASSES_DIR']."/DropboxFiles.class.php");
@@ -23,9 +23,11 @@ $q = "
     ORDER BY post_id ASC
     LIMIT 25
 ";
+
 $rows = SQLGetRows($q, $dbhForum);
 $selectType = 1;
 if(count($rows) == 0) {
+
     $q = "
         SELECT *
         FROM phpbb_posts
@@ -33,14 +35,24 @@ if(count($rows) == 0) {
         ORDER BY post_id ASC
         LIMIT 25
     ";
-
+echo $q;
     $selectType = 2;
     $rows = SQLGetRows($q, $dbhForum);
     if(count($rows) == 0) exit;
 }
 foreach($rows as $row){
-    $names = $selectType == 1 ? getAttachmentNames($row['post_text']) : getAttachmentNamesFromAttachments($row['post_id'], $dbhForum);
-    if(is_null($names)) continue;
+    $names = $selectType == 1 ? getAttachmentNames($row['post_text']) : array(0=>array(), 1=>getAttachmentNamesFromAttachments($row['post_id'], $dbhForum));
+    if(is_null($names)){
+            echo $selectType;
+            var_dump($row['post_text']);
+            echo $error = "No names<br/>";
+            add_to_log('[continue][error '.$error.']', "attachment_dropbox_migrate");
+            $fields = array(
+                'post_attachment'   => 0,
+            );
+            SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
+            continue;
+    }
     echo $row['post_id']."<br/>";
     add_to_log('[postId '.$row['post_id'].']', "attachment_dropbox_migrate");
 
@@ -63,7 +75,6 @@ foreach($rows as $row){
                 'post_attachment'   => 0,
             );
             SQLUpdate('phpbb_posts', $fields, 'WHERE post_id = '.SQLQuote($row['post_id']), $dbhForum);
-
             continue;
         }
         $comment = $data['attach_comment'];
