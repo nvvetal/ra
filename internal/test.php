@@ -115,8 +115,10 @@ foreach($rows as $row){
             continue 2;
         }
         $info = $dropbox->getAccountInfo();
-        $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
-        $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
+        if(!is_null($info) && isset($info['quota_info'])) {
+            $dropboxAccount->setCurrentSize($dropboxAccountBest['id'], $info['quota_info']['normal'] + $info['quota_info']['shared']);
+            $dropboxAccount->setMaxSize($dropboxAccountBest['id'], $info['quota_info']['quota']);
+        }
         $fileId = $dropboxFiles->saveFile($dropboxAccountBest['id'], $data['attach_id'], $dir, $ext);
         @unlink($oldFilename);
         $toReplace = '[img:'.$bbcodeUid.']http://raks.com.ua/i/attachment/real/'.$fileId.'.'.$ext.'[/img:'.$bbcodeUid.']';
