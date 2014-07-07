@@ -1,6 +1,16 @@
 <?php
 
 function calendar_actions($go,$action,$params){
+    switch($go){
+        case "add_calendar":
+            $creator_id = $params['Session']->get_value($params['s'],'user_id');
+            if($creator_id == 0){
+                header('Location: '.$GLOBALS['HTTP_PROJECT_ROOT'].'?go=login&s='.$params['s']);
+            }
+            break;
+    }
+
+
     switch ($action){
         case "add_calendar":
             $creator_id = $params['Session']->get_value($params['s'],'user_id');
