@@ -1,5 +1,5 @@
 <?php
-//exit;
+exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
 $advertise_company_id = 'adv230';
