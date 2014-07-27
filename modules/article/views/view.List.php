@@ -20,6 +20,7 @@ function articleViewList(View $View){
     $returnParams['lastArticles'] = $articles->sortByParams($params);
     $returnParams['articleSections'] = $articleSections->all(1, 0, 'name ASC');
     $returnParams['sectionId'] = $sectionId;
+    $returnParams['page'] = $page;
     return $returnParams;
 }
 
