@@ -32,7 +32,7 @@
 {if $lastArticles.pages > 1}
     <div class="article-container article-pager">
         {section name=pager start=1 loop=$lastArticles.pages+1 step=1}
-            {if $page != $smarty.section.pager.index}<a href="?go=list&s={$s}&page={$smarty.section.pager.index}">{$smarty.section.pager.index}</a>{else}{$smarty.section.pager.index}{/if}&nbsp;
+            {if $page != $smarty.section.pager.index}<a href="?go=list&s={$s}&page={$smarty.section.pager.index}&section_id={$sectionId}">{$smarty.section.pager.index}</a>{else}{$smarty.section.pager.index}{/if}&nbsp;
         {/section}
     </div>
 {/if}

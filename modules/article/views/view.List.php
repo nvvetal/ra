@@ -19,6 +19,8 @@ function articleViewList(View $View){
     if(in_array($sortBy, array('author','name','time'))) $params['orderBy'] = $sortBy;
     $returnParams['lastArticles'] = $articles->sortByParams($params);
     $returnParams['articleSections'] = $articleSections->all(1, 0, 'name ASC');
+    $returnParams['sectionId'] = $sectionId;
+    $returnParams['page'] = $page;
     return $returnParams;
 }
 
