@@ -160,7 +160,7 @@
             showBannerData('banner_165_3', banner_165_3);
 
             var banner_165_4  = new Array();
-            banner_165_4[0]   = new Array ('<a href="http://rakselcairo.com/" target="_blank" ><img src="http://raks.com.ua/forum/images/FT_KsrGyhNA.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16752" target="_blank" ><img src="http://raks.com.ua/forum/images/banner_hawaii.gif" alt=""/></a>', 'html', 165, 190);
             showBannerData('banner_165_4', banner_165_4);
         }
 
