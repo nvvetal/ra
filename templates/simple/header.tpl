@@ -146,7 +146,7 @@
             showBannerData('banner_165_1', banner_165_1);
 
             var banner_165_2  = new Array();
-            banner_165_2[0]   = new Array ('<a href="http://www.raks.com.ua/forum/viewtopic.php?f=148&t=16587" target="_blank"><img src="images/masr.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[0]   = new Array ('<a href="http://www.raks.com.ua/forum/viewtopic.php?f=148&t=16587" target="_blank"><img src="http://raks.com.ua/forum/images/masr.gif" alt=""/></a>', 'html', 165, 190);
 
             //banner_165_2[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=183884" target="_blank"><img src="http://raks.com.ua/forum/images/banner_poraksuem.gif" alt=""/></a>', 'html', 165, 190);
 
