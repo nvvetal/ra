@@ -506,6 +506,11 @@ class User
         }
         return $data;
     }
-}
 
-?>
+    function getAll()
+    {
+        $q = "SELECT * FROM users";
+        $users = SQLGetRows($q, $dbh);
+        return $users;
+    }
+}
