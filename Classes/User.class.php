@@ -510,7 +510,7 @@ class User
     function getAll()
     {
         $q = "SELECT * FROM users";
-        $users = SQLGetRows($q, $dbh);
+        $users = SQLGetRows($q, $this->dbh);
         return $users;
     }
 }
