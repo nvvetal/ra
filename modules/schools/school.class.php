@@ -173,13 +173,10 @@ class school {
     }
 
     function get_schools_search_cnt($searchFilter){
-        $order = (isset($searchFilter['order_by']) && $searchFilter['order_by'] == 'last') ? 'position' : 'name';
         $city_id = (!empty($searchFilter['city_id']) && $searchFilter['city_id'] > 0) ? intval($searchFilter['city_id']) : '';
         $subdivision_id = (!empty($searchFilter['subdivision_id']) && $searchFilter['subdivision_id'] > 0) ? intval($searchFilter['subdivision_id']) : '';
         $country_id = (!empty($searchFilter['country_id']) && $searchFilter['country_id'] > 0) ? intval($searchFilter['country_id']) : '';
         $per_page = isset($searchFilter['per_page']) ? intval($searchFilter['per_page']) : 25;
-        $page = isset($searchFilter['page']) ? intval($searchFilter['page']) : 1;
-
         $where = '';
         $and = array();
         $andFromCities = '';
@@ -216,7 +213,6 @@ class school {
             FROM schools as s$andFromCities
             $where
         ";
-
         $data = SQLGet($query,$this->dbh);
         $count = ceil($data['cnt'] / $per_page);
         return $count;

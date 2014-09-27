@@ -201,28 +201,5 @@ function school_actions($go,$action,$params){
 
     }
 
-    switch($go){
-        case "schools":
-            if(empty($action) && is_array($params['User']->get_session_data('schoolsSearchData'))) return $go;
-            $order_by = (isset($_REQUEST['order_by']) && in_array($_REQUEST['order_by'],array('last','name'))) ? $_REQUEST['order_by'] : 'last';
-            $city_id = (isset($_REQUEST['city_id'])) ? intval($_REQUEST['city_id']) : '';
-            $subdivision_id = (isset($_REQUEST['subdivision_id'])) ? intval($_REQUEST['subdivision_id']) : '';
-            $country_id = (isset($_REQUEST['country_id'])) ? intval($_REQUEST['country_id']) : '';
-            $page = (isset($_REQUEST['page'])) ? intval($_REQUEST['page']) : 1;
-            $per_page = (isset($_REQUEST['per_page'])) ? intval($_REQUEST['per_page']) : 25;
-            $schoolsSearchData = array(
-                'order_by' => $order_by,
-                'city_id' => $city_id,
-                'subdivision_id' => $subdivision_id,
-                'country_id' => $country_id,
-                'per_page' => $per_page,
-                'page' => $page,
-            );
-            $params['User']->set_session_data('schoolsSearchData',$schoolsSearchData);
-            break;
-    }
-
-
     return $go;
-
 }

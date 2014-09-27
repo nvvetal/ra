@@ -7,4 +7,3 @@ $schoolPrices = array(
     'makeSchoolTop' => 300,
 );
 Registry::set('schoolPrices',$schoolPrices);
-?>

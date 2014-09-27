@@ -31,7 +31,7 @@ global $Geo;
 
 $Utils = new Utils();
 $Geo = new Geo($DBFactory->get_db_handle('rakscom'));
-
+Registry::set('Geo', $Geo);
 $school = new school($DBFactory->get_db_handle('rakscom'));
 $school_blog = new school_blog('school_blog',$DBFactory->get_db_handle('rakscom'));
 
