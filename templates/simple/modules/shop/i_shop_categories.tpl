@@ -6,7 +6,7 @@
         {if $smarty.foreach.shopCategory.first == true}
             <div class="shop_categories">
         {/if}
-        <div><a href="{$http_project_path}shop/?go=shop_category&s={$s}&shop_id={$shop->id}&category_id={$shopCategory->id}&sortByType={$smarty.request.sortByType}&sortByOrder={$smarty.request.sortByOrder}">{if $shopCategory->id == $shopCategorySelected}<b>{/if}{$shopCategory->name}{if $shopCategory->id == $shopCategorySelected}</b>{/if}</a>{if $shopCategory->new == 1}<img src="{$http_images_static_path}new.gif" alt=""/>{/if}</div>
+        <div><a href="{$http_project_path}shop/?go=shop_category&s={$s}&shop_id={$shop->id}&category_id={$shopCategory->id}&sortByType={$smarty.request.sortByType}&sortByOrder={$smarty.request.sortByOrder}">{if $shopCategory->id == $shopCategorySelected}<b>{/if}{$shopCategory->name}{if $shopCategory->id == $shopCategorySelected}</b>{/if}</a>{if $shopCategory->new == 1} <img src="{$http_images_static_path}new.gif" alt=""/>{/if}</div>
         {if $smarty.foreach.shopCategory.last == true}
             </div>
         {/if}
