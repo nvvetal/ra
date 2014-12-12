@@ -66,7 +66,7 @@ class Utils {
             $months[] = array(
                 'month'         => date('F', $d),
                 'month_short'   => date('m', $d),
-                'year'          => date('y', $d),
+                'year'          => date('Y', $d),
             );
         }
         return $months;
