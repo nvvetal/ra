@@ -7,9 +7,10 @@
     {assign var="current_month" value="now"|date_format:"%m"}
 {/if}
 
-{assign var="next_month" value=$Utils->get_next_month($current_year,$current_month,'+')}
-{assign var="prev_month" value=$Utils->get_next_month($current_year,$current_month,"-")}
-{assign var="calendars" value=$calendar->get_calendars_by_month($current_year,$current_month)}
+{assign var="next_month" value=$Utils->get_next_month($current_year, $current_month,'+')}
+{assign var="prev_month" value=$Utils->get_next_month($current_year, $current_month,"-")}
+{assign var="calendars" value=$calendar->get_calendars_by_month($current_year, $current_month)}
+
 <div class="calendar">
     <table width="100%" border="1">
         <tr align="center">
@@ -31,8 +32,7 @@
             <td>{"Operation"|i18n}</td>
         </tr>
         {assign var="counter" value=0}
-        {foreach from=$Utils->get_month_days($month_data.year,$month_data.month_short) item=day_data}
-
+        {foreach from=$Utils->get_month_days($month_data.year, $month_data.month_short) item=day_data}
             {assign var="cur_day" value=$day_data.ymd_representation}
             {if isset($calendars[$day_data.ymd_representation])}
                 {foreach name="clz" from=$calendars[$day_data.ymd_representation] item=current_calendar}
