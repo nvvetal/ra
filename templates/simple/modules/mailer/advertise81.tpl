@@ -7,7 +7,7 @@
 </head>
 <body style="color: black;text-align: center;font-size: 16px">
 <div style="text-align: center">
-    <img src="cid:master" alt="Isadora Winter Camp" />
+    <img src="cid:master" style="width: 100%" alt="Isadora Winter Camp" />
 </div>
 <b>
 Isadora group<br/>
