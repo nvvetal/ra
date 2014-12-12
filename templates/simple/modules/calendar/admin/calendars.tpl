@@ -34,7 +34,6 @@
         {assign var="counter" value=0}
         {foreach from=$Utils->get_month_days($current_year, $current_month) item=day_data}
             {assign var="cur_day" value=$day_data.ymd_representation}
-            {$cur_day}
             {if isset($calendars[$day_data.ymd_representation])}
                 {foreach name="clz" from=$calendars[$day_data.ymd_representation] item=current_calendar}
                     {assign var="counter" value=1}
