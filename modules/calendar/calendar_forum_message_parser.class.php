@@ -123,8 +123,8 @@ class calendar_forum_message_parser
         */
 
 
-        $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$1</a><!-- m -->', $data);
-        $data = preg_replace('/\[url\=([^\[]+)\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$2</a><!-- m -->', $data);
+        $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '$1', $data);
+        $data = preg_replace('/\[url\=([^\[]+)\]([^\[]+)\[\/url\]/ims', '$1', $data);
 
         $pattern = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
         $data = preg_replace_callback("#$pattern#i", function($matches) {
