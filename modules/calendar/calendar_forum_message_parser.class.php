@@ -122,7 +122,7 @@ class calendar_forum_message_parser
         }, $data);
         */
         $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$1</a><!-- m -->', $data);
-        $data = preg_replace('/\[url([^\[]+)\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$2</a><!-- m -->', $data);
+        $data = preg_replace('/\[url\=([^\[]+)\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$2</a><!-- m -->', $data);
 
         $data = str_replace($codes, $replace, $data);
         $data = preg_replace('/\[color\=(#[0-9a-f]{6}|[a-z\-]+)\]/ims', '[color=$1:'.$bbcode_uid.']', $data);
