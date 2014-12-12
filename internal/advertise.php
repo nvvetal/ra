@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv236';
+$advertise_company_id = 'adv237';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -91,10 +91,10 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise80.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise81.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -134,7 +134,7 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/second/POLOZHENIE_festival.doc",'POLOZHENIE_festival.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/oriental/Spisok_nominaciy_Oriental_Dance_2011.xls",'Spisok_nominaciy_Oriental_Dance_2011.xls','base64','application/vnd.ms-excel');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/AIDA.ppt",'AIDA.ppt','base64','application/vnd.ms-powerpoint');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/afisha2/afisha.jpg",'afisha','afisha.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/master/wintercamp2015.jpg",'master','wintercamp2015.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-3.jpg",'novyy3','novyy-3.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
@@ -147,7 +147,7 @@ foreach ($users as $key=>$user){
 
     if($mail->IsError())$err.="|".$mail->ErrorInfo;
     //if($mail->IsError())$err.="|".$mail->ErrorInfo;
-    $mail->Subject = 'Фестиваль восточного танца "Шамс Эль Маср"';
+    $mail->Subject = 'Isadora Winter Camp';
 
     if($mail->IsError())$err.="|".$mail->ErrorInfo;
 
