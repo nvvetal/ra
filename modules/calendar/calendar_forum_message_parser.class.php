@@ -124,7 +124,7 @@ class calendar_forum_message_parser
 
         $pattern = '(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
         $data = preg_replace_callback("#$pattern#i", function($matches) {
-            $input = $matches[0];
+            $input = $matches[1];
             $url = preg_match('!^https?://!i', $input) ? $input : "http://$input";
             return '<!-- m --><a class="postlink" href="' . $url . '">'.$url.'</a><!-- m -->';
         }, $data);
