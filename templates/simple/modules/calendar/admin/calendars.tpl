@@ -32,7 +32,7 @@
             <td>{"Operation"|i18n}</td>
         </tr>
         {assign var="counter" value=0}
-        {foreach from=$Utils->get_month_days($month_data.year, $month_data.month_short) item=day_data}
+        {foreach from=$Utils->get_month_days($current_year, $current_month) item=day_data}
             {assign var="cur_day" value=$day_data.ymd_representation}
             {$cur_day}
             {if isset($calendars[$day_data.ymd_representation])}
