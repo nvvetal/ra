@@ -58,20 +58,23 @@ class Utils {
         return $d;
     }
     
-    function get_months(){
+    function get_months($currentYear, $currentMonth){
         $months = array();
-        for ($i = 1; $i <= 12; $i++){
-            $d = strtotime(sprintf("2000-%02d-01",$i));
+        for ($i = 0; $i <= 11; $i++){
+//            $d = strtotime(sprintf("2000-%02d-01",$i));
+            $d = strtotime('+'.$i.' month', strtotime($currentYear.'-'.$currentMonth.'-01 00:00:00'));
             $months[] = array(
-                'month'=>date('F',$d),
-                'month_short'=>date('m',$d),
+                'month'         => date('F', $d),
+                'month_short'   => date('m', $d),
+                'year'          => date('y', $d),
             );
         }
         return $months;
     }
 
 	function get_current_month_index(){
-		return date('n')-1;		
+		return 0;
+        return date('n')-1;
 	}
 
 }

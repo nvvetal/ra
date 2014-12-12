@@ -14,12 +14,11 @@
 {/if}
 <div class="calendar" id="cal-tabs">
     <ul>
-        {foreach name="month_data" from=$Utils->get_months() item=month_data}
+        {foreach name="month_data" from=$Utils->get_months($current_year, $current_month) item=month_data}
             <li><a href="#cal-tabs-{$smarty.foreach.month_data.index}">{$month_data.month|i18n:'calendar'}</a></li>
         {/foreach}
     </ul>
-    {if $current_month == $month_data.month_short}selected{/if}
-    {foreach name="month_data" from=$Utils->get_months() item=month_data}
+    {foreach name="month_data" from=$Utils->get_months($current_year, $current_month) item=month_data}
         <div id="cal-tabs-{$smarty.foreach.month_data.index}">
             <table class="caltable" width="100%">
                 <tr align="center">
@@ -30,8 +29,8 @@
                     <td width="125">{"Organizator"|i18n:'calendar'}</td>
                 </tr>
                 {assign var="counter" value=0}
-                {foreach from=$Utils->get_month_days($current_year,$month_data.month_short) item=day_data}
-                    {assign var="calendars" value=$calendar->get_calendars_by_month($current_year,$month_data.month_short)}
+                {foreach from=$Utils->get_month_days($month_data.year, $month_data.month_short) item=day_data}
+                    {assign var="calendars" value=$calendar->get_calendars_by_month($month_data.year, $month_data.month_short)}
                     {assign var="cur_day" value=$day_data.ymd_representation}
                     {if isset($calendars[$day_data.ymd_representation])}
                         {foreach name="clz" from=$calendars[$day_data.ymd_representation] item=current_calendar}
