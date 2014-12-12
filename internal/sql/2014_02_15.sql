@@ -1,2 +1,0 @@
-ALTER TABLE  `images` CHANGE  `owner_type`  `owner_type` ENUM(  'unknown',  'user',  'school',  'article_section',  'shop',  'article' ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT  'unknown';
-ALTER TABLE  `articles` ADD  `image_id` BIGINT UNSIGNED NOT NULL AFTER  `name`;

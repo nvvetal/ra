@@ -1,2 +1,0 @@
-ALTER TABLE `countries` ADD `is_deleted` TINYINT NOT NULL DEFAULT '0';
-ALTER TABLE `cities` ADD `is_deleted` TINYINT NOT NULL DEFAULT '0';

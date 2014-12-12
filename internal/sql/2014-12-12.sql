@@ -1,0 +1,1 @@
+ALTER TABLE  `shop_categories` ADD  `new` TINYINT NOT NULL DEFAULT  '0' AFTER  `name` ;

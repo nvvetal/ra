@@ -1,1 +1,0 @@
-ALTER TABLE  `photo_photos` ADD  `description` VARCHAR( 300 ) NOT NULL AFTER  `name`;
