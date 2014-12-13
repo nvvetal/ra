@@ -88,15 +88,7 @@ class calendar_forum_message_parser
             '[/s]',
         );
 
-        #http://daringfireball.net/2010/07/improved_regex_for_matching_urls
-        /*
-        $pattern = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
-        $data = preg_replace_callback("#$pattern#i", function($matches) {
-            $input = $matches[1];
-            $url = preg_match('!^https?://!i', $input) ? $input : "http://$input";
-            return '<!-- m --><a class="postlink" href="' . $url . '">'.$url.'</a><!-- m -->';
-        }, $data);
-        */
+
         $data = $this->linkify($data);
         $replace = array(
             '[quote:'.$bbcode_uid.'=',
@@ -124,22 +116,17 @@ class calendar_forum_message_parser
             '[s:'.$bbcode_uid.']',
             '[/s:'.$bbcode_uid.']',
         );
+        #http://daringfireball.net/2010/07/improved_regex_for_matching_urls
         /*
-        $pattern = '(?<!\])(?xi)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
+        $pattern = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
         $data = preg_replace_callback("#$pattern#i", function($matches) {
-            $input = $matches[0];
+            $input = $matches[1];
             $url = preg_match('!^https?://!i', $input) ? $input : "http://$input";
             return '<!-- m --><a class="postlink" href="' . $url . '">'.$url.'</a><!-- m -->';
         }, $data);
         */
-
-
-
-        $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '$1', $data);
-        $data = preg_replace('/\[url\=([^\[]+)\]([^\[]+)\[\/url\]/ims', '$1', $data);
-
-
-
+        $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$1</a><!-- m -->', $data);
+        $data = preg_replace('/\[url\=([^\[]+)\]([^\[]+)\[\/url\]/ims', '<!-- m --><a class="postlink" href="$1">$1</a><!-- m -->', $data);
         $data = str_replace($codes, $replace, $data);
         $data = preg_replace('/\[color\=(#[0-9a-f]{6}|[a-z\-]+)\]/ims', '[color=$1:'.$bbcode_uid.']', $data);
         $data = preg_replace('/\[size\=([0-9a-z]+)\]/ims', '[size=$1:'.$bbcode_uid.']', $data);
@@ -187,7 +174,7 @@ class calendar_forum_message_parser
         [a-z0-9\-_~$()*+=\/#[\]@%]  # Last char can\'t be [.!&\',;:?]
       )                        # End $14. Other non-delimited URL.
     /imx';
-        $url_replace = '$1$4$7$10$13<!-- m --><a class="postlink" href="$2$5$8$11$14">$2$5$8$11$14</a>$3$6$9$12';
+        $url_replace = '$1$4$7$10$13<!-- m --><a class="postlink" href="$2$5$8$11$14">$2$5$8$11$14</a><!-- m -->$3$6$9$12';
         return preg_replace($url_pattern, $url_replace, $text);
     }
 }
