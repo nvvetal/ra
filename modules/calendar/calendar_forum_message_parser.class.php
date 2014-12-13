@@ -87,6 +87,15 @@ class calendar_forum_message_parser
             '[s]',
             '[/s]',
         );
+
+        #http://daringfireball.net/2010/07/improved_regex_for_matching_urls
+        $pattern = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
+        $data = preg_replace_callback("#$pattern#i", function($matches) {
+            $input = $matches[1];
+            $url = preg_match('!^https?://!i', $input) ? $input : "http://$input";
+            return '<!-- m --><a class="postlink" href="' . $url . '">'.$url.'</a><!-- m -->';
+        }, $data);
+
         $replace = array(
             '[quote:'.$bbcode_uid.'=',
             '[/quote:'.$bbcode_uid.']',
@@ -127,13 +136,6 @@ class calendar_forum_message_parser
         $data = preg_replace('/\[url\]([^\[]+)\[\/url\]/ims', '$1', $data);
         $data = preg_replace('/\[url\=([^\[]+)\]([^\[]+)\[\/url\]/ims', '$1', $data);
 
-        #http://daringfireball.net/2010/07/improved_regex_for_matching_urls
-        $pattern = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
-        $data = preg_replace_callback("#$pattern#i", function($matches) {
-            $input = $matches[1];
-            $url = preg_match('!^https?://!i', $input) ? $input : "http://$input";
-            return '<!-- m --><a class="postlink" href="' . $url . '">'.$url.'</a><!-- m -->';
-        }, $data);
 
 
         $data = str_replace($codes, $replace, $data);
