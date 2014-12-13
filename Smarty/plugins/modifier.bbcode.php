@@ -23,8 +23,8 @@ function smarty_modifier_bbcode($string)
     $string = preg_replace("/\[s\]/i","<s>", $string);
     $string = preg_replace("/\[\/s\]/i","</s>", $string);
 
-	$string = preg_replace("/\[url=([^\]]+)\](.*?)\[\/url\]/i","$1", $string);
-	$string = preg_replace("/\[url\]([^\[]+)\[\/url\]/i","$1", $string);
+	$string = preg_replace("/\[url=([^\]]+)\]([^\[]+)\[\/url\]/i","<a href='$1'>$1</a>", $string);
+	$string = preg_replace("/\[url\]([^\[]+)\[\/url\]/i","<a href='$1'>$1</a>", $string);
 	$string = preg_replace("/\[size=([^\]]+)\](.*?)\[\/size\]/i","<font size=\"$1\">$2</font>", $string);
 
 	$string = preg_replace("/\[url\](.*?)\[\/url\]/i","<a href=\"$1\">$1</a>", $string);
@@ -84,6 +84,6 @@ function internal_smarty_modifier_bbcode_linkify($text) {
         [a-z0-9\-_~$()*+=\/#[\]@%]  # Last char can\'t be [.!&\',;:?]
       )                        # End $14. Other non-delimited URL.
     /imx';
-	$url_replace = '$1$4$7$10$13<!-- m --><a class="postlink" href="$2$5$8$11$14">$2$5$8$11$14</a><!-- m -->$3$6$9$12';
+	$url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14">$2$5$8$11$14</a>$3$6$9$12';
 	return preg_replace($url_pattern, $url_replace, $text);
 }
