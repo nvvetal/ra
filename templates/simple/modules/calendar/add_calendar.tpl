@@ -85,7 +85,7 @@
         <tr>
             <td valign="top">{"Name"|i18n}</td>
             <td>
-                <input type="text" style="width:100%" name="name" value="{$smarty.request.name}" max_length="100" />
+                <input type="text" style="width:100%" name="name" value="{$smarty.request.name|escape:html}" max_length="100" />
             </td>
         </tr>
 
