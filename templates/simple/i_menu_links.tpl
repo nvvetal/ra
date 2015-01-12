@@ -9,3 +9,6 @@
     <li><a href="{$http_project_path}?go=partners&s={$s}"><img src="{$http_images_static_path}manu_partners.gif" alt=""/></a></li>
     <li><a href="{$http_project_path}forum/?from=portal&s={$s}"><img src="{$http_images_static_path}menu_forum.jpg" alt=""/></a></li>
 </ul>
+
+<a href="http://acety.org/" target="_blank"><img src="http://raks.com.ua/forum/images/240_100_acety.gif" alt="" /></a>
+<a href="http://acety.org/" target="_blank"><img src="http://raks.com.ua/forum/images/240_100_lpvt.gif" alt="" /></a>
