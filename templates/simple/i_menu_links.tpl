@@ -11,4 +11,4 @@
 </ul>
 
 <a href="http://acety.org/" target="_blank"><img src="http://raks.com.ua/forum/images/240_100_acety.gif" alt="" /></a>
-<a href="http://acety.org/" target="_blank"><img src="http://raks.com.ua/forum/images/240_100_lpvt.gif" alt="" /></a>
+<a href="http://bestbelly.org/" target="_blank"><img src="http://raks.com.ua/forum/images/240_100_lpvt.gif" alt="" /></a>
