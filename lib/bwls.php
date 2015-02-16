@@ -150,6 +150,7 @@ function bwls($go,$action,$params){
                             add_to_log("[user_id {$user['user_id']}][login_type login_form][s {$params['s']}][type ".$params['User']->get_value($user['user_id'],'type')."]",'login');
                             $params['User']->set_value($user['user_id'],'lastEnterTime',time());
                         }else{
+
                             $login_bad_attempts = $params['Session']->get_value($params['s'],'login_bad_attempts');
                             if(is_null($login_bad_attempts)){
                                 $login_bad_attempts = 1;
@@ -269,17 +270,18 @@ function page_content($go, $action, $params){
                     require_once($GLOBALS['CLASSES_DIR']."User_container.class.php");
                     $user_container_class = new User_container($params['Validator'],$params['User']);
                     $p_params = array(
-                        'p_sex' => @$_REQUEST['p_sex'],
-                        'p_first_name' => @$_REQUEST['p_first_name'],
-                        'p_last_name' => @$_REQUEST['p_last_name'],
-                        'p_city_id' => @$_REQUEST['city_id'],
-                        'p_birthday' => sprintf("%04d-%02d-%02d",@$_REQUEST['p_birthday_Year'],@$_REQUEST['p_birthday_Month'],@$_REQUEST['p_birthday_Day']),
-                        'p_profession' => @$_REQUEST['p_profession'],
-                        'p_hobby' => @$_REQUEST['p_hobby'],
-                        'p_url' => @$_REQUEST['p_url'],
-                        'p_icq' => @$_REQUEST['p_icq'],
-                        'p_skype' => @$_REQUEST['p_skype'],
-                        'email' => @$_REQUEST['email'],
+                        'p_sex'         => @$_REQUEST['p_sex'],
+                        'p_first_name'  => @$_REQUEST['p_first_name'],
+                        'p_last_name'   => @$_REQUEST['p_last_name'],
+                        'p_city_id'     => @$_REQUEST['city_id'],
+                        'p_birthday'    => sprintf("%04d-%02d-%02d",@$_REQUEST['p_birthday_Year'],@$_REQUEST['p_birthday_Month'],@$_REQUEST['p_birthday_Day']),
+                        'p_profession'  => @$_REQUEST['p_profession'],
+                        'p_hobby'       => @$_REQUEST['p_hobby'],
+                        'p_url'         => @$_REQUEST['p_url'],
+                        'p_icq'         => @$_REQUEST['p_icq'],
+                        'p_skype'       => @$_REQUEST['p_skype'],
+                        'email'         => @$_REQUEST['email'],
+                        'password'      => @$_REQUEST['password'],
                     );
                     if(is_uploaded_file($_FILES['p_avatar_file']['tmp_name'])) {
                         $i_ret = $params['Images']->upload_image($_FILES['p_avatar_file'],$GLOBALS['IMAGE_UPLOAD_ORIGINAL_PATH'],'upload');
@@ -288,14 +290,29 @@ function page_content($go, $action, $params){
                             $params['User']->set_value($params['Session']->get_value($params['s'],'user_id'),'image_id',$i_ret['ID']);
                         }else{
                             $params['smarty']->assign('errors',array(array("message"=>"Cannot upload image - not valid!")));
+                            return $go;
                         }
                     }
-                    $v_result = $user_container_class->validate_params("my_profile_save",$p_params);
-                    if($user_container_class->is_valid($v_result)){
-                        $params['User']->set_values($params['Session']->get_value($params['s'],'user_id'),$p_params);
-                        if($userStatus != $status && !empty($status)){
-                            $statusData = array(
-                                'user_id'       => $params['Session']->get_value($params['s'],'user_id'),
+                    $v_result = $user_container_class->validate_params("my_profile_save", $p_params);
+                    if(!$user_container_class->is_valid($v_result)){
+                        $params['smarty']->assign('errors', $user_container_class->get_errors($v_result));
+                        return $go;
+                    }
+                    if(!empty($p_params['password'])){
+                        $v_result = $user_container_class->validate_params("my_profile_save_password", $p_params);
+                        if($user_container_class->is_valid($v_result) == false){
+                            $params['smarty']->assign('errors', $user_container_class->get_errors($v_result));
+                            return $go;
+                        }
+                        $p_params['password'] = md5($p_params['password']);
+                    }else{
+                        unset($p_params['password']);
+                    }
+                    $params['User']->set_values($params['Session']->get_value($params['s'],'user_id'),$p_params);
+
+                    if($userStatus != $status && !empty($status)){
+                        $statusData = array(
+                             'user_id'       => $params['Session']->get_value($params['s'],'user_id'),
                                 'status'        => $status,
                                 'is_active'     => 'Y',
                                 'created_time'  => time(),
@@ -306,9 +323,6 @@ function page_content($go, $action, $params){
                         $Raks->addMoneyByRule($params['Session']->get_value($params['s'],'user_id'), 'profileEditFirst', array());
                         header('Location: ?go=profile&user_id='.$params['Session']->get_value($params['s'],'user_id'));
                         exit;
-                    }else{
-                        $params['smarty']->assign('errors',$user_container_class->get_errors($v_result));
-                    }
                     break;
             }
             break;

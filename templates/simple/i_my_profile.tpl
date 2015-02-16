@@ -123,6 +123,13 @@
         </tr>
 
         <tr>
+            <td>{"Password"|i18n}</td>
+            <td>
+                <input type="password" autocomplete="off" name="password"  value="{$smarty.request.password}" style="width:100%;" />
+            </td>
+        </tr>
+
+        <tr>
             <td colspan="2" align="right">
                 <a href="{$http_project_path}?s={$s}&go=profile&user_id={$user_id}">{"View My Profile"|i18n}</a>&nbsp;
                 <input type="submit" name="btnSubmit" value="{"Save profile"|i18n}"/>

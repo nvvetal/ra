@@ -104,7 +104,25 @@ class User_container extends ValidatorContainer {
                         'is_not_empty'=>array(),
                     ),
                     'print_name'=>"City",
-                ),                 
+                ),
+            ),
+            'my_profile_save_password'=>array(
+                'password'=>array(
+                    'validators'=>array(
+                        "is_not_empty"=>array(),
+                        "is_char_min"=>array(
+                            'params'=>array(
+                                "min"=>5,
+                            ),
+                        ),
+                        "is_char_max"=>array(
+                            'params'=>array(
+                                "max"=>20,
+                            ),
+                        ),
+                    ),
+                    'print_name'=>"Password",
+                ),
             ),
             //ACTION password_back
             'password_back'=>array(
