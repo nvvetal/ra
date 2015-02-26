@@ -152,7 +152,7 @@
             //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16884" target="_blank"><img src="http://raks.com.ua/forum/images/ban_esfeer.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
 //            banner_165_2[0]   = new Array ('http://raks.com.ua/forum/images/zaporozhie_belly.swf', 'swf', 165, 190);
-            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=16801" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=17131" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa.gif" alt=""/></a>', 'html', 165, 190);
 
 
             //          banner_165_2[0]   = new Array ('<a href="http://www.raks.com.ua/forum/viewtopic.php?f=164&t=16668&p=184493" target="_blank"><img src="http://raks.com.ua/forum/images/pol_goda.gif" alt=""/></a>', 'html', 165, 190);
