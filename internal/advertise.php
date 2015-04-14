@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv241';
+$advertise_company_id = 'adv242';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -130,8 +130,8 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/02_2013_turnir_pravila_samie_novie.doc",'02_2013_turnir_pravila_samie_novie.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/03_bd_sudak_2013_dopolnenie_k_pologeniyu_o_festivale.doc",'03_bd_sudak_2013_dopolnenie_k_pologeniyu_o_festivale.doc','base64','application/msword');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/vostok2/Vostok.jpg",'Vostok','Vostok.jpg','base64','image/jpeg');
-    $mail->AddAttachment(PROJECT_ROOT."/images/mailer/vostok2/invitation.doc",'invitation.doc','base64','application/msword');
-    $mail->AddAttachment(PROJECT_ROOT."/images/mailer/vostok2/thesis.doc",'thesis.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/vostok2/invitation.doc",'приглашение.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/vostok2/thesis.doc",'положение про конкурс Жумчужина Востока.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/05_bd_sudak_2013_spisok_kompoziciy_dlya_orkestra.doc",'05_bd_sudak_2013_spisok_kompoziciy_dlya_orkestra.doc','base64','application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/second/POLOZHENIE_festival.doc",'POLOZHENIE_festival.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/oriental/Spisok_nominaciy_Oriental_Dance_2011.xls",'Spisok_nominaciy_Oriental_Dance_2011.xls','base64','application/vnd.ms-excel');
