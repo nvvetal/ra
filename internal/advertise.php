@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv250';
+$advertise_company_id = 'adv270';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -27,12 +27,12 @@ $mail->IsSMTP();
 $mail->CharSet = 'UTF-8';
 $mail->ContentType ="text/html";
 
-$mail->Host       = $GLOBALS['mailParams']['host']; // SMTP server example
+$mail->Host       = $GLOBALS['mailParams2']['host']; // SMTP server example
 $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->Port       = $GLOBALS['mailParams']['port'];                    // set the SMTP port for the GMAIL server
-$mail->Username   = $GLOBALS['mailParams']['username']; // SMTP account username example
-$mail->Password   = $GLOBALS['mailParams']['password'];        // SMTP account password example
+$mail->Port       = $GLOBALS['mailParams2']['port'];                    // set the SMTP port for the GMAIL server
+$mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
+$mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
 
 //$mail->ContentType ="multipart/mixed";
 
@@ -80,7 +80,6 @@ $query = "
 
 
 $users = array(
-    /*
     "0"=>array(
         'login'=>'nvvetal',
         'email'=>'vitaliy.grinchishin@gmail.com',
@@ -90,14 +89,9 @@ $users = array(
         'login'=>'khalisy',
         'email'=>'khalisy@mail.ru',
     ),
-*/
-    "0" => array(
-        'login' => 'glam-julia',
-        'email' => 'glam-julia@mail.ru',
-    )
 );
 
-//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
 $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise82.tpl');
@@ -118,7 +112,8 @@ foreach ($users as $key=>$user){
     $mail->From = "admin@raks.com.ua";
     //$mail->message_type = 'alt_attachments';
     $mail->FromName = "RAKS.COM.UA - танец живота и индийский танец";
-
+    $mail->Sender  = "admin@raks.com.ua";
+    $mail->addReplyTo("admin@raks.com.ua", "admin@raks.com.ua");
 
     $smarty->assign('user',$user);
 
