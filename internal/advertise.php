@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv245';
+$advertise_company_id = 'adv250';
 
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -18,7 +18,7 @@ $smarty->caching=false;
 
 require_once($GLOBALS['MODULES_DIR'].'mailer/class.phpmailer.php');
 
-$mail = new PHPMailer();
+$mail = new PHPMailer(true);
 
 $mail->SetLanguage('en',$GLOBALS['MODULES_DIR']."mailer/language/");
 
@@ -108,7 +108,7 @@ $cnt = 0;
 foreach ($users as $key=>$user){
     if(search_email($advertise_company_id, $user['email'])) continue;
     $cnt ++;
-    if($cnt > 5) exit;
+    if($cnt > 10) exit;
     $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
@@ -150,24 +150,21 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/karavan/Kategorii_dlya_registracii2013.doc",'Kategorii_dlya_registracii2013.doc','base64','application/msword');
 
 
-    if($mail->IsError())$err.="|".$mail->ErrorInfo;
-
-    if($mail->IsError())$err.="|".$mail->ErrorInfo;
-    //if($mail->IsError())$err.="|".$mail->ErrorInfo;
     $mail->Subject = 'Конкурс-фестиваль по восточным танцам "Жемчужина Востока"';
-
-    if($mail->IsError())$err.="|".$mail->ErrorInfo;
-
-    if($mail->IsError())$err.="|".$mail->ErrorInfo;
 
     $fileds = array(
         "a_time"=>time(),
         "a_type"=>$advertise_company_id,
         "a_value"=>$user['email'],
     );
-    if(!$mail->Send()){
-        $err = "|".$mail->ErrorInfo;
-    }
+ try{
+    $mail->Send();
+
+} catch (phpmailerException $e) {
+     $err .= $e->errorMessage(); //Pretty error messages from PHPMailer
+} catch (Exception $e) {
+     $err .= $e->getMessage(); //Boring error messages from anything else!
+}
 
     SQLInsert("advertise",$fileds,$DBFactory->get_db_handle('rakscom'));
 
