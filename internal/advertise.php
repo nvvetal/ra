@@ -2,8 +2,8 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv270';
-
+$advertise_company_id = 'adv271';
+require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
 
@@ -102,7 +102,7 @@ $cnt = 0;
 foreach ($users as $key=>$user){
     if(search_email($advertise_company_id, $user['email'])) continue;
     $cnt ++;
-    if($cnt > 10) exit;
+    if($cnt > 100) exit;
     $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
@@ -153,7 +153,9 @@ foreach ($users as $key=>$user){
         "a_value"=>$user['email'],
     );
  try{
-    $mail->Send();
+    //$mail->Send();
+     $verify = verifyEmail($user['email'], "admin@raks.com.ua", true);
+     add_to_log("[email {$user['email']}][".print_r($verify, true)."]", 'email_validate');
 
 } catch (phpmailerException $e) {
      $err .= $e->errorMessage(); //Pretty error messages from PHPMailer
