@@ -76,8 +76,12 @@ $query = "
 $query = "
 	SELECT *,user_email as email,username as login
 	FROM phpbb_users
+        ORDER BY user_id DESC
 ";
 
+//        WHERE user_regdate > ".strtotime('-2 year')." AND user_email NOT LIKE '%@i.ua' AND user_email NOT LIKE '%@mail.ru' AND  user_email NOT LIKE '%inbox.ru' AND  user_email NOT LIKE '%bigmir.net' AND  user_email NOT LIKE '%@bk.ru' AND  user_email NOT LIKE '%@mail.ua'
+
+//        WHERE user_email NOT LIKE '%ukr.net' AND user_email NOT LIKE '%ua.fm' AND user_email NOT LIKE '%mail.ru' AND  user_email NOT LIKE '%inbox.ru'
 
 $users = array(
     "0"=>array(
@@ -102,7 +106,7 @@ $cnt = 0;
 foreach ($users as $key=>$user){
     if(search_email($advertise_company_id, $user['email'])) continue;
     $cnt ++;
-    if($cnt > 10) exit;
+    if($cnt > 5) exit;
     $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
@@ -154,16 +158,20 @@ foreach ($users as $key=>$user){
     );
  try{
 
+    if(preg_match('/rambler\.ru/i', $user['email'])){
+        $mail->Send();
+    }else{
      $verify = verifyEmail($user['email'], "admin@raks.com.ua", true);
      if($verify[0] == 'valid') {
          $mail->Send();
      }else{
-        throw new Exception($verify[1]);
+        throw new \Exception($verify[1]);
      }
+    }
 
 } catch (phpmailerException $e) {
      $err .= $e->errorMessage(); //Pretty error messages from PHPMailer
-} catch (Exception $e) {
+} catch (\Exception $e) {
      $err .= $e->getMessage(); //Boring error messages from anything else!
 }
 
