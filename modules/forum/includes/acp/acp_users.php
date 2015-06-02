@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_users.php,v 1.139 2007/10/05 14:36:32 acydburn Exp $
+* @version $Id: acp_users.php,v 1.142 2007/11/15 19:54:37 kellanved Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -1805,7 +1805,27 @@ class acp_users
 				$user->add_lang(array('groups', 'acp/groups'));
 				$group_id = request_var('g', 0);
 
-				switch ($action)
+                if ($group_id)
+                {
+                    // Check the founder only entry for this group to make sure everything is well
+                    $sql = 'SELECT group_founder_manage
+ 						FROM ' . GROUPS_TABLE . '
+ 						WHERE group_id = ' . $group_id;
+                    $result = $db->sql_query($sql);
+                    $founder_manage = (int) $db->sql_fetchfield('group_founder_manage');
+                    $db->sql_freeresult($result);
+
+                    if ($user->data['user_type'] != USER_FOUNDER && $founder_manage)
+                    {
+                        trigger_error($user->lang['NOT_ALLOWED_MANAGE_GROUP'] . adm_back_link($this->u_action . '&amp;u=' . $user_id), E_USER_WARNING);
+                    }
+                }
+                else
+                {
+                    $founder_manage = 0;
+                }
+
+                switch ($action)
 				{
 					case 'demote':
 					case 'promote':

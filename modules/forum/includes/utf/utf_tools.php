@@ -2,7 +2,7 @@
 /**
 *
 * @package utf
-* @version $Id: utf_tools.php,v 1.70 2007/10/05 14:36:34 acydburn Exp $
+* @version $Id: utf_tools.php,v 1.71 2007/10/21 18:48:51 naderman Exp $
 * @copyright (c) 2006 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -768,7 +768,7 @@ function utf8_recode($string, $encoding)
 	}
 
 	// If nothing works, check if we have a custom transcoder available
-	if (!preg_match('#^[a-z0-9 \\-]+$#', $encoding))
+	if (!preg_match('#^[a-z0-9_ \\-]+$#', $encoding))
 	{
 		// Make sure the encoding name is alphanumeric, we don't want it to be abused into loading arbitrary files
 		trigger_error('Unknown encoding: ' . $encoding, E_USER_ERROR);

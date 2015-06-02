@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: functions_privmsgs.php,v 1.82 2007/10/05 14:30:10 acydburn Exp $
+* @version $Id: functions_privmsgs.php,v 1.85 2007/11/07 10:45:38 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

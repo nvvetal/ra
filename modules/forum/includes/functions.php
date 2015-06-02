@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: functions.php,v 1.640 2007/10/09 21:04:21 kellanved Exp $
+* @version $Id: functions.php,v 1.645 2007/11/18 15:37:17 naderman Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -235,7 +235,7 @@ function still_on_time($extra_time = 15)
 
 /**
 *
-* @version Version 0.1 / $Id: functions.php,v 1.640 2007/10/09 21:04:21 kellanved Exp $
+* @version Version 0.1 / $Id: functions.php,v 1.645 2007/11/18 15:37:17 naderman Exp $
 *
 * Portable PHP password hashing framework.
 *
@@ -2050,7 +2050,7 @@ function check_form_key($form_name, $timespan = false, $return_page = '', $trigg
 	if ($timespan === false)
 	{
  		// we enforce a minimum value of half a minute here.
- 		$timespan = ($config['form_token_lifetime'] == -1) ? -1 : max(30, $config['form_token_lifetime']);
+        $timespan = max(30, $config['form_token_lifetime']);
 
 	}
 	if ($minimum_time === false)
@@ -2777,9 +2777,9 @@ function get_preg_expression($mode)
 		case 'url_inline':
 			$inline = ($mode == 'url') ? ')' : '';
 			// generated with regex generation file in the develop folder
-			$scheme = ($mode == 'url') ? '[a-z\d+\-.]' : '[a-z\d+]'; // avoid automatic parsing of "word" in "last word.http://..."
-  			// generated with regex generation file in the develop folder
- 			return "[a-z]$scheme*:/{2}(?:(?:[a-z0-9\-._~!$&'($inline*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~!$&'($inline*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~!$&'($inline*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:\#(?:[a-z0-9\-._~!$&'($inline*+,;=:@/?|]+|%[\dA-F]{2})*)?";
+            $scheme = ($mode == 'url') ? '[a-z\d+\-.]' : '[a-z\d+]'; // avoid automatic parsing of "word" in "last word.http://..."
+            // generated with regex generation file in the develop folder
+        	return "[a-z]$scheme*:/{2}(?:(?:[a-z0-9\-._~!$&'($inline*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~!$&'($inline*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~!$&'($inline*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:\#(?:[a-z0-9\-._~!$&'($inline*+,;=:@/?|]+|%[\dA-F]{2})*)?";
 		break;
 
 		case 'www_url':
@@ -2910,9 +2910,8 @@ function msg_handler($errno, $msg_text, $errfile, $errline)
 		case E_WARNING:
 
 			// Check the error reporting level and return if the error level does not match
-			// Additionally do not display notices if we suppress them via @
 			// If DEBUG is defined the default level is E_ALL
-			if (($errno & ((defined('DEBUG')) ? E_ALL : error_reporting())) == 0)
+            if (($errno & ((defined('DEBUG')) ? E_ALL : error_reporting())) == 0)
 			{
 				return;
 			}

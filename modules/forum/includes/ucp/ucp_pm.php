@@ -1,7 +1,7 @@
 <?php
 /**
 * @package ucp
-* @version $Id: ucp_pm.php,v 1.44 2007/10/05 14:36:33 acydburn Exp $
+* @version $Id: ucp_pm.php,v 1.47 2007/11/07 10:45:38 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -249,7 +249,6 @@ class ucp_pm
 
 				// If new messages arrived, place them into the appropriate folder
 				$num_not_moved = $num_removed = 0;
-
  				$release = request_var('release', 0);
   
   				if ($user->data['user_new_privmsg'] && $action == 'view_folder')

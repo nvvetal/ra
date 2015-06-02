@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: message_parser.php,v 1.215 2007/10/11 08:12:24 acydburn Exp $
+* @version $Id: message_parser.php,v 1.218 2007/11/29 14:09:32 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -822,7 +822,7 @@ class bbcode_firstpass extends bbcode
 				if ($tok == '[')
 				{
 					// Search the text for the next tok... if an ending quote comes first, then change tok to []
-					$pos1 = strpos($in, '[/quote');
+					$pos1 = stripos($in, '[/quote');
 					// If the token ] comes first, we change it to ]
 					$pos2 = strpos($in, ']');
 					// If the token [ comes first, we change it to [

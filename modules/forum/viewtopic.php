@@ -2,7 +2,7 @@
 /**
  *
  * @package phpBB3
- * @version $Id: viewtopic.php,v 1.509 2007/10/05 14:30:07 acydburn Exp $
+ * @version $Id: viewtopic.php,v 1.513 2007/11/06 00:05:53 kellanved Exp $
  * @copyright (c) 2005 phpBB Group
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *

@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_inactive.php,v 1.14 2007/10/05 16:22:14 kellanved Exp $
+* @version $Id: acp_inactive.php,v 1.18 2007/11/17 20:04:25 acydburn Exp $
 * @copyright (c) 2006 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

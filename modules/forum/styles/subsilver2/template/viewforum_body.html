@@ -78,10 +78,8 @@
         <td class="cat" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->">&nbsp;</td>
     </tr>
 </table>
-
 <br clear="all" />
 <!-- ENDIF -->
-
 <!-- IF S_HAS_SUBFORUM -->
 <!-- INCLUDE forumlist_body.html -->
 <br clear="all" />
@@ -90,7 +88,6 @@
 <!-- IF S_IS_POSTABLE or S_NO_READ_ACCESS -->
 <div id="pageheader">
     <a class="maintitle" href="{U_VIEW_FORUM}">{FORUM_NAME}</a>
-
     <!-- IF MODERATORS -->
     <br/><span class="gensmall"><b><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->: {MODERATORS}</b></span>
     <!-- ENDIF -->
@@ -98,7 +95,6 @@
     <p class="linkmcp">[ <a href="{U_MCP}">{L_MCP}</a> ]</p>
     <!-- ENDIF -->
 </div>
-
 
 <br clear="all" />
 <!-- ENDIF -->
@@ -149,7 +145,7 @@
     </table>
     <!-- ENDIF -->
 
-    <!-- IF S_IS_POSTABLE or .topicrow -->
+    <!-- IF not S_DISPLAY_ACTIVE and (S_IS_POSTABLE or .topicrow) -->
     <table class="forumline" width="100%" cellspacing="1">
         <tr>
             <td class="cat" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->">

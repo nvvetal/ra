@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: session.php,v 1.314 2007/10/09 15:11:06 acydburn Exp $
+* @version $Id: session.php,v 1.317 2007/11/04 12:07:46 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

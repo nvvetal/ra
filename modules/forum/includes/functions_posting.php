@@ -2,7 +2,7 @@
 /** 
 *
 * @package phpBB3
-* @version $Id: functions_posting.php,v 1.262 2007/07/25 16:06:10 acydburn Exp $
+* @version $Id: functions_posting.php,v 1.274 2007/11/27 15:13:49 kellanved Exp $
 * @copyright (c) 2005 phpBB Group 
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -1208,7 +1208,7 @@ function user_notification($mode, $subject, $topic_title, $forum_name, $forum_id
 	// Now, we are able to really send out notifications
 	if (sizeof($msg_users))
 	{
-		include_once($phpbb_root_path . 'includes/functions_messenger.'.$phpEx);
+		include_once($phpbb_root_path . 'includes/functions_messenger.' . $phpEx);
 		$messenger = new messenger();
 
 		$msg_list_ary = array();
@@ -1610,12 +1610,12 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 			if ($data['post_edit_reason'] || (!$auth->acl_get('m_edit', $data['forum_id']) && ($post_mode == 'edit' || $post_mode == 'edit_first_post')))
 			{
 			$data['post_edit_reason']		= truncate_string($data['post_edit_reason'], 255, false);
- 
- 				$sql_data[POSTS_TABLE]['sql']	= array(
-					'post_edit_time'	=> $current_time,
-					'post_edit_reason'	=> $data['post_edit_reason'],
-					'post_edit_user'	=> (int) $data['post_edit_user'],
-				);
+
+                $sql_data[POSTS_TABLE]['sql']	= array(
+				    'post_edit_time'	=> $current_time,
+				    'post_edit_reason'	=> $data['post_edit_reason'],
+				    'post_edit_user'	=> (int) $data['post_edit_user'],
+        	    );
 
 				$sql_data[POSTS_TABLE]['stat'][] = 'post_edit_count = post_edit_count + 1';
 			}

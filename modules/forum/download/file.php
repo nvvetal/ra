@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: file.php,v 1.3 2007/10/14 13:12:08 acydburn Exp $
+* @version $Id: file.php,v 1.5 2007/11/17 22:35:33 kellanved Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -32,8 +32,7 @@ if (isset($_GET['avatar']))
 		exit;
 	}
 	unset($dbpasswd);
-	
- 	
+
  	// worst-case default
  	$browser = (!empty($_SERVER['HTTP_USER_AGENT'])) ? htmlspecialchars((string) $_SERVER['HTTP_USER_AGENT']) : 'msie 6.0';
  	
@@ -60,28 +59,28 @@ if (isset($_GET['avatar']))
 	}
 
 	$ext		= substr(strrchr($filename, '.'), 1);
+    $stamp		= (int) substr(stristr($filename, '_'), 1);
 	$filename	= intval($filename);
-	
- 	$last_load 	=  isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime(trim($_SERVER['HTTP_IF_MODIFIED_SINCE'])) : false;
- 	if (strpos(strtolower($browser), 'msie 6.0') === false)
- 	{
-                if(!isset($stamp)) $stamp = time();
- 		if ($last_load !== false && $last_load <= $stamp)
- 		{
- 			header('Not Modified', true, 304);
- 			// seems that we need those too ... browsers
- 			header('Pragma: public');
- 			header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000));
- 			exit();
- 		} 
- 		else
- 		{
- 			header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $stamp) . ' GMT');
- 		}
- 	}	
-	
-	
-	if (!in_array($ext, array('png', 'gif', 'jpg', 'jpeg')))
+
+    // let's see if we have to send the file at all
+    $last_load 	=  isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime(trim($_SERVER['HTTP_IF_MODIFIED_SINCE'])) : false;
+    if (strpos(strtolower($browser), 'msie 6.0') === false)
+    {
+        if ($last_load !== false && $last_load <= $stamp)
+        {
+            header('Not Modified', true, 304);
+            // seems that we need those too ... browsers
+            header('Pragma: public');
+            header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000));
+            exit();
+        }
+        else
+        {
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $stamp) . ' GMT');
+        }
+    }
+
+    if (!in_array($ext, array('png', 'gif', 'jpg', 'jpeg')))
 	{
 		// no way such an avatar could exist. They are not following the rules, stop the show.
 		header("HTTP/1.0 403 forbidden");
@@ -297,9 +296,6 @@ function send_avatar_to_browser($file, $browser)
 
 	$prefix = $config['avatar_salt'] . '_';
 	$image_dir = $config['avatar_path'];
-
-	// worst-case default
-	$browser = (!empty($_SERVER['HTTP_USER_AGENT'])) ? htmlspecialchars((string) $_SERVER['HTTP_USER_AGENT']) : 'msie 6.0';
 
 	// Adjust image_dir path (no trailing slash)
 	if (substr($image_dir, -1, 1) == '/' || substr($image_dir, -1, 1) == '\\')

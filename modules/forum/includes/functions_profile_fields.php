@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: functions_profile_fields.php,v 1.56 2007/10/05 12:40:23 acydburn Exp $
+* @version $Id: functions_profile_fields.php,v 1.57 2007/11/15 19:54:36 kellanved Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

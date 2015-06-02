@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_update.php,v 1.8 2007/10/04 12:02:03 acydburn Exp $
+* @version $Id: acp_update.php,v 1.9 2007/11/19 17:00:13 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -37,7 +37,7 @@ class acp_update
 		$errstr = '';
 		$errno = 0;
 
-		$info = get_remote_file('www.phpbb.com', '/updatecheck', '30x.txt', $errstr, $errno);
+        $info = get_remote_file('www.phpbb.com', '/updatecheck', ((defined('PHPBB_QA')) ? '30x_qa.txt' : '30x.txt'), $errstr, $errno);
 
 		if ($info === false)
 		{

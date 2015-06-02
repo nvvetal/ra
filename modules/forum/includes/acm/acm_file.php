@@ -2,7 +2,7 @@
 /**
 *
 * @package acm
-* @version $Id: acm_file.php,v 1.54 2007/10/05 14:36:32 acydburn Exp $
+* @version $Id: acm_file.php,v 1.55 2007/11/17 12:14:27 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

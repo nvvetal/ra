@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: functions_admin.php,v 1.252 2007/10/05 14:30:10 acydburn Exp $
+* @version $Id: functions_admin.php,v 1.254 2007/11/17 12:14:27 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -2727,8 +2727,6 @@ function view_inactive_users(&$users, &$user_count, $limit = 0, $offset = 0, $li
 	
 		$users[] = $row;
 	}
-	
-
 
 	return $offset;
 }

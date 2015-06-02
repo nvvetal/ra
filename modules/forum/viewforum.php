@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: viewforum.php,v 1.338 2007/10/05 14:30:07 acydburn Exp $
+* @version $Id: viewforum.php,v 1.342 2007/11/17 20:03:32 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -14,7 +14,7 @@
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
-include($phpbb_root_path . 'common.'.$phpEx);
+include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
 // Start session

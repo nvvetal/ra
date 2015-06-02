@@ -2,7 +2,7 @@
 /**
 *
 * @package mcp
-* @version $Id: mcp_forum.php,v 1.43 2007/10/12 18:13:50 acydburn Exp $
+* @version $Id: mcp_forum.php,v 1.44 2007/11/27 15:13:50 kellanved Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

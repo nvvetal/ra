@@ -575,6 +575,7 @@ $lang = array_merge($lang, array(
 	'TOPICS'			=> 'Темы',
 	'TOPIC_ICON'		=> 'Значок',
 	'TOPIC_LOCKED'		=> 'Эта тема закрыта, вы не можете редактировать и оставлять сообщения в ней.',
+    'TOPIC_LOCKED_SHORT'=> 'Тема заблокирована',
 	'TOPIC_MOVED'		=> 'Перенесённая',
 	'TOPIC_REVIEW'		=> 'Обзор темы',
 	'TOPIC_TITLE'		=> 'Название темы',
