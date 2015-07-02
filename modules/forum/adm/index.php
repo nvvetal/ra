@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: index.php,v 1.73 2007/10/05 14:30:06 acydburn Exp $
+* @version $Id: index.php,v 1.74 2007/12/12 16:45:58 acydburn Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -77,8 +77,8 @@ $module->load_active();
 adm_page_header($module->get_page_title());
 
 $template->set_filenames(array(
-	'body' => $module->get_tpl_name())
-);
+    'body' => $module->get_tpl_name(),
+));
 
 adm_page_footer();
 

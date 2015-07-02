@@ -2,7 +2,7 @@
 /**
 *
 * @package utf
-* @version $Id: utf_tools.php,v 1.71 2007/10/21 18:48:51 naderman Exp $
+* @version $Id: utf_tools.php,v 1.72 2007/12/04 16:20:38 naderman Exp $
 * @copyright (c) 2006 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -1830,7 +1830,7 @@ function utf8_clean_string($text)
 	$text = preg_replace('#(?:[\x00-\x1F\x7F]+|(?:\xC2[\x80-\x9F])+)#', '', $text);
 
  	// we need to reduce multiple spaces to a single one
- 	$text = preg_replace('# {2,}#', ' ', $text);
+	$text = preg_replace('# {2,}#', ' ', $text);
  	
 	
 	// we can use trim here as all the other space characters should have been turned

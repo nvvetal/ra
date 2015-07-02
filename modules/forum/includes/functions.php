@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: functions.php,v 1.645 2007/11/18 15:37:17 naderman Exp $
+* @version $Id: functions.php,v 1.647 2007/12/10 18:35:28 kellanved Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -235,7 +235,7 @@ function still_on_time($extra_time = 15)
 
 /**
 *
-* @version Version 0.1 / $Id: functions.php,v 1.645 2007/11/18 15:37:17 naderman Exp $
+* @version Version 0.1 / $Id: functions.php,v 1.647 2007/12/10 18:35:28 kellanved Exp $
 *
 * Portable PHP password hashing framework.
 *
@@ -2050,7 +2050,7 @@ function check_form_key($form_name, $timespan = false, $return_page = '', $trigg
 	if ($timespan === false)
 	{
  		// we enforce a minimum value of half a minute here.
-        $timespan = max(30, $config['form_token_lifetime']);
+		$timespan = ($config['form_token_lifetime'] == -1) ? -1 : max(30, $config['form_token_lifetime']);
 
 	}
 	if ($minimum_time === false)
@@ -2849,6 +2849,7 @@ function phpbb_checkdnsrr($host, $type = '')
 			return NULL;
 		}
 
+		// @exec('nslookup -retry=1 -timout=1 -type=' . escapeshellarg($type) . ' ' . escapeshellarg($host), $output);
 		@exec('nslookup -type=' . escapeshellarg($type) . ' ' . escapeshellarg($host), $output);
 
 		// If output is empty, the nslookup failed
