@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: file.php,v 1.5 2007/11/17 22:35:33 kellanved Exp $
+* @version $Id: file.php 8479 2008-03-29 00:22:48Z naderman $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -49,7 +49,7 @@ if (isset($_GET['avatar']))
 	// '==' is not a bug - . as the first char is as bad as no dot at all
 	if (strpos($filename, '.') == false)
 	{
-		header('HTTP/1.0 403 forbidden');
+		header('HTTP/1.0 403 Forbidden');
 		if (!empty($cache))
 		{
 			$cache->unload();
@@ -68,7 +68,14 @@ if (isset($_GET['avatar']))
     {
         if ($last_load !== false && $last_load <= $stamp)
         {
-            header('Not Modified', true, 304);
+			if (@php_sapi_name() === 'CGI')
+			{
+				header('Status: 304 Not Modified', true, 304);
+			}
+			else
+			{
+				header('HTTP/1.0 304 Not Modified', true, 304);
+			}
             // seems that we need those too ... browsers
             header('Pragma: public');
             header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000));
@@ -83,7 +90,7 @@ if (isset($_GET['avatar']))
     if (!in_array($ext, array('png', 'gif', 'jpg', 'jpeg')))
 	{
 		// no way such an avatar could exist. They are not following the rules, stop the show.
-		header("HTTP/1.0 403 forbidden");
+		header("HTTP/1.0 403 Forbidden");
 		if (!empty($cache))
 		{
 			$cache->unload();
@@ -95,7 +102,7 @@ if (isset($_GET['avatar']))
 	if (!$filename)
 	{
 		// no way such an avatar could exist. They are not following the rules, stop the show.
-		header("HTTP/1.0 403 forbidden");
+		header("HTTP/1.0 403 Forbidden");
 		if (!empty($cache))
 		{
 			$cache->unload();
@@ -202,7 +209,31 @@ else
 		$row['forum_id'] = false;
 		if (!$auth->acl_get('u_pm_download'))
 		{
+			header('HTTP/1.0 403 Forbidden');
 			trigger_error('SORRY_AUTH_VIEW_ATTACH');
+		}
+
+		// Check if the attachment is within the users scope...
+		$sql = 'SELECT user_id, author_id
+ 			FROM ' . PRIVMSGS_TO_TABLE . '
+ 			WHERE msg_id = ' . $attachment['post_msg_id'];
+		$result = $db->sql_query($sql);
+
+		$allowed = false;
+		while ($user_row = $db->sql_fetchrow($result))
+		{
+			if ($user->data['user_id'] == $user_row['user_id'] || $user->data['user_id'] == $user_row['author_id'])
+			{
+				$allowed = true;
+				break;
+			}
+		}
+		$db->sql_freeresult($result);
+
+		if (!$allowed)
+		{
+			header('HTTP/1.0 403 Forbidden');
+			trigger_error('ERROR_NO_ATTACHMENT');
 		}
 	}
 
@@ -216,6 +247,7 @@ else
 
 if (!download_allowed())
 {
+	header('HTTP/1.0 403 Forbidden');
 	trigger_error($user->lang['LINKAGE_FORBIDDEN']);
 }
 
@@ -552,7 +584,7 @@ function download_allowed()
 	}
 	
 	// Check for own server...
-	$server_name = (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME');
+	$server_name = $user->host;
 
 	// Forcing server vars is the only way to specify/override the protocol
 	if ($config['force_server_vars'] || !$server_name)

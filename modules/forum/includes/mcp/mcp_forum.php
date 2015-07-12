@@ -146,8 +146,8 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 		$read_tracking_join = $read_tracking_select = '';
 	}
 
-	$sql = "SELECT t.*$read_tracking_select
-		FROM " . TOPICS_TABLE . " t $read_tracking_join
+	$sql = "SELECT t.topic_id
+ 		FROM " . TOPICS_TABLE . " t
 		WHERE t.forum_id IN($forum_id, 0)
 			" . (($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND t.topic_approved = 1') . "
 			$limit_time_sql
@@ -157,8 +157,18 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 	$topic_list = $topic_tracking_info = array();
 	while ($row = $db->sql_fetchrow($result))
 	{
-		$topic_rows[$row['topic_id']] = $row;
 		$topic_list[] = $row['topic_id'];
+	}
+	$db->sql_freeresult($result);
+
+	$sql = "SELECT t.*$read_tracking_select
+ 		FROM " . TOPICS_TABLE . " t $read_tracking_join
+ 		WHERE " . $db->sql_in_set('t.topic_id', $topic_list, false, true);
+
+	$result = $db->sql_query($sql);
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$topic_rows[$row['topic_id']] = $row;
 	}
 	$db->sql_freeresult($result);
 
@@ -181,9 +191,11 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 		}
 	}
 
-	foreach ($topic_rows as $topic_id => $row)
+	foreach ($topic_list as $topic_id)
 	{
 		$topic_title = '';
+
+		$row = &$topic_rows[$topic_id];
 
 		$replies = ($auth->acl_get('m_approve', $forum_id)) ? $row['topic_replies_real'] : $row['topic_replies'];
 
@@ -376,7 +388,7 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 		return;
 	}
 
-	$redirect = request_var('redirect', build_url(array('_f_', 'quickmod')));
+	$redirect = request_var('redirect', build_url(array('quickmod')));
 
 	$s_hidden_fields = build_hidden_fields(array(
 		'i'				=> 'main',

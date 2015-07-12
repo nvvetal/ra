@@ -39,7 +39,9 @@ $lang = array_merge($lang, array(
 	'ALREADY_DEFAULT_GROUP'				=> 'Выбранная группа уже является вашей группой по умолчанию.',
 	'ALREADY_IN_GROUP'					=> 'Вы уже являетесь членом выбранной группы.',
 	'ALREADY_IN_GROUP_PENDING'			=> 'Вы уже запросили членство в выбранной группе.',
-	
+
+	'CANNOT_JOIN_GROUP'					=> 'You are not able to join this group. You are only able to join open and freely open groups.',
+	'CANNOT_RESIGN_GROUP'				=> 'You are not able to resign from this group. You are only able to resign from open and freely open groups.',
 	'CHANGED_DEFAULT_GROUP'				=> 'Группа по умолчанию успешно изменена.',
 	
 	'GROUP_AVATAR'						=> 'Аватара группы', 

@@ -198,7 +198,7 @@ class bbcode_firstpass extends bbcode
 
 		if (!$this->check_bbcode('size', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		if ($config['max_' . $this->mode . '_font_size'] && $config['max_' . $this->mode . '_font_size'] < $stx)
@@ -225,7 +225,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('color', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		return '[color=' . $stx . ':' . $this->bbcode_uid . ']' . $in . '[/color:' . $this->bbcode_uid . ']';
@@ -238,7 +238,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('u', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		return '[u:' . $this->bbcode_uid . ']' . $in . '[/u:' . $this->bbcode_uid . ']';
@@ -251,7 +251,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('b', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		return '[b:' . $this->bbcode_uid . ']' . $in . '[/b:' . $this->bbcode_uid . ']';
@@ -264,7 +264,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('i', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		return '[i:' . $this->bbcode_uid . ']' . $in . '[/i:' . $this->bbcode_uid . ']';
@@ -279,7 +279,7 @@ class bbcode_firstpass extends bbcode
 
 		if (!$this->check_bbcode('img', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		$in = trim($in);
@@ -341,7 +341,7 @@ class bbcode_firstpass extends bbcode
 
 		if (!$this->check_bbcode('flash', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		$in = trim($in);
@@ -378,7 +378,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('attachment', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		return '[attachment=' . $stx . ':' . $this->bbcode_uid . ']<!-- ia' . $stx . ' -->' . trim($in) . '<!-- ia' . $stx . ' -->[/attachment:' . $this->bbcode_uid . ']';
@@ -458,7 +458,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('code', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		// We remove the hardcoded elements from the code block here because it is not used in code blocks
@@ -551,7 +551,7 @@ class bbcode_firstpass extends bbcode
 	{
 		if (!$this->check_bbcode('list', $in))
 		{
-			return '';
+			return $in;
 		}
 
 		// $tok holds characters to stop at. Since the string starts with a '[' we'll get everything up to the first ']' which should be the opening [list] tag
@@ -685,7 +685,8 @@ class bbcode_firstpass extends bbcode
  		* #14667 - [quote]test[/quote] test ] and [ test [quote]test[/quote] (correct: parsed)
  		* #14770 - [quote="["]test[/quote] (correct: parsed)
  		* [quote="[i]test[/i]"]test[/quote] (correct: parsed)
- 		* [quote="[quote]test[/quote]"]test[/quote] (correct: NOT parsed)
+		* [quote="[quote]test[/quote]"]test[/quote] (correct: parsed - Username displayed as [quote]test[/quote])
+		* #20735 - [quote]test[/[/b]quote] test [/quote][/quote] test - (correct: quoted: "test[/[/b]quote] test" / non-quoted: "[/quote] test" - also failed if layout distorted)
 		*/
 
 		$in = str_replace("\r\n", "\n", str_replace('\"', '"', trim($in)));
@@ -739,7 +740,7 @@ class bbcode_firstpass extends bbcode
 						$out .= ' ';
 					}*/
 				}
-				else if (preg_match('#^quote(?:=&quot;(.*?)&quot;)?$#is', $buffer, $m))
+				else if (preg_match('#^quote(?:=&quot;(.*?)&quot;)?$#is', $buffer, $m) && substr($out, -1, 1) == '[')
 				{
 					$this->parsed_items['quote']++;
 
@@ -915,9 +916,14 @@ class bbcode_firstpass extends bbcode
 
 		$url = ($var1) ? $var1 : $var2;
 
-		if (!$url || ($var1 && !$var2))
+		if ($var1 && !$var2)
 		{
-			return '';
+			$var2 = $var1;
+		}
+
+		if (!$url)
+		{
+			return '[url' . (($var1) ? '=' . $var1 : '') . ']' . $var2 . '[/url]';
 		}
 
 		$valid = false;
@@ -980,7 +986,7 @@ class bbcode_firstpass extends bbcode
 		// Is the user trying to link to a php file in this domain and script path?
 		if (strpos($url, ".{$phpEx}") !== false && strpos($url, $check_path) !== false)
 		{
-			$server_name = (!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME');
+			$server_name = $user->host;
 
 			// Forcing server vars is the only way to specify/override the protocol
 			if ($config['force_server_vars'] || !$server_name)
@@ -1085,15 +1091,15 @@ class parse_message extends bbcode_firstpass
 			if ((!$msg_len && $mode !== 'sig') || $config['max_' . $mode . '_chars'] && $msg_len > $config['max_' . $mode . '_chars'])
 			{
 				$this->warn_msg[] = (!$msg_len) ? $user->lang['TOO_FEW_CHARS'] : sprintf($user->lang['TOO_MANY_CHARS_' . strtoupper($mode)], $msg_len, $config['max_' . $mode . '_chars']);
-				return $this->warn_msg;
+				return (!$update_this_message) ? $return_message : $this->warn_msg;
 			}
 		}
 
 		// Check for "empty" message
-		if ($mode !== 'sig' && !utf8_clean_string($this->message))
+		if ($mode !== 'sig' && utf8_clean_string($this->message) === '')
 		{
 			$this->warn_msg[] = $user->lang['TOO_FEW_CHARS'];
-			return $this->warn_msg;
+			return (!$update_this_message) ? $return_message : $this->warn_msg;
 		}
 
 		// Prepare BBcode (just prepares some tags for better parsing)
@@ -1142,7 +1148,7 @@ class parse_message extends bbcode_firstpass
 		if ($config['max_' . $mode . '_urls'] && $num_urls > $config['max_' . $mode . '_urls'])
 		{
 			$this->warn_msg[] = sprintf($user->lang['TOO_MANY_URLS'], $config['max_' . $mode . '_urls']);
-			return $this->warn_msg;
+			return (!$update_this_message) ? $return_message : $this->warn_msg;
 		}
 
 		if (!$update_this_message)
