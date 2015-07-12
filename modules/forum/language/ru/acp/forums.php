@@ -117,6 +117,9 @@ $lang = array_merge($lang, array(
 	'LINK'					=> 'Ссылка',
 	'LIST_INDEX'			=> 'Показывать форум в списке подфорумов',
 	'LIST_INDEX_EXPLAIN'	=> 'Отображает ссылку на данный форум в списке подфорумов родительского форума, если таковой существует.',
+	'LIST_SUBFORUMS'			=> 'List subforums in legend',
+	'LIST_SUBFORUMS_EXPLAIN'	=> 'Displays this forums subforums on the index and elsewhere as a link within the legend if their вЂњList subforum in parent-forums legend option is enabled.',
+
 	'LOCKED'				=> 'Закрыт',
 
 	'MOVE_POSTS_NO_POSTABLE_FORUM'	=> 'The forum you selected for moving the posts to is not postable. Please select a postable forum.',

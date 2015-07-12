@@ -117,6 +117,8 @@ $lang = array_merge($lang, array(
 	'LINK'					=> 'Link',
 	'LIST_INDEX'			=> 'List subforum in parent-forum’s legend',
 	'LIST_INDEX_EXPLAIN'	=> 'Displays this forum on the index and elsewhere as a link within the legend of its parent-forum.',
+	'LIST_SUBFORUMS'			=> 'List subforums in legend',
+	'LIST_SUBFORUMS_EXPLAIN'	=> 'Displays this forums subforums on the index and elsewhere as a link within the legend if their вЂњList subforum in parent-forums legend option is enabled.',
 	'LOCKED'				=> 'Locked',
 
 	'MOVE_POSTS_NO_POSTABLE_FORUM'	=> 'The forum you selected for moving the posts to is not postable. Please select a postable forum.',

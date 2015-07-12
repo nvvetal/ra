@@ -611,7 +611,7 @@ function place_pm_into_folder(&$global_privmsgs_rules, $release = false)
 
 		unset($sql_folder);
 
-		if (in_array(PRIVMSGS_INBOX, array_keys($move_into_folder)))
+		if (isset($move_into_folder[PRIVMSGS_INBOX]))
 		{
 			$sql = 'SELECT COUNT(msg_id) as num_messages
 				FROM ' . PRIVMSGS_TO_TABLE . "
@@ -1514,7 +1514,7 @@ function submit_pm($mode, $subject, &$data, $put_in_outbox = true)
 
 		foreach ($data['attachment_data'] as $pos => $attach_row)
 		{
-			if ($attach_row['is_orphan'] && !in_array($attach_row['attach_id'], array_keys($orphan_rows)))
+			if ($attach_row['is_orphan'] && !isset($orphan_rows[$attach_row['attach_id']]))
 			{
 				continue;
 			}

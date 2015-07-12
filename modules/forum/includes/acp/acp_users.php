@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_users.php,v 1.142 2007/11/15 19:54:37 kellanved Exp $
+* @version $Id: acp_users.php 8479 2008-03-29 00:22:48Z naderman $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -631,7 +631,7 @@ class acp_users
 							}
 
 							$forum_id_ary = array_unique($forum_id_ary);
-							$topic_id_ary = array_unique(array_merge($topic_id_ary, $new_topic_id_ary));
+							$topic_id_ary = array_unique(array_merge(array_keys($topic_id_ary), $new_topic_id_ary));
 
 							if (sizeof($topic_id_ary))
 							{
@@ -1086,9 +1086,11 @@ class acp_users
 					list($data['bday_day'], $data['bday_month'], $data['bday_year']) = explode('-', $user_row['user_birthday']);
 				}
 
-				$data['bday_day'] = request_var('bday_day', $data['bday_day']);
-				$data['bday_month'] = request_var('bday_month', $data['bday_month']);
-				$data['bday_year'] = request_var('bday_year', $data['bday_year']);
+				$data['bday_day']		= request_var('bday_day', $data['bday_day']);
+				$data['bday_month']		= request_var('bday_month', $data['bday_month']);
+				$data['bday_year']		= request_var('bday_year', $data['bday_year']);
+				$data['user_birthday']	= sprintf('%2d-%2d-%4d', $data['bday_day'], $data['bday_month'], $data['bday_year']);
+
 
 				if ($submit)
 				{
@@ -1111,6 +1113,7 @@ class acp_users
 						'bday_day'		=> array('num', true, 1, 31),
 						'bday_month'	=> array('num', true, 1, 12),
 						'bday_year'		=> array('num', true, 1901, gmdate('Y', time())),
+						'user_birthday'	=> array('date', true),
 					));
 
 					// validate custom profile fields
@@ -1137,7 +1140,7 @@ class acp_users
 							'user_from'		=> $data['location'],
 							'user_occ'		=> $data['occupation'],
 							'user_interests'=> $data['interests'],
-							'user_birthday'	=> sprintf('%2d-%2d-%4d', $data['bday_day'], $data['bday_month'], $data['bday_year']),
+							'user_birthday'	=> $data['user_birthday'],
 						);
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
@@ -1370,7 +1373,7 @@ class acp_users
 				$s_custom = false;
 
 				$dateformat_options .= '<option value="custom"';
-				if (!in_array($data['dateformat'], array_keys($user->lang['dateformats'])))
+				if (!isset($user->lang['dateformats'][$data['dateformat']]))
 				{
 					$dateformat_options .= ' selected="selected"';
 					$s_custom = true;
@@ -1770,7 +1773,7 @@ class acp_users
 						'REAL_FILENAME'		=> $row['real_filename'],
 						'COMMENT'			=> nl2br($row['attach_comment']),
 						'EXTENSION'			=> $row['extension'],
-						'SIZE'				=> ($row['filesize'] >= 1048576) ? ($row['filesize'] >> 20) . ' ' . $user->lang['MB'] : (($row['filesize'] >= 1024) ? ($row['filesize'] >> 10) . ' ' . $user->lang['KB'] : $row['filesize'] . ' ' . $user->lang['BYTES']),
+						'SIZE'				=> get_formatted_filesize($row['filesize']),
 						'DOWNLOAD_COUNT'	=> $row['download_count'],
 						'POST_TIME'			=> $user->format_date($row['filetime']),
 						'TOPIC_TITLE'		=> ($row['in_message']) ? $row['message_title'] : $row['topic_title'],

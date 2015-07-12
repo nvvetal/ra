@@ -137,10 +137,17 @@ function user_update_name($old_name, $new_name)
 	{
 		set_config('newest_username', $new_name, true);
 	}
+
+	// Because some tables/caches use username-specific data we need to purge this here.
+	$cache->destroy('sql', MODERATOR_CACHE_TABLE);
 }
 
 /**
-* Add User
+ * Adds an user
+ *
+ * @param mixed $user_row An array containing the following keys (and the appropriate values): username, group_id (the group to place the user in), user_email and the user_type(usually 0). Additional entries not overridden by defaults will be forwarded.
+ * @param string $cp_data custom profile fields, see custom_profile::build_insert_sql_array
+ * @return: the new user's ID.
 */
 function user_add($user_row, $cp_data = false)
 {
@@ -175,7 +182,7 @@ function user_add($user_row, $cp_data = false)
 		'user_timezone'		=> $config['board_timezone'],
 		'user_dateformat'	=> $config['default_dateformat'],
 		'user_lang'			=> $config['default_lang'],
-		'user_style'		=> $config['default_style'],
+		'user_style'		=> (int) $config['default_style'],
 		'user_allow_pm'		=> 1,
 		'user_actkey'		=> '',
 		'user_ip'			=> '',
@@ -284,7 +291,7 @@ function user_add($user_row, $cp_data = false)
 
 		$sql = 'SELECT group_colour
 			FROM ' . GROUPS_TABLE . '
-			WHERE group_id = ' . $user_row['group_id'];
+			WHERE group_id = ' . (int) $user_row['group_id'];
 		$result = $db->sql_query_limit($sql, 1);
 		$row = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
@@ -1271,6 +1278,44 @@ function validate_num($num, $optional = false, $min = 0, $max = 1E99)
 }
 
 /**
+ * Validate Date
+ * @param String $string a date in the dd-mm-yyyy format
+ * @return	boolean
+ */
+function validate_date($date_string, $optional = false)
+{
+	$date = explode('-', $date_string);
+	if ((empty($date) || sizeof($date) != 3) && $optional)
+	{
+		return false;
+	}
+	else if ($optional)
+	{
+		for ($field = 0; $field <= 1; $field++)
+		{
+			$date[$field] = (int) $date[$field];
+			if (empty($date[$field]))
+			{
+				$date[$field] = 1;
+			}
+		}
+		$date[2] = (int) $date[2];
+		// assume an arbitrary leap year
+		if (empty($date[2]))
+		{
+			$date[2] = 1980;
+		}
+	}
+
+	if (sizeof($date) != 3 || !checkdate($date[1], $date[0], $date[2]))
+	{
+		return 'INVALID';
+	}
+
+	return false;
+}
+
+ /**
 * Validate Match
 *
 * @return	boolean|string	Either false if validation succeeded or a string which will be used as the error message (with the variable name appended)
@@ -1442,20 +1487,6 @@ function validate_username($username, $allowed_username = false)
 			return 'USERNAME_DISALLOWED';
 		}
 	}
-
-	$sql = 'SELECT word
-		FROM ' . WORDS_TABLE;
-	$result = $db->sql_query($sql);
-
-	while ($row = $db->sql_fetchrow($result))
-	{
-		if (preg_match('#(' . str_replace('\*', '.*?', preg_quote($row['word'], '#')) . ')#i', $username))
-		{
-			$db->sql_freeresult($result);
-			return 'USERNAME_DISALLOWED';
-		}
-	}
-	$db->sql_freeresult($result);
 
 	return false;
 }
@@ -3106,7 +3137,7 @@ function group_set_user_default($group_id, $user_id_ary, $group_attributes = fal
 	}
 
 	// Before we update the user attributes, we will make a list of those having now the group avatar assigned
-	if (in_array('user_avatar', array_keys($sql_ary)))
+	if (isset($sql_ary['user_avatar']))
 	{
 		// Ok, get the original avatar data from users having an uploaded one (we need to remove these from the filesystem)
 		$sql = 'SELECT user_id, group_id, user_avatar
@@ -3132,7 +3163,7 @@ function group_set_user_default($group_id, $user_id_ary, $group_attributes = fal
 		WHERE ' . $db->sql_in_set('user_id', $user_id_ary);
 	$db->sql_query($sql);
 
-	if (in_array('user_colour', array_keys($sql_ary)))
+	if (isset($sql_ary['user_colour']))
 	{
 		// Update any cached colour information for these users
 		$sql = 'UPDATE ' . FORUMS_TABLE . " SET forum_last_poster_colour = '" . $db->sql_escape($sql_ary['user_colour']) . "'
