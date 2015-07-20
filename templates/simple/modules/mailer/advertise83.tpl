@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body style="color: black;text-align: center;font-size: 16px">
+<body style="color: black;font-size: 16px">
 <div style="text-align: center">
     <img src="cid:queen" style="width: 100%" alt="Королева  Belly Dance 2015" />
 </div>
