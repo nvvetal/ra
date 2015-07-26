@@ -159,7 +159,8 @@
 //            banner_165_2[0]   = new Array ('http://raks.com.ua/forum/images/zaporozhie_belly.swf', 'swf', 165, 190);
 //            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=17131" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-            banner_165_2[0]   = new Array ('<a href="http://liluvega-group.com/project/konkurs-belly-dance-2015-priem-zayavok/" target="_blank"><img src="http://raks.com.ua/forum/images/AF_165_190.jpg" alt=""/></a>', 'html', 165, 190);
+//            banner_165_2[0]   = new Array ('<a href="http://liluvega-group.com/project/konkurs-belly-dance-2015-priem-zayavok/" target="_blank"><img src="http://raks.com.ua/forum/images/AF_165_190.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
 
 
 
