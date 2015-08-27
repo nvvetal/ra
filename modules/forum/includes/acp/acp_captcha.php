@@ -54,7 +54,7 @@ class acp_captcha
 			}
 			$captcha = new captcha();
 			$captcha->execute(gen_rand_string(mt_rand(5, 8)), time());
-			exit_handler();
+			exit;
 		}
 
 		$config_vars = array(

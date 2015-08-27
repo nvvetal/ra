@@ -437,7 +437,7 @@ class acp_icons
 						$suc_lang = $lang;
 				}
 
-				$errormsgs = '<br />';
+                $errormsgs = '';
 				foreach ($errors as $img => $error)
 				{
 					$errormsgs .= '<br />' . sprintf($user->lang[$error], $img);
@@ -448,7 +448,7 @@ class acp_icons
 				}
 				else
 				{
-					trigger_error($user->lang[$suc_lang . '_ADDED'] . $errormsgs .adm_back_link($this->u_action), $level);
+                    trigger_error($user->lang[$suc_lang . '_ADDED'] . $errormsgs . adm_back_link($this->u_action), $level);
 				}
 
 			break;
