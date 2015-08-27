@@ -822,7 +822,7 @@ function tz_select($default = '', $truncate = false)
 	{
 		if ($truncate)
 		{
-			$zone_trunc = truncate_string($zone, 50, false, '...');
+            $zone_trunc = truncate_string($zone, 50, 255, false, '...');
 		}
 		else
 		{
@@ -1778,7 +1778,7 @@ function generate_board_url($without_script_path = false)
 
 	if ($server_port && (($config['cookie_secure'] && $server_port <> 443) || (!$config['cookie_secure'] && $server_port <> 80)))
 	{
-		// HTTP HOST can carry a port number...
+        // HTTP HOST can carry a port number (we fetch $user->host, but for old versions this may be true)
 		if (strpos($server_name, ':') === false)
 		{
 			$url .= ':' . $server_port;
@@ -1800,9 +1800,15 @@ function generate_board_url($without_script_path = false)
 }
 
 /**
-* Redirects the user to another page then exits the script nicely
+ * Redirects the user to another page then exits the script nicely
+ * This function is intended for urls within the board. It's not meant to redirect to cross-domains.
+ *
+ * @param string $url The url to redirect to
+ * @param bool $return If true, do not redirect but return the sanitized URL. Default is no return.
+ * @param bool $disable_cd_check If true, redirect() will redirect to an external domain. If false, the redirect point to the boards url if it does not match the current domain. Default is false.
+ *
 */
-function redirect($url, $return = false)
+function redirect($url, $return = false, $disable_cd_check = false)
 {
 	global $db, $cache, $config, $user, $phpbb_root_path;
 
@@ -1829,7 +1835,11 @@ function redirect($url, $return = false)
 	}
 	else if (!empty($url_parts['scheme']) && !empty($url_parts['host']))
 	{
-		// Full URL
+        // Attention: only able to redirect within the same domain if $disable_cd_check is false (yourdomain.com -> www.yourdomain.com will not work)
+        if (!$disable_cd_check && $url_parts['host'] !== $user->host)
+        {
+            $url = generate_board_url();
+        }
 	}
 	else if ($url[0] == '/')
 	{
@@ -2045,11 +2055,12 @@ function meta_refresh($time, $url)
 	global $template;
 
 	$url = redirect($url, true);
-
+    $url = str_replace('&', '&amp;', $url);
 	// For XHTML compatibility we change back & to &amp;
 	$template->assign_vars(array(
-		'META' => '<meta http-equiv="refresh" content="' . $time . ';url=' . str_replace('&', '&amp;', $url) . '" />')
+        'META' => '<meta http-equiv="refresh" content="' . $time . ';url=' . $url . '" />')
 	);
+    return $url;
 }
 
 //Form validation
@@ -2341,7 +2352,7 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 				return;
 			}
 
-			meta_refresh(3, $redirect);
+            $redirect = meta_refresh(3, $redirect);
 			trigger_error($message . '<br /><br />' . sprintf($l_redirect, '<a href="' . $redirect . '">', '</a>'));
 		}
 
@@ -2781,7 +2792,7 @@ function get_preg_expression($mode)
 	switch ($mode)
 	{
 		case 'email':
-			return '(?:[a-z0-9\'\.\-_\+\|]|&amp;)+@[a-z0-9\-]+\.(?:[a-z0-9\-]+\.)*[a-z]+';
+            return '(?:[a-z0-9\'\.\-_\+\|]++|&amp;)+@[a-z0-9\-]+\.(?:[a-z0-9\-]+\.)*[a-z]+';
 		break;
 
 		case 'bbcode_htm':
@@ -2883,7 +2894,7 @@ function phpbb_checkdnsrr($host, $type = '')
 		}
 
 		// @exec('nslookup -retry=1 -timout=1 -type=' . escapeshellarg($type) . ' ' . escapeshellarg($host), $output);
-		@exec('nslookup -type=' . escapeshellarg($type) . ' ' . escapeshellarg($host), $output);
+        @exec('nslookup -type=' . escapeshellarg($type) . ' ' . escapeshellarg($host) . '.', $output);
 
 		// If output is empty, the nslookup failed
 		if (empty($output))
@@ -2909,7 +2920,8 @@ function phpbb_checkdnsrr($host, $type = '')
 	}
 	else if (function_exists('checkdnsrr'))
 	{
-		return (checkdnsrr($host, $type)) ? true : false;
+        // The dot indicates to search the DNS root (helps those having DNS prefixes on the same domain)
+        return (checkdnsrr($host . '.', $type)) ? true : false;
 	}
 
 	return NULL;
@@ -2953,9 +2965,15 @@ function msg_handler($errno, $msg_text, $errfile, $errline)
 			if (strpos($errfile, 'cache') === false && strpos($errfile, 'template.') === false)
 			{
 				// flush the content, else we get a white page if output buffering is on
+                if ((int) @ini_get('output_buffering') === 1 || strtolower(@ini_get('output_buffering')) === 'on')
+                {
+                    @ob_flush();
+                }
+
+ 				// Another quick fix for those having gzip compression enabled, but do not flush if the coder wants to catch "something". ;)
 				if ($config['gzip_compress'])
 				{
-					if (@extension_loaded('zlib') && !headers_sent())
+                    if (@extension_loaded('zlib') && !headers_sent() && !ob_get_level())
 					{
 						@ob_flush();
 					}
@@ -3128,7 +3146,7 @@ function obtain_guest_count($forum_id = 0)
 	{
 		$reading_sql = '';
 	}
-	$time = (time() - (intval($config['load_online_time']) * 60));
+    $time = (time() - (intval($config['load_online_time']) * 60));
 
 	// Get number of online guests
 
@@ -3188,14 +3206,14 @@ function obtain_users_online($forum_id = 0)
 	}
 
 	// a little discrete magic to cache this for 30 seconds
-	$time = (time() - (intval($config['load_online_time']) * 60));
+    $time = (time() - (intval($config['load_online_time']) * 60));
 
 	$sql = 'SELECT s.session_user_id, s.session_ip, s.session_viewonline
  		FROM ' . SESSIONS_TABLE . ' s
  		WHERE s.session_time >= ' . ($time - ((int) ($time % 30))) .
 		$reading_sql .
 		' AND s.session_user_id <> ' . ANONYMOUS;
-	$result = $db->sql_query($sql, 30);
+    $result = $db->sql_query($sql);
 
 	while ($row = $db->sql_fetchrow($result))
 	{
@@ -3665,7 +3683,7 @@ function garbage_collection()
 */
 function exit_handler()
 {
-	global $phpbb_hook;
+	global $phpbb_hook, $config;
 
 	if (!empty($phpbb_hook) && $phpbb_hook->call_hook(__FUNCTION__))
 	{
@@ -3675,7 +3693,7 @@ function exit_handler()
 		}
 	}
 	// As a pre-caution... some setups display a blank page if the flush() is not there.
-	@flush();
+    (!$config['gzip_compress']) ? @flush() : @ob_flush();
 	exit;
 }
 

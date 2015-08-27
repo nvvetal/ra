@@ -56,7 +56,7 @@ class acp_forums
 				$total = request_var('total', 0);
 
 				$this->display_progress_bar($start, $total);
-				exit_handler();
+                exit;
 			break;
 
 			case 'delete':
@@ -1632,7 +1632,7 @@ class acp_forums
 			WHERE p.forum_id = $forum_id
 				AND a.in_message = 0
 				AND a.topic_id = p.topic_id";
-		$result = $db->sql_query($sql);	
+        $result = $db->sql_query($sql);
 
 		$topic_ids = array();
 		while ($row = $db->sql_fetchrow($result))
