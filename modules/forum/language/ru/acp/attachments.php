@@ -71,6 +71,9 @@ $lang = array_merge($lang, array(
 	'CAT_QUICKTIME_FILES'		=> 'Фильмы QuickTime',
 	'CAT_RM_FILES'				=> 'Файлы RealMedia',
 	'CAT_WM_FILES'				=> 'Файлы Windows Media',
+	'CHECK_CONTENT'				=> 'Check attachment files',
+	'CHECK_CONTENT_EXPLAIN'		=> 'Some browsers can be tricked to assume an incorrect mimetype for uploaded files. This option ensures that such files likely to cause this are rejected.',
+
 	'CREATE_GROUP'				=> 'Создать группу',
 	'CREATE_THUMBNAIL'			=> 'Создавать миниатюры',
 	'CREATE_THUMBNAIL_EXPLAIN'	=> 'Всегда создавать миниатюры.',

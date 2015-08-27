@@ -658,7 +658,6 @@ function compose_pm($id, $mode, $action)
 				'filename_data'			=> $message_parser->filename_data,
 				'address_list'			=> $address_list
 			);
-			unset($message_parser);
 
 			// ((!$message_subject) ? $subject : $message_subject)
 			$msg_id = submit_pm($action, $subject, $pm_data);
@@ -793,7 +792,6 @@ function compose_pm($id, $mode, $action)
 	$attachment_data = $message_parser->attachment_data;
 	$filename_data = $message_parser->filename_data;
 	$message_text = $message_parser->message;
-	unset($message_parser);
 
 	// MAIN PM PAGE BEGINS HERE
 

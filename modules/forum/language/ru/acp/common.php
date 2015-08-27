@@ -198,6 +198,8 @@ $lang = array_merge($lang, array(
 	'ADMIN'					=> 'Администрирование',
 	'ADMIN_INDEX'			=> 'Главная',
 	'ADMIN_PANEL'			=> 'Администраторский раздел',
+	'ADM_LOGOUT'			=> 'ACP Logout',
+	'ADM_LOGGED_OUT'		=> 'Successfully logged out from Administration Control Panel',
 
 	'BACK'					=> 'Назад',
 
@@ -604,6 +606,7 @@ $lang = array_merge($lang, array(
 	'LOG_REASON_ADDED'		=> '<strong>Добавлена причина жалобы/отклонения</strong><br />» %s',
 	'LOG_REASON_REMOVED'	=> '<strong>Удалена причина жалобы/отклонения</strong><br />» %s',
 	'LOG_REASON_UPDATED'	=> '<strong>Обновлена причина жалобы/отклонения</strong><br />» %s',
+	'LOG_REFERER_INVALID'		=> '<strong>Referer validation failed</strong><br />The request was rejected and the session killed.',
 
 	'LOG_RESET_DATE'			=> '<strong>Сброшена дата запуска конференции</strong>',
 	'LOG_RESET_ONLINE'			=> '<strong>Сброшен рекорд посещаемости</strong>',

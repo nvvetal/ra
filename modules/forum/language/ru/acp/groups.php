@@ -108,6 +108,7 @@ $lang = array_merge($lang, array(
 	'NO_PERMISSIONS'			=> 'Не копировать права доступа',
 	'NO_USERS'					=> 'Вы не задали ни одного пользователя.',
 	'NO_USERS_ADDED'			=> 'No users were added to the group.',
+	'NO_VALID_USERS'			=> 'You haven’t entered any users eligible for that action.',
 	'SPECIAL_GROUPS'			=> 'Предустановленные группы',
 	'SPECIAL_GROUPS_EXPLAIN'	=> 'Предустановленные группы — это специальные группы, которые не могут быть удалены или изменены напрямую. Тем не менее, вы можете добавлять пользователей в эти группы и изменять основные настройки этих групп.',
 

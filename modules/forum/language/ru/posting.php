@@ -82,6 +82,7 @@ $lang = array_merge($lang, array(
 	'DISABLE_BBCODE'			=> 'Отключить в этом сообщении BBCode',
 	'DISABLE_MAGIC_URL'			=> 'Не преобразовывать адреса URL в ссылки',
 	'DISABLE_SMILIES'			=> 'Отключить в этом сообщении смайлики',
+	'DISALLOWED_CONTENT'		=> 'The upload was rejected because the uploaded file was identified as a possible attack vector.',
 	'DISALLOWED_EXTENSION'		=> 'Расширение %s запрещено администратором.',
 	'DRAFT_LOADED'				=> 'Черновик загружен, вы можете закончить редактирование сообщения сейчас.<br />После отправки этого сообщения черновик будет удалён.',
 	'DRAFT_LOADED_PM'			=> 'Черновик загружен, вы можете закончить редактирование личного сообщения сейчас.<br />После отправки этого личного сообщения черновик будет удалён.',

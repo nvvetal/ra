@@ -466,6 +466,8 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 	// define some vars for urls
 	$hilit = implode('|', explode(' ', preg_replace('#\s+#u', ' ', str_replace(array('+', '-', '|', '(', ')', '&quot;'), ' ', $keywords))));
+	// Do not allow *only* wildcard being used for hilight
+	$hilit = (strspn($hilit, '*') === strlen($hilit)) ? '' : $hilit;
 	$u_hilit = urlencode(htmlspecialchars_decode(str_replace('|', ' ', $hilit)));
 	$u_show_results = ($show_results != 'posts') ? '&amp;sr=' . $show_results : '';
 	$u_search_forum = implode('&amp;fid%5B%5D=', $search_forum);

@@ -73,7 +73,7 @@ class ucp_confirm
 
 		$captcha = new captcha();
 		$captcha->execute($row['code'], $row['seed']);
-		exit;
+		exit_handler();
 	}
 }
 
