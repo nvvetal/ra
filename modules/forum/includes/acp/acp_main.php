@@ -179,7 +179,7 @@ class acp_main
 							FROM ' . ATTACHMENTS_TABLE . '
 							WHERE is_orphan = 0';
 						$result = $db->sql_query($sql);
-						set_config('upload_dir_size', (int) $db->sql_fetchfield('stat'), true);
+                        set_config('upload_dir_size', (float) $db->sql_fetchfield('stat'), true);
 						$db->sql_freeresult($result);
 						
 						if (!function_exists('update_last_username'))
@@ -197,21 +197,44 @@ class acp_main
 							trigger_error($user->lang['NO_AUTH_OPERATION'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						$sql = 'SELECT COUNT(p.post_id) AS num_posts, u.user_id
-							FROM ' . USERS_TABLE . ' u
-							LEFT JOIN  ' . POSTS_TABLE . ' p ON (u.user_id = p.poster_id AND p.post_postcount = 1)
-							GROUP BY u.user_id';
-						$result = $db->sql_query($sql);
+                        // Resync post counts
+                        $start = 0;
+                        $step = ($config['num_posts']) ? (max((int) ($config['num_posts'] / 5), 20000)) : 20000;
 
-						while ($row = $db->sql_fetchrow($result))
-						{
-							$db->sql_query('UPDATE ' . USERS_TABLE . " SET user_posts = {$row['num_posts']} WHERE user_id = {$row['user_id']}");
-						}
-						$db->sql_freeresult($result);
+                        $db->sql_query('UPDATE ' . USERS_TABLE . ' SET user_posts = 0');
 
-						add_log('admin', 'LOG_RESYNC_POSTCOUNTS');
+                        do
+                        {
+                            $sql = 'SELECT COUNT(post_id) AS num_posts, poster_id
+ 								FROM ' . POSTS_TABLE . '
+ 								WHERE post_id BETWEEN ' . ($start + 1) . ' AND ' . ($start + $step) . '
+ 									AND post_postcount = 1 AND post_approved = 1
+ 								GROUP BY poster_id';
+                            $result = $db->sql_query($sql);
 
-					break;
+                            if ($row = $db->sql_fetchrow($result))
+                            {
+                                do
+                                {
+                                    $sql = 'UPDATE ' . USERS_TABLE . " SET user_posts = user_posts + {$row['num_posts']} WHERE user_id = {$row['poster_id']}";
+                                    $db->sql_query($sql);
+                                }
+                                while ($row = $db->sql_fetchrow($result));
+
+                                $start += $step;
+                            }
+                            else
+                            {
+                                $start = 0;
+                            }
+                            $db->sql_freeresult($result);
+                        }
+                        while ($start);
+
+                        add_log('admin', 'LOG_RESYNC_POSTCOUNTS');
+
+                        break;
+
 			
 					case 'date':
 						if (!$auth->acl_get('a_board'))
@@ -499,7 +522,13 @@ class acp_main
 			$template->assign_var('S_REMOVE_INSTALL', true);
 		}
 
-		$this->tpl_name = 'acp_main';
+        if (!defined('PHPBB_DISABLE_CONFIG_CHECK') && file_exists($phpbb_root_path . 'config.' . $phpEx) && is_writable($phpbb_root_path . 'config.' . $phpEx))
+        {
+            // World-Writable? (000x)
+            $template->assign_var('S_WRITABLE_CONFIG', (bool) (@fileperms($phpbb_root_path . 'config.' . $phpEx) & 0x0002));
+        }
+
+        $this->tpl_name = 'acp_main';
 		$this->page_title = 'ACP_MAIN';
 	}
 }

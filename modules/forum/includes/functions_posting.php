@@ -350,7 +350,12 @@ function upload_attachment($form_name, $forum_id, $local = false, $local_storage
 	include_once($phpbb_root_path . 'includes/functions_upload.' . $phpEx);
 	$upload = new fileupload();
 
-	if (!$local)
+    if ($config['check_attachment_content'])
+    {
+        $upload->set_disallowed_content(explode('|', $config['mime_triggers']));
+    }
+
+    if (!$local)
 	{
 		$filedata['post_attach'] = ($upload->is_valid($form_name)) ? true : false;
 	}
@@ -516,6 +521,8 @@ function get_supported_image_types($type = false)
 
 		if ($type !== false)
 		{
+            // Type is one of the IMAGETYPE constants - it is fetched from getimagesize()
+            // We do not use the constants here, because some were not available in PHP 4.3.x
 			switch ($type)
 			{
 				// GIF
@@ -537,8 +544,7 @@ function get_supported_image_types($type = false)
 					$new_type = ($format & IMG_PNG) ? IMG_PNG : false;
 				break;
 
-				// BMP, WBMP
-				case 6:
+                // WBMP
 				case 15:
 					$new_type = ($format & IMG_WBMP) ? IMG_WBMP : false;
 				break;
@@ -1626,7 +1632,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 			// Display edit info if edit reason given or user is editing his post, which is not the last within the topic.
 			if ($data['post_edit_reason'] || (!$auth->acl_get('m_edit', $data['forum_id']) && ($post_mode == 'edit' || $post_mode == 'edit_first_post')))
 			{
-			$data['post_edit_reason']		= truncate_string($data['post_edit_reason'], 255, false);
+                $data['post_edit_reason']		= truncate_string($data['post_edit_reason'], 255, 255, false);
 
                 $sql_data[POSTS_TABLE]['sql']	= array(
 				    'post_edit_time'	=> $current_time,
@@ -1846,6 +1852,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'topic_last_poster_id'		=> (int) $user->data['user_id'],
 				'topic_last_poster_name'	=> (!$user->data['is_registered'] && $username) ? $username : (($user->data['user_id'] != ANONYMOUS) ? $user->data['username'] : ''),
 				'topic_last_poster_colour'	=> $user->data['user_colour'],
+                'topic_last_post_subject'	=> (string) $subject,
 			);
 		}
 

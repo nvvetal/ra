@@ -15,6 +15,19 @@ define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 
+// Thank you sun.
+if (isset($_SERVER['CONTENT_TYPE']))
+{
+    if ($_SERVER['CONTENT_TYPE'] === 'application/x-java-archive')
+    {
+        exit;
+    }
+}
+else if (isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Java') !== false)
+{
+    exit;
+}
+
 if (isset($_GET['avatar']))
 {
 	require($phpbb_root_path . 'config.' . $phpEx);
@@ -47,6 +60,8 @@ if (isset($_GET['avatar']))
 	$config = $cache->obtain_config();
 	$filename = $_GET['avatar'];
 	$avatar_group = false;
+    $exit = false;
+
 	if ($filename[0] === 'g')
 	{
 		$avatar_group = true;
@@ -57,75 +72,37 @@ if (isset($_GET['avatar']))
 	if (strpos($filename, '.') == false)
 	{
 		header('HTTP/1.0 403 Forbidden');
-		if (!empty($cache))
-		{
-			$cache->unload();
-		}
-		$db->sql_close();
-		exit;
-	}
+        $exit = true;
+    }
 
-	$ext		= substr(strrchr($filename, '.'), 1);
-    $stamp		= (int) substr(stristr($filename, '_'), 1);
-	$filename	= intval($filename);
-
-    // let's see if we have to send the file at all
-    $last_load 	=  isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime(trim($_SERVER['HTTP_IF_MODIFIED_SINCE'])) : false;
-    if (strpos(strtolower($browser), 'msie 6.0') === false)
+    if (!$exit)
     {
-        if ($last_load !== false && $last_load <= $stamp)
+        $ext		= substr(strrchr($filename, '.'), 1);
+        $stamp		= (int) substr(stristr($filename, '_'), 1);
+        $filename	= (int) $filename;
+        $exit = set_modified_headers($stamp, $browser);
+    }
+    if (!$exit && !in_array($ext, array('png', 'gif', 'jpg', 'jpeg')))
+    {
+        // no way such an avatar could exist. They are not following the rules, stop the show.
+        header("HTTP/1.0 403 Forbidden");
+        $exit = true;
+    }
+
+
+    if (!$exit)
+    {
+        if (!$filename)
         {
-			if (@php_sapi_name() === 'CGI')
-			{
-				header('Status: 304 Not Modified', true, 304);
-			}
-			else
-			{
-				header('HTTP/1.0 304 Not Modified', true, 304);
-			}
-            // seems that we need those too ... browsers
-            header('Pragma: public');
-            header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000));
-            exit();
+            // no way such an avatar could exist. They are not following the rules, stop the show.
+            header("HTTP/1.0 403 Forbidden");
         }
         else
         {
-            header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $stamp) . ' GMT');
+            send_avatar_to_browser(($avatar_group ? 'g' : '') . $filename . '.' . $ext, $browser);
         }
     }
-
-    if (!in_array($ext, array('png', 'gif', 'jpg', 'jpeg')))
-	{
-		// no way such an avatar could exist. They are not following the rules, stop the show.
-		header("HTTP/1.0 403 Forbidden");
-		if (!empty($cache))
-		{
-			$cache->unload();
-		}
-		$db->sql_close();
-		exit;
-	}
-
-	if (!$filename)
-	{
-		// no way such an avatar could exist. They are not following the rules, stop the show.
-		header("HTTP/1.0 403 Forbidden");
-		if (!empty($cache))
-		{
-			$cache->unload();
-		}
-		$db->sql_close();
-		exit;
-	}
-
-	send_avatar_to_browser(($avatar_group ? 'g' : '') . $filename . '.' . $ext, $browser);
-
-	if (!empty($cache))
-	{
-		$cache->unload();
-	}
-	$db->sql_close();
-	exit;
+    file_gc();
 }
 
 // implicit else: we are not in avatar mode
@@ -150,7 +127,7 @@ if (!$config['allow_attachments'] && !$config['allow_pm_attach'])
 	trigger_error('ATTACHMENT_FUNCTIONALITY_DISABLED');
 }
 
-$sql = 'SELECT attach_id, in_message, post_msg_id, extension, is_orphan, poster_id
+$sql = 'SELECT attach_id, in_message, post_msg_id, extension, is_orphan, poster_id, filetime
 	FROM ' . ATTACHMENTS_TABLE . "
 	WHERE attach_id = $download_id";
 $result = $db->sql_query_limit($sql, 1);
@@ -261,7 +238,7 @@ if (!download_allowed())
 $download_mode = (int) $extensions[$attachment['extension']]['download_mode'];
 
 // Fetching filename here to prevent sniffing of filename
-$sql = 'SELECT attach_id, is_orphan, in_message, post_msg_id, extension, physical_filename, real_filename, mimetype
+$sql = 'SELECT attach_id, is_orphan, in_message, post_msg_id, extension, physical_filename, real_filename, mimetype, filetime
 	FROM ' . ATTACHMENTS_TABLE . "
 	WHERE attach_id = $download_id";
 $result = $db->sql_query_limit($sql, 1);
@@ -299,7 +276,7 @@ else if (($display_cat == ATTACHMENT_CATEGORY_NONE || $display_cat == ATTACHMENT
 	$db->sql_query($sql);
 }
 
-if ($display_cat == ATTACHMENT_CATEGORY_IMAGE && $mode === 'view' && (strpos($attachment['mimetype'], 'image') === 0) && strpos(strtolower($user->browser), 'msie') !== false)
+if ($display_cat == ATTACHMENT_CATEGORY_IMAGE && $mode === 'view' && (strpos($attachment['mimetype'], 'image') === 0) && ((strpos(strtolower($user->browser), 'msie') !== false) && (strpos(strtolower($user->browser), 'msie 8.0') === false)))
 {
 	wrap_img_in_html(append_sid($phpbb_root_path . 'download/file.' . $phpEx, 'id=' . $attachment['attach_id']), $attachment['real_filename']);
 }
@@ -315,12 +292,12 @@ else
 		}
 		
 		redirect($phpbb_root_path . $config['upload_path'] . '/' . $attachment['physical_filename']);
-		exit;
+        file_gc();
 	}
 	else
 	{
 		send_file_to_browser($attachment, $config['upload_path'], $display_cat);
-		exit;
+        file_gc();
 	}
 }
 
@@ -356,7 +333,7 @@ function send_avatar_to_browser($file, $browser)
 		$image_data = @getimagesize($file_path);
 		header('Content-Type: ' . image_type_to_mime_type($image_data[2]));
 
-		if (strpos(strtolower($browser), 'msie') !== false)
+        if (strpos(strtolower($browser), 'msie') !== false && strpos(strtolower($browser), 'msie 8.0') === false)
 		{
 			header('Content-Disposition: attachment; ' . header_filename($file));
 
@@ -381,7 +358,7 @@ function send_avatar_to_browser($file, $browser)
 			header("Content-Length: $size");
 		}
 
-		if (@readfile($file_path) === false)
+        if (@readfile($file_path) == false)
 		{
 			$fp = @fopen($file_path, 'rb');
 
@@ -486,9 +463,10 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 	*/
 
 	// Send out the Headers. Do not set Content-Disposition to inline please, it is a security measure for users using the Internet Explorer.
-	header('Content-Type: ' . $attachment['mimetype']);
+    $is_ie8 = (strpos(strtolower($user->browser), 'msie 8.0') !== false);
+    header('Content-Type: ' . $attachment['mimetype'] . (($is_ie8) ? '; authoritative=true;' : ''));
 
-	if (empty($user->browser) || (strpos(strtolower($user->browser), 'msie') !== false))
+    if (empty($user->browser) || (!$is_ie8 && (strpos(strtolower($user->browser), 'msie') !== false)))
 	{
 		header('Content-Disposition: attachment; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
 		if (empty($user->browser) || (strpos(strtolower($user->browser), 'msie 6.0') !== false))
@@ -499,6 +477,10 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 	else
 	{
 		header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
+        if ($is_ie8 && (strpos($attachment['mimetype'], 'image') !== 0))
+        {
+        	header('X-Download-Options: noopen');
+        }
 	}
 	
 	if ($size)
@@ -506,26 +488,32 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 		header("Content-Length: $size");
 	}
 
-	// Try to deliver in chunks
-	@set_time_limit(0);
+    // Close the db connection before sending the file
+    $db->sql_close();
 
-	$fp = @fopen($filename, 'rb');
+    if (!set_modified_headers($attachment['filetime'], $user->browser))
+    {
+        // Try to deliver in chunks
+        @set_time_limit(0);
 
-	if ($fp !== false)
-	{
-		while (!feof($fp))
-		{
-			echo fread($fp, 8192);
-		}
-		fclose($fp);
-	}
-	else
-	{
-		@readfile($filename);
-	}
+        $fp = @fopen($filename, 'rb');
 
-	flush();
-	exit;
+        if ($fp !== false)
+        {
+            while (!feof($fp))
+            {
+                echo fread($fp, 8192);
+            }
+            fclose($fp);
+        }
+        else
+        {
+            @readfile($filename);
+        }
+
+        flush();
+    }
+    file_gc();
 }
 
 /**
@@ -655,6 +643,50 @@ function download_allowed()
 	}
 	
 	return $allowed;
+}
+
+/**
+ * Check if the browser has the file already and set the appropriate headers-
+ * @returns false if a resend is in order.
+ */
+function set_modified_headers($stamp, $browser)
+{
+    // let's see if we have to send the file at all
+    $last_load 	=  isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime(trim($_SERVER['HTTP_IF_MODIFIED_SINCE'])) : false;
+    if ((strpos(strtolower($browser), 'msie 6.0') === false) && (strpos(strtolower($browser), 'msie 8.0') === false))
+    {
+        if ($last_load !== false && $last_load <= $stamp)
+        {
+            if (@php_sapi_name() === 'CGI')
+            {
+                header('Status: 304 Not Modified', true, 304);
+            }
+            else
+            {
+                header('HTTP/1.0 304 Not Modified', true, 304);
+            }
+            // seems that we need those too ... browsers
+            header('Pragma: public');
+            header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000));
+            return true;
+        }
+        else
+        {
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $stamp) . ' GMT');
+        }
+    }
+    return false;
+}
+
+function file_gc()
+{
+    global $cache, $db;
+    if (!empty($cache))
+    {
+        $cache->unload();
+    }
+    $db->sql_close();
+    exit;
 }
 
 ?>

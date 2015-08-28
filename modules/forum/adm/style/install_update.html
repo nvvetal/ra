@@ -295,7 +295,7 @@
 		<p>{L_UPDATE_METHOD_EXPLAIN}</p>
 
 		<fieldset class="submit-buttons">
-			<input class="button1" type="submit" name="ftp_upload" value="{L_FTP_UPDATE_METHOD}" />&nbsp; &nbsp;<input class="button1" type="submit" name="download" value="{L_DOWNLOAD_UPDATE_METHOD}" />
+            <input class="button1" type="submit" name="ftp_upload" value="{L_FTP_UPDATE_METHOD}" />&nbsp; &nbsp;<input class="button1" type="submit" name="download" value="{L_DOWNLOAD_UPDATE_METHOD_BUTTON}" />
 		</fieldset>
 
 		</form>
@@ -360,7 +360,15 @@
 			<p>{L_CONNECTION_SUCCESS}</p>
 		</div>
 	<!-- ELSEIF S_CONNECTION_FAILED -->
-		<div class="errorbox">
+        <div class="successbox">
+            <p>{L_TRY_DOWNLOAD_METHOD}</p>
+
+            <fieldset class="quick">
+                <input class="button1" type="submit" name="download" value="{L_TRY_DOWNLOAD_METHOD_BUTTON}" />
+            </fieldset>
+        </div>
+
+        <div class="errorbox">
 			<p>{L_CONNECTION_FAILED}<br />{ERROR_MSG}</p>
 		</div>
 	<!-- ENDIF -->

@@ -183,12 +183,17 @@ class acp_groups
 
 			case 'deleteusers':
 			case 'delete':
-				if (confirm_box(true))
-				{
-					if (!$group_id)
-					{
-						trigger_error($user->lang['NO_GROUP'] . adm_back_link($this->u_action), E_USER_WARNING);
-					}
+                if (!$group_id)
+                {
+                    trigger_error($user->lang['NO_GROUP'] . adm_back_link($this->u_action), E_USER_WARNING);
+                }
+                else if ($action === 'delete' && $group_row['group_type'] == GROUP_SPECIAL)
+                {
+                    trigger_error($user->lang['NO_AUTH_OPERATION'] . adm_back_link($this->u_action), E_USER_WARNING);
+                }
+
+                if (confirm_box(true))
+                {
 
 					$error = '';
 
@@ -306,6 +311,7 @@ class acp_groups
 						'receive_pm'		=> isset($_REQUEST['group_receive_pm']) ? 1 : 0,
 						'legend'			=> isset($_REQUEST['group_legend']) ? 1 : 0,
 						'message_limit'		=> request_var('group_message_limit', 0),
+                        'max_recipients'	=> request_var('group_max_recipients', 0),
 //-- begin mod: User Reputation Points -------------------------------------------//
 
 						'reputation_power'	=> request_var('group_reputation_power', 0),
@@ -404,7 +410,7 @@ class acp_groups
 						// were made.
 
 						$group_attributes = array();
-						$test_variables = array('rank', 'colour', 'avatar', 'avatar_type', 'avatar_width', 'avatar_height', 'receive_pm', 'legend', 'message_limit', 'founder_manage', 'reputation_power');
+						$test_variables = array('rank', 'colour', 'avatar', 'avatar_type', 'avatar_width', 'avatar_height', 'receive_pm', 'legend', 'message_limit', 'max_recipients', 'founder_manage', 'reputation_power');
 						foreach ($test_variables as $test)
 						{
 							if (isset($submit_ary[$test]) && ($action == 'add' || $group_row['group_' . $test] != $submit_ary[$test]))
@@ -564,6 +570,7 @@ class acp_groups
 					'GROUP_FOUNDER_MANAGE'	=> (isset($group_row['group_founder_manage']) && $group_row['group_founder_manage']) ? ' checked="checked"' : '',
 					'GROUP_LEGEND'			=> (isset($group_row['group_legend']) && $group_row['group_legend']) ? ' checked="checked"' : '',
 					'GROUP_MESSAGE_LIMIT'	=> (isset($group_row['group_message_limit'])) ? $group_row['group_message_limit'] : 0,
+                    'GROUP_MAX_RECIPIENTS'	=> (isset($group_row['group_max_recipients'])) ? $group_row['group_max_recipients'] : 0,
 //-- begin mod: User Reputation Points -------------------------------------------//
 					
 					'GROUP_REPUTATION_POWER'	=> (isset($group_row['group_reputation_power'])) ? $group_row['group_reputation_power'] : 0,
