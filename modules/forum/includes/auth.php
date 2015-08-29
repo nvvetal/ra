@@ -70,8 +70,45 @@ class auth
 			$this->acl_cache($userdata);
 		}
 
-		$user_permissions = explode("\n", $userdata['user_permissions']);
+		// Fill ACL array
+		$this->_fill_acl($userdata['user_permissions']);
 
+		// Verify bitstring length with options provided...
+		$renew = false;
+		$global_length = sizeof($this->acl_options['global']);
+		$local_length = sizeof($this->acl_options['local']);
+
+		// Specify comparing length (bitstring is padded to 31 bits)
+		$global_length = ($global_length % 31) ? ($global_length - ($global_length % 31) + 31) : $global_length;
+		$local_length = ($local_length % 31) ? ($local_length - ($local_length % 31) + 31) : $local_length;
+
+		// You thought we are finished now? Noooo... now compare them.
+		foreach ($this->acl as $forum_id => $bitstring)
+		{
+			if (($forum_id && strlen($bitstring) != $local_length) || (!$forum_id && strlen($bitstring) != $global_length))
+			{
+				$renew = true;
+				break;
+			}
+		}
+
+		// If a bitstring within the list does not match the options, we have a user with incorrect permissions set and need to renew them
+		if ($renew)
+		{
+			$this->acl_cache($userdata);
+			$this->_fill_acl($userdata['user_permissions']);
+		}
+
+	}
+
+	/**
+	 * Fill ACL array with relevant bitstrings from user_permissions column
+	 * @access private
+	 */
+	function _fill_acl($user_permissions)
+	{
+		$this->acl = array();
+		$user_permissions = explode("\n", $user_permissions);
 		foreach ($user_permissions as $f => $seq)
 		{
 			if ($seq)

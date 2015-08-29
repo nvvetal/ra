@@ -67,6 +67,11 @@ class dbal
 	var $one_char;
 
 	/**
+	* Exact version of the DBAL, directly queried
+	*/
+ 	var $sql_server_version = false;
+
+ 	/**
 	* Constructor
 	*/
 	function dbal()
@@ -138,8 +143,14 @@ class dbal
 		{
 			$this->sql_freeresult($query_id);
 		}
-		
-		return $this->_sql_close();
+
+		// Connection closed correctly. Set db_connect_id to false to prevent errors
+		if ($result = $this->_sql_close())
+		{
+			$this->db_connect_id = false;
+		}
+
+		return $result;
 	}
 
 	/**
@@ -301,7 +312,7 @@ class dbal
 	* Build sql statement from array for insert/update/select statements
 	*
 	* Idea for this from Ikonboard
-	* Possible query values: INSERT, INSERT_SELECT, MULTI_INSERT, UPDATE, SELECT
+	* Possible query values: INSERT, INSERT_SELECT, UPDATE, SELECT
 	*
 	*/
 	function sql_build_array($query, $assoc_ary = false)
@@ -334,24 +345,7 @@ class dbal
 		}
 		else if ($query == 'MULTI_INSERT')
 		{
-			$ary = array();
-			foreach ($assoc_ary as $id => $sql_ary)
-			{
-				// If by accident the sql array is only one-dimensional we build a normal insert statement
-				if (!is_array($sql_ary))
-				{
-					return $this->sql_build_array('INSERT', $assoc_ary);
-				}
-
-				$values = array();
-				foreach ($sql_ary as $key => $var)
-				{
-					$values[] = $this->_sql_validate_value($var);
-				}
-				$ary[] = '(' . implode(', ', $values) . ')';
-			}
-
-			$query = ' (' . implode(', ', array_keys($assoc_ary[0])) . ') VALUES ' . implode(', ', $ary);
+			trigger_error('The MULTI_INSERT query value is no longer supported. Please use sql_multi_insert() instead.', E_USER_ERROR);
 		}
 		else if ($query == 'UPDATE' || $query == 'SELECT')
 		{
@@ -436,7 +430,25 @@ class dbal
 
 		if ($this->multi_insert)
 		{
-			$this->sql_query('INSERT INTO ' . $table . ' ' . $this->sql_build_array('MULTI_INSERT', $sql_ary));
+            $ary = array();
+            foreach ($sql_ary as $id => $_sql_ary)
+            {
+                // If by accident the sql array is only one-dimensional we build a normal insert statement
+                if (!is_array($_sql_ary))
+                {
+                    $this->sql_query('INSERT INTO ' . $table . ' ' . $this->sql_build_array('INSERT', $sql_ary));
+                    return true;
+                }
+
+                $values = array();
+                foreach ($_sql_ary as $key => $var)
+                {
+                    $values[] = $this->_sql_validate_value($var);
+                }
+                $ary[] = '(' . implode(', ', $values) . ')';
+            }
+
+            $this->sql_query('INSERT INTO ' . $table . ' ' . ' (' . implode(', ', array_keys($sql_ary[0])) . ') VALUES ' . implode(', ', $ary));
 		}
 		else
 		{
