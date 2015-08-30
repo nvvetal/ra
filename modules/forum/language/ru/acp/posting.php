@@ -47,6 +47,7 @@ $lang = array_merge($lang, array(
 	'BBCODE_HELPLINE'			=> 'Подсказка',
 	'BBCODE_HELPLINE_EXPLAIN'	=> 'Данное поле содержит текст, который появится при наведении указателя мыши на кнопку с BBCode.',
 	'BBCODE_HELPLINE_TEXT'		=> 'Текст подсказки',
+	'BBCODE_HELPLINE_TOO_LONG'	=> 'The help line you entered is too long.',
 	'BBCODE_INVALID_TAG_NAME'	=> 'Выбранное имя тега BBCode уже существует.',
 	'BBCODE_INVALID'			=> 'Форма созданного вами тега BBCode неверна.',
 	'BBCODE_OPEN_ENDED_TAG'		=> 'Настраиваемый BBCode должен содержать открывающий и закрывающий теги.',

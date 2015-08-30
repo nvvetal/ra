@@ -120,6 +120,7 @@ $lang = array_merge($lang, array(
 	'ALLOW_FORWARD_PM'			=> 'Разрешить пересылку ЛС',
 	'ALLOW_IMG_PM'				=> 'Разрешить тег BBCode <code>[IMG]</code>',
 	'ALLOW_MASS_PM'				=> 'Разрешить отправку ЛС нескольким пользователям или группам пользователей',
+	'ALLOW_MASS_PM_EXPLAIN'		=> 'Sending to groups can be adjusted per group within the group settings page.',
 	'ALLOW_PRINT_PM'			=> 'Разрешить печатный вид в ЛС',
 	'ALLOW_QUOTE_PM'			=> 'Разрешить цитаты в ЛС',
 	'ALLOW_SIG_PM'				=> 'Разрешить подписи в ЛС',
@@ -134,6 +135,8 @@ $lang = array_merge($lang, array(
 	'HOLD_NEW_MESSAGES'			=> 'Отложить новые сообщения',
 	'PM_EDIT_TIME'				=> 'Ограничить время редактирования',
 	'PM_EDIT_TIME_EXPLAIN'		=> 'Ограничить время, в течение которого доступно редактирование отправленного, но ещё не полученного адресатом личного сообщения. Установите 0 для снятия ограничений.',
+    'PM_MAX_RECIPIENTS'			=> 'Maximum number of allowed recipients',
+    'PM_MAX_RECIPIENTS_EXPLAIN'	=> 'The maximum number of allowed recipients in a private message. If 0 is entered, an unlimited number is allowed. This setting can be adjusted for every group within the group settings page.',
 ));
 
 // Post Settings
@@ -144,7 +147,12 @@ $lang = array_merge($lang, array(
 	'ALLOW_POST_FLASH'					=> 'Разрешить тег BBCode <code>[FLASH]</code> в сообщениях. ',
 	'ALLOW_POST_FLASH_EXPLAIN'			=> 'Если тег BBCode <code>[FLASH]</code> запрещён, он будет отключен в сообщениях. Определить пользователей, имеющих право использовать тег BBCode <code>[FLASH]</code>, можно с помощью системы управления правами доступа.',
 
-	'BUMP_INTERVAL'					=> 'Задержка поднятия темы',
+    'ENABLE_QUEUE_TRIGGER'			=> 'Enable queued posts',
+    'ENABLE_QUEUE_TRIGGER_EXPLAIN'	=> 'Ability to put registered users posts to post approval if their post count is lower than the specified value below. This setting has no effect on the permission setting for post/topic approval.',
+    'QUEUE_TRIGGER_POSTS'			=> 'Maximum post count for queued posts',
+    'QUEUE_TRIGGER_POSTS_EXPLAIN'	=> 'If queued posts is enabled, this is the post count the user need to reach in order to post without post approval. If the users post count is below this number, the post is stored in the queue automatically.',
+
+    'BUMP_INTERVAL'					=> 'Задержка поднятия темы',
 	'BUMP_INTERVAL_EXPLAIN'			=> 'Количество минут, часов или дней с последнего сообщения, по прошествию которых можно поднимать тему.',
 	'CHAR_LIMIT'					=> 'Максимальное количество символов в сообщении',
 	'CHAR_LIMIT_EXPLAIN'			=> 'Количество символов, разрешённое в сообщении. Установите 0 для снятия ограничений.',

@@ -75,7 +75,7 @@
             <!-- IF forumrow.LAST_POST_TIME -->
             <span class="gensmall">{forumrow.LAST_POST_TIME}</span><br/>
 					<span class="gensmall">{forumrow.LAST_POSTER_FULL}
-						<a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a>
+						<!-- IF not S_IS_BOT --><a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a><!-- ENDIF -->
 					</span>
             <!-- ELSE -->
             <span class="gensmall">{L_NO_POSTS}</span>

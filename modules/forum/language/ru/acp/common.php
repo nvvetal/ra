@@ -358,6 +358,7 @@ $lang = array_merge($lang, array(
 	'VIEW_INACTIVE_USERS'	=> 'Неактивные пользователи',
 
 	'WELCOME_PHPBB'			=> 'Добро пожаловать в phpBB',
+	'WRITABLE_CONFIG'		=> 'Your config file (config.php) is currently world-writable. We strongly encourage you to change the permissions to 640 or at least to 644 (for example: <a href="http://en.wikipedia.org/wiki/Chmod" rel="external">chmod</a> 640 config.php).',
 ));
 
 // Inactive Users
@@ -469,6 +470,7 @@ $lang = array_merge($lang, array(
 	'LOG_APPROVE_TOPIC'			=> '<strong>Одобрена тема</strong><br />» %s',
 	'LOG_BUMP_TOPIC'			=> '<strong>Поднята тема</strong><br />» %s',
 	'LOG_DELETE_POST'			=> '<strong>Удалено сообщение</strong><br />» %s',
+    'LOG_DELETE_SHADOW_TOPIC'	=> '<strong>Deleted shadow topic</strong><br />» %s',
 	'LOG_DELETE_TOPIC'			=> '<strong>Удалена тема</strong><br />» %s',
 	'LOG_FORK'					=> '<strong>Скопирована тема</strong><br />» из форума %s',
 	'LOG_LOCK'					=> '<strong>Закрыта тема</strong><br />» %s',
@@ -483,7 +485,6 @@ $lang = array_merge($lang, array(
 	'LOG_SPLIT_DESTINATION'		=> '<strong>Перемещены разделённые сообщения</strong><br />» в %s',
 	'LOG_SPLIT_SOURCE'			=> '<strong>Разделены сообщения</strong><br />» из %s',
 
-	'LOG_TOPIC_DELETED'			=> '<strong>Удалена тема</strong><br />» %s',
 	'LOG_TOPIC_APPROVED'		=> '<strong>Одобрение темы</strong><br />» %s',
 	'LOG_TOPIC_DISAPPROVED'		=> '<strong>Отклонение темы «%1$s» по следующий причине</strong><br />%2$s',
 	'LOG_TOPIC_RESYNC'			=> '<strong>Синхронизированы счётчики темы</strong><br />» %s',

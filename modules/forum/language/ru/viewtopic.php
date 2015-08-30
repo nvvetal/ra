@@ -40,6 +40,7 @@ $lang = array_merge($lang, array(
 	'ATTACHMENT_FUNCTIONALITY_DISABLED'	=> 'Функция вложений выключена.',
 
 	'BOOKMARK_ADDED'		=> 'Тема успешно помещена в закладки',
+	'BOOKMARK_ERR'			=> 'Bookmarking the topic failed. Please try again.',
 	'BOOKMARK_REMOVED'		=> 'Тема успешно удалена из закладок.',
 	'BOOKMARK_TOPIC'		=> 'В закладки',
 	'BOOKMARK_TOPIC_REMOVE'	=> 'Удалить из закладок',

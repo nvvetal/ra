@@ -37,6 +37,7 @@ $user->setup('ucp');
 $template->assign_var('S_IN_UCP', true);
 
 $module = new p_master();
+$default = false;
 
 // Basic "global" modes
 switch ($mode)
@@ -70,7 +71,6 @@ switch ($mode)
 
 	case 'confirm':
 		$module->load('ucp', 'confirm');
-		exit;
 	break;
 
 	case 'login':
@@ -234,6 +234,16 @@ switch ($mode)
 		trigger_error($message);
 
 	break;
+
+    default:
+        $default = true;
+        break;
+}
+
+// We use this approach because it does not impose large code changes
+if (!$default)
+{
+    return true;
 }
 
 // Only registered users can go beyond this point

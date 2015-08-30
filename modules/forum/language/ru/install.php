@@ -400,6 +400,7 @@ $lang = array_merge($lang, array(
 	'DONE'								=> 'Готово',
 	'DOWNLOAD'							=> 'Скачать',
 	'DOWNLOAD_AS'						=> 'Скачать в формате',
+	'DOWNLOAD_UPDATE_METHOD_BUTTON'		=> 'Download modified files archive (recommended)',
 	'DOWNLOAD_UPDATE_METHOD'			=> 'Скачать архив с модифицированными файлами',
 	'DOWNLOAD_UPDATE_METHOD_EXPLAIN'	=> 'Скачав архив, распакуйте его. В нём вы найдёте измененные файлы, которые нужно закачать в корень phpBB, при этом каждый файл должен оказаться в соответствующей ему папке. После этого снова проведите сравнение файлов, нажав отвечающую за это кнопку ниже.',
 
@@ -500,6 +501,8 @@ $lang = array_merge($lang, array(
 	'STATUS_UP_TO_DATE'			=> 'Уже обновленный файл',
   
 	'TOGGLE_DISPLAY'			=> 'Показать/скрыть список файлов',
+    'TRY_DOWNLOAD_METHOD'		=> 'You may want to try the download modified files method.<br />This method always works and is also the recommended update path.',
+    'TRY_DOWNLOAD_METHOD_BUTTON'=> 'Try this method now',
  
 	'UPDATE_COMPLETED'				=> 'Обновление завершено',
 	'UPDATE_DATABASE'				=> 'Обновить',

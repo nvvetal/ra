@@ -170,6 +170,8 @@ $lang = array_merge($lang, array(
 	'ERR_JAB_AUTH'						=> 'Не удалось авторизоваться на сервере Jabber.',
 	'ERR_JAB_CONNECT'					=> 'Не удалось подключиться к серверу Jabber.',
 	'ERR_UNABLE_TO_LOGIN'				=> 'Указано неверное имя пользователя или пароль.',
+	'ERR_UNWATCHING'					=> 'An error occured while trying to unsubscribe.',
+	'ERR_WATCHING'						=> 'An error occured while trying to subscribe.',
 	'ERR_WRONG_PATH_TO_PHPBB'			=> 'Указанный путь к конференции неверен.',
 	'EXPAND_VIEW'						=> 'Развернуть',
 	'EXTENSION'							=> 'Расширение',
@@ -392,7 +394,14 @@ $lang = array_merge($lang, array(
 	'NO_USERS'					=> 'Запрашиваемых пользователей не существует.',
 	'NO_USER_SPECIFIED'			=> 'Имя пользователя не определено.',
 
-	'OCCUPATION'				=> 'Род занятий',
+    // Nullar/Singular/Plural language entry. The key numbers define the number range in which a certain grammatical expression is valid.
+    'NUM_POSTS_IN_QUEUE'		=> array(
+        0			=> 'No posts in queue',		// 0
+        1			=> '1 post in queue',		// 1
+        2			=> '%d posts in queue',		// 2+
+    ),
+
+    'OCCUPATION'				=> 'Род занятий',
 	'OFFLINE'					=> 'Не в сети',
 	'ONLINE'					=> 'В сети',
 	'ONLINE_BUDDIES'			=> 'Друзья',
@@ -543,6 +552,8 @@ $lang = array_merge($lang, array(
 	'THE_TEAM'			=> 'Наша команда',
 	'TIME'				=> 'Время',
 
+    'TOO_LONG'						=> 'The value you entered is too long.',
+
 	'TOO_LONG_AIM'					=> 'Имя в AIM слишком длинное.',
 	'TOO_LONG_CONFIRM_CODE'			=> 'Введённый код подтверждения слишком длинный.',
 	'TOO_LONG_DATEFORMAT'			=> 'Введённый формат даты слишком длинный.',
@@ -562,6 +573,8 @@ $lang = array_merge($lang, array(
 	'TOO_LONG_YIM'					=> 'Имя в YIM слишком длинное.',
 
 	'TOO_MANY_VOTE_OPTIONS'			=> 'Вы выбрали слишком много вариантов ответа при голосовании.',
+
+    'TOO_SHORT'						=> 'The value you entered is too short.',
 
 	'TOO_SHORT_AIM'					=> 'Имя в AIM слишком короткое.',
 	'TOO_SHORT_CONFIRM_CODE'		=> 'Введённый код подтверждения слишком короткий.',
@@ -741,6 +754,7 @@ $lang = array_merge($lang, array(
 		'-7'	=> 'UTC - 7 часов',
 		'-6'	=> 'UTC - 6 часов',
 		'-5'	=> 'UTC - 5 часов',
+        '-4.5'	=> 'UTC - 4:30 часов',
 		'-4'	=> 'UTC - 4 часа',
 		'-3.5'	=> 'UTC - 3:30 часа',
 		'-3'	=> 'UTC - 3 часа',
@@ -784,6 +798,7 @@ $lang = array_merge($lang, array(
 		'-7'	=> '[UTC - 7] Аризона',
 		'-6'	=> '[UTC - 6] Мехико, Центральная Америка, Центральное время (США и Канада)',
 		'-5'	=> '[UTC - 5] Индиана (восток), Восточное время (США и Канада)',
+        '-4.5'	=> '[UTC - 4:30] Venezuelan Standard Time',
 		'-4'	=> '[UTC - 4] Каракас, Сантьяго, Атлантическое время (Канада)',
 		'-3.5'	=> '[UTC - 3:30] Ньюфаундленд',
 		'-3'	=> '[UTC - 3] Бразилия, Гренландия',

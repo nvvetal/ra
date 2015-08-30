@@ -112,6 +112,7 @@ $lang = array_merge($lang, array(
 
 	'acl_u_sendpm'		=> array('lang' => 'Может посылать ЛС', 'cat' => 'pm'),
 	'acl_u_masspm'		=> array('lang' => 'Может рассылать массовые ЛС', 'cat' => 'pm'),
+	'acl_u_masspm_group'=> array('lang' => 'Can send messages to groups', 'cat' => 'pm'),
 	'acl_u_readpm'		=> array('lang' => 'Может читать ЛС', 'cat' => 'pm'),
 	'acl_u_pm_edit'		=> array('lang' => 'Может редактировать собственные ЛС', 'cat' => 'pm'),
 	'acl_u_pm_delete'	=> array('lang' => 'Может удалять ЛС из своих папок', 'cat' => 'pm'),
