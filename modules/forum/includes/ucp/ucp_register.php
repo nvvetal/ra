@@ -59,7 +59,7 @@ class ucp_register
 		{
 			$use_lang = ($change_lang) ? basename($change_lang) : basename($user_lang);
 
-			if (file_exists($phpbb_root_path . 'language/' . $use_lang . '/'))
+			if (file_exists($user->lang_path . $use_lang . '/'))
 			{
 				if ($change_lang)
 				{
@@ -70,7 +70,6 @@ class ucp_register
 				}
 
 				$user->lang_name = $lang = $use_lang;
-				$user->lang_path = $phpbb_root_path . 'language/' . $lang . '/';
 				$user->lang = array();
 				$user->add_lang(array('common', 'ucp'));
 			}

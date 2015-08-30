@@ -415,8 +415,8 @@ function change_poster(&$post_info, $userdata)
 		sync('forum', 'forum_id', $post_info['forum_id'], false, false);
 	}
 
-	// Adjust post counts
-	if ($post_info['post_postcount'])
+	// Adjust post counts... only if the post is approved (else, it was not added the users post count anyway)
+	if ($post_info['post_postcount'] && $post_info['post_approved'])
 	{
 		$sql = 'UPDATE ' . USERS_TABLE . '
 			SET user_posts = user_posts - 1
