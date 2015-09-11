@@ -455,6 +455,7 @@ class fulltext_native extends search_backend
 		);
 
 		$title_match = '';
+		$left_join_topics = false;
 		$group_by = true;
 		// Build some display specific sql strings
 		switch ($fields)
@@ -464,7 +465,7 @@ class fulltext_native extends search_backend
 				$group_by = false;
 			// no break
 			case 'firstpost':
-				$sql_array['FROM'][TOPICS_TABLE] = 't';
+                $left_join_topics = true;
 				$sql_where[] = 'p.post_id = t.topic_first_post_id';
 			break;
 
@@ -476,11 +477,7 @@ class fulltext_native extends search_backend
 
 		if ($type == 'topics')
 		{
-			if (!isset($sql_array['FROM'][TOPICS_TABLE]))
-			{
-				$sql_array['FROM'][TOPICS_TABLE] = 't';
-				$sql_where[] = 'p.topic_id = t.topic_id';
-			}
+            $left_join_topics = true;
 			$group_by = true;
 		}
 
@@ -688,11 +685,7 @@ class fulltext_native extends search_backend
 			break;
 
 			case 't':
-				if (!isset($sql_array['FROM'][TOPICS_TABLE]))
-				{
-					$sql_array['FROM'][TOPICS_TABLE] = 't';
-					$sql_where[] = 'p.topic_id = t.topic_id';
-				}
+                $left_join_topics = true;
 			break;
 
 			case 'f':
@@ -701,7 +694,15 @@ class fulltext_native extends search_backend
 			break;
 		}
 
-		$sql_array['WHERE'] = implode(' AND ', $sql_where);
+        if ($left_join_topics)
+        {
+            $sql_array['LEFT_JOIN'][$left_join_topics] = array(
+                'FROM'	=> array(TOPICS_TABLE => 't'),
+                'ON'	=> 'p.topic_id = t.topic_id'
+            );
+        }
+
+        $sql_array['WHERE'] = implode(' AND ', $sql_where);
 		$sql_array['GROUP_BY'] = ($group_by) ? (($type == 'posts') ? 'p.post_id' : 'p.topic_id') . ', ' . $sort_by_sql[$sort_key] : '';
 		$sql_array['ORDER_BY'] = $sql_sort;
 
@@ -1674,7 +1675,7 @@ class fulltext_native extends search_backend
 		</dl>
 		<dl>
 			<dt><label for="fulltext_native_common_thres">' . $user->lang['COMMON_WORD_THRESHOLD'] . ':</label><br /><span>' . $user->lang['COMMON_WORD_THRESHOLD_EXPLAIN'] . '</span></dt>
-			<dd><input id="fulltext_native_common_thres" type="text" size="3" maxlength="3" name="config[fulltext_native_common_thres]" value="' . (int) $config['fulltext_native_common_thres'] . '" /> %</dd>
+			<dd><input id="fulltext_native_common_thres" type="text" size="3" maxlength="3" name="config[fulltext_native_common_thres]" value="' . (double) $config['fulltext_native_common_thres'] . '" /> %</dd>
 		</dl>
 		';
 

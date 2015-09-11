@@ -414,6 +414,9 @@ class ucp_groups
 				$this->page_title = 'UCP_USERGROUPS_MANAGE';
 				$action		= (isset($_POST['addusers'])) ? 'addusers' : request_var('action', '');
 				$group_id	= request_var('g', 0);
+
+				include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+
 				add_form_key('ucp_groups');
 
 				if ($group_id)
@@ -457,8 +460,6 @@ class ucp_groups
 				switch ($action)
 				{
 					case 'edit':
-
-						include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
 						if (!$group_id)
 						{

@@ -363,9 +363,10 @@ class acp_profile
 					}
 
 					$field_row = array_merge($default_values[$field_type], array(
-						'field_ident'		=> utf8_clean_string(request_var('field_ident', '', true)),
+						'field_ident'		=> str_replace(' ', '_', utf8_clean_string(request_var('field_ident', '', true))),
 						'field_required'	=> 0,
 						'field_hide'		=> 0,
+						'field_show_profile'=> 0,
 						'field_no_view'		=> 0,
 						'field_show_on_reg'	=> 0,
 						'lang_name'			=> utf8_normalize_nfc(request_var('field_ident', '', true)),
@@ -378,7 +379,7 @@ class acp_profile
 
 				// $exclude contains the data we gather in each step
 				$exclude = array(
-					1	=> array('field_ident', 'lang_name', 'lang_explain', 'field_option', 'field_no_view'),
+                    1	=> array('field_ident', 'lang_name', 'lang_explain', 'field_option_none', 'field_show_on_reg', 'field_required', 'field_hide', 'field_show_profile', 'field_no_view'),
 					2	=> array('field_length', 'field_maxlen', 'field_minlen', 'field_validation', 'field_novalue', 'field_default_value'),
 					3	=> array('l_lang_name', 'l_lang_explain', 'l_lang_default_value', 'l_lang_options')
 				);
@@ -400,27 +401,22 @@ class acp_profile
 				$cp->vars['lang_explain']		= utf8_normalize_nfc(request_var('lang_explain', $field_row['lang_explain'], true));
 				$cp->vars['lang_default_value']	= utf8_normalize_nfc(request_var('lang_default_value', $field_row['lang_default_value'], true));
 
-				// Field option...
-				if (isset($_REQUEST['field_option']))
-				{
-					$field_option = request_var('field_option', '');
+                // Visibility Options...
+                $visibility_ary = array(
+                    'field_required',
+                    'field_show_on_reg',
+                    'field_show_profile',
+                    'field_hide',
+                );
 
-					$cp->vars['field_required'] = ($field_option == 'field_required') ? 1 : 0;
-					$cp->vars['field_show_on_reg'] = ($field_option == 'field_show_on_reg') ? 1 : 0;
-					$cp->vars['field_hide'] = ($field_option == 'field_hide') ? 1 : 0;
-				}
-				else
-				{
-					$cp->vars['field_required'] = $field_row['field_required'];
-					$cp->vars['field_show_on_reg'] = $field_row['field_show_on_reg'];
-					$cp->vars['field_hide'] = $field_row['field_hide'];
+                foreach ($visibility_ary as $val)
+                {
+                    $cp->vars[$val] = ($submit || $save) ? request_var($val, 0) : $field_row[$val];
+                }
 
-					$field_option = ($field_row['field_required']) ? 'field_required' : (($field_row['field_show_on_reg']) ? 'field_show_on_reg' : (($field_row['field_hide']) ? 'field_hide' : ''));
-				}
+                $cp->vars['field_no_view'] = request_var('field_no_view', (int) $field_row['field_no_view']);
 
-				$cp->vars['field_no_view'] = request_var('field_no_view', $field_row['field_no_view']);
-
-				// A boolean field expects an array as the lang options
+                // A boolean field expects an array as the lang options
 				if ($field_type == FIELD_BOOL)
 				{
 					$options = utf8_normalize_nfc(request_var('lang_options', array(''), true));
@@ -1040,6 +1036,7 @@ class acp_profile
 			'field_required'		=> $cp->vars['field_required'],
 			'field_show_on_reg'		=> $cp->vars['field_show_on_reg'],
 			'field_hide'			=> $cp->vars['field_hide'],
+            'field_show_profile'	=> $cp->vars['field_show_profile'],
 			'field_no_view'			=> $cp->vars['field_no_view']
 		);
 

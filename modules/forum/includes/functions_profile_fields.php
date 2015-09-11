@@ -40,14 +40,14 @@ class custom_profile
 		{
 			case 'register':
 				// If the field is required we show it on the registration page and do not show hidden fields
-				$sql_where .= ' AND (f.field_show_on_reg = 1 OR f.field_required = 1) AND f.field_hide = 0';
+				$sql_where .= ' AND f.field_show_on_reg = 1 AND f.field_no_view = 0';
 			break;
 
 			case 'profile':
 				// Show hidden fields to moderators/admins
 				if (!$auth->acl_gets('a_', 'm_') && !$auth->acl_getf_global('m_'))
 				{
-					$sql_where .= ' AND f.field_hide = 0';
+					$sql_where .= ' AND f.field_show_profile = 1';
 				}
 			break;
 
@@ -271,14 +271,14 @@ class custom_profile
 		{
 			case 'register':
 				// If the field is required we show it on the registration page and do not show hidden fields
-				$sql_where .= ' AND (f.field_show_on_reg = 1 OR f.field_required = 1) AND f.field_hide = 0';
+				$sql_where .= ' AND f.field_show_on_reg = 1 AND f.field_no_view = 0';
 			break;
 
 			case 'profile':
 				// Show hidden fields to moderators/admins
 				if (!$auth->acl_gets('a_', 'm_') && !$auth->acl_getf_global('m_'))
 				{
-					$sql_where .= ' AND f.field_hide = 0';
+					$sql_where .= ' AND f.field_show_profile = 1';
 				}
 			break;
 

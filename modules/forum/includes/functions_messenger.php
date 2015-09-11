@@ -97,6 +97,12 @@ class messenger
 	*/
 	function im($address, $realname = '')
 	{
+		// IM-Addresses could be empty
+		if (!$address)
+		{
+			return;
+ 		}
+
 		$pos = isset($this->addresses['im']) ? sizeof($this->addresses['im']) : 0;
 		$this->addresses['im'][$pos]['uid'] = trim($address);
 		$this->addresses['im'][$pos]['name'] = trim($realname);
@@ -443,7 +449,12 @@ class messenger
 			return false;
 		}
 
-		$use_queue = false;
+        if (empty($this->addresses['im']))
+        {
+            return false;
+        }
+
+        $use_queue = false;
 		if ($config['jab_package_size'] && $this->use_queue)
 		{
 			if (empty($this->queue))

@@ -2170,10 +2170,16 @@ $this->template_cfg .= '
 			$style_default = request_var('style_default', 0);
 			$store_db = request_var('store_db', 0);
 
-            $sql = "SELECT {$mode}_id
- 				FROM $sql_from
- 				WHERE {$mode}_id <> $style_id
- 				AND {$mode}_name = '" . $db->sql_escape(strtolower($name)) . "'";
+			// If the admin selected the style to be the default style, but forgot to activate it... we will do it for him
+			if ($style_default)
+			{
+				$style_active = 1;
+			}
+
+ 			$sql = "SELECT {$mode}_id, {$mode}_name
+  				FROM $sql_from
+  				WHERE {$mode}_id <> $style_id
+ 				AND LOWER({$mode}_name) = '" . $db->sql_escape(strtolower($name)) . "'";
             $result = $db->sql_query($sql);
             $conflict = $db->sql_fetchrow($result);
             $db->sql_freeresult($result);
@@ -3200,7 +3206,7 @@ $this->template_cfg .= '
         {
             $sql = "SELECT {$mode}_id, {$mode}_name, {$mode}_path, {$mode}_storedb
  				FROM $sql_from
- 				WHERE {$mode}_name = '" . $db->sql_escape(strtolower($cfg_data['inherit_from'])) . "'
+ 				WHERE {$mode}_name = '" . $db->sql_escape($cfg_data['inherit_from']) . "'
  					AND {$mode}_inherits_id = 0";
             $result = $db->sql_query($sql);
             $row = $db->sql_fetchrow($result);

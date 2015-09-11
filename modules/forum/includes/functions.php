@@ -462,7 +462,7 @@ function _hash_crypt_private($password, $setting, &$itoa64)
 /**
  * Global function for chmodding directories and files for internal use
  * This function determines owner and group whom the file belongs to and user and group of PHP and then set safest possible file permissions.
- * The function determines owner and group from common.php file and sets the same to the provided file.
+ * The function determines owner and group from common.php file and sets the same to the provided file. Permissions are mapped to the group, user always has rw(x) permission.
  * The function uses bit fields to build the permissions.
  * The function sets the appropiate execute bit on directories.
  *
@@ -511,6 +511,7 @@ function phpbb_chmod($filename, $perms = CHMOD_READ)
             // Will most likely not work
             if (@chown($filename, $common_php_owner));
             {
+				clearstatcache();
                 $file_uid = fileowner($filename);
             }
         }
@@ -520,6 +521,7 @@ function phpbb_chmod($filename, $perms = CHMOD_READ)
         {
             if (@chgrp($filename, $common_php_group));
             {
+				clearstatcache();
                 $file_gid = filegroup($filename);
             }
         }
@@ -532,7 +534,7 @@ function phpbb_chmod($filename, $perms = CHMOD_READ)
     // Who is PHP?
     if ($file_uid === false || $file_gid === false || $php_uid === false || $php_gids === false)
     {
-        $php = null;
+        $php = NULL;
     }
     else if ($file_uid == $php_uid /* && $common_php_owner !== false && $common_php_owner === $file_uid*/)
     {
@@ -564,35 +566,44 @@ function phpbb_chmod($filename, $perms = CHMOD_READ)
     {
         case null:
         case 'owner':
-            $result = @chmod($filename, ($owner << 6) + (0 << 3) + (0 << 0));
+        /* ATTENTION: if php is owner or NULL we set it to group here. This is the most failsafe combination for the vast majority of server setups.
 
-            if (!is_null($php) || (is_readable($filename) && is_writable($filename)))
-            {
-                break;
-            }
+        $result = @chmod($filename, ($owner << 6) + (0 << 3) + (0 << 0));
 
-        case 'group':
-            $result = @chmod($filename, ($owner << 6) + ($perms << 3) + (0 << 0));
+        clearstatcache();
 
-            if (!is_null($php) || ((!($perms & CHMOD_READ) || is_readable($filename)) && (!($perms & CHMOD_WRITE) || is_writable($filename))))
-            {
-                break;
-            }
-
-        case 'other':
-            $result = @chmod($filename, ($owner << 6) + ($perms << 3) + ($perms << 0));
-
-            if (!is_null($php) || ((!($perms & CHMOD_READ) || is_readable($filename)) && (!($perms & CHMOD_WRITE) || is_writable($filename))))
-            {
-                break;
-            }
-
-        default:
-            return false;
+        if (!is_null($php) || (is_readable($filename) && is_writable($filename)))
+        {
             break;
-    }
+        }
+        */
 
-    return $result;
+    case 'group':
+        $result = @chmod($filename, ($owner << 6) + ($perms << 3) + (0 << 0));
+
+        clearstatcache();
+
+        if (!is_null($php) || ((!($perms & CHMOD_READ) || is_readable($filename)) && (!($perms & CHMOD_WRITE) || is_writable($filename))))
+        {
+            break;
+        }
+
+    case 'other':
+        $result = @chmod($filename, ($owner << 6) + ($perms << 3) + ($perms << 0));
+
+        clearstatcache();
+
+        if (!is_null($php) || ((!($perms & CHMOD_READ) || is_readable($filename)) && (!($perms & CHMOD_WRITE) || is_writable($filename))))
+        {
+            break;
+        }
+
+    default:
+        return false;
+        break;
+}
+
+return $result;
 }
 
 
@@ -600,15 +611,15 @@ function phpbb_chmod($filename, $perms = CHMOD_READ)
 
 if (!function_exists('array_combine'))
 {
-	/**
-	* A wrapper for the PHP5 function array_combine()
-	* @param array $keys contains keys for the resulting array
-	* @param array $values contains values for the resulting array
-	*
-	* @return Returns an array by using the values from the keys array as keys and the
-	* 	values from the values array as the corresponding values. Returns false if the
-	* 	number of elements for each array isn't equal or if the arrays are empty.
-	*/
+/**
+* A wrapper for the PHP5 function array_combine()
+* @param array $keys contains keys for the resulting array
+* @param array $values contains values for the resulting array
+*
+* @return Returns an array by using the values from the keys array as keys and the
+* 	values from the values array as the corresponding values. Returns false if the
+* 	number of elements for each array isn't equal or if the arrays are empty.
+*/
 	function array_combine($keys, $values)
 	{
 		$keys = array_values($keys);
@@ -1821,29 +1832,44 @@ function append_sid($url, $params = false, $is_amp = true, $session_id = false)
 		}
 	}
 
-	// Assign sid if session id is not specified
-	if ($session_id === false)
-	{
-		$session_id = $_SID;
-	}
+    $params_is_array = is_array($params);
 
-	$amp_delim = ($is_amp) ? '&amp;' : '&';
-	$url_delim = (strpos($url, '?') === false) ? '?' : $amp_delim;
-
-	// Appending custom url parameter?
-	$append_url = (!empty($_EXTRA_URL)) ? implode($amp_delim, $_EXTRA_URL) : '';
-
+    // Get anchor
 	$anchor = '';
 	if (strpos($url, '#') !== false)
 	{
 		list($url, $anchor) = explode('#', $url, 2);
 		$anchor = '#' . $anchor;
 	}
-	else if (!is_array($params) && strpos($params, '#') !== false)
+    else if (!$params_is_array && strpos($params, '#') !== false)
 	{
 		list($params, $anchor) = explode('#', $params, 2);
 		$anchor = '#' . $anchor;
 	}
+
+    // Handle really simple cases quickly
+    if ($_SID == '' && $session_id === false && empty($_EXTRA_URL) && !$params_is_array && !$anchor)
+    {
+        if ($params === false)
+        {
+            return $url;
+        }
+
+        $url_delim = (strpos($url, '?') === false) ? '?' : (($is_amp) ? '&amp;' : '&');
+        return $url . ($params !== false ? $url_delim. $params : '');
+    }
+
+ 	// Assign sid if session id is not specified
+ 	if ($session_id === false)
+     	{
+     		$session_id = $_SID;
+     	}
+
+ 	$amp_delim = ($is_amp) ? '&amp;' : '&';
+ 	$url_delim = (strpos($url, '?') === false) ? '?' : $amp_delim;
+
+ 	// Appending custom url parameter?
+ 	$append_url = (!empty($_EXTRA_URL)) ? implode($amp_delim, $_EXTRA_URL) : '';
 
 	// Use the short variant if possible ;)
 	if ($params === false)
@@ -2192,12 +2218,17 @@ function build_url($strip_vars = false)
 
 /**
 * Meta refresh assignment
+* Adds META template variable with meta http tag.
+*
+* @param int $time Time in seconds for meta refresh tag
+* @param string $url URL to redirect to. The url will go through redirect() first before the template variable is assigned
+* @param bool $disable_cd_check If true, meta_refresh() will redirect to an external domain. If false, the redirect point to the boards url if it does not match the current domain. Default is false.
 */
-function meta_refresh($time, $url)
+function meta_refresh($time, $url, $disable_cd_check = false)
 {
 	global $template;
 
-	$url = redirect($url, true);
+    $url = redirect($url, true, $disable_cd_check);
     $url = str_replace('&', '&amp;', $url);
 	// For XHTML compatibility we change back & to &amp;
 	$template->assign_vars(array(
