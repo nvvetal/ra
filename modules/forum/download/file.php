@@ -267,7 +267,7 @@ if ($thumbnail)
 {
 	$attachment['physical_filename'] = 'thumb_' . $attachment['physical_filename'];
 }
-else if (($display_cat == ATTACHMENT_CATEGORY_NONE || $display_cat == ATTACHMENT_CATEGORY_IMAGE) && !$attachment['is_orphan'])
+else if (($display_cat == ATTACHMENT_CATEGORY_NONE/* || $display_cat == ATTACHMENT_CATEGORY_IMAGE*/) && !$attachment['is_orphan'])
 {
 	// Update download count
 	$sql = 'UPDATE ' . ATTACHMENTS_TABLE . '
@@ -279,6 +279,7 @@ else if (($display_cat == ATTACHMENT_CATEGORY_NONE || $display_cat == ATTACHMENT
 if ($display_cat == ATTACHMENT_CATEGORY_IMAGE && $mode === 'view' && (strpos($attachment['mimetype'], 'image') === 0) && ((strpos(strtolower($user->browser), 'msie') !== false) && (strpos(strtolower($user->browser), 'msie 8.0') === false)))
 {
 	wrap_img_in_html(append_sid($phpbb_root_path . 'download/file.' . $phpEx, 'id=' . $attachment['attach_id']), $attachment['real_filename']);
+	file_gc();
 }
 else
 {
@@ -376,7 +377,7 @@ function send_avatar_to_browser($file, $browser)
 	}
 	else
 	{
-		header('HTTP/1.0 404 not found');
+        header('HTTP/1.0 404 Not Found');
 	}
 }
 
@@ -464,22 +465,35 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 
 	// Send out the Headers. Do not set Content-Disposition to inline please, it is a security measure for users using the Internet Explorer.
     $is_ie8 = (strpos(strtolower($user->browser), 'msie 8.0') !== false);
-    header('Content-Type: ' . $attachment['mimetype'] . (($is_ie8) ? '; authoritative=true;' : ''));
+    header('Content-Type: ' . $attachment['mimetype']);
 
-    if (empty($user->browser) || (!$is_ie8 && (strpos(strtolower($user->browser), 'msie') !== false)))
-	{
-		header('Content-Disposition: attachment; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
-		if (empty($user->browser) || (strpos(strtolower($user->browser), 'msie 6.0') !== false))
-		{
-			header('expires: -1');
-		}
-	}
-	else
-	{
-		header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
-        if ($is_ie8 && (strpos($attachment['mimetype'], 'image') !== 0))
+    if ($is_ie8)
+    {
+        header('X-Content-Type-Options: nosniff');
+    }
+
+    if ($category == ATTACHMENT_CATEGORY_FLASH && request_var('view', 0) === 1)
+    {
+        // We use content-disposition: inline for flash files and view=1 to let it correctly play with flash player 10 - any other disposition will fail to play inline
+        header('Content-Disposition: inline');
+    }
+    else
+    {
+        if (empty($user->browser) || (!$is_ie8 && (strpos(strtolower($user->browser), 'msie') !== false)))
         {
-        	header('X-Download-Options: noopen');
+            header('Content-Disposition: attachment; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
+            if (empty($user->browser) || (strpos(strtolower($user->browser), 'msie 6.0') !== false))
+            {
+                header('expires: -1');
+            }
+        }
+        else
+        {
+            header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
+            if ($is_ie8 && (strpos($attachment['mimetype'], 'image') !== 0))
+            {
+                header('X-Download-Options: noopen');
+            }
         }
 	}
 	
@@ -657,8 +671,9 @@ function set_modified_headers($stamp, $browser)
     {
         if ($last_load !== false && $last_load <= $stamp)
         {
-            if (@php_sapi_name() === 'CGI')
+            if (substr(strtolower(@php_sapi_name()),0,3) === 'cgi')
             {
+                // in theory, we shouldn't need that due to php doing it. Reality offers a differing opinion, though
                 header('Status: 304 Not Modified', true, 304);
             }
             else

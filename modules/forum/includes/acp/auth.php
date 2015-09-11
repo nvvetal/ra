@@ -696,23 +696,16 @@ class auth_admin extends auth
 
 		$cur_options = array();
 
+		// Determine current options
 		$sql = 'SELECT auth_option, is_global, is_local
 			FROM ' . ACL_OPTIONS_TABLE . '
 			ORDER BY auth_option_id';
 		$result = $db->sql_query($sql);
 
-		while ($row = $db->sql_fetchrow($result))
-		{
-			if ($row['is_global'])
-			{
-				$cur_options['global'][] = $row['auth_option'];
-			}
-
-			if ($row['is_local'])
-			{
-				$cur_options['local'][] = $row['auth_option'];
-			}
-		}
+        while ($row = $db->sql_fetchrow($result))
+        {
+            $cur_options[$row['auth_option']] = ($row['is_global'] && $row['is_local']) ? 'both' : (($row['is_global']) ? 'global' : 'local');
+        }
 		$db->sql_freeresult($result);
 
 		// Here we need to insert new options ... this requires discovering whether
@@ -726,14 +719,11 @@ class auth_admin extends auth
 
 			foreach ($option_ary as $option_value)
 			{
-				if (!in_array($option_value, $cur_options[$type]))
-				{
-					$new_options[$type][] = $option_value;
-				}
+                $new_options[$type][] = $option_value;
 
 				$flag = substr($option_value, 0, strpos($option_value, '_') + 1);
 
-				if (!in_array($flag, $cur_options[$type]) && !in_array($flag, $new_options[$type]))
+                if (!in_array($flag, $new_options[$type]))
 				{
 					$new_options[$type][] = $flag;
 				}
@@ -744,23 +734,53 @@ class auth_admin extends auth
 		$options = array();
 		$options['local'] = array_diff($new_options['local'], $new_options['global']);
 		$options['global'] = array_diff($new_options['global'], $new_options['local']);
-		$options['local_global'] = array_intersect($new_options['local'], $new_options['global']);
+        $options['both'] = array_intersect($new_options['local'], $new_options['global']);
 
-		$sql_ary = array();
+        // Now check which options to add/update
+        $add_options = $update_options = array();
 
-		foreach ($options as $type => $option_ary)
-		{
-			foreach ($option_ary as $option)
-			{
-				$sql_ary[] = array(
-					'auth_option'	=> (string) $option,
-					'is_global'		=> ($type == 'global' || $type == 'local_global') ? 1 : 0,
-					'is_local'		=> ($type == 'local' || $type == 'local_global') ? 1 : 0
-				);
-			}
-		}
+        // First local ones...
+        foreach ($options as $type => $option_ary)
+        {
+            foreach ($option_ary as $option)
+            {
+                if (!isset($cur_options[$option]))
+                {
+                    $add_options[] = array(
+                        'auth_option'	=> (string) $option,
+                        'is_global'		=> ($type == 'global' || $type == 'both') ? 1 : 0,
+                        'is_local'		=> ($type == 'local' || $type == 'both') ? 1 : 0
+                    );
 
-		$db->sql_multi_insert(ACL_OPTIONS_TABLE, $sql_ary);
+                    continue;
+                }
+
+                // Else, update existing entry if it is changed...
+                if ($type === $cur_options[$option])
+                {
+                    continue;
+                }
+
+                // New type is always both:
+                // If is now both, we set both.
+                // If it was global the new one is local and we need to set it to both
+                // If it was local the new one is global and we need to set it to both
+                $update_options[] = $option;
+            }
+        }
+
+        if (!empty($add_options))
+        {
+            $db->sql_multi_insert(ACL_OPTIONS_TABLE, $add_options);
+        }
+
+        if (!empty($update_options))
+        {
+            $sql = 'UPDATE ' . ACL_OPTIONS_TABLE . '
+ 				SET is_global = 1, is_local = 1
+ 				WHERE ' . $db->sql_in_set('auth_option', $update_options);
+            $db->sql_query($sql);
+        }
 
 		$cache->destroy('_acl_options');
 		$this->acl_clear_prefetch();

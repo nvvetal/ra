@@ -82,6 +82,7 @@ class acp_database
 						}
 
 						@set_time_limit(1200);
+						@set_time_limit(0);
 
 						$time = time();
 
@@ -421,28 +422,38 @@ class acp_database
 						$dir = $phpbb_root_path . 'store/';
 						$dh = @opendir($dir);
 
+                        $backup_files = array();
+
 						if ($dh)
 						{
 							while (($file = readdir($dh)) !== false)
-							{
-								if (preg_match('#^backup_(\d{10,})_[a-z\d]{16}\.(sql(?:\.(?:gz|bz2))?)$#', $file, $matches))
-								{
-									$supported = in_array($matches[2], $methods);
-
-									if ($supported == 'true')
-									{
-										$template->assign_block_vars('files', array(
-											'FILE'		=> $file,
-											'NAME'		=> gmdate("d-m-Y H:i:s", $matches[1]),
-											'SUPPORTED'	=> $supported
-										));
-									}
-								}
-							}
+                            {
+                                if (preg_match('#^backup_(\d{10,})_[a-z\d]{16}\.(sql(?:\.(?:gz|bz2))?)$#', $file, $matches))
+                                {
+                                    if (in_array($matches[2], $methods))
+                                    {
+                                        $backup_files[gmdate("d-m-Y H:i:s", $matches[1])] = $file;
+                                    }
+                                }
+                            }
 							closedir($dh);
 						}
 
-						$template->assign_vars(array(
+                        if (!empty($backup_files))
+                        {
+                            krsort($backup_files);
+
+                            foreach ($backup_files as $name => $file)
+                            {
+                                $template->assign_block_vars('files', array(
+                                    'FILE'		=> $file,
+                                    'NAME'		=> $name,
+                                    'SUPPORTED'	=> true,
+                                ));
+                            }
+                        }
+
+                        $template->assign_vars(array(
 							'U_ACTION'	=> $this->u_action . '&amp;action=submit'
 						));
 					break;
