@@ -38,12 +38,13 @@ class ucp_register
 
 		include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
 
-		$confirm_id		= request_var('confirm_id', '');
-		$coppa			= (isset($_REQUEST['coppa'])) ? ((!empty($_REQUEST['coppa'])) ? 1 : 0) : false;
-		$agreed			= (!empty($_POST['agreed'])) ? 1 : 0;
-		$submit			= (isset($_POST['submit'])) ? true : false;
-		$change_lang	= request_var('change_lang', '');
-		$user_lang		= request_var('lang', $user->lang_name);
+		$confirm_id			= request_var('confirm_id', '');
+		$confirm_refresh	= (isset($_POST['confirm_refresh']) && $config['confirm_refresh']) ? ((!empty($_POST['confirm_refresh'])) ? 1 : 0) : false;
+		$coppa				= (isset($_REQUEST['coppa'])) ? ((!empty($_REQUEST['coppa'])) ? 1 : 0) : false;
+		$agreed				= (!empty($_POST['agreed'])) ? 1 : 0;
+		$submit				= (isset($_POST['submit'])) ? true : false;
+		$change_lang		= request_var('change_lang', '');
+		$user_lang			= request_var('lang', $user->lang_name);
 
 		if ($agreed)
 		{
@@ -99,7 +100,7 @@ class ucp_register
 					'username'			=> utf8_normalize_nfc(request_var('username', '', true)),
 					'email'				=> strtolower(request_var('email', '')),
 					'email_confirm'		=> strtolower(request_var('email_confirm', '')),
-					'confirm_code'		=> request_var('confirm_code', ''),
+					'confirm_code'		=> array('string', !$config['enable_confirm'], CAPTCHA_MIN_CHARS, CAPTCHA_MAX_CHARS),
 					'confirm_id'		=> request_var('confirm_id', ''),
 					'lang'				=> $user->lang_name,
 					'tz'				=> request_var('tz', (float) $config['board_timezone']),
@@ -448,7 +449,7 @@ class ucp_register
 
 		if ($config['enable_confirm'])
 		{
-			if ($change_lang)
+			if ($change_lang || $confirm_refresh)
 			{
 				$str = '&amp;change_lang=' . $change_lang;
 				$sql = 'SELECT code
@@ -467,11 +468,11 @@ class ucp_register
 			{
 				$str = '';
 			}
-			if (!$change_lang || !$confirm_id)
+			if (!$change_lang || !$confirm_id || !$confirm_refresh)
 			{
-			$user->confirm_gc(CONFIRM_REG);
+				$user->confirm_gc(CONFIRM_REG);
 
-			$sql = 'SELECT COUNT(session_id) AS attempts
+				$sql = 'SELECT COUNT(session_id) AS attempts
 					FROM ' . CONFIRM_TABLE . "
 					WHERE session_id = '" . $db->sql_escape($user->session_id) . "'
 						AND confirm_type = " . CONFIRM_REG;
@@ -484,7 +485,7 @@ class ucp_register
 					trigger_error('TOO_MANY_REGISTERS');
 				}
 
-				$code = gen_rand_string(mt_rand(5, 8));
+				$code = gen_rand_string(mt_rand(CAPTCHA_MIN_CHARS, CAPTCHA_MAX_CHARS));
 				$confirm_id = md5(unique_id($user->ip));
 				$seed = hexdec(substr(unique_id(), 4, 10));
 
@@ -500,6 +501,23 @@ class ucp_register
 				);
 				$db->sql_query($sql);
 			}
+            else if ($confirm_refresh)
+            {
+                $code = gen_rand_string(mt_rand(CAPTCHA_MIN_CHARS, CAPTCHA_MAX_CHARS));
+                $confirm_id = md5(unique_id($user->ip));
+                $seed = hexdec(substr(unique_id(), 4, 10));
+                // compute $seed % 0x7fffffff
+                $seed -= 0x7fffffff * floor($seed / 0x7fffffff);
+                $sql = 'UPDATE ' . CONFIRM_TABLE . ' SET ' . $db->sql_build_array('UPDATE', array(
+                        'confirm_type'	=> (int) CONFIRM_REG,
+                        'code'			=> (string) $code,
+                        'seed'			=> (int) $seed)) . "
+ 					WHERE
+ 					confirm_id = '" . $db->sql_escape($confirm_id) . "' AND
+ 					session_id = '" . $db->sql_escape($session_id) . "' AND
+ 					confirm_type = " . (int) CONFIRM_REG;
+                $db->sql_query($sql);
+            }
 
 			$confirm_image = '<img src="' . append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=confirm&amp;id=' . $confirm_id . '&amp;type=' . CONFIRM_REG . $str) . '" alt="" title="" />';
 			$s_hidden_fields .= '<input type="hidden" name="confirm_id" value="' . $confirm_id . '" />';
@@ -535,6 +553,7 @@ class ucp_register
 			'S_LANG_OPTIONS'	=> language_select($data['lang']),
 			'S_TZ_OPTIONS'		=> tz_select($data['tz']),
 			'S_CONFIRM_CODE'	=> ($config['enable_confirm']) ? true : false,
+            'S_CONFIRM_REFRESH'	=> ($config['enable_confirm'] && $config['confirm_refresh']) ? true : false,
 			'S_COPPA'			=> $coppa,
 			'S_HIDDEN_FIELDS'	=> $s_hidden_fields,
 			'S_UCP_ACTION'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=register'),

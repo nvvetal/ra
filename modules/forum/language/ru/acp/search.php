@@ -72,6 +72,8 @@ $lang = array_merge($lang, array(
 
 	'MAX_SEARCH_CHARS'						=> 'Максимум символов для индексации',
 	'MAX_SEARCH_CHARS_EXPLAIN'				=> 'Слова с меньшим числом символов будут проиндексированы и доступны для поиска.',
+	'MAX_NUM_SEARCH_KEYWORDS'				=> 'Maximum number of allowed keywords',
+	'MAX_NUM_SEARCH_KEYWORDS_EXPLAIN'		=> 'Maximum number of words the user is able to search for. A value of 0 allows an unlimited number of words.',
 	'MIN_SEARCH_CHARS'						=> 'Минимум символов для индексации',
 	'MIN_SEARCH_CHARS_EXPLAIN'				=> 'Слова с большим числом символов будут проиндексированы и доступны для поиска.',
 	'MIN_SEARCH_AUTHOR_CHARS'				=> 'Минимальное число символов в именах',

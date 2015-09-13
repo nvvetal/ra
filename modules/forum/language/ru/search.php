@@ -54,6 +54,8 @@ $lang = array_merge($lang, array(
 
 	'LOGIN_EXPLAIN_EGOSEARCH'	=> 'Вы должны быть зарегистрированы и авторизованы в системе для просмотра своих сообщений.',
 
+	'MAX_NUM_SEARCH_KEYWORDS_REFINE'	=> 'You specified too many words to search for. Please do not enter more than %1$d words.',
+
 	'NO_KEYWORDS'			=> 'Для поиска вы должны ввести, как минимум, одно слово. Длина каждого слова должна быть не менее %d и не более %d символов, исключая символ шаблона *.',
 	'NO_RECENT_SEARCHES'	=> 'За последнее время поисковых запросов не было.',
 	'NO_SEARCH'				=> 'Извините, но вам запрещено пользоваться поиском.',

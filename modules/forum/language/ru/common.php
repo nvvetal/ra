@@ -228,6 +228,8 @@ $lang = array_merge($lang, array(
 	'FTP_USERNAME_EXPLAIN'		=> 'Имя пользователя для соединения с FTP-сервером.',
 
 	'GENERAL_ERROR'				=> 'Общая ошибка',
+	'GB'						=> 'GB',
+	'GIB'						=> 'GiB',
 	'GO'						=> 'Перейти',
 	'GOTO_PAGE'					=> 'На страницу',
 	'GROUP'						=> 'Группа',

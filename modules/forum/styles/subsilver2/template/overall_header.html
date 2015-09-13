@@ -11,7 +11,7 @@
 <meta name="copyright" content="2004-2020 Raks.com.ua" />
 <meta name="keywords" content="восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс, танец живота, восточный танец, танцы живота, школы восточного танца, школа танца живота, индийский танец, трайбл, танец живота видео, гавайский танец, танец хула" />
 <meta name="description" content="" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <meta property="og:title" content="{SITENAME} &bull; {PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец" />
 <meta property="og:image" content="http://raks.com.ua/images/logo_real_krug_1024.png" />
 <!--meta property="og:url" content="http://raks.com.ua/forum/" /-->
@@ -49,12 +49,19 @@
     function jumpto()
     {
         var page = prompt('{LA_JUMP_PAGE}:', '{ON_PAGE}');
-        var perpage = '{PER_PAGE}';
+        var per_page = '{PER_PAGE}';
         var base_url = '{A_BASE_URL}';
 
-        if (page !== null && !isNaN(page) && page > 0)
+        if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
         {
-            document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * perpage);
+        	if (base_url.indexOf('?') == -1)
+        	{
+        		document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+        	}
+        	else
+        	{
+        		document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+        	}
         }
     }
 

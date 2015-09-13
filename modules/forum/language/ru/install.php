@@ -269,6 +269,8 @@ $lang = array_merge($lang, array(
 	'MAKE_FOLDER_WRITABLE'		=> 'Убедитесь, что эта папка существует и у сервера есть права на запись в неё, затем повторите попытку:<br />»<strong>%s</strong>.',
 	'MAKE_FOLDERS_WRITABLE'		=> 'Убедитесь, что эти папки существуют и у сервера есть права на запись в них, затем повторите попытку:<br />»<strong>%s</strong>.',
 
+	'MYSQL_SCHEMA_UPDATE_REQUIRED'	=> 'Your MySQL database schema for phpBB is outdated. phpBB detected a schema for MySQL 3.x/4.x, but the server runs on MySQL %2$s.<br /><strong>Before you proceed the update, you need to upgrade the schema.</strong><br /><br />Please refer to the <a href="http://www.phpbb.com/kb/article/doesnt-have-a-default-value-errors/">Knowledge Base article about upgrading the MySQL schema</a>. If you encounter problems, please use <a href="http://www.phpbb.com/community/viewforum.php?f=46">our support forums</a>.',
+
 	'NAMING_CONFLICT'			=> 'Конфликт имён: оба имени %s и %s являются псевдонимами<br /><br />%s',
 	'NEXT_STEP'					=> 'Следующий шаг',
 	'NOT_FOUND'					=> 'Не найдено',
@@ -401,6 +403,8 @@ $lang = array_merge($lang, array(
 	'DOWNLOAD'							=> 'Скачать',
 	'DOWNLOAD_AS'						=> 'Скачать в формате',
 	'DOWNLOAD_UPDATE_METHOD_BUTTON'		=> 'Download modified files archive (recommended)',
+    'DOWNLOAD_CONFLICTS'				=> 'Download conflicts for this file',
+    'DOWNLOAD_CONFLICTS_EXPLAIN'		=> 'Search for &lt;&lt;&lt; to spot conflicts',
 	'DOWNLOAD_UPDATE_METHOD'			=> 'Скачать архив с модифицированными файлами',
 	'DOWNLOAD_UPDATE_METHOD_EXPLAIN'	=> 'Скачав архив, распакуйте его. В нём вы найдёте измененные файлы, которые нужно закачать в корень phpBB, при этом каждый файл должен оказаться в соответствующей ему папке. После этого снова проведите сравнение файлов, нажав отвечающую за это кнопку ниже.',
 

@@ -89,8 +89,8 @@
 		<td class="row1" colspan="2" align="center">{CONFIRM_IMG}</td>
 	</tr>
 	<tr>
-		<td class="row1"><b class="genmed">{L_CONFIRM_CODE}: </b><br /><span style="font-size:50;">{L_CONFIRM_CODE_EXPLAIN}<br/><font color="red"><b>***********************<br/>ДОПИШИТЕ В КОНЦЕ ЦИФРУ "5"<br/>***********************</b></font></span></td>
-		<td class="row2"><input class="post" type="text" name="confirm_code" size="9" maxlength="9" /></td>
+		<td class="row1"><b class="genmed">{L_CONFIRM_CODE}: </b><br /><span style="font-size:50;">{L_CONFIRM_CODE_EXPLAIN}<!-- IF S_CONFIRM_REFRESH -->{L_VC_REFRESH_EXPLAIN}<!-- ENDIF --><br/><font color="red"><b>***********************<br/>ДОПИШИТЕ В КОНЦЕ ЦИФРУ "5"<br/>***********************</b></font></span></td>
+		<td class="row2"><input class="post" type="text" name="confirm_code" size="9" maxlength="9" /><!-- IF S_CONFIRM_REFRESH -->&nbsp;<input type="submit" value="{L_VC_REFRESH}" class="btnlite" /><!-- ENDIF --></td>
 	</tr>
 <!-- ENDIF -->
 

@@ -492,13 +492,19 @@ function approve_post($post_id_list, $id, $mode)
 
 		$total_topics = $total_posts = 0;
 		$forum_topics_posts = $topic_approve_sql = $topic_replies_sql = $post_approve_sql = $topic_id_list = $forum_id_list = $approve_log = array();
-        $user_posts_sql = array();
+		$user_posts_sql = $post_approved_list = array();
 
 		$update_forum_information = false;
 
 		foreach ($post_info as $post_id => $post_data)
 		{
-			$topic_id_list[$post_data['topic_id']] = 1;
+            if ($post_data['post_approved'])
+            {
+                $post_approved_list[] = $post_id;
+                continue;
+            }
+
+            $topic_id_list[$post_data['topic_id']] = 1;
 
 			if ($post_data['forum_id'])
 			{
@@ -539,12 +545,6 @@ function approve_post($post_id_list, $id, $mode)
 			}
 			else
 			{
-				if (!isset($topic_replies_sql[$post_data['topic_id']]))
-				{
-					$topic_replies_sql[$post_data['topic_id']] = 0;
-				}
-				$topic_replies_sql[$post_data['topic_id']]++;
-
 				$approve_log[] = array(
 					'type'			=> 'post',
 					'post_subject'	=> $post_data['post_subject'],
@@ -553,7 +553,16 @@ function approve_post($post_id_list, $id, $mode)
 				);
 			}
 
-			if ($post_data['forum_id'])
+            if ($post_data['topic_replies_real'] > 0)
+            {
+                if (!isset($topic_replies_sql[$post_data['topic_id']]))
+                {
+                    $topic_replies_sql[$post_data['topic_id']] = 0;
+                }
+                $topic_replies_sql[$post_data['topic_id']]++;
+            }
+
+            if ($post_data['forum_id'])
 			{
 				if (!isset($forum_topics_posts[$post_data['forum_id']]))
 				{
@@ -583,6 +592,12 @@ function approve_post($post_id_list, $id, $mode)
 				$update_forum_information = true;
 			}
 		}
+
+        $post_id_list = array_values(array_diff($post_id_list, $post_approved_list));
+        for ($i = 0, $size = sizeof($post_approved_list); $i < $size; $i++)
+        {
+            unset($post_info[$post_approved_list[$i]]);
+        }
 
 		if (sizeof($topic_approve_sql))
 		{
@@ -652,12 +667,12 @@ function approve_post($post_id_list, $id, $mode)
 
         if ($total_topics)
 		{
-			set_config('num_topics', $config['num_topics'] + $total_topics, true);
+            set_config_count('num_topics', $total_topics, true);
 		}
 
 		if ($total_posts)
 		{
-			set_config('num_posts', $config['num_posts'] + $total_posts, true);
+            set_config_count('num_posts', $total_posts, true);
 		}
 		unset($topic_approve_sql, $topic_replies_sql, $post_approve_sql);
 
@@ -733,7 +748,7 @@ function approve_post($post_id_list, $id, $mode)
 		}
 		else
 		{
-			$success_msg = (sizeof($post_id_list) == 1) ? 'POST_APPROVED_SUCCESS' : 'POSTS_APPROVED_SUCCESS';
+            $success_msg = (sizeof($post_id_list) + sizeof($post_approved_list) == 1) ? 'POST_APPROVED_SUCCESS' : 'POSTS_APPROVED_SUCCESS';
 		}
 	}
 	else

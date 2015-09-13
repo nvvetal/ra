@@ -250,6 +250,15 @@ $lang = array_merge($lang, array(
 	'CAPTCHA_GD_X_GRID_EXPLAIN'				=> 'Используйте меньшее значение для создания более сложной CAPTCHA. Введите 0 для отключения создания шума по оси X.',
 	'CAPTCHA_GD_Y_GRID'						=> 'Фоновой шум CAPTCHA по оси Y',
 	'CAPTCHA_GD_Y_GRID_EXPLAIN'				=> 'Используйте меньшее значение для создания более сложной CAPTCHA. Введите 0 для отключения создания шума по оси Y.',
+	'CAPTCHA_GD_WAVE'						=> 'GD CAPTCHA wave distortion',
+	'CAPTCHA_GD_WAVE_EXPLAIN'				=> 'This applies a wave distortion to the CAPTCHA.',
+	'CAPTCHA_GD_3D_NOISE'					=> 'Add 3D-noise objects',
+	'CAPTCHA_GD_3D_NOISE_EXPLAIN'			=> 'This adds additional objects to the CAPTCHA, over the letters.',
+	'CAPTCHA_GD_FONTS'						=> 'Use different fonts',
+	'CAPTCHA_GD_FONTS_EXPLAIN'				=> 'This setting controls how many different letter shapes are used. You can just use the default shapes or introduce altered letters. Adding lowercase letters is also possible.',
+	'CAPTCHA_FONT_DEFAULT'					=> 'Default',
+	'CAPTCHA_FONT_NEW'						=> 'New Shapes',
+	'CAPTCHA_FONT_LOWER'					=> 'Also use lowercase',
 
 	'CAPTCHA_PREVIEW_MSG'					=> 'Это просто предварительный просмотр. Изменения в настройках визуального подтверждения ещё не сохранены.',
 	'CAPTCHA_PREVIEW_EXPLAIN'				=> 'Здесь показывается, как будет выглядеть код подтверждения при использовании текущих настроек. Используйте кнопку «Предварительный просмотр» для обновления картинки.',
@@ -257,6 +266,8 @@ $lang = array_merge($lang, array(
 	'VISUAL_CONFIRM_POST_EXPLAIN'			=> 'Для предотвращения массовой отправки сообщений анонимные пользователи при размещении сообщений должны будут ввести код подтверждения, показываемый им на картинке.',
 	'VISUAL_CONFIRM_REG'					=> 'Визуальное подтверждение при регистрации',
 	'VISUAL_CONFIRM_REG_EXPLAIN'			=> 'Для предотвращения автоматических регистраций новые пользователи при регистрации должны будут ввести код подтверждения, показываемый им на картинке.',
+    'VISUAL_CONFIRM_REFRESH'				=> 'Enable users to refresh the confirmation image',
+    'VISUAL_CONFIRM_REFRESH_EXPLAIN'		=> 'Allows users to request new confirmation codes, if they are unable to solve the VC during registration.',
 ));
 
 // Cookie Settings
