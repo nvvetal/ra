@@ -56,7 +56,11 @@
 				<dd><input type="checkbox" class="radio" id="field_show_on_reg" name="field_show_on_reg" value="1"<!-- IF S_SHOW_ON_REG --> checked="checked"<!-- ENDIF --> /></dd>
 			</dl>
 			<dl>
-				<dt><label for="field_required">{L_REQUIRED_FIELD}:</label><br /><span>{L_REQUIRED_FIELD_EXPLAIN}</span></dt>
+                <dt><label for="field_show_on_vt">{L_DISPLAY_ON_VT}:</label><br /><span>{L_DISPLAY_ON_VT_EXPLAIN}</span></dt>
+                <dd><input type="checkbox" class="radio" id="field_show_on_vt" name="field_show_on_vt" value="1"<!-- IF S_SHOW_ON_VT --> checked="checked"<!-- ENDIF --> /></dd>
+            </dl>
+            <dl>
+            <dt><label for="field_required">{L_REQUIRED_FIELD}:</label><br /><span>{L_REQUIRED_FIELD_EXPLAIN}</span></dt>
 				<dd><input type="checkbox" class="radio" id="field_required" name="field_required" value="1"<!-- IF S_FIELD_REQUIRED --> checked="checked"<!-- ENDIF --> /></dd>
 			</dl>
 			<dl>
@@ -193,8 +197,8 @@
 				{ICON_MOVE_UP_DISABLED}
 				<a href="{fields.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
 			<!-- ELSEIF not fields.S_FIRST_ROW && not fields.S_LAST_ROW-->
-				<a href="{fields.U_MOVE_UP}">{ICON_MOVE_UP}</a> 
-				<a href="{fields.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a> 
+            	<a href="{fields.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+            	<a href="{fields.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
 			<!-- ELSEIF fields.S_LAST_ROW && not fields.S_FIRST_ROW -->
 				<a href="{fields.U_MOVE_UP}">{ICON_MOVE_UP}</a>
 				{ICON_MOVE_DOWN_DISABLED}	
@@ -208,6 +212,10 @@
 		</td>
 
 	</tr>
+    <!-- BEGINELSE -->
+    <tr class="row3">
+        <td colspan="4">{L_ACP_NO_ITEMS}</td>
+    </tr>
 	<!-- END fields -->
 	</tbody>
 	</table>
