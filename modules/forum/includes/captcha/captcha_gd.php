@@ -33,8 +33,8 @@ class captcha
 	function execute($code, $seed)
 	{
 		global $config;
-		srand($seed);
-		//mt_srand($seed);
+
+        mt_srand($seed);
 
 		// Create image
 		$img = imagecreatetruecolor($this->width, $this->height);
@@ -107,7 +107,7 @@ class captcha
 
         if ($config['captcha_gd_3d_noise'])
         {
-            $xoffset = rand(0,9);
+            $xoffset = mt_rand(0,9);
             $noise_bitmaps = $this->captcha_noise_bg_bitmaps();
             for ($i = 0; $i < $code_len; ++$i)
             {
