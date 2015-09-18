@@ -1918,4 +1918,79 @@ function utf8_wordwrap($string, $width = 75, $break = "\n", $cut = false)
 	return implode($break, $new_lines);
 }
 
+/**
+ * UTF8-safe basename() function
+ *
+ * basename() has some limitations and is dependent on the locale setting
+ * according to the PHP manual. Therefore we provide our own locale independant
+ * basename function.
+ *
+ * @param string $filename The filename basename() should be applied to
+ * @return string The basenamed filename
+ */
+function utf8_basename($filename)
+{
+    // We always check for forward slash AND backward slash
+    // because they could be mixed or "sneaked" in. ;)
+    // You know, never trust user input...
+    if (strpos($filename, '/') !== false)
+    {
+        $filename = utf8_substr($filename, utf8_strrpos($filename, '/') + 1);
+    }
+
+    if (strpos($filename, '\\') !== false)
+    {
+        $filename = utf8_substr($filename, utf8_strrpos($filename, '\\') + 1);
+    }
+
+    return $filename;
+}
+
+/**
+ * UTF8-safe str_replace() function
+ *
+ * @param string $search The value to search for
+ * @param string $replace The replacement string
+ * @param string $subject The target string
+ * @return string The resultant string
+ */
+function utf8_str_replace($search, $replace, $subject)
+{
+    if (!is_array($search))
+    {
+        $search = array($search);
+        if (is_array($replace))
+        {
+            $replace = (string) $replace;
+            trigger_error('Array to string conversion', E_USER_NOTICE);
+        }
+    }
+
+    $length = sizeof($search);
+
+    if (!is_array($replace))
+    {
+        $replace = array_fill(0, $length, $replace);
+    }
+    else
+    {
+        $replace = array_pad($replace, $length, '');
+    }
+
+    for ($i = 0; $i < $length; $i++)
+    {
+        $search_length = utf8_strlen($search[$i]);
+        $replace_length = utf8_strlen($replace[$i]);
+
+        $offset = 0;
+        while (($start = utf8_strpos($subject, $search[$i], $offset)) !== false)
+        {
+            $subject = utf8_substr($subject, 0, $start) . $replace[$i] . utf8_substr($subject, $start + $search_length);
+            $offset = $start + $replace_length;
+        }
+    }
+
+    return $subject;
+}
+
 ?>
