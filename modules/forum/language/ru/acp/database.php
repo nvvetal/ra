@@ -54,6 +54,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOAD_BACKUP'	=> 'Скачать резервную копию',
 
 	'FILE_TYPE'			=> 'Тип файла',
+	'FILE_WRITE_FAIL'	=> 'Unable to write file to storage folder.',
 	'FULL_BACKUP'		=> 'Полное',
 
 	'RESTORE_FAILURE'		=> 'Возможно, файл с резервной копией повреждён.',

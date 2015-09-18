@@ -133,6 +133,7 @@ $lang = array_merge($lang, array(
 	'DB_PASSWORD'				=> 'Пароль к БД',
 	'DB_PORT'					=> 'Порт сервера БД',
 	'DB_PORT_EXPLAIN'			=> 'Оставьте поле пустым, если сервер использует порт по умолчанию.',
+	'DB_UPDATE_NOT_SUPPORTED'	=> 'We are sorry, but this script does not support updating from versions of phpBB prior to “%1$s”. The version you currently have installed is “%2$s”. Please update to a previous version before running this script. Assistance with this is available in the Support Forum on phpBB.com.',
 	'DB_USERNAME'				=> 'Имя пользователя БД',
 	'DB_TEST'					=> 'Тестовое подключение',
 	'DEFAULT_LANG'				=> 'Язык по умолчанию',
@@ -166,6 +167,9 @@ $lang = array_merge($lang, array(
 	'FILES_REQUIRED_EXPLAIN'	=> '<strong>Необходимо</strong> - для правильной работы phpBB нужен доступ на чтение или запись определенных файлов и папок. Если вы видите надпись «Не найдено», необходимо создать соответствующий файл или папку. Если написано «Нет прав на запись», необходимо изменить права на файл или папку, чтобы разрешить запись в них для phpBB.',
 	'FILLING_TABLE'				=> 'Заполнение таблицы <strong>%s</strong>',
 	'FILLING_TABLES'			=> 'Заполнение таблиц',
+
+    'FIREBIRD_DBMS_UPDATE_REQUIRED'		=> 'phpBB no longer supports Firebird/Interbase prior to Version 2.1. Please update your Firebird installation to at least 2.1.0 before proceeding with the update.',
+
 	'FINAL_STEP'				=> 'Заключительный шаг',
 	'FORUM_ADDRESS'				=> 'Адрес конференции',
 	'FORUM_ADDRESS_EXPLAIN'		=> 'URL старой конференции, например, <samp>http://www.example.com/phpBB2/</samp>. Если вы заполните это поле, то во всех сообщениях, ЛС и подписях этот адрес будет заменен на адрес новой конференции.',
@@ -565,6 +569,7 @@ $lang = array_merge($lang, array(
 	'VERSION_CHECK_EXPLAIN'		=> 'Проверяет, что текущая версия phpBB самая последняя.',
 	'VERSION_NOT_UP_TO_DATE'	=> 'Ваша версия phpBB не самая последняя. Продолжайте процесс обновления.',
 	'VERSION_NOT_UP_TO_DATE_ACP'=> 'Ваша версия phpBB не самая последняя.<br />Ниже вы найдёте ссылку на объявление о выпуске последней версии а также инструкцию по обновлению phpBB.',
+    'VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Your phpBB installation is not up to date.',
 	'VERSION_UP_TO_DATE'		=> 'Ваша версия phpBB самая последняя, на данный момент для неё нет обновлений. Тем не менее, вы можете перейти к проверке файлов на соответствие последней версии.',
 	'VERSION_UP_TO_DATE_ACP'	=> 'Ваша версия phpBB самая последняя, на данный момент для неё нет обновлений. Вам не нужно обновлять вашу версию phpBB.',
 	'VIEWING_FILE_CONTENTS'		=> 'Просмотр содержимого файла',

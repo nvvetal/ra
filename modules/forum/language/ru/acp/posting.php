@@ -179,6 +179,8 @@ $lang = array_merge($lang, array(
 	'SMILIES_URL'				=> 'Файл смайлика',
 	'SMILIES_WIDTH'				=> 'Ширина смайлика',
 
+	'TOO_MANY_SMILIES'			=> 'Limit of %d smilies reached.',
+
 	'WRONG_PAK_TYPE'	=> 'Указанный пакет не содержит подходящих данных.',
 ));
 
@@ -216,6 +218,7 @@ $lang = array_merge($lang, array(
 	'RANK_ADDED'			=> 'Звание успешно добавлено.',
 	'RANK_IMAGE'			=> 'Картинка к званию',
 	'RANK_IMAGE_EXPLAIN'	=> 'Здесь можно присвоить небольшой рисунок, связанный с данным званием. Путь к рисунку задаётся относительно корневой папки phpBB.',
+    'RANK_IMAGE_IN_USE'		=> '(In use)',
 	'RANK_MINIMUM'			=> 'Минимум сообщений',
 	'RANK_REMOVED'			=> 'Звание успешно удалено.',
 	'RANK_SPECIAL'			=> 'Специальное звание',

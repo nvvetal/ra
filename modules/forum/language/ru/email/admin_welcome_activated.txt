@@ -4,4 +4,5 @@ Subject: Учётная запись активирована
 
 Ваша учётная запись на конференции «{SITENAME}» была активирована. Теперь вы можете входить на конференцию, используя имя и пароль, присланные вам в предыдущем письме. 
 
+Your password has been securely stored in our database and cannot be retrieved. In the event that it is forgotten, you will be able to reset it using the email address associated with your account.
 {EMAIL_SIG}

@@ -21,6 +21,17 @@
 {META}
 <title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец</title>
 
+<!-- IF S_ENABLE_FEEDS -->
+<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" />
+<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_TOPICS}" href="{U_FEED}?mode=topics" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
+<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+
+
+
 <!--link rel="stylesheet" href="http://ra.localhost/forum/styles/subsilver2/theme/stylesheet.css" type="text/css" /-->
 <link rel="stylesheet" href="http://raks.com.ua/forum/styles/subsilver2/theme/stylesheet.css" type="text/css" />
 
@@ -408,8 +419,9 @@
                                             <td height="25" align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;
 						                  <!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
 						                  <a href="{U_PROFILE}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_profile.gif" width="12" height="13" border="0" alt="{L_PROFILE}" hspace="3" />{L_PROFILE}</a>&nbsp; &nbsp;<a href="{U_PRIVATEMSGS}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" border="0" alt="{PRIVATE_MESSAGE_INFO}" hspace="3" />{PRIVATE_MESSAGE_INFO}</a>&nbsp; &nbsp;
-						                  <!-- ELSEIF S_REGISTER_ENABLED -->
-						                  &nbsp;<a href="{U_REGISTER}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_register.gif" width="12" height="13" border="0" alt="{L_REGISTER}" hspace="3" />{L_REGISTER}</a></span>&nbsp;
+                                          <!-- ELSEIF S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) -->
+                                          &nbsp;<a href="{U_REGISTER}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_register.gif" width="12" height="13" border="0" alt="{L_REGISTER}" /> {L_REGISTER}</a>&nbsp;
+
                                                 <!-- ENDIF -->
                                                 &nbsp;<a href="disclaimer.html" target="_blank" class="mainmenu">Disclaimer</a>
                                                 &nbsp;<a href="http://raks.com.ua/" class="mainmenu" style="font-weight: bold;">ПОРТАЛ</a>
