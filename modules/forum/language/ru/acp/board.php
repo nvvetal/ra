@@ -74,6 +74,11 @@ $lang = array_merge($lang, array(
 	'ALLOW_NO_CENSORS'			=> 'Разрешить отключение автоцензора',
 	'ALLOW_NO_CENSORS_EXPLAIN'	=> 'Пользователи смогут по выбору отключать автоцензор в обычных и личных сообщениях.',
 	'ALLOW_PM_ATTACHMENTS'		=> 'Разрешить вложения в личных сообщениях',
+	'ALLOW_PM_REPORT'			=> 'Allow users to report private messages',
+	'ALLOW_PM_REPORT_EXPLAIN'	=> 'If this setting is enabled, users have the option of reporting a private message they have received or sent to the board’s moderators. These private messages will then be visible in the Moderator Control Panel.',
+	'ALLOW_QUICK_REPLY'			=> 'Allow quick reply',
+	'ALLOW_QUICK_REPLY_EXPLAIN'	=> 'This setting defines if quick reply is enabled or not. If this setting is enabled, forums need to have their quick reply option enabled too.',
+
 	'ALLOW_SIG'					=> 'Разрешить подписи',
 	'ALLOW_SIG_BBCODE'			=> 'Разрешить BBCode в подписях пользователей',
 	'ALLOW_SIG_FLASH'			=> 'Разрешить использование тега BBCode <code>[FLASH]</code> в подписях пользователей',
@@ -94,9 +99,13 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	'ACP_AVATAR_SETTINGS_EXPLAIN'	=> 'Аватары - это небольшие индивидуальные изображения, которые пользователи могут ассоциировать со своими учётными записями. В зависимости от выбранного стиля, аватары обычно отображаются под именем пользователя при просмотре тем. Здесь вы можете настроить применение аватар пользователями. Пожалуйста, учтите, что для загрузки аватар необходимо создать папку, имя которой задаётся ниже, и удостовериться в том, что вебсервер имеет права на запись в эту папку. Учтите также, что ограничение на размер файлов накладываются только на загружаемые на сервер аватары, и не распространяются на удалённые изображения.',
 
+    'ALLOW_AVATARS'					=> 'Enable avatars',
+    'ALLOW_AVATARS_EXPLAIN'			=> 'Allow general usage of avatars;<br />If you disable avatars in general or avatars of a certain mode, the disabled avatars will no longer be shown on the board, but users will still be able to download their own avatars in the User Control Panel.',
 	'ALLOW_LOCAL'					=> 'Разрешить галерею аватар',
 	'ALLOW_REMOTE'					=> 'Разрешить удалённые аватары',
 	'ALLOW_REMOTE_EXPLAIN'			=> 'Ссылки на аватары, находящиеся на других сайтах',
+    'ALLOW_REMOTE_UPLOAD'			=> 'Enable remote avatar uploading',
+    'ALLOW_REMOTE_UPLOAD_EXPLAIN'	=> 'Allow uploading of avatars from another website.',
 	'ALLOW_UPLOAD'					=> 'Разрешить загрузку аватар',
 	'AVATAR_GALLERY_PATH'			=> 'Путь к галерее аватар',
 	'AVATAR_GALLERY_PATH_EXPLAIN'	=> 'Путь относительно корневой папки phpBB для предустановленных изображений, например <samp>images/avatars/gallery</samp>',
@@ -147,15 +156,12 @@ $lang = array_merge($lang, array(
 	'ALLOW_POST_FLASH'					=> 'Разрешить тег BBCode <code>[FLASH]</code> в сообщениях. ',
 	'ALLOW_POST_FLASH_EXPLAIN'			=> 'Если тег BBCode <code>[FLASH]</code> запрещён, он будет отключен в сообщениях. Определить пользователей, имеющих право использовать тег BBCode <code>[FLASH]</code>, можно с помощью системы управления правами доступа.',
 
-    'ENABLE_QUEUE_TRIGGER'			=> 'Enable queued posts',
-    'ENABLE_QUEUE_TRIGGER_EXPLAIN'	=> 'Ability to put registered users posts to post approval if their post count is lower than the specified value below. This setting has no effect on the permission setting for post/topic approval.',
-    'QUEUE_TRIGGER_POSTS'			=> 'Maximum post count for queued posts',
-    'QUEUE_TRIGGER_POSTS_EXPLAIN'	=> 'If queued posts is enabled, this is the post count the user need to reach in order to post without post approval. If the users post count is below this number, the post is stored in the queue automatically.',
-
     'BUMP_INTERVAL'					=> 'Задержка поднятия темы',
 	'BUMP_INTERVAL_EXPLAIN'			=> 'Количество минут, часов или дней с последнего сообщения, по прошествию которых можно поднимать тему.',
 	'CHAR_LIMIT'					=> 'Максимальное количество символов в сообщении',
 	'CHAR_LIMIT_EXPLAIN'			=> 'Количество символов, разрешённое в сообщении. Установите 0 для снятия ограничений.',
+    'DELETE_TIME'					=> 'Limit deleting time',
+    'DELETE_TIME_EXPLAIN'			=> 'Limits the time available to delete a new post. Setting the value to 0 disables this behaviour.',
 	'DISPLAY_LAST_EDITED'			=> 'Отображать сведения о последнем редактировании',
 	'DISPLAY_LAST_EDITED_EXPLAIN'	=> 'Выберите для отображения информации о последнем редактировании сообщения',
 	'EDIT_TIME'						=> 'Ограничить время редактирования',
@@ -173,12 +179,15 @@ $lang = array_merge($lang, array(
 	'MAX_POST_IMG_WIDTH_EXPLAIN'	=> 'Максимальная ширина изображений/flash в сообщениях. Установите 0 для снятия ограничений.',
 	'MAX_POST_URLS'					=> 'Максимальное количество ссылок в сообщении',
 	'MAX_POST_URLS_EXPLAIN'			=> 'Максимальное количесво ссылок URL в сообщении. Установите 0 для снятия ограничений.',
+    'MIN_CHAR_LIMIT'				=> 'Minimum characters per post/message',
+    'MIN_CHAR_LIMIT_EXPLAIN'		=> 'The minimum number of characters the user need to enter within a post/private message.',
 	'POSTING'						=> 'Сообщений',
 	'POSTS_PER_PAGE'				=> 'Сообщений на страницу',
 	'QUOTE_DEPTH_LIMIT'				=> 'Максимальное количество вложенных цитат в сообщении',
 	'QUOTE_DEPTH_LIMIT_EXPLAIN'		=> 'Максимальное количество вложенных цитат в сообщении. Установите 0 для снятия ограничений.',
 	'SMILIES_LIMIT'					=> 'Максимальное количество смайликов в сообщении',
 	'SMILIES_LIMIT_EXPLAIN'			=> 'Максимальное количество смайликов в сообщении. Установите 0 для снятия ограничений.',
+    'SMILIES_PER_PAGE'				=> 'Smilies per page',
 	'TOPICS_PER_PAGE'				=> 'Тем на страницу',
 ));
 
@@ -206,6 +215,10 @@ $lang = array_merge($lang, array(
 
 	'ACC_ACTIVATION'			=> 'Активация учётной записи',
 	'ACC_ACTIVATION_EXPLAIN'	=> 'Определить, должен ли пользователь получить немедленный доступ к конференции, или для этого требуется подтверждение регистрации. Вы можете также полностью отключить регистрацию новых пользователей.',
+    'NEW_MEMBER_POST_LIMIT'			=> 'New member post limit',
+    'NEW_MEMBER_POST_LIMIT_EXPLAIN'	=> 'New members are within the <em>Newly Registered Users</em> group until they reach this number of posts. You can use this group to keep them from using the PM system or to review their posts. <strong>A value of 0 disables this feature.</strong>',
+    'NEW_MEMBER_GROUP_DEFAULT'		=> 'Set Newly Registered Users group to default',
+    'NEW_MEMBER_GROUP_DEFAULT_EXPLAIN'	=> 'If set to yes and a new member post limit is specified newly registered users will be not only put into the <em>Newly Registered Users</em> group, but this group also being their default one. This may come in handy if you want to assign a group default rank and/or avatar the user then inherits.',
 	'ACC_ADMIN'					=> 'Администратором',
 	'ACC_DISABLE'				=> 'Отключено',
 	'ACC_NONE'					=> 'Нет',
@@ -238,11 +251,45 @@ $lang = array_merge($lang, array(
 	'USERNAME_LENGTH_EXPLAIN'	=> 'Минимальное и максимальное количество символов в именах пользователей.',
 ));
 
+// Feeds
+$lang = array_merge($lang, array(
+    'ACP_FEED_MANAGEMENT'				=> 'General Syndication Feeds settings',
+    'ACP_FEED_MANAGEMENT_EXPLAIN'		=> 'This Module makes available various ATOM Feeds, parsing any BBCode in posts to make them readable in external feeds.',
+
+    'ACP_FEED_ENABLE'					=> 'Enable Feeds',
+    'ACP_FEED_ENABLE_EXPLAIN'			=> 'Turns on or off ATOM Feeds for the entire board.<br />Disabling this switches off all Feeds, no matter how the options below are set.',
+    'ACP_FEED_LIMIT'					=> 'Number of items',
+    'ACP_FEED_LIMIT_EXPLAIN'			=> 'The maximum number of feed items to display.',
+
+    'ACP_FEED_OVERALL_FORUMS'			=> 'Enable overall forums feed',
+    'ACP_FEED_OVERALL_FORUMS_EXPLAIN'	=> 'This feed displays the latest posts from all forums topics.',
+    'ACP_FEED_OVERALL_FORUMS_LIMIT'		=> 'Number of items per page to display in the forums feed',
+
+    'ACP_FEED_OVERALL_TOPIC'			=> 'Enable overall topics feed',
+    'ACP_FEED_OVERALL_TOPIC_EXPLAIN'	=> 'Enables the “All Topics” feed',
+    'ACP_FEED_OVERALL_TOPIC_LIMIT'		=> 'Number of items per page to display in the topics feed',
+    'ACP_FEED_FORUM'					=> 'Enable Per-Forum Feeds',
+    'ACP_FEED_FORUM_EXPLAIN'			=> 'Single forum new posts.',
+    'ACP_FEED_TOPIC'					=> 'Enable Per-Topic Feeds',
+    'ACP_FEED_TOPIC_EXPLAIN'			=> 'Single topics new posts.',
+    'ACP_FEED_NEWS'						=> 'News Feeds',
+    'ACP_FEED_NEWS_EXPLAIN'				=> 'Pull the first post from these forums. Select no forums to disable news feed.<br />Select multiple forums by holding <samp>CTRL</samp> and clicking.',
+
+    'ACP_FEED_GENERAL'					=> 'General Feed Settings',
+
+    'ACP_FEED_ITEM_STATISTICS'			=> 'Item statistics',
+    'ACP_FEED_ITEM_STATISTICS_EXPLAIN'	=> 'Display individual statistics underneath feed items<br />(Posted by, date and time, Replies, Views)',
+    'ACP_FEED_EXCLUDE_ID'				=> 'Exclude these forums',
+    'ACP_FEED_EXCLUDE_ID_EXPLAIN'		=> 'Content from these will be <strong>not included in feeds</strong>. Select no forum to pull data from all forums.<br />Select/Deselect multiple forums by holding <samp>CTRL</samp> and clicking.',
+));
+
 // Visual Confirmation Settings
 $lang = array_merge($lang, array(
 	'ACP_VC_SETTINGS_EXPLAIN'		=> 'Здесь вы можете задать настройки по умолчанию для визуального подтверждения регистрации и CAPTCHA.',
-
+    'AVAILABLE_CAPTCHAS'					=> 'Available plugins',
+    'CAPTCHA_UNAVAILABLE'					=> 'The CAPTCHA cannot be selected as its requirements are not met.',
 	'CAPTCHA_GD'							=> 'GD CAPTCHA',
+    'CAPTCHA_GD_3D'							=> 'GD 3D Captcha',
 	'CAPTCHA_GD_FOREGROUND_NOISE'			=> 'GD CAPTCHA с шумом на переднем плане',
 	'CAPTCHA_GD_EXPLAIN'					=> 'Использовать библиотеку GD для создания усовершенствованной CAPTCHA.',
 	'CAPTCHA_GD_FOREGROUND_NOISE_EXPLAIN'	=> 'Использовать шум для создания усложнённой CAPTCHA.',
@@ -259,9 +306,17 @@ $lang = array_merge($lang, array(
 	'CAPTCHA_FONT_DEFAULT'					=> 'Default',
 	'CAPTCHA_FONT_NEW'						=> 'New Shapes',
 	'CAPTCHA_FONT_LOWER'					=> 'Also use lowercase',
+    'CAPTCHA_NO_GD'							=> 'CAPTCHA without GD',
+    'CAPTCHA_PREVIEW_MSG'					=> 'Your changes to the visual confirmation setting were not saved. This is just a preview.',
+    'CAPTCHA_PREVIEW_EXPLAIN'				=> 'The CAPTCHA as it would look like using the current selection.',
 
-	'CAPTCHA_PREVIEW_MSG'					=> 'Это просто предварительный просмотр. Изменения в настройках визуального подтверждения ещё не сохранены.',
-	'CAPTCHA_PREVIEW_EXPLAIN'				=> 'Здесь показывается, как будет выглядеть код подтверждения при использовании текущих настроек. Используйте кнопку «Предварительный просмотр» для обновления картинки.',
+    'CAPTCHA_SELECT'						=> 'Installed CAPTCHA plugins',
+    'CAPTCHA_SELECT_EXPLAIN'				=> 'The dropdown holds the CAPTCHA plugins recognized by the board. Gray entries are not available right now and might need configuration prior to use.',
+    'CAPTCHA_CONFIGURE'						=> 'Configure CAPTCHAs',
+    'CAPTCHA_CONFIGURE_EXPLAIN'				=> 'Change the settings for the selected CAPTCHA.',
+    'CONFIGURE'								=> 'Configure',
+    'CAPTCHA_NO_OPTIONS'					=> 'This CAPTCHA has no configuration options.',
+
 	'VISUAL_CONFIRM_POST'					=> 'Визуальное подтверждение для гостей',
 	'VISUAL_CONFIRM_POST_EXPLAIN'			=> 'Для предотвращения массовой отправки сообщений анонимные пользователи при размещении сообщений должны будут ввести код подтверждения, показываемый им на картинке.',
 	'VISUAL_CONFIRM_REG'					=> 'Визуальное подтверждение при регистрации',

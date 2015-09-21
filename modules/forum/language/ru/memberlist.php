@@ -134,6 +134,10 @@ $lang = array_merge($lang, array(
 	'USER_ADMIN'			=> 'Администрировать',
 	'USER_BAN'				=> 'Баны',
 	'USER_FORUM'			=> 'Статистика пользователя',
+	'USER_LAST_REMINDED'	=> array(
+		0		=> 'No reminder sent at this time',
+		1		=> '%1$d reminder sent<br />» %2$s',
+	),
 	'USER_ONLINE'			=> 'В сети',
 	'USER_PRESENCE'			=> 'Присутствие на конференции',
 

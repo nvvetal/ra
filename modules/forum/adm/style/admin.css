@@ -69,8 +69,8 @@ h2, caption {
 h3, h4 {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 1.20em;
-	text-decoration: none; 
-	line-height: 1.20em; 
+    text-decoration: none;
+    line-height: 1.20em;
 	margin-top: 25px;
 }
 
@@ -119,6 +119,17 @@ a:active {
 
 .install-body p a {
 	font-weight: bold;
+}
+
+/* List items */
+ul, ol {
+ 	list-style-position: inside;
+ 	margin-left: 1em;
+}
+
+li {
+ 	display: list-item;
+ 	list-style-type: inherit;
 }
 
 /* Main blocks

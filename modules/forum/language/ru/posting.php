@@ -167,6 +167,8 @@ $lang = array_merge($lang, array(
 	'POST_ICON'					=> 'Значок',
 	'POST_NORMAL'				=> 'Обычная',
 	'POST_REVIEW'				=> 'Предварительный просмотр',
+	'POST_REVIEW_EDIT'			=> 'Post review',
+	'POST_REVIEW_EDIT_EXPLAIN'	=> 'This post has been altered by another user while you were editing it. You may wish to review the current version of this post and adjust your edits.',
 	'POST_REVIEW_EXPLAIN'		=> 'Было добавлено по крайней мере одно сообщение в этой теме. Возможно, вы захотите изменить содержание своего сообщения.',
 	'POST_STORED'				=> 'Сообщение было успешно отправлено.',
 	'POST_STORED_MOD'			=> 'Сообщение было успешно отправлено, но должно быть одобрено модератором до того, как будет отображено на конференции.',
@@ -188,6 +190,7 @@ $lang = array_merge($lang, array(
 	'STYLES_TIP'				=> 'Совет: Можно быстро применить стили к выделенному тексту.',
 
 	'TOO_FEW_CHARS'				=> 'Ваше сообщение слишком короткое.',
+    'TOO_FEW_CHARS_LIMIT'		=> 'Your message contains %1$d characters. The minimum number of characters you need to enter is %2$d.',
 	'TOO_FEW_POLL_OPTIONS'		=> 'Вы должны ввести по крайней мере два варианта ответа в опросе.',
 	'TOO_MANY_ATTACHMENTS'		=> 'Вложение невозможно, так как в сообщении достигнуто их максимальное количество: <b>%d</b>.',
 	'TOO_MANY_CHARS'			=> 'Ваше сообщение слишком длинное.',

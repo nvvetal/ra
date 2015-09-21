@@ -754,41 +754,43 @@ class acp_language
 					trigger_error($user->lang['NO_LANG_ID'] . adm_back_link($this->u_action), E_USER_WARNING);
 				}
 
-				$sql = 'SELECT *
-					FROM ' . LANG_TABLE . '
-					WHERE lang_id = ' . $lang_id;
-				$result = $db->sql_query($sql);
-				$row = $db->sql_fetchrow($result);
-				$db->sql_freeresult($result);
+                if (confirm_box(true))
+                {
+                    $db->sql_query('DELETE FROM ' . LANG_TABLE . ' WHERE lang_id = ' . $lang_id);
 
-				if ($row['lang_iso'] == $config['default_lang'])
-				{
-					trigger_error($user->lang['NO_REMOVE_DEFAULT_LANG'] . adm_back_link($this->u_action), E_USER_WARNING);
-				}
+                    $sql = 'UPDATE ' . USERS_TABLE . "
+		                SET user_lang = '" . $db->sql_escape($config['default_lang']) . "'
+		                WHERE user_lang = '" . $db->sql_escape($row['lang_iso']) . "'";
+                    $db->sql_query($sql);
 
-				$db->sql_query('DELETE FROM ' . LANG_TABLE . ' WHERE lang_id = ' . $lang_id);
+                    // We also need to remove the translated entries for custom profile fields - we want clean tables, don't we?
+                    $sql = 'DELETE FROM ' . PROFILE_LANG_TABLE . ' WHERE lang_id = ' . $lang_id;
+                    $db->sql_query($sql);
 
-				$sql = 'UPDATE ' . USERS_TABLE . "
-					SET user_lang = '" . $db->sql_escape($config['default_lang']) . "'
-					WHERE user_lang = '" . $db->sql_escape($row['lang_iso']) . "'";
-				$db->sql_query($sql);
+                    $sql = 'DELETE FROM ' . PROFILE_FIELDS_LANG_TABLE . ' WHERE lang_id = ' . $lang_id;
+                    $db->sql_query($sql);
 
-				// We also need to remove the translated entries for custom profile fields - we want clean tables, don't we?
-				$sql = 'DELETE FROM ' . PROFILE_LANG_TABLE . ' WHERE lang_id = ' . $lang_id;
-				$db->sql_query($sql);
+                    $sql = 'DELETE FROM ' . STYLES_IMAGESET_DATA_TABLE . " WHERE image_lang = '" . $db->sql_escape($row['lang_iso']) . "'";
+                    $result = $db->sql_query($sql);
 
-				$sql = 'DELETE FROM ' . PROFILE_FIELDS_LANG_TABLE . ' WHERE lang_id = ' . $lang_id;
-				$db->sql_query($sql);
+                    $cache->destroy('sql', STYLES_IMAGESET_DATA_TABLE);
 
-				$sql = 'DELETE FROM ' . STYLES_IMAGESET_DATA_TABLE . " WHERE image_lang = '" . $db->sql_escape($row['lang_iso']) . "'";
-				$result = $db->sql_query($sql);
+                    add_log('admin', 'LOG_LANGUAGE_PACK_DELETED', $row['lang_english_name']);
 
-				$cache->destroy('sql', STYLES_IMAGESET_DATA_TABLE);
+                    trigger_error(sprintf($user->lang['LANGUAGE_PACK_DELETED'], $row['lang_english_name']) . adm_back_link($this->u_action));
+                }
+                else
+                {
+                    $s_hidden_fields = array(
+                        'i'			=> $id,
+                        'mode'		=> $mode,
+                        'action'	=> $action,
+                        'id'		=> $lang_id,
+                    );
+                    confirm_box(false, $user->lang['CONFIRM_OPERATION'], build_hidden_fields($s_hidden_fields));
+                }
 
-				add_log('admin', 'LOG_LANGUAGE_PACK_DELETED', $row['lang_english_name']);
-
-				trigger_error(sprintf($user->lang['LANGUAGE_PACK_DELETED'], $row['lang_english_name']) . adm_back_link($this->u_action));
-			break;
+                break;
 
 			case 'install':
 				$lang_iso = request_var('iso', '');
@@ -1254,7 +1256,7 @@ $lang = array_merge($lang, array(
 		$keys = func_get_args();
 
 		$non_static		= array_shift($keys);
-		$value			= array_shift($keys);
+        $value			= utf8_normalize_nfc(array_shift($keys));
 
 		if (!$non_static)
 		{

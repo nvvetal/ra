@@ -390,6 +390,7 @@ $lang = array_merge($lang, array(
     'TEMPLATE_LOCATION'			=> 'Сохранить шаблон в',
 	'TEMPLATE_LOCATION_EXPLAIN'	=> 'Изображения всегда хранятся на сервере.',
 	'TEMPLATE_NAME'				=> 'Имя шаблона',
+	'TEMPLATE_FILE_NOT_WRITABLE'=> 'Unable to write to template file %s. Please check the permissions for the directory and the files.',
 	'TEMPLATE_REFRESHED'		=> 'Шаблон успешно обновлён.',
 
 	'THEME_ADDED'				=> 'Новая тема добавлена на сервер.',

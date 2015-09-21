@@ -46,6 +46,9 @@ function compose_pm($id, $mode, $action)
 	$draft_id		= request_var('d', 0);
 	$lastclick		= request_var('lastclick', 0);
 
+    // Reply to all triggered (quote/reply)
+    $reply_to_all	= request_var('reply_to_all', 0);
+
 	// Do NOT use request_var or specialchars here
 	$address_list	= isset($_REQUEST['address_list']) ? $_REQUEST['address_list'] : array();
 
@@ -85,7 +88,11 @@ function compose_pm($id, $mode, $action)
 		redirect(append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm'));
 	}
 
-	// Output PM_TO box if message composing
+    // Since viewtopic.php language entries are used in several modes,
+    // we include the language file here
+    $user->add_lang('viewtopic');
+
+    // Output PM_TO box if message composing
 	if ($action != 'edit')
 	{
         // Add groups to PM box
@@ -310,13 +317,14 @@ function compose_pm($id, $mode, $action)
 
 			if (($action == 'reply' || $action == 'quote' || $action == 'quotepost') && !sizeof($address_list) && !$refresh && !$submit && !$preview)
 			{
-                if ($action == 'quotepost')
+                // Add the original author as the recipient if quoting a post or only replying and not having checked "reply to all"
+                if ($action == 'quotepost' || !$reply_to_all)
                 {
                     $address_list = array('u' => array($post['author_id'] => 'to'));
                 }
                 else
                 {
-                    // We try to include every previously listed member from the TO Header
+                    // We try to include every previously listed member from the TO Header - Reply to all
                     $address_list = rebuild_header(array('to' => $post['to_address']));
 
                     // Add the author (if he is already listed then this is no shame (it will be overwritten))
@@ -462,7 +470,7 @@ function compose_pm($id, $mode, $action)
     $max_recipients = (!$max_recipients) ? $config['pm_max_recipients'] : $max_recipients;
 
     // If this is a quote/reply "to all"... we may increase the max_recpients to the number of original recipients
-    if (($action == 'reply' || $action == 'quote') && $max_recipients)
+    if (($action == 'reply' || $action == 'quote') && $max_recipients && $reply_to_all)
     {
         // We try to include every previously listed member from the TO Header
         $list = rebuild_header(array('to' => $post['to_address']));
@@ -653,7 +661,7 @@ function compose_pm($id, $mode, $action)
 	// Load Drafts
 	if ($load && $drafts)
 	{
-		load_drafts(0, 0, $id);
+        load_drafts(0, 0, $id, $action, $msg_id);
 	}
 
 	if ($submit || $preview || $refresh)
@@ -768,7 +776,6 @@ function compose_pm($id, $mode, $action)
 	// Preview
 	if (!sizeof($error) && $preview)
 	{
-		$user->add_lang('viewtopic');
 		$preview_message = $message_parser->format_display($enable_bbcode, $enable_urls, $enable_smilies, false);
 
 		$preview_signature = $user->data['user_sig'];
@@ -826,7 +833,7 @@ function compose_pm($id, $mode, $action)
 	}
 
 	// Decode text for message display
-	$bbcode_uid = (($action == 'quote' || $action == 'forward') && !$preview && !$refresh && !sizeof($error)) ? $bbcode_uid : $message_parser->bbcode_uid;
+    $bbcode_uid = (($action == 'quote' || $action == 'forward') && !$preview && !$refresh && (!sizeof($error) || (sizeof($error) && !$submit))) ? $bbcode_uid : $message_parser->bbcode_uid;
 
 	$message_parser->decode_message($bbcode_uid);
 
@@ -1164,8 +1171,14 @@ function handle_message_list_actions(&$address_list, &$error, $remove_u, $remove
 
         global $refresh, $submit, $preview;
 
-        $refresh = $preview = true;
+        $refresh = true;
         $submit = false;
+
+        // Preview is only true if there was also a message entered
+        if (request_var('message', ''))
+        {
+            $preview = true;
+        }
     }
 
     // Add User/Group [TO]

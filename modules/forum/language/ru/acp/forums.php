@@ -44,9 +44,12 @@ $lang = array_merge($lang, array(
 	'AUTO_PRUNE_VIEWED'			=> 'Автоочистка по времени просмотра',
 	'AUTO_PRUNE_VIEWED_EXPLAIN'	=> 'Количество дней с последнего просмотра, по прошествию которых тема будет удалена.',
 
+	'CONTINUE'						=> 'Continue',
 	'COPY_PERMISSIONS'				=> 'Копировать права доступа из',
+	'COPY_PERMISSIONS_EXPLAIN'		=> 'To ease up the permission setup for your new forum, you can copy the permissions of an existing forum.',
 	'COPY_PERMISSIONS_ADD_EXPLAIN'	=> 'Вновь созданному форуму будут присвоены те же права доступа, что и у выбранного из списка. Если ничего не выбрано, созданный форум не будет отображаться на конференции до установки прав доступа.',
 	'COPY_PERMISSIONS_EDIT_EXPLAIN'	=> 'Если вы выбрали копирование прав доступа, форуму будут присвоены те же права доступа, что и выбранному здесь. Все ранее установленные права доступа к этому форуму будут при этом заменены. Если форум не выбран, будут сохранены текущие права доступа.',
+    'COPY_TO_ACL'					=> 'Alternatively, you are also able to %sset up new permissions%s for this forum.',
 	'CREATE_FORUM'					=> 'Создать форум',
 
 	'DECIDE_MOVE_DELETE_CONTENT'		=> 'Удалить содержимое или переместить в форум',
@@ -62,6 +65,8 @@ $lang = array_merge($lang, array(
 	'ENABLE_INDEXING_EXPLAIN'		=> 'Если включено, сообщения в этом форуме будут индексироваться для поиска.',
 	'ENABLE_POST_REVIEW'			=> 'Включить просмотр сообщений',
 	'ENABLE_POST_REVIEW_EXPLAIN'	=> 'Если включено, пользователи смогут пересмотреть своё сообщение, если во время его создания в теме появились новые сообщения. Должно быть выключено для чат-форумов.',
+    'ENABLE_QUICK_REPLY'			=> 'Enable quick reply',
+    'ENABLE_QUICK_REPLY_EXPLAIN'	=> 'If set to yes users get a quick reply box for this forum. If the global option for quick reply is disabled or the forum not postable to the quick reply box will not be displayed, even if set to yes here.',
 	'ENABLE_RECENT'					=> 'Показывать активные темы',
 	'ENABLE_RECENT_EXPLAIN'			=> 'Если включено, темы из этого форума будут отображаться в списке активных тем.',
 	'ENABLE_TOPIC_ICONS'			=> 'Включить значки тем',

@@ -603,18 +603,31 @@ class ucp_groups
 								// Only set the rank, colour, etc. if it's changed or if we're adding a new
 								// group. This prevents existing group members being updated if no changes
 								// were made.
-						
-								$group_attributes = array();
-                                $test_variables = array('rank', 'colour', 'avatar', 'avatar_type', 'avatar_width', 'avatar_height', 'receive_pm', 'legend', 'message_limit', 'max_recipients');
-								foreach ($test_variables as $test)
-								{
-									if ($action == 'add' || (isset($submit_ary[$test]) && $group_row['group_' . $test] != $submit_ary[$test]))
-									{
-										$group_attributes['group_' . $test] = $group_row['group_' . $test] = $submit_ary[$test];
-									}
-								}
 
-								if (!($error = group_create($group_id, $group_type, $group_name, $group_desc, $group_attributes, $allow_desc_bbcode, $allow_desc_urls, $allow_desc_smilies)))
+                                $group_attributes = array();
+                                $test_variables = array(
+                                    'rank'			=> 'int',
+                                    'colour'		=> 'string',
+                                    'avatar'		=> 'string',
+                                    'avatar_type'	=> 'int',
+                                    'avatar_width'	=> 'int',
+                                    'avatar_height'	=> 'int',
+                                    'receive_pm'	=> 'int',
+                                    'legend'		=> 'int',
+                                    'message_limit'	=> 'int',
+                                    'max_recipients'=> 'int',
+                                );
+
+                                foreach ($test_variables as $test => $type)
+                                {
+                                    if (isset($submit_ary[$test]) && ($action == 'add' || $group_row['group_' . $test] != $submit_ary[$test]))
+                                    {
+                                        settype($submit_ary[$test], $type);
+                                        $group_attributes['group_' . $test] = $group_row['group_' . $test] = $submit_ary[$test];
+                                    }
+                                }
+
+                                if (!($error = group_create($group_id, $group_type, $group_name, $group_desc, $group_attributes, $allow_desc_bbcode, $allow_desc_urls, $allow_desc_smilies)))
 								{
 									$cache->destroy('sql', GROUPS_TABLE);
 
@@ -674,24 +687,27 @@ class ucp_groups
 
 						$display_gallery = (isset($_POST['display_gallery'])) ? true : false;
 
-						if ($config['allow_avatar_local'] && $display_gallery)
+                        if ($config['allow_avatar'] && $config['allow_avatar_local'] && $display_gallery)
 						{
 							avatar_gallery($category, $avatar_select, 4);
 						}
-						
-						$avatars_enabled = ($can_upload || ($config['allow_avatar_local'] || $config['allow_avatar_remote'])) ? true : false;
 
+                        $avatars_enabled = ($config['allow_avatar'] && (($can_upload && ($config['allow_avatar_upload'] || $config['allow_avatar_remote_upload'])) || ($config['allow_avatar_local'] || $config['allow_avatar_remote']))) ? true : false;
 
 						$template->assign_vars(array(
 							'S_EDIT'			=> true,
 							'S_INCLUDE_SWATCH'	=> true,
 							'S_CAN_UPLOAD'		=> $can_upload,
-							'S_FORM_ENCTYPE'	=> ($can_upload) ? ' enctype="multipart/form-data"' : '',
+                            'S_FORM_ENCTYPE'	=> ($config['allow_avatar'] && $can_upload && ($config['allow_avatar_upload'] || $config['allow_avatar_remote_upload'])) ? ' enctype="multipart/form-data"' : '',
 							'S_ERROR'			=> (sizeof($error)) ? true : false,
 							'S_SPECIAL_GROUP'	=> ($group_type == GROUP_SPECIAL) ? true : false,
 							'S_AVATARS_ENABLED'	=> $avatars_enabled,
-							'S_DISPLAY_GALLERY'	=> ($config['allow_avatar_local'] && !$display_gallery) ? true : false,
+                            'S_DISPLAY_GALLERY'	=> ($config['allow_avatar'] && $config['allow_avatar_local'] && !$display_gallery) ? true : false,
 							'S_IN_GALLERY'		=> ($config['allow_avatar_local'] && $display_gallery) ? true : false,
+
+                            'S_UPLOAD_AVATAR_FILE'	=> ($config['allow_avatar'] && $config['allow_avatar_upload'] && $can_upload) ? true : false,
+                            'S_UPLOAD_AVATAR_URL'	=> ($config['allow_avatar'] && $config['allow_avatar_remote_upload'] && $can_upload) ? true : false,
+                            'S_LINK_AVATAR'			=> ($config['allow_avatar'] && $config['allow_avatar_remote']) ? true : false,
 
 							'ERROR_MSG'				=> (sizeof($error)) ? implode('<br />', $error) : '',
 							'GROUP_RECEIVE_PM'		=> (isset($group_row['group_receive_pm']) && $group_row['group_receive_pm']) ? ' checked="checked"' : '',
@@ -839,6 +855,7 @@ class ucp_groups
 							'PAGINATION'		=> generate_pagination($this->u_action . "&amp;action=$action&amp;g=$group_id", $total_members, $config['topics_per_page'], $start),
 
 							'U_ACTION'			=> $this->u_action . "&amp;g=$group_id",
+                            'S_UCP_ACTION'		=> $this->u_action . "&amp;g=$group_id",
 							'U_FIND_USERNAME'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser&amp;form=ucp&amp;field=usernames'),
 						));
 
@@ -948,7 +965,9 @@ class ucp_groups
 							);
 						}
 
-					break;
+                        // redirect to last screen
+                        redirect($this->u_action . '&amp;action=list&amp;g=' . $group_id);
+                    break;
 
 					case 'deleteusers':
 
@@ -994,7 +1013,10 @@ class ucp_groups
 							);
 						}
 
-					break;
+                        // redirect to last screen
+                        redirect($this->u_action . '&amp;action=list&amp;g=' . $group_id);
+
+                    break;
 
 					case 'addusers':
 

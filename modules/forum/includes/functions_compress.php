@@ -155,8 +155,13 @@ class compress_zip extends compress
 	*/
 	function compress_zip($mode, $file)
 	{
-		return $this->fp = @fopen($file, $mode . 'b');
-	}
+        $this->fp = @fopen($file, $mode . 'b');
+
+        if (!$this->fp)
+        {
+            trigger_error('Unable to open file ' . $file . ' [' . $mode . 'b]');
+        }
+    }
 
 	/**
 	* Convert unix to dos time

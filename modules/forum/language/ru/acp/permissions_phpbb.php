@@ -123,8 +123,8 @@ $lang = array_merge($lang, array(
 	'acl_u_pm_download'	=> array('lang' => 'Может скачивать файлы из ЛС', 'cat' => 'pm'),
 	'acl_u_pm_bbcode'	=> array('lang' => 'Может использовать BBCode в ЛС', 'cat' => 'pm'),
 	'acl_u_pm_smilies'	=> array('lang' => 'Может использовать смайлы в ЛС', 'cat' => 'pm'),
-	'acl_u_pm_img'		=> array('lang' => 'Может вкладывать изображения в ЛС', 'cat' => 'pm'),
-	'acl_u_pm_flash'	=> array('lang' => 'Может вкладывать флэш-файлы в ЛС', 'cat' => 'pm'),
+	'acl_u_pm_img'		=> array('lang' => 'Может вкладывать [img] изображения в ЛС', 'cat' => 'pm'),
+	'acl_u_pm_flash'	=> array('lang' => 'Может вкладывать [flash] флэш-файлы в ЛС', 'cat' => 'pm'),
 
 	'acl_u_sendemail'	=> array('lang' => 'Может посылать email-сообщения', 'cat' => 'misc'),
 	'acl_u_sendim'		=> array('lang' => 'Может использовать систему мгновенных сообщений', 'cat' => 'misc'),
@@ -153,8 +153,8 @@ $lang = array_merge($lang, array(
 	'acl_f_sigs'		=> array('lang' => 'Может использовать подпись', 'cat' => 'content'),
 	'acl_f_bbcode'		=> array('lang' => 'Может использовать BBCode', 'cat' => 'content'),
 	'acl_f_smilies'		=> array('lang' => 'Может использовать смайлы', 'cat' => 'content'),
-	'acl_f_img'			=> array('lang' => 'Может вкладывать изображения', 'cat' => 'content'),
-	'acl_f_flash'		=> array('lang' => 'Может вкладывать флэш-файлы', 'cat' => 'content'),
+	'acl_f_img'			=> array('lang' => 'Может вкладывать [img] изображения', 'cat' => 'content'),
+	'acl_f_flash'		=> array('lang' => 'Может вкладывать [flash] флэш-файлы', 'cat' => 'content'),
 
 	'acl_f_edit'		=> array('lang' => 'Может редактировать собственные сообщения', 'cat' => 'actions'),
 	'acl_f_delete'		=> array('lang' => 'Может удалять собственные сообщения', 'cat' => 'actions'),

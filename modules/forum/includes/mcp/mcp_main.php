@@ -815,8 +815,15 @@ function mcp_delete_topic($topic_ids)
 
 		foreach ($data as $topic_id => $row)
 		{
-			add_log('mod', $row['forum_id'], $topic_id, 'LOG_DELETE_' . ($row['topic_moved_id'] ? 'SHADOW_' : '') . 'TOPIC', $row['topic_title']);
-		}
+            if ($row['topic_moved_id'])
+            {
+                add_log('mod', $row['forum_id'], $topic_id, 'LOG_DELETE_SHADOW_TOPIC', $row['topic_title']);
+            }
+            else
+            {
+                add_log('mod', $row['forum_id'], $topic_id, 'LOG_DELETE_TOPIC', $row['topic_title'], $row['topic_first_poster_name']);
+            }
+        }
 
 		$return = delete_topics('topic_id', $topic_ids);
 	}
@@ -899,8 +906,9 @@ function mcp_delete_post($post_ids)
 
 		foreach ($post_data as $id => $row)
 		{
-			add_log('mod', $row['forum_id'], $row['topic_id'], 'LOG_DELETE_POST', $row['post_subject']);
-		}
+            $post_username = ($row['poster_id'] == ANONYMOUS && !empty($row['post_username'])) ? $row['post_username'] : $row['username'];
+            add_log('mod', $row['forum_id'], $row['topic_id'], 'LOG_DELETE_POST', $row['post_subject'], $post_username);
+        }
 
 		// Now delete the posts, topics and forums are automatically resync'ed
 		delete_posts('post_id', $post_ids);
@@ -1065,8 +1073,10 @@ function mcp_fork_topic($topic_ids)
 				'topic_bumper'				=> (int) $topic_row['topic_bumper'],
 				'poll_title'				=> (string) $topic_row['poll_title'],
 				'poll_start'				=> (int) $topic_row['poll_start'],
-				'poll_length'				=> (int) $topic_row['poll_length']
-			);
+                'poll_length'				=> (int) $topic_row['poll_length'],
+                'poll_max_options'			=> (int) $topic_row['poll_max_options'],
+                'poll_vote_change'			=> (int) $topic_row['poll_vote_change'],
+            );
 
 			$db->sql_query('INSERT INTO ' . TOPICS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary));
 			$new_topic_id = $db->sql_nextid();
@@ -1167,9 +1177,9 @@ function mcp_fork_topic($topic_ids)
 							'in_message'		=> 0,
 							'is_orphan'			=> (int) $attach_row['is_orphan'],
 							'poster_id'			=> (int) $attach_row['poster_id'],
-							'physical_filename'	=> (string) basename($attach_row['physical_filename']),
-							'real_filename'		=> (string) basename($attach_row['real_filename']),
-							'download_count'	=> (int) $attach_row['download_count'],
+                            'physical_filename'	=> (string) utf8_basename($attach_row['physical_filename']),
+                            'real_filename'		=> (string) utf8_basename($attach_row['real_filename']),
+                            'download_count'	=> (int) $attach_row['download_count'],
 							'attach_comment'	=> (string) $attach_row['attach_comment'],
 							'extension'			=> (string) $attach_row['extension'],
 							'mimetype'			=> (string) $attach_row['mimetype'],

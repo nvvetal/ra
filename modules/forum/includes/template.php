@@ -39,8 +39,10 @@ class template
 	var $files_inherit = array();
  	var $files_template = array();
  	var $inherit_root = '';
+    var $orig_tpl_storedb;
+    var $orig_tpl_inherits_id;
 
-	// this will hash handle names to the compiled/uncompiled code for that handle.
+    // this will hash handle names to the compiled/uncompiled code for that handle.
 	var $compiled_code = array();
 
 	/**
@@ -55,6 +57,19 @@ class template
 		{
 			$this->root = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template';
             $this->cachepath = $phpbb_root_path . 'cache/tpl_' . str_replace('_', '-', $user->theme['template_path']) . '_';
+
+            if ($this->orig_tpl_storedb === null)
+            {
+                $this->orig_tpl_storedb = $user->theme['template_storedb'];
+            }
+
+            if ($this->orig_tpl_inherits_id === null)
+            {
+                $this->orig_tpl_inherits_id = $user->theme['template_inherits_id'];
+            }
+
+            $user->theme['template_storedb'] = $this->orig_tpl_storedb;
+            $user->theme['template_inherits_id'] = $this->orig_tpl_inherits_id;
 
             if ($user->theme['template_inherits_id'])
             {
@@ -75,12 +90,27 @@ class template
 	* Set custom template location (able to use directory outside of phpBB)
 	* @access public
 	*/
-	function set_custom_template($template_path, $template_name)
-	{
-		global $phpbb_root_path;
+    function set_custom_template($template_path, $template_name, $template_mode = 'template')
+    {
+        global $phpbb_root_path, $user;
 
-		$this->root = $template_path;
+        // Make sure $template_path has no ending slash
+        if (substr($template_path, -1) == '/')
+        {
+            $template_path = substr($template_path, 0, -1);
+        }
+
+        $this->root = $template_path;
         $this->cachepath = $phpbb_root_path . 'cache/ctpl_' . str_replace('_', '-', $template_name) . '_';
+
+        // As the template-engine is used for more than the template (emails, etc.), we should not set $user->theme in all cases, but only on the real template.
+        if ($template_mode == 'template')
+        {
+            $user->theme['template_storedb'] = false;
+            $user->theme['template_inherits_id'] = false;
+        }
+
+        $this->_rootref = &$this->_tpldata['.'][0];
 
 		return true;
 	}
@@ -123,6 +153,7 @@ class template
 	function destroy()
 	{
 		$this->_tpldata = array('.' => array(0 => array()));
+        $this->_rootref = &$this->_tpldata['.'][0];
 	}
 
 	/**
@@ -219,9 +250,14 @@ class template
 	{
 		global $user, $phpEx, $config;
 
-		$filename = $this->cachepath . str_replace('/', '.', $this->filename[$handle]) . '.' . $phpEx;
+        if (!isset($this->filename[$handle]))
+        {
+            trigger_error("template->_tpl_load(): No file specified for handle $handle", E_USER_ERROR);
+        }
 
-        $this->files_template[$handle] = $user->theme['template_id'];
+        $filename = $this->cachepath . str_replace('/', '.', $this->filename[$handle]) . '.' . $phpEx;
+        $this->files_template[$handle] = (isset($user->theme['template_id'])) ? $user->theme['template_id'] : 0;
+
 
         $recompile = false;
         if (!file_exists($filename) || @filesize($filename) === 0)
@@ -619,6 +655,25 @@ class template
 			eval(' ?>' . $this->compiled_code[$handle] . '<?php ');
 		}
 	}
+
+    /**
+     * Include a php-file
+     * @access private
+     */
+    function _php_include($filename)
+    {
+        global $phpbb_root_path;
+
+        $file = $phpbb_root_path . $filename;
+
+        if (!file_exists($file))
+        {
+            // trigger_error cannot be used here, as the output already started
+            echo 'template->_php_include(): File ' . htmlspecialchars($file) . ' does not exist or is empty';
+            return;
+        }
+        include($file);
+    }
 }
 
 ?>

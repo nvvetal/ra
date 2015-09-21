@@ -88,6 +88,7 @@ $lang = array_merge($lang, array(
 	'ACP_FORUM_MANAGEMENT'			=> 'Форумы',
 	'ACP_FORUM_MODERATORS'			=> 'Модераторы форумов',
 	'ACP_FORUM_PERMISSIONS'			=> 'Доступ к форумам',
+	'ACP_FORUM_PERMISSIONS_COPY'	=> 'Copy forum permissions',
 	'ACP_FORUM_ROLES'				=> 'Форумные роли',
 
 	'ACP_GENERAL_CONFIGURATION'		=> 'Общие настройки',
@@ -145,12 +146,15 @@ $lang = array_merge($lang, array(
 	'ACP_REGISTER_SETTINGS'		=> 'Регистрация пользователей',
 
 	'ACP_RESTORE'				=> 'Восстановление',
+    'ACP_FEED'					=> 'Feed management',
+    'ACP_FEED_SETTINGS'			=> 'Feed settings',
 
-	'ACP_SEARCH'				=> 'Настройки поиска',
+    'ACP_SEARCH'				=> 'Настройки поиска',
 	'ACP_SEARCH_INDEX'			=> 'Поисковые индексы',
 	'ACP_SEARCH_SETTINGS'		=> 'Поиск',
 
 	'ACP_SECURITY_SETTINGS'		=> 'Безопасность',
+    'ACP_SEND_STATISTICS'		=> 'Send statistical information',
 	'ACP_SERVER_CONFIGURATION'	=> 'Конфигурация сервера',
 	'ACP_SERVER_SETTINGS'		=> 'Настройки сервера',
 	'ACP_SIGNATURE_SETTINGS'	=> 'Подписи',
@@ -158,6 +162,8 @@ $lang = array_merge($lang, array(
 	'ACP_STYLE_COMPONENTS'		=> 'Компоненты стилей',
 	'ACP_STYLE_MANAGEMENT'		=> 'Управление стилями',
 	'ACP_STYLES'				=> 'Стили',
+
+    'ACP_SUBMIT_CHANGES'		=> 'Submit changes',
 
 	'ACP_TEMPLATES'				=> 'Шаблоны',
 	'ACP_THEMES'				=> 'Темы',
@@ -179,6 +185,7 @@ $lang = array_merge($lang, array(
 	'ACP_USER_ROLES'				=> 'Пользовательские роли',
 	'ACP_USER_SECURITY'				=> 'Блокировка пользователей',
 	'ACP_USER_SIG'					=> 'Подпись',
+    'ACP_USER_WARNINGS'				=> 'Warnings',
 
 	'ACP_VC_SETTINGS'					=> 'Визуальное подтверждение',
 	'ACP_VC_CAPTCHA_DISPLAY'			=> 'Просмотр визуального подтверждения',
@@ -238,7 +245,9 @@ $lang = array_merge($lang, array(
 
 	'MANAGE'				=> 'Управление',
 	'MENU_TOGGLE'			=> 'Показать или скрыть боковое меню',
-	'MOVE_DOWN'				=> 'Вниз',
+    'MORE'					=> 'More',			// Not used at the moment
+    'MORE_INFORMATION'		=> 'More information »',
+    'MOVE_DOWN'				=> 'Вниз',
 	'MOVE_UP'				=> 'Вверх',
 
 	'NOTIFY'				=> 'Уведомление',
@@ -267,6 +276,8 @@ $lang = array_merge($lang, array(
 	'SETTING_TOO_BIG'		=> 'The entered value for the setting вЂњ%1$sвЂќ is too big. The maximal allowed value is %2$d.',
 	'SETTING_TOO_LONG'		=> 'The entered value for the setting вЂњ%1$sвЂќ is too long. The maximal allowed length is %2$d.',
 	'SETTING_TOO_SHORT'		=> 'The entered value for the setting вЂњ%1$sвЂќ is not long enough. The minimal allowed length is %2$d.',
+
+    'SHOW_ALL_OPERATIONS'	=> 'Show all operations',
 
 	'UCP'					=> 'Личный раздел',
 	'USERNAMES_EXPLAIN'		=> 'Вводите каждое имя на новой строке.',
@@ -330,6 +341,10 @@ $lang = array_merge($lang, array(
 	'PURGE_CACHE_CONFIRM'	=> 'Вы действительно хотите очистить кэш?',
 	'PURGE_CACHE_EXPLAIN'	=> 'Очистка всех кэшированных элементов (кэшированные файлы шаблонов и запросов).',
 
+    'PURGE_SESSIONS'			=> 'Purge all sessions',
+    'PURGE_SESSIONS_CONFIRM'	=> 'Are you sure you wish to purge all sessions? This will log out all users.',
+    'PURGE_SESSIONS_EXPLAIN'	=> 'Purge all sessions. This will log out all users by truncating the session table.',
+
 	'RESET_DATE'					=> 'Сброс даты запуска конференции',
 	'RESET_DATE_CONFIRM'			=> 'Вы действительно хотите сбросить дату запуска конференции?',
 	'RESET_ONLINE'					=> 'Сброс наибольшего количества посетителей',
@@ -354,7 +369,9 @@ $lang = array_merge($lang, array(
 	'USERS_PER_DAY'		=> 'Пользователей в день',
 
 	'VALUE'					=> 'Значение',
-	'VIEW_ADMIN_LOG'		=> 'Лог администраторов',
+    'VERSIONCHECK_FAIL'			=> 'Failed to obtain latest version information.',
+    'VERSIONCHECK_FORCE_UPDATE'	=> 'Re-Check version',
+    'VIEW_ADMIN_LOG'		=> 'Лог администраторов',
 	'VIEW_INACTIVE_USERS'	=> 'Неактивные пользователи',
 
 	'WELCOME_PHPBB'			=> 'Добро пожаловать в phpBB',
@@ -380,8 +397,22 @@ $lang = array_merge($lang, array(
 	'SORT_LAST_VISIT'	=> 'Последнее посещение',
 	'SORT_REASON'		=> 'Причина',
 	'SORT_REG_DATE'		=> 'Дата регистрации',
+    'SORT_LAST_REMINDER'=> 'Last reminded',
+    'SORT_REMINDER'		=> 'Reminder sent',
 
-	'USER_IS_INACTIVE'		=> 'Пользователь неактивен',
+    'USER_IS_INACTIVE'		=> 'Пользователь неактивен',
+));
+
+// Send statistics page
+$lang = array_merge($lang, array(
+    'EXPLAIN_SEND_STATISTICS'	=> 'Please send information about your server and board configurations to phpBB for statistical analysis. All information that could identify you or your website has been removed - the data is entirely <strong>anonymous</strong>. We base decisions about future phpBB versions on this information. The statistics are made available publically. We also share this data with the PHP project, the programming language phpBB is made with.',
+    'EXPLAIN_SHOW_STATISTICS'	=> 'Using the button below you can preview all variables that will be transmitted.',
+    'DONT_SEND_STATISTICS'		=> 'Return to the ACP if you do not wish to send statistical information to phpBB.',
+    'GO_ACP_MAIN'				=> 'Go to the ACP start page',
+    'HIDE_STATISTICS'			=> 'Hide details',
+    'SEND_STATISTICS'			=> 'Send statistical information',
+    'SHOW_STATISTICS'			=> 'Show details',
+    'THANKS_SEND_STATISTICS'	=> 'Thank you for submitting your information.',
 ));
 
 // Log Entries
@@ -460,6 +491,7 @@ $lang = array_merge($lang, array(
 	'LOG_CONFIG_MESSAGE'		=> '<strong>Изменены настройки личных сообщений</strong>',
 	'LOG_CONFIG_POST'			=> '<strong>Изменены настройки сообщений</strong>',
 	'LOG_CONFIG_REGISTRATION'	=> '<strong>Изменены настройки регистрации пользователей</strong>',
+    'LOG_CONFIG_FEED'			=> '<strong>Altered syndication feeds settings</strong>',
 	'LOG_CONFIG_SEARCH'			=> '<strong>Изменены настройки поиска</strong>',
 	'LOG_CONFIG_SECURITY'		=> '<strong>Изменены настройки безопасности</strong>',
 	'LOG_CONFIG_SERVER'			=> '<strong>Изменены настройки сервера</strong>',
@@ -477,6 +509,8 @@ $lang = array_merge($lang, array(
 	'LOG_LOCK_POST'				=> '<strong>Заблокировано сообщение</strong><br />» %s',
 	'LOG_MERGE'					=> '<strong>Объединены сообщения</strong> в тему<br />» %s',
 	'LOG_MOVE'					=> '<strong>Перемещена тема</strong><br />» из %s',
+    'LOG_PM_REPORT_CLOSED'		=> '<strong>Closed PM report</strong><br />» %s',
+    'LOG_PM_REPORT_DELETED'		=> '<strong>Deleted PM report</strong><br />» %s',
 	'LOG_POST_APPROVED'			=> '<strong>Одобрение сообщения</strong><br />» %s',
 	'LOG_POST_DISAPPROVED'		=> '<strong>Отклонение сообщения «%1$s» по следующей причине</strong><br />» %2$s',
 	'LOG_POST_EDITED'			=> '<strong>Редактирование сообщения в теме «%1$s», написанного автором</strong><br />» %2$s',
@@ -507,6 +541,7 @@ $lang = array_merge($lang, array(
 	'LOG_ERROR_EMAIL'		=> '<strong>Ошибка почты</strong><br />» %s',
 
 	'LOG_FORUM_ADD'							=> '<strong>Создан форум</strong><br />» %s',
+    'LOG_FORUM_COPIED_PERMISSIONS'			=> '<strong>Copied forum permissions</strong> from %1$s<br />» %2$s',
 	'LOG_FORUM_DEL_FORUM'					=> '<strong>Удалён форум</strong><br />» %s',
 	'LOG_FORUM_DEL_FORUMS'					=> '<strong>Удалён форум с подфорумами</strong><br />» %s',
 	'LOG_FORUM_DEL_MOVE_FORUMS'				=> '<strong>Удалён форум и перемещены подфорумы</strong> в %1$s<br />» %2$s',
@@ -521,6 +556,8 @@ $lang = array_merge($lang, array(
 	'LOG_FORUM_MOVE_UP'						=> '<strong>Перемещён форум</strong> %1$s <strong>над</strong> %2$s',
 	'LOG_FORUM_SYNC'						=> '<strong>Синхронизирован форум</strong><br />» %s',
 
+    'LOG_GENERAL_ERROR'	=> '<strong>A general error occured</strong>: %1$s <br />» %2$s',
+
 	'LOG_GROUP_CREATED'		=> '<strong>Создана группа пользователей</strong><br />» %s',
 	'LOG_GROUP_DEFAULTS'	=> '<strong>Назначена группой по умолчанию для пользователей</strong><br />» %s',
 	'LOG_GROUP_DELETE'		=> '<strong>Удалена группа</strong><br />» %s',
@@ -529,8 +566,11 @@ $lang = array_merge($lang, array(
 	'LOG_GROUP_REMOVE'		=> '<strong>Удалены пользователи из группы</strong> %1$s<br />» %2$s',
 	'LOG_GROUP_UPDATED'		=> '<strong>Обновлена информация о группе</strong><br />» %s',
 	'LOG_MODS_ADDED'		=> '<strong>Добавлены новые лидеры в группу</strong> %1$s<br />» %2$s',
-	'LOG_USERS_APPROVED'	=> '<strong>Одобрены кандидаты в группу</strong> %1$s<br />» %2$s',
 	'LOG_USERS_ADDED'		=> '<strong>Добавлены пользователи в группу</strong> %1$s<br />» %2$s',
+    'LOG_USERS_APPROVED'	=> '<strong>Users approved in usergroup</strong> %1$s<br />» %2$s',
+    'LOG_USERS_PENDING'		=> '<strong>Users requested to join group “%1$s” and need to be approved</strong><br />» %2$s',
+
+    'LOG_IMAGE_GENERATION_ERROR'	=> '<strong>Error while creating image</strong><br />» Error in %1$s on line %2$s: %3$s',
 
 	'LOG_IMAGESET_ADD_DB'			=> '<strong>Добавлен пакет изображений в базу данных</strong><br />» %s',
 	'LOG_IMAGESET_ADD_FS'			=> '<strong>Добавлен пакет изображений на сервер</strong><br />» %s',
@@ -599,6 +639,7 @@ $lang = array_merge($lang, array(
 	'LOG_PRUNE_USER_DEL_ANON'	=> '<strong>Удалены пользователи, их сообщения оставлены</strong><br />» %s',
 
 	'LOG_PURGE_CACHE'			=> '<strong>Очистка кэша</strong>',
+    'LOG_PURGE_SESSIONS'		=> '<strong>Purged sessions</strong>',
 
 	'LOG_RANK_ADDED'		=> '<strong>Добавлено звание</strong><br />» %s',
 	'LOG_RANK_REMOVED'		=> '<strong>Удалено звание</strong><br />» %s',
@@ -650,12 +691,15 @@ $lang = array_merge($lang, array(
 	'LOG_USER_DELETED'		=> '<strong>Удалён пользователь</strong><br />» %s',
 	'LOG_USER_DEL_ATTACH'	=> '<strong>Удалены все вложения пользователя</strong><br />» %s',
 	'LOG_USER_DEL_AVATAR'	=> '<strong>Удалена аватара пользователя</strong><br />» %s',
+    'LOG_USER_DEL_OUTBOX'	=> '<strong>Emptied user outbox</strong><br />» %s',
 	'LOG_USER_DEL_POSTS'	=> '<strong>Удалены все сообщения пользователя</strong><br />» %s',
 	'LOG_USER_DEL_SIG'		=> '<strong>Удалена подпись пользователя</strong><br />» %s',
 	'LOG_USER_INACTIVE'		=> '<strong>Деактивирован пользователь</strong><br />» %s',
 	'LOG_USER_MOVE_POSTS'	=> '<strong>Перемещены сообщения пользователя</strong><br />» «%1$s» в форум «%2$s»',
 	'LOG_USER_NEW_PASSWORD'	=> '<strong>Изменён пароль пользователя</strong><br />» %s',
 	'LOG_USER_REACTIVATE'	=> '<strong>Принудительная повторная активация учётной записи пользователя</strong><br />» %s',
+    'LOG_USER_REMOVED_NR'	=> '<strong>Removed newly registered flag from user</strong><br />» %s',
+
 	'LOG_USER_UPDATE_EMAIL'	=> '<strong>Пользователем "%1$s" изменён email-адрес</strong><br />» с «%2$s» на «%3$s»"',
 	'LOG_USER_UPDATE_NAME'	=> '<strong>Изменено имя пользователя</strong><br />» с «%1$s» на «%2$s»',
 	'LOG_USER_USER_UPDATE'	=> '<strong>Обновлена информация о пользователе</strong><br />» %s',
@@ -679,7 +723,11 @@ $lang = array_merge($lang, array(
 	'LOG_USER_GROUP_JOIN_PENDING'	=> '<strong>Пользователь подал запрос на вступление в группу и должен быть одобрен</strong><br />» %s',
 	'LOG_USER_GROUP_RESIGN'			=> '<strong>Пользователь отказался от членства в группе</strong><br />» %s',
 
-	'LOG_WORD_ADD'			=> '<strong>Добавлен цензор слов</strong><br />» %s',
+    'LOG_WARNING_DELETED'		=> '<strong>Deleted user warning</strong><br />» %s',
+    'LOG_WARNINGS_DELETED'		=> '<strong>Deleted %2$s user warnings</strong><br />» %1$s', // Example: '<strong>Deleted 2 user warnings</strong><br />» username'
+    'LOG_WARNINGS_DELETED_ALL'	=> '<strong>Deleted all user warnings</strong><br />» %s',
+
+    'LOG_WORD_ADD'			=> '<strong>Добавлен цензор слов</strong><br />» %s',
 	'LOG_WORD_DELETE'		=> '<strong>Удалён цензор слов</strong><br />» %s',
 	'LOG_WORD_EDIT'			=> '<strong>Изменён цензор слов</strong><br />» %s',
 ));
