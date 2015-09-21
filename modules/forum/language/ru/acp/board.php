@@ -76,7 +76,7 @@ $lang = array_merge($lang, array(
 	'ALLOW_PM_ATTACHMENTS'		=> 'Разрешить вложения в личных сообщениях',
 	'ALLOW_PM_REPORT'			=> 'Allow users to report private messages',
 	'ALLOW_PM_REPORT_EXPLAIN'	=> 'If this setting is enabled, users have the option of reporting a private message they have received or sent to the board’s moderators. These private messages will then be visible in the Moderator Control Panel.',
-	'ALLOW_QUICK_REPLY'			=> 'Allow quick reply',
+	'ALLOW_QUICK_REPLY'			=> 'Разрешить быстрый ответ',
 	'ALLOW_QUICK_REPLY_EXPLAIN'	=> 'This setting defines if quick reply is enabled or not. If this setting is enabled, forums need to have their quick reply option enabled too.',
 
 	'ALLOW_SIG'					=> 'Разрешить подписи',

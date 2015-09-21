@@ -49,7 +49,7 @@ $lang = array_merge($lang, array(
 
 	'CODE'					=> 'Код',
 
-	'COLLAPSE_QR'			=> 'Hide Quick Reply',
+	'COLLAPSE_QR'			=> 'Спрятать Быстрый ответ',
 
 	'DELETE_TOPIC'			=> 'Удалить тему',
 	'DOWNLOAD_NOTICE'		=> 'У вас нет доступа для просмотра вложений в этом сообщении.',
@@ -61,7 +61,7 @@ $lang = array_merge($lang, array(
 
 	'FILE_NOT_FOUND_404'	=> 'Файл <strong>%s</strong> не существует.',
 	'FORK_TOPIC'			=> 'Копировать тему',
-    'FULL_EDITOR'			=> 'Full Editor',
+    'FULL_EDITOR'			=> 'Открыть ПОЛНЫЙ редактор',
 
 	'LINKAGE_FORBIDDEN'		=> 'Вы не авторизованы для просмотра или скачивания файлов.',
 	'LOGIN_NOTIFY_TOPIC'	=> 'Вы получили уведомление о новом сообщении в теме, пожалуйста, авторизируйтесь для его просмотра',
@@ -89,13 +89,13 @@ $lang = array_merge($lang, array(
 	'PRINT_TOPIC'			=> 'Для печати',
 
 	'QUICK_MOD'				=> 'Быстрые действия',
-    'QUICKREPLY'			=> 'Quick Reply',
+    'QUICKREPLY'			=> 'Быстрый ответ',
 	'QUOTE'					=> 'Цитата',
 
 	'REPLY_TO_TOPIC'		=> 'Ответить на тему',
 	'RETURN_POST'			=> '%sВернуться к сообщению%s',
 
-    'SHOW_QR'				=> 'Quick Reply',
+    'SHOW_QR'				=> 'Быстрый ответ',
 	'SUBMIT_VOTE'			=> 'Проголосовать',
 
 	'TOTAL_VOTES'			=> 'Всего голосов',
