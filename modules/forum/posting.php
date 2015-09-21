@@ -94,7 +94,8 @@ switch ($mode)
 		$sql = 'SELECT f.*, t.*
 			FROM ' . TOPICS_TABLE . ' t, ' . FORUMS_TABLE . " f
 			WHERE t.topic_id = $topic_id
-		        OR f.forum_id = $forum_id)" .
+				AND (f.forum_id = t.forum_id
+					OR f.forum_id = $forum_id)" .
                 (($auth->acl_get('m_approve', $forum_id)) ? '' : 'AND t.topic_approved = 1');
 
 	break;
