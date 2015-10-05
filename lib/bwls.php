@@ -351,6 +351,7 @@ function page_content($go, $action, $params){
             $calendar   = new calendar($dbh);
             $data   = $calendar->getCategoryByPostId($postId);
             if($data === false){
+                $url = str_replace('&amp;', '&', $url);
                 header('Location: '.$url);
                 exit;
             }
