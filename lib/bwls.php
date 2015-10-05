@@ -352,6 +352,7 @@ function page_content($go, $action, $params){
             $data   = $calendar->getCategoryByPostId($postId);
             if($data === false){
                 $url = str_replace('&amp;', '&', $url);
+                if(strpos($url, 'forum/') === false) $url = str_replace('/posting', '/forum/posting', $url);
                 header('Location: '.$url);
                 exit;
             }
