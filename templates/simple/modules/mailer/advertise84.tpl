@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body style="color: black;font-size: 16px">
+<body style="font-size: 16px;">
 <div>
     <b><u>Дата:</u>  28 ноября 2015 г.</b><br/><br/>
     <b><u>Место проведения:</u></b>  Украина, Киевская область, г. Белая Церковь, ДК «Росава»,ул.Леваневского, 53.<br/><br/>
