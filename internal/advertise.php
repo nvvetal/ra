@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv305';
+$advertise_company_id = 'adv306';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -153,7 +153,7 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/karavan/Kategorii_dlya_registracii2013.doc",'Kategorii_dlya_registracii2013.doc','base64','application/msword');
 
 
-    $mail->Subject = '28.11.15 Фестиваль восточного танца "НА КРИЛАХ ТАНЦЮ" г.Белая Церковь';
+    $mail->Subject = 'Первенство Украины по Belly и Индийским танцам - SuperStar-2015 - 31.10-01.11 (Одесса)';
 
     $fileds = array(
         "a_time"=>time(),
