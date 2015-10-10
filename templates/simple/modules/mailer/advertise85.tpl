@@ -124,6 +124,8 @@
                 <img src="cid:unnamed3" alt="" />
             </td>
         </tr>
+    </table>
+    <table cellspacing="5" cellpadding="5" border="0">
         <tr>
             <td>
                 <img src="cid:unnamed2" alt="" />
