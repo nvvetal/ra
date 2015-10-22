@@ -291,7 +291,7 @@ function calendar_actions($go,$action,$params){
                 $params['smarty']->assign('errors', array('VIP' => array('message' => 'Calendar already VIP!')));
             }
 
-            if(!in_array($userType, array('moderator', 'admin'))) {
+            if($isOwner) {
                 $canPay = $params['User']->can_pay_raks_money($user_id, $raksMoney);
                 if (!$canPay['ok']) {
                     $params['smarty']->assign('errors', array('VIP' => array('message' => 'You dont have enought raks money to pay!')));
