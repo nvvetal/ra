@@ -279,24 +279,28 @@ function calendar_actions($go,$action,$params){
             $calendar_id = isset($_REQUEST['calendar_id']) ? $_REQUEST['calendar_id'] : 0;
             $user_id = $params['Session']->get_value($params['s'],'user_id');
             $isOwner = $params['calendar']->is_user_owner($calendar_id, $user_id);
+            $userType = $params['User']->get_value($user_id, 'type');
 			$raksMoney = $params['calendar']->get_cost('makeCalendarVIP');
-            if(!$isOwner){
+            if(!$isOwner && !in_array($userType, array('moderator', 'admin'))){
                 $params['smarty']->assign('errors',array('VIP'=>array('message'=>'You are not owner of this calendar!')));
                 $go = "calendarVIP";
                 return $go;                
             }
-            $canPay = $params['User']->can_pay_raks_money($user_id, $raksMoney);
-            if(!$canPay['ok']){
-                $params['smarty']->assign('errors',array('VIP'=>array('message'=>'You dont have enought raks money to pay!')));
-                $go = "calendarVIP";
-                return $go;                
+
+            if ($params['calendar']->is_vip($calendar_id)) {
+                $params['smarty']->assign('errors', array('VIP' => array('message' => 'Calendar already VIP!')));
             }
-            
-			if($params['calendar']->is_vip($calendar_id)){
-				$params['smarty']->assign('errors',array('VIP'=>array('message'=>'Calendar already VIP!')));				
-			}
-			
-            $params['User']->pay_raks_money($user_id, $raksMoney); 
+
+            if(!in_array($userType, array('moderator', 'admin'))) {
+                $canPay = $params['User']->can_pay_raks_money($user_id, $raksMoney);
+                if (!$canPay['ok']) {
+                    $params['smarty']->assign('errors', array('VIP' => array('message' => 'You dont have enought raks money to pay!')));
+                    $go = "calendarVIP";
+                    return $go;
+                }
+
+                $params['User']->pay_raks_money($user_id, $raksMoney);
+            }
             $params['calendar']->set_vip($calendar_id);
             
             $Payment = Registry::get('Payment');
