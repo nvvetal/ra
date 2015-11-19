@@ -1,8 +1,8 @@
 <?php
 //exit;
 //error_reporting(E_ALL);
-ini_set('memory_limit', '200M');
-$advertise_company_id = 'adv310';
+ini_set('memory_limit', '500M');
+$advertise_company_id = 'adv316';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -143,7 +143,7 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/oriental/Spisok_nominaciy_Oriental_Dance_2011.xls",'Spisok_nominaciy_Oriental_Dance_2011.xls','base64','application/vnd.ms-excel');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/AIDA.ppt",'AIDA.ppt','base64','application/vnd.ms-powerpoint');
     for ($i = 1; $i <= 14; $i++){
-        $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/mega/$i.jpg","$i",$i.'.jpg','base64','image/jpeg');
+        $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/mega/new/$i.jpg","$i",$i.'.jpg','base64','image/jpeg');
     }
 
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/superdance2015/unnamed.png",'unnamed','unnamed.png','base64','image/png');
