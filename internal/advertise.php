@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv320';
+$advertise_company_id = 'adv321';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -76,6 +76,7 @@ $query = "
 $query = "
 	SELECT *,user_email as email,username as login
 	FROM phpbb_users
+	WHERE user_lastvisit > 1401595200
         ORDER BY user_id DESC
 ";
 
