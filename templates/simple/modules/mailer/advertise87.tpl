@@ -6,7 +6,7 @@
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
 <body style="font-size: 16px;">
-<img src="cid:plakat" alt="" /><br/>
+<img src="cid:plakat" alt="" style="max-width: 100%; width: 100%;" /><br/>
 Здравствуйте!!! Приглашаем Вас принять участие во Всеукраинском конкурсе восточного танца "Almas al Shark" 19 декабря в г.Тернополь. Также 20 декабря состоится серия мастер-классов от приглашенных судей конкурса.
 <br/><br/>
 <div style="text-align: center"><b>ВСЕМИРНАЯ УНИЯ КУЛЬТУРЫ И ИСКУССТВ</b></div>

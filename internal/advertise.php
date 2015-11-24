@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv321';
+$advertise_company_id = 'adv322';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -96,7 +96,7 @@ $users = array(
     ),
 );
 
-//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
 $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise87.tpl');
