@@ -96,7 +96,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
 $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise87.tpl');
