@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv317';
+$advertise_company_id = 'adv320';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -98,7 +98,7 @@ $users = array(
 $users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise86.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise87.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -142,9 +142,7 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/second/POLOZHENIE_festival.doc",'POLOZHENIE_festival.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/oriental/Spisok_nominaciy_Oriental_Dance_2011.xls",'Spisok_nominaciy_Oriental_Dance_2011.xls','base64','application/vnd.ms-excel');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/AIDA.ppt",'AIDA.ppt','base64','application/vnd.ms-powerpoint');
-    for ($i = 1; $i <= 14; $i++){
-        $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/mega/new/$i.jpg","$i",$i.'.jpg','base64','image/jpeg');
-    }
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/plakat.jpg","plakat", 'plakat.jpg','base64','image/jpeg');
 
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/superdance2015/unnamed.png",'unnamed','unnamed.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/superdance2015/unnamed2.jpg",'unnamed2','unnamed2.jpg','base64','image/jpeg');
@@ -152,11 +150,11 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
-    //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/karavan/Karavan_2013_polniy.doc",'Karavan_2013_polniy.doc','base64','application/msword');
-    //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/karavan/Kategorii_dlya_registracii2013.doc",'Kategorii_dlya_registracii2013.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/blank_zayavki.doc",'blank_zayavki.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc",'Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc','base64','application/msword');
 
 
-    $mail->Subject = 'МЕГА РАСПРОДАЖА Звездных Профессиональных Костюмов для BellyDance';
+    $mail->Subject = 'Конкурс восточного танца 19 декабря г.Тернополь';
 
     $fileds = array(
         "a_time"=>time(),
