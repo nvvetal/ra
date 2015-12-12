@@ -49,8 +49,8 @@ $DBFactory->add_db_handle("forum",$db_params['forum']['server'],$db_params['foru
 $query = "
 	SELECT *,user_email as email,username as login
 	FROM phpbb_users
-	WHERE user_lastvisit > 1401595200
-        ORDER BY user_id DESC
+	WHERE user_email <> ''
+
 ";
 
 //        WHERE user_regdate > ".strtotime('-2 year')." AND user_email NOT LIKE '%@i.ua' AND user_email NOT LIKE '%@mail.ru' AND  user_email NOT LIKE '%inbox.ru' AND  user_email NOT LIKE '%bigmir.net' AND  user_email NOT LIKE '%@bk.ru' AND  user_email NOT LIKE '%@mail.ua'
@@ -69,7 +69,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
