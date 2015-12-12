@@ -69,7 +69,7 @@ $users = array(
     ),
 );
 
-//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
