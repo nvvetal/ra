@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv322';
+$advertise_company_id = 'adv500';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -47,33 +47,6 @@ $DBFactory->add_db_handle("forum",$db_params['forum']['server'],$db_params['foru
 
 
 $query = "
-	SELECT *
-	FROM advertise
-	WHERE a_type = '$advertise_company_id'
-";
-
-$ausers=SQLGetRows($query,$DBFactory->get_db_handle('rakscom'));
-
-$WHERE = '';
-if(count($ausers)>0){
-
-    foreach ($ausers as $key=>$auser){
-        $WHERE .= SQLQuote($auser['a_value']).",";
-    }
-
-    $WHERE = "WHERE user_email NOT IN (".substr($WHERE,0,strlen($WHERE)-1).")";
-
-}
-/*
-$query = "
-	SELECT *,user_email as email,username as login
-	FROM phpbb_users
-	$WHERE
-	LIMIT 10
-";
-*/
-
-$query = "
 	SELECT *,user_email as email,username as login
 	FROM phpbb_users
 	WHERE user_lastvisit > 1401595200
@@ -96,8 +69,16 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query,$DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
+$isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
+if(!$isStarted){
+    fillCampaign($advertise_company_id, $users, $DBFactory->get_db_handle('rakscom'));
+    add_to_log("[action filling campaign][campaign $advertise_company_id]", 'mailer');
+    exit;
+}
+
+$users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
 $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise87.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
@@ -181,10 +162,15 @@ foreach ($users as $key=>$user){
      $err .= $e->getMessage(); //Boring error messages from anything else!
 }
 
-    SQLInsert("advertise",$fileds,$DBFactory->get_db_handle('rakscom'));
+    //SQLInsert("advertise",$fileds,$DBFactory->get_db_handle('rakscom'));
 
     add_to_log("[email {$user['email']}][login {$user['login']}][err $err]",'mailer');
 
+    if(!empty($err)){
+        setCampaignFailed($user['id'], $err, $DBFactory->get_db_handle('rakscom'));
+    }else{
+        setCampaignSent($user['id'], $DBFactory->get_db_handle('rakscom'));
+    }
     // Clear all addresses and attachments for next loop
     $mail->ClearAddresses();
     $mail->ClearAttachments();
@@ -197,4 +183,50 @@ function search_email($advertise_company_id, $email){
     $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) return false;
     return isset($sent[$email]) ? true : false;
+}
+
+
+function fillCampaign($campaign, $users, $dbh)
+{
+    foreach($users as $user){
+        $fields = array(
+            'campaign'  => $campaign,
+            'email'     => $user['email'],
+            'login'     => $user['login'],
+            'status'    => 'new',
+        );
+
+        SQLInsert('mail', $fields, $dbh);
+    }
+}
+
+
+function isCampaignStarted($campaign, $dbh)
+{
+    $q = 'SELECT COUNT(*) as cnt FROM mail WHERE campaign = '.SQLQuote($campaign);
+    $res = SQLGet($q, $dbh);
+    return isset($res['cnt']) ? $res['cnt'] > 0: false;
+}
+
+function getCampaignRows($campaign, $cnt, $dbh)
+{
+    $q = 'SELECT * as cnt FROM mail WHERE campaign = '.SQLQuote($campaign). ' AND `status` = "new" LIMIT '.$cnt;
+    return SQLGetRows($q, $dbh);
+}
+
+function setCampaignSent($id, $dbh)
+{
+    $fields = array(
+        'status' => 'sent'
+    );
+    SQLUpdate('mail', $fields, "WHERE id =".SQLQuote($id), $dbh);
+}
+
+function setCampaignFailed($id, $message, $dbh)
+{
+    $fields = array(
+        'status'    => 'failed',
+        'data'      => json_encode($message),
+    );
+    SQLUpdate('mail', $fields, "WHERE id =".SQLQuote($id), $dbh);
 }
