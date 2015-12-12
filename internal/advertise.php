@@ -86,9 +86,6 @@ $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertis
 
 $cnt = 0;
 foreach ($users as $key=>$user){
-    if(search_email($advertise_company_id, $user['email'])) continue;
-    $cnt ++;
-    if($cnt > 5) exit;
     $sent = @unserialize(file_get_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id));
     if(!is_array($sent)) $sent = array();
     $sent[$user['email']] = $user['email'];
