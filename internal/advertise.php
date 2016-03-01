@@ -129,7 +129,8 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
-    //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient/chemp.doc", 'Чемпионат Украины по_oriental_dance_Киев_20_21.02.2015.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/lol/Polozhenie_konkursa_vostok_Ternopol_16.04.2016.doc", 'Polozhenie_konkursa_vostok_Ternopol_16.04.2016.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/lol/blank_zayavki.doc", 'blank_zayavki.doc', 'base64', 'application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc",'Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc','base64','application/msword');
 
 
