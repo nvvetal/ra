@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv500';
+$advertise_company_id = 'adv501';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -69,7 +69,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -80,7 +80,7 @@ if(!$isStarted){
 
 $users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise88.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise89.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -129,11 +129,11 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient/chemp.doc", 'Чемпионат Украины по_oriental_dance_Киев_20_21.02.2015.doc', 'base64', 'application/msword');
+    //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient/chemp.doc", 'Чемпионат Украины по_oriental_dance_Киев_20_21.02.2015.doc', 'base64', 'application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc",'Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc','base64','application/msword');
 
 
-    $mail->Subject = 'Чемпионат Украины по orientaldance, "Золота відзнака" АСЭТУ, аттестация судей. 20-21.02.2016, г. Киев';
+    $mail->Subject = 'ТРИ ДЕНЕЖНЫХ ПРИЗА на Конкурсе восточного танца 16 апреля г.Тернополь';
 
     $fileds = array(
         "a_time"=>time(),
