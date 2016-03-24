@@ -51,7 +51,7 @@
 Ведущая фестиваля Виктория Соловьёва<br/>
 </b>
 <br/>
-Больше информации - <a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17568">http://raks.com.ua/forum/viewtopic.php?f=148&t=17568</a>
+Больше информации - <a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17568">http://raks.com.ua/forum/viewtopic.php?f=148&t=17568</a><br/>
 
 -------------------------------<br/>
 Рассылка сделана при содействии форума <a href="http://raks.com.ua/forum/">RAKS.com.ua</a><br/>

@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv510';
+$advertise_company_id = 'adv520';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -69,7 +69,7 @@ $users = array(
     ),
 );
 
-//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -129,7 +129,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/plogenie.doc", 'Положение на 14-15 мая.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/pologenie.doc", 'Положение на 14-15 мая.doc', 'base64', 'application/msword');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/reg.xls",'Регистрационная форма.xls','base64','application/vnd.ms-excel');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/img.jpg",'img','img.jpg','base64','image/jpeg');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc",'Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc','base64','application/msword');
