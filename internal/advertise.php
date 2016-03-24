@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv504';
+$advertise_company_id = 'adv510';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -80,7 +80,7 @@ if(!$isStarted){
 
 $users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise89.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise90.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -129,12 +129,13 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/lol/Polozhenie_konkursa_vostok_Ternopol_16.04.2016.doc", 'Polozhenie_konkursa_vostok_Ternopol_16.04.2016.doc', 'base64', 'application/msword');
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/lol/blank_zayavki.doc", 'blank_zayavki.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/plogenie.doc", 'Положение на 14-15 мая.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/reg.xls",'Регистрационная форма.xls','base64','application/vnd.ms-excel');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/img.jpg",'img','img.jpg','base64','image/jpeg');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc",'Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc','base64','application/msword');
 
 
-    $mail->Subject = 'ТРИ ДЕНЕЖНЫХ ПРИЗА на Конкурсе восточного танца 16 апреля г.Тернополь';
+    $mail->Subject = 'Oriental dance - FESTIVAL 2016';
 
     $fileds = array(
         "a_time"=>time(),
