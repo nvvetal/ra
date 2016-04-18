@@ -7,9 +7,9 @@
 </head>
 <body style="font-size: 18px; font-weight: bold">
 
-<img src="cid:img" alt="" style="max-width: 100%; width: 100%;" /><br/>
+<!--img src="cid:img" alt="" style="max-width: 100%; width: 100%;" /><br/-->
 
-"Уважаемые любители восточного танца!<br/>
+Уважаемые любители восточного танца!<br/>
 <br/>
 Приглашаем Вас на независимый всеукраинский фестиваль восточного танца "Золото Востока" 14-15 мая в Киеве!<br/><br/>
 
