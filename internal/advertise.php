@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv520';
+$advertise_company_id = 'adv522';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -69,7 +69,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -80,7 +80,7 @@ if(!$isStarted){
 
 $users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise90.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise91.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -129,13 +129,24 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/pologenie.doc", 'Положение на 14-15 мая.doc', 'base64', 'application/msword');
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/reg.xls",'Регистрационная форма.xls','base64','application/vnd.ms-excel');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/img.jpg",'img','img.jpg','base64','image/jpeg');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/pologenie.doc", 'Положение.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/borisenko.gif", 'borisenko.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/gold_kubok.gif", 'gold_kubok.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/happy_days.gif", 'happy_days.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/jakovuk.gif", 'jakovuk.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/professionals.gif", 'professionals.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/session.gif", 'session.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/sovmestniy.gif", 'sovmestniy.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/strebkova.gif", 'strebkova.gif', 'base64', 'image/gif');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/young_star.gif", 'young_star.gif', 'base64', 'image/gif');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/afisha2.jpg",'img','img.jpg','base64','image/gif');
+//
+    //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/reg.xls",'Регистрационная форма.xls','base64','application/vnd.ms-excel');
+
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/ternopil/Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc",'Polozhenie_konkursa_vostok_Ternopol_19-20_12_2015.doc','base64','application/msword');
 
 
-    $mail->Subject = 'Oriental dance - FESTIVAL 2016';
+    $mail->Subject = 'Приглашение на фестиваль "Золото Востока" 14-15 мая 2016 - Киев';
 
     $fileds = array(
         "a_time"=>time(),
