@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv522';
+$advertise_company_id = 'adv523';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -129,6 +129,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/second/novyy-11.jpg",'novyy11','novyy-11.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage(PROJECT_ROOT."/images/mailer/det/logo200.gif",'logo','logo200.gif','base64','image/gif');
 
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/afisha2.gif",'img','afisha2.gif','base64','image/gif');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/pologenie.doc", 'Положение.doc', 'base64', 'application/msword');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/borisenko.gif", 'borisenko.gif', 'base64', 'image/gif');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/gold_kubok.gif", 'gold_kubok.gif', 'base64', 'image/gif');
@@ -139,7 +140,7 @@ foreach ($users as $key=>$user){
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/sovmestniy.gif", 'sovmestniy.gif', 'base64', 'image/gif');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/strebkova.gif", 'strebkova.gif', 'base64', 'image/gif');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/young_star.gif", 'young_star.gif', 'base64', 'image/gif');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold_east/afisha2.jpg",'img','img.jpg','base64','image/gif');
+
 //
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/reg.xls",'Регистрационная форма.xls','base64','application/vnd.ms-excel');
 
