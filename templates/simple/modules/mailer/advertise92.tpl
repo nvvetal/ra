@@ -39,14 +39,14 @@ Open Stage Party<br/><br/>
 
 Подбродная информация в социальных сетях:<br/><br/>
 
-http://vk.com/cairoexpress<br/>
-https://www.facebook.com/events/993404117443670/<br/><br/>
+<a href="http://vk.com/cairoexpress">http://vk.com/cairoexpress</a><br/>
+<a href="https://www.facebook.com/events/993404117443670/">https://www.facebook.com/events/993404117443670/</a><br/><br/>
 
 А также на форумах:<br/><br/>
 
-http://raks.com.ua/forum/viewtopic.php?f=148&t=17698&start=0<br/><br/>
+<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17698&start=0">http://raks.com.ua/forum/viewtopic.php?f=148&t=17698&start=0</a><br/><br/>
 
-http://uavst.com/allforums/02/30-11-12-06-2016-cairo-express-festival-2016-kiev.html<br/><br/>
+<a href="http://uavst.com/allforums/02/30-11-12-06-2016-cairo-express-festival-2016-kiev.html">http://uavst.com/allforums/02/30-11-12-06-2016-cairo-express-festival-2016-kiev.html</a><br/><br/>
 
 Ждем Вас на нашем празднике восточного танца!!!<br/><br/>
 
