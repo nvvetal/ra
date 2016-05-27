@@ -2,7 +2,7 @@
 //exit;
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
-$advertise_company_id = 'adv540';
+$advertise_company_id = 'adv541';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -29,10 +29,10 @@ $mail->ContentType ="text/html";
 
 $mail->Host       = $GLOBALS['mailParams2']['host']; // SMTP server example
 $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-$mail->SMTPAuth   = true;                  // enable SMTP authentication
+$mail->SMTPAuth   = false;                  // enable SMTP authentication
 $mail->Port       = $GLOBALS['mailParams2']['port'];                    // set the SMTP port for the GMAIL server
-$mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
-$mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
+//$mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
+//$mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
 
 //$mail->ContentType ="multipart/mixed";
 
@@ -92,11 +92,11 @@ foreach ($users as $key=>$user){
     file_put_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id, serialize($sent));
 
     echo $user['email']."<br/>";
-    $mail->From = "admin@raks.com.ua";
+    $mail->From = "admin@marketing.raks.com.ua";
     //$mail->message_type = 'alt_attachments';
     $mail->FromName = "RAKS.COM.UA - танец живота и индийский танец";
-    $mail->Sender  = "admin@raks.com.ua";
-    $mail->addReplyTo("admin@raks.com.ua", "admin@raks.com.ua");
+    $mail->Sender  = "admin@marketing.raks.com.ua";
+    $mail->addReplyTo("admin@marketing.raks.com.ua", "admin@marketing.raks.com.ua");
 
     $smarty->assign('user',$user);
 
@@ -160,7 +160,7 @@ foreach ($users as $key=>$user){
     if(preg_match('/rambler\.ru/i', $user['email'])){
         $mail->Send();
     }else{
-     $verify = verifyEmail($user['email'], "admin@raks.com.ua", true);
+     $verify = verifyEmail($user['email'], "admin@marketing.raks.com.ua", true);
      if($verify[0] == 'valid') {
          $mail->Send();
      }else{
