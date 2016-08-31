@@ -178,8 +178,8 @@
 
             var banner_165_4  = new Array();
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-            banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17736" target="_blank"><img src="http://raks.com.ua/forum/images/gif_nn_cc_2.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198003" target="_blank"><img src="http://raks.com.ua/forum/images/solnce.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17736" target="_blank"><img src="http://raks.com.ua/forum/images/gif_nn_cc_2.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198003" target="_blank"><img src="http://raks.com.ua/forum/images/solnce.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('http://raks.com.ua/forum/images/165_190_Zaporozhie_belly.swf', 'swf', 165, 190);
 
             showBannerData('banner_165_4', banner_165_4);
