@@ -8,7 +8,6 @@
 <body style="font-size: 18px; font-weight: bold">
 
 <img src="cid:img" alt="" style="max-width: 100%; width: 100%;" /><br/>
-<img src="cid:img2" alt="" style="max-width: 100%; width: 100%;" /><br/>
 
 Дорогие друзья и любители восточного танца!<br/><br/><br/><br/>
 

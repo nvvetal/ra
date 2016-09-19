@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
-$advertise_company_id = 'adv542';
+$advertise_company_id = 'adv543';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -147,8 +147,8 @@ foreach ($users as $key=>$user){
 
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/pologenie_zv.doc",'pologenie_zv.doc','base64','application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/express/Express.jpg", 'borisenko.gif', 'base64', 'image/gif');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/main_poster.jpg",'img','main_poster.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/teachers.jpg",'img2','teachers.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/11.jpg",'img','main_poster.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/teachers.jpg",'img2','teachers.jpg','base64','image/jpeg');
 
     $mail->Subject = 'Международный фестиваль "Золото Востока"';
 
