@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
-$advertise_company_id = 'adv543';
+$advertise_company_id = 'adv544';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -202,7 +202,25 @@ function search_email($advertise_company_id, $email){
 
 function fillCampaign($campaign, $users, $dbh)
 {
+    $query = "
+	    SELECT email
+	    FROM mail
+	    WHERE status <> 'sent' AND campaign = 'adv541'
+    ";
+
+    $rows = SQLGetRows($query, $dbh);
+
+    $banned = array();
+    if(count($rows) > 0) {
+        foreach ($rows as $row) {
+            $banned[$row['email']] = $row['email'];
+        }
+    }
+
     foreach($users as $user){
+        if(isset($banned[$user['email']])) continue;
+        if(preg_match("/\.\@/i",  $user['email'])) continue;
+
         $fields = array(
             'campaign'  => $campaign,
             'email'     => $user['email'],
