@@ -6,7 +6,7 @@ ini_set('memory_limit', '500M');
 
 //FAUM
 //$advertise_company_id = 'adv548';
-$advertise_company_id = 'adv550';
+$advertise_company_id = 'adv551';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -73,7 +73,7 @@ $users = array(
     ),
 );
 
-//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
