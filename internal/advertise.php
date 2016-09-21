@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
-$advertise_company_id = 'adv546';
+$advertise_company_id = 'adv547';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -150,7 +150,7 @@ foreach ($users as $key=>$user){
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/LT3a41OSz2A.jpg",'img','poster.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/teachers.jpg",'img2','teachers.jpg','base64','image/jpeg');
 
-    $mail->Subject = 'Международный фестиваль "Золото Востока"';
+    $mail->Subject = 'Открытый фестиваль восточных, индийских, цыганских танцев и танцев народов мира «Осенний Эль Фаюм 2016»';
 
     $fileds = array(
         "a_time"=>time(),
