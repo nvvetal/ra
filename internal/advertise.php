@@ -3,7 +3,10 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
-$advertise_company_id = 'adv548';
+
+//FAUM
+//$advertise_company_id = 'adv548';
+$advertise_company_id = 'adv549';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -70,7 +73,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -81,7 +84,9 @@ if(!$isStarted){
 
 $users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise94.tpl');
+//FAUM
+//$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise94.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise95.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 //echo $mail_html_body;
 
@@ -145,12 +150,22 @@ foreach ($users as $key=>$user){
 //
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/orient2/reg.xls",'Регистрационная форма.xls','base64','application/vnd.ms-excel');
 
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/Polozhenie_festivalya_Osenniy_El-Fayum_2016_Obschee_33__33__33.doc",'положение.doc','base64','application/msword');
+
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/express/Express.jpg", 'borisenko.gif', 'base64', 'image/gif');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/LT3a41OSz2A.jpg",'img','poster.jpg','base64','image/jpeg');
+
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/teachers.jpg",'img2','teachers.jpg','base64','image/jpeg');
 
-    $mail->Subject = 'Открытый фестиваль восточных, индийских, цыганских танцев и танцев народов мира «Осенний Эль Фаюм 2016»';
+    //FAUM
+    //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/Polozhenie_festivalya_Osenniy_El-Fayum_2016_Obschee_33__33__33.doc",'положение.doc','base64','application/msword');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/LT3a41OSz2A.jpg",'img','poster.jpg','base64','image/jpeg');
+
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha_sudi-gr.jpg",'img','sudi.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha-mk.jpg",'img2','afisha.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
+
+    //FAUM
+    //$mail->Subject = 'Открытый фестиваль восточных, индийских, цыганских танцев и танцев народов мира «Осенний Эль Фаюм 2016»';
+    $mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
 
     $fileds = array(
         "a_time"=>time(),
