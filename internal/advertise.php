@@ -6,7 +6,7 @@ ini_set('memory_limit', '500M');
 
 //FAUM
 //$advertise_company_id = 'adv548';
-$advertise_company_id = 'adv549';
+$advertise_company_id = 'adv550';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -161,7 +161,7 @@ foreach ($users as $key=>$user){
 
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha_sudi-gr.jpg",'img','sudi.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha-mk.jpg",'img2','afisha.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
 
     //FAUM
     //$mail->Subject = 'Открытый фестиваль восточных, индийских, цыганских танцев и танцев народов мира «Осенний Эль Фаюм 2016»';
