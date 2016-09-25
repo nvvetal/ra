@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Style-Type" content="text/css">
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body style="font-size: 18px; font-weight: bold">
+<body style="font-size: 18px;">
 
 1-2 октября состоятся первые онлайн мастер-классы от ЮЛИИ FARID ТОРГОНСКОЙ и Sola Dance Class.<br/>
 <b>ДО ПОВЫШЕНИЯ ЦЕН ОСТАЛОСЬ 2 ДНЯ!</b><br/><br/>
