@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv553';
+$advertise_company_id = 'adv554';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -80,7 +80,7 @@ if(!$isStarted){
     exit;
 }
 
-$users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
+//$users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
 
 $mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise96.tpl');
