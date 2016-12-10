@@ -161,6 +161,7 @@
             //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
 			//banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=197941" target="_blank"><img src="http://raks.com.ua/forum/images/banner_rraks.gif" alt=""/></a>', 'html', 165, 190);
             banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198461" target="_blank"><img src="http://raks.com.ua/forum/images/banner_hayat.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17859" target="_blank"><img src="http://raks.com.ua/forum/images/ban_ny.gif" alt=""/></a>', 'html', 165, 190);
 //            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=193553" target="_blank"><img src="http://raks.com.ua/forum/images/bekiki165_2.jpg" alt=""/></a>', 'html', 165, 190);
 
 //            banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=192809" target="_blank"><img src="http://raks.com.ua/forum/images/ban.gif" alt=""/></a>', 'html', 165, 190);
@@ -212,6 +213,7 @@
 
     }(document));
 </script>
+    <script type="text/javascript" src="http://raks.com.ua/forum/snow.js"></script>
 {/literal}
 <div id="header">
     <div id="flash"></div>
