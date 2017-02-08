@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv568';
+$advertise_company_id = 'adv569';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 10,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise99.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise100.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -116,7 +116,8 @@ foreach ($users as $key=>$user){
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/02_2013_turnir_pravila_samie_novie.doc",'02_2013_turnir_pravila_samie_novie.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/03_bd_sudak_2013_dopolnenie_k_pologeniyu_o_festivale.doc",'03_bd_sudak_2013_dopolnenie_k_pologeniyu_o_festivale.doc','base64','application/msword');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/queen/queen.jpg",'queen','queen.jpg','base64','image/jpeg');
-    //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/vostok2/invitation.doc",'приглашение.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/nine/1.doc",'Polozhenie_konkursa_vostok_Ternopol_29-30.04.2017.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/nine/2.doc",'blank_zayavki IUDE.doc','base64','application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/superdance2015/Zayavka-Odessa.doc",'Zayavka-Odessa.doc','base64','application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/superdance2015/Polozhenie-Pervenstvo-2015.doc",'Polozhenie-Pervenstvo-2015.doc','base64','application/msword');
     //$mail->AddAttachment(PROJECT_ROOT."/images/mailer/sudak2013/05_bd_sudak_2013_spisok_kompoziciy_dlya_orkestra.doc",'05_bd_sudak_2013_spisok_kompoziciy_dlya_orkestra.doc','base64','application/msword');
@@ -153,19 +154,14 @@ foreach ($users as $key=>$user){
 
 
 //    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/Polozhenie_festivalya_Osenniy_El-Fayum_2016_Obschee_33__33__33.doc",'положение.doc','base64','application/msword');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Fetisova.jpg",'fetisova','Fetisova.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Lutsenko.jpg",'lutsenko','Lutsenko.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Nankovsaya.jpg",'nankovsaya','Nankovsaya.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Oleynikova.jpg",'oleynikova','Oleynikova.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Rikker.jpg",'rikker','Rikker.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Poster.jpg",'poster','Poster.jpg','base64','image/jpeg');
+//    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Fetisova.jpg",'fetisova','Fetisova.jpg','base64','image/jpeg');
 
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha_sudi-gr.jpg",'img','sudi.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha-mk.jpg",'img2','afisha.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
 
 
-    $mail->Subject = '5 МК по Belly Dance от 5 мастеров, 26 ноября, Одесса';
+    $mail->Subject = '9 ДЕНЕЖНЫХ ПРИЗОВ на Конкурсе восточного танца 29-30 апреля 2017 г. в г.Тернополь';
     //$mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
 
     $fileds = array(
