@@ -218,7 +218,7 @@
 
     }(document));
 </script>
-    <script type="text/javascript" src="http://raks.com.ua/forum/snow.js"></script>
+    <!--script type="text/javascript" src="http://raks.com.ua/forum/snow.js"></script-->
 {/literal}
 <div id="header">
     <div id="flash"></div>
