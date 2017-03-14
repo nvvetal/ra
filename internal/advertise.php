@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv573';
+$advertise_company_id = 'adv574';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -162,7 +162,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
 
 
-    $mail->Subject = '9 ДЕНЕЖНЫХ ПРИЗОВ на Конкурсе восточного танца 29-30 апреля 2017 г. в г.Тернополь';
+    $mail->Subject = 'Всеукраинский фестиваль «Золото Востока» 6-7 мая в Киеве';
     //$mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
 
     $fileds = array(
