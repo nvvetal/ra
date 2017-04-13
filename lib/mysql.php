@@ -1,470 +1,284 @@
 <?php
-
 ///MySQL libraary for IfLib
-
-##<sect><label id="MySQL_lib">/MySQL libraary for IfLib</>
-
+##<sect><label id="mysqli_lib">/MySQL libraary for IfLib</>
 ##<sect1>Functions
-
 #! TODO: Add handlers support
 
+$GLOBALS['db_handle'] = null;
 
 
-function SQLuq( $string ) {
-
-    if( get_magic_quotes_gpc() == 1 ) {
-
-	$string=stripslashes($string);
-
+function SQLuq($string)
+{
+    if (get_magic_quotes_gpc() == 1) {
+        $string = stripslashes($string);
     };
-
     return $string;
-
 }
 
-
-
-function SQLQuote( $string ) {
-
-    if( get_magic_quotes_gpc() == 1 ) {
-
-	$string=stripslashes($string);
-
+function SQLQuote($string)
+{
+    if (get_magic_quotes_gpc() == 1) {
+        $string = stripslashes($string);
     };
-
-    return "'".mysql_real_escape_string( $string )."'";
-
+    return "'" . mysqli_real_escape_string($GLOBALS['db_handle'], $string) . "'";
 }
 
-function SQLqu( $string ) {
-
-    return "'".mysql_real_escape_string( $string )."'";
-
+function SQLqu($string)
+{
+    return "'" . mysqli_real_escape_string($GLOBALS['db_handle'], $string) . "'";
 }
 
-
-
-function SQLGetLastErrno() {
-
+function SQLGetLastErrno()
+{
     global $L3_sql_lasterr;
-
     return $L3_sql_lasterr;
-
 }
 
-function SQLQuery( $query , $dbh=0) {
+function SQLQuery($query, $dbh = 0)
+{
+//	var_dump($dbh);
+    if (is_null($dbh) || $dbh === 0) $dbh = $GLOBALS['db_handle'];
+    //add_to_log( "[dbh ".var_export($dbh, true)."]", "mysql" );
+    ##Run SQL Query
+    $r = mysqli_query($dbh, $query);
+    add_to_log("[QUERY $query]", "mysqli_log");
+    $err = mysqli_error($dbh);
 
-	##Run SQL Query
+    if (!empty($err)) {
+        $query = str_replace(array("\r", "\n", "\t"), array("", " ", ""), $query);
+        add_to_log("[QUERY=$query][ERROR=$err]", "error_mysql");
+    }
 
-	$r = @mysql_query( $query, $dbh);
-
-	
-
-	$err = mysql_error($dbh);
-
-	if( !empty($err) ) {
-
-		$query=str_replace(array("\r","\n","\t"),array(""," ",""),$query);
-
-		add_to_log( "[QUERY=$query][ERROR=$err]", "mysql_error" );
-
-	}
-
-
-
-	return $r;
-
+    return $r;
 }
 
 
-
-
-
-function SQLFree( $handle ) {
-
+function SQLFree($handle)
+{
 ## Free handle
-
-    @mysql_free_result( $handle );
-
+    @mysqli_free_result($handle);
 }
 
+function SQLFetchRow($handle)
+{
 
-
-function SQLFetchRow( $handle ) {
-
-## Fetch row
-
-    global $L3_queris, $L3_queris;
-
-    if( !$handle || ($handle==0) ) return;
-
-    return mysql_fetch_array( $handle );
-
+    return mysqli_fetch_array($handle);
 }
 
-
-
-function SQLFetchFields( $handle ) {
-
+function SQLFetchFields($handle)
+{
 ## Fetch fields list
-
-    return mysql_fetch_fields( $handle );
-
+    return mysqli_fetch_fields($handle);
 }
 
-
-
-function SQLNumRows( $handle ) {
-
+function SQLNumRows($handle)
+{
 ## Return number of row in result set
-	if(!is_resource($handle)) return false;
-    return mysql_num_rows( $handle );
-
+    return mysqli_num_rows($handle);
 }
 
-
-
-function SQLNumFields( $handle ) {
-
+function SQLNumFields($handle)
+{
 ## Return number of fields in result set
-
-    return mysql_num_fields( $handle );
-
+    return mysqli_num_fields($handle);
 }
 
-
-
-function SQLConnect($params) {
-
+function SQLConnect($params)
+{
 ## Connect to MySQL database
-    if(!isset($params['server'])) $params['server']='localhost';
 
-    if( version_compare($ver=phpversion(),'4.2.0') >= 0 ) {
-
-      $dbh=@mysql_connect( $params['server'] ,$params['user'],$params['password'], true );
-
-    } else {
-
-      $dbh=@mysql_connect( $params['server'] ,$params['user'],$params['password']);
-
-    }
-
-    if( isset( $params['database'] ) ){
-        mysql_select_db( $params['database'] ,$dbh );
-    }
+    if (!isset($params['server'])) $params['server'] = 'localhost';
+    $dbh = mysqli_connect($params['server'], $params['user'], $params['password'], $params['database']);
+    $GLOBALS['db_handle'] = $dbh;
     return $dbh;
-
 }
 
-
-
-function SQLGet($query, $id=0) {
-    $h=SQLQuery( $query, $id );
-    $ret=SQLFetchRow($h);
+function SQLGet($query, $id = 0)
+{
+    global $L3Config;
+## Return hashe with one row of result set
+    $h = SQLQuery($query, $id ? $id : $L3Config['db.link_id']);
+    //$id==0 ? $h=SQLQuery( $query ) : $h=SQLQuery( $query, $id );
+    $ret = SQLFetchRow($h);
     SQLFree($h);
     return $ret;
 }
 
-
-
-function SQLGetRows($query,$id=0){
-	$result=SQLQuery($query,$id);
-	$rows=array();
-	if(SQLNumRows($result)){
-	   while($row=SQLFetchRowAssoc($result)){
-			$rows[]=$row;
-		}
-	}
-	SQLFree($result);
-	return $rows;
+function SQLGetRows($query, $id = 0)
+{
+    $result = SQLQuery($query, $id);
+    $rows = array();
+    if (SQLNumRows($result)) {
+        while ($row = SQLFetchRowAssoc($result)) {
+            $rows[] = $row;
+        }
+    }
+    SQLFree($result);
+    return $rows;
 }
 
-
-
-function SQLInsId($h=0) {
-
+function SQLInsId($h = 0)
+{
 ## Return last insert ID (obsolete )
-
 #    SQLError(SQLWarning, "This function does not supported now");
+    $query = "SELECT LAST_INSERT_ID() AS LID";
+    $result = SQLQuery($query, $h);
 
-    if ($h==0) {
+    $last_id = 0;
 
-     return mysql_insert_id();
+    if (SQLNumRows($result)) {
+        $row = SQLFetchRow($result);
+        $last_id = $row["LID"];
+    }
 
-    } else {
-
-     $query = "SELECT LAST_INSERT_ID() AS LID";
-
-     $result=SQLQuery($query,$h);
-
-     
-
-     $last_id = 0;
-
-     
-
-     if(SQLNumRows($result)){
-
-     	$row= SQLFetchRow($result);
-
-     	$last_id = $row["LID"];
-
-     	
-
-     }
-
-     	
-
-     return $last_id;
-
-    };
-
+    return $last_id;
 }
 
-
-
-function SQLDescribe( $table , $id=0) {
-
+function SQLDescribe($table, $id = 0)
+{
 ## Return structure of table
-
-    $q= SQLQuery("DESCRIBE $table", $id);
-
-    while($r=SQLFetchRow($q) ) {
-
-    $ret[$r['Field']]=$r;
-
+    $q = SQLQuery("DESCRIBE $table", $id);
+    while ($r = SQLFetchRow($q)) {
+        $ret[$r['Field']] = $r;
     }
-
     SQLFree($q);
-
     return $ret;
-
 }
 
-
-
-function SQLRun( $query, $params , $id=0) {
-
+function SQLRun($query, $params, $id = 0)
+{
 ## For calling stored procedures
-
-    SQLError(SQLError, "Function does not implemented yet" );
-
+    SQLError(SQLError, "Function does not implemented yet");
 }
 
-
-
-function SQLInsert( $table, $fields, $ident=0) {
-
+function SQLInsert($table, $fields, $ident = 0)
+{
 ## Return autoincrement field value or <0 if any errors.
-
 ## This function check internal triggers
-
     global $L3_sql_lasterr;
+    $L3_sql_lasterr = 0;
 
-    $L3_sql_lasterr=0;
-
-
-
-    $query="INSERT INTO $table \n( ";
-
-    $values=') VALUES (';
-
+    $query = "INSERT INTO $table \n( ";
+    $values = ') VALUES (';
     reset($fields);
-
-    $delim=' ';
-
-    while( list($name, $value) = each( $fields ) ) {
-
-        if( !is_long( $name ) ) {
-
-        $query.=$delim.$name;
-
-        if( is_array( $value ) ) {
-
-        	$values.=$delim.$value['raw'];
-
-        } else {
-
-        	$values.=$delim."'".mysql_real_escape_string( $value )."'";
-
-        };
-
-        $delim=',';
-
+    $delim = ' ';
+    while (list($name, $value) = each($fields)) {
+        if (!is_long($name)) {
+            $query .= $delim . $name;
+            if (is_array($value)) {
+                $values .= $delim . $value['raw'];
+            } else {
+                $values .= $delim . "'" . mysqli_real_escape_string($GLOBALS['db_handle'], $value) . "'";
+            };
+            $delim = ',';
         }
-
     }
-    $ident==0 ? $q=SQLQuery( $query.$values.")" ) : $q=SQLQuery( $query.$values.")", $ident );
-    $err = mysql_error($ident);
-	if( !empty($err) ) add_to_log( $err, "mysql_error" );	
-    $q1=$query.$values;
-    if( !$q ) {
+
+    // echo "query_start=".$query.$values.")"."=query_end";
+
+    if ($ident === 0) $ident = $GLOBALS['db_handle'];
+    $q = SQLQuery($query . $values . ")", $ident);
+
+
+    $err = mysqli_error($ident);
+    if (!empty($err)) add_to_log($err, "error_mysql");
+    $q1 = $query . $values;
+
+    if (!$q) {
         return false;
     }
+
     $debug = debug_backtrace();
-    add_to_log( $query.$values.")", "mysql_log" );
-    $ident==0 ? $id=mysql_insert_id() : $id=mysql_insert_id($ident);
-    return $id;
-}
-
-
-
-
-
-function SQLReplace( $table, $fields, $ident=0) {
-
-
-
-    global $L3_sql_lasterr;
-
-    $L3_sql_lasterr=0;
-
-
-
-    $query="REPLACE INTO $table \n( ";
-
-    $values=') VALUES (';
-
-    reset($fields);
-
-    $delim=' ';
-
-    while( list($name, $value) = each( $fields ) ) {
-
-        if( !is_long( $name ) ) {
-
-        $query.=$delim.$name;
-
-        if( is_array( $value ) ) {
-
-        	$values.=$delim.$value['raw'];
-
-        } else {
-
-        	$values.=$delim."'".mysql_real_escape_string( $value )."'";
-
-        };
-
-        $delim=',';
-
-        }
-
-    }
-
-   
-
-    
-
-    $ident==0 ? $q=SQLQuery( $query.$values.")" ) : $q=SQLQuery( $query.$values.")", $ident );
-
-
-
-    
-
-
-
-    $err = mysql_error($ident);
-
-	if( !empty($err) ) add_to_log( $err, "mysql_error" );	
-
-    $q1=$query.$values;
-
-
-
-    if( !$q ) {
-
-        return false;
-
-    }
-
-
-
-    	$debug = debug_backtrace();
-
 //    	print_r($debug["1"]);
 
-    	
+    //add_to_log($query . $values . ")" . ";function is " . $debug["1"]['function'], "mysqli_log");
 
-    	add_to_log( $query.$values.")".";function is ".$debug["1"]['function'], "mysql_log" );
-
-
-
-    $ident==0 ? $id=mysql_insert_id() : $id=mysql_insert_id($ident);
-
+    if ($ident === 0) $ident = $GLOBALS['db_handle'];
+    $id = mysqli_insert_id($ident);
     return $id;
-
 }
 
 
+function SQLReplace($table, $fields, $ident = 0)
+{
 
-function SQLUpdate( $table, $fields, $where='' , $id=0) {
+    global $L3_sql_lasterr;
+    $L3_sql_lasterr = 0;
 
+    $query = "REPLACE INTO $table \n( ";
+    $values = ') VALUES (';
+    reset($fields);
+    $delim = ' ';
+    while (list($name, $value) = each($fields)) {
+        if (!is_long($name)) {
+            $query .= $delim . $name;
+            if (is_array($value)) {
+                $values .= $delim . $value['raw'];
+            } else {
+                $values .= $delim . "'" . mysqli_real_escape_string($GLOBALS['db_handle'], $value) . "'";
+            };
+            $delim = ',';
+        }
+    }
+
+
+    $ident == 0 ? $q = SQLQuery($query . $values . ")") : $q = SQLQuery($query . $values . ")", $ident);
+
+
+    $err = mysqli_error($ident);
+    if (!empty($err)) add_to_log($err, "error_mysql");
+    $q1 = $query . $values;
+
+    if (!$q) {
+        return false;
+    }
+
+    $debug = debug_backtrace();
+//    	print_r($debug["1"]);
+
+    //add_to_log($query . $values . ")" . ";function is " . $debug["1"]['function'], "mysqli_log");
+
+    $ident == 0 ? $id = mysqli_insert_id() : $id = mysqli_insert_id($ident);
+    return $id;
+}
+
+function SQLUpdate($table, $fields, $where = '', $id = 0)
+{
 ## Returns number of affected rows (or >=0 in success) or <0 if error occured
-
-    $query="UPDATE $table SET ";
-
-    $delim=' ';
-
-    while( list($name, $value) = each( $fields ) ) {
-
-        if( !is_long( $name ) ) {
-
-        if( is_array( $value ) ) {
-
-        	$query.=$delim.$name."=$value[raw]";
-
-        } else {
-
-        	$query.=$delim.$name."='".mysql_real_escape_string($value)."' ";
-
+    $query = "UPDATE $table SET ";
+    $delim = ' ';
+    while (list($name, $value) = each($fields)) {
+        if (!is_long($name)) {
+            if (is_array($value)) {
+                $query .= $delim . $name . "=$value[raw]";
+            } else {
+                $query .= $delim . $name . "='" . mysqli_real_escape_string($GLOBALS['db_handle'], $value) . "' ";
+            };
+            $delim = ',';
         };
-
-        $delim=',';
-
-        };
-
     };
 
 
-
-    if ($id == 0){
-
-    	$q=SQLQuery( $query.$where );
-
- 		$err = mysql_error();
-
-		if( !empty($err) ) add_to_log( $err, "mysql_error" );	   	
-
-    	return mysql_affected_rows();
-
+    add_to_log($query . $where, "mysqli_update");
+    if ($id === 0) {
+        $q = SQLQuery($query . $where);
+        $err = mysqli_error();
+        if (!empty($err)) add_to_log($err, "error_mysql");
+        return mysqli_affected_rows();
     } else {
-
-    	$q=SQLQuery( $query.$where, $id );
-
- 		$err = mysql_error($id);
-
-		if( !empty($err) ) add_to_log( $err, "mysql_error" );    	
-
-    	return mysql_affected_rows($id);
-
+        $q = SQLQuery($query . $where, $id);
+        $err = mysqli_error($id);
+        if (!empty($err)) add_to_log($err, "error_mysql");
+        return mysqli_affected_rows($id);
     };
-
 }
 
-
-
-function SQLFetchRowAssoc( $handle  ) {
-
+function SQLFetchRowAssoc($handle)
+{
 ## Fetch row
 
-    global $L3_queris, $L3_queris;
-
-    if( !$handle || ($handle==0) ) return;
-
-    return mysql_fetch_assoc( $handle );
-
+    return mysqli_fetch_assoc($handle);
 }
-
 
 
 ?>
