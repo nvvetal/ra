@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv577';
+$advertise_company_id = 'adv578';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -71,7 +71,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 10,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise102.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise103.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -151,7 +151,11 @@ foreach ($users as $key=>$user){
 
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/express/Express.jpg", 'borisenko.gif', 'base64', 'image/gif');
 
-    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold/teachers.jpg",'img2','teachers.jpg','base64','image/jpeg');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold2/afisha.jpg", 'Афиша МК.jpg', 'base64', 'image/jpeg');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold2/all_include.jpg", 'Пакет Все Включено.jpg', 'base64', 'image/jpeg');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold2/pologenie.doc",'Положение (7.03.2017) ЗВ май 2017.doc','base64','application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold2/zayava.rtf",'Заявка ЗВ.rtf','base64','application/rtf');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold2/blue.jpg",'blue','blue.jpg','base64','image/jpeg');
 
 
 //    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/Polozhenie_festivalya_Osenniy_El-Fayum_2016_Obschee_33__33__33.doc",'положение.doc','base64','application/msword');
@@ -162,7 +166,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
 
 
-    $mail->Subject = '«Весенний Эль фаюм» 27 мая 2017';
+    $mail->Subject = 'А Вы уже зарегистрировались на фестиваль Золото Востока 6-7 мая 2017 г.?';
     //$mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
 
     $fileds = array(
