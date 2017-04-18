@@ -33,3 +33,6 @@
 /modules/forum/config.php
 /images/forum/avatars/upload/
 !/images/forum/avatars/upload/.gitkeep
+/modules/forum/cache/
+/vendor/
+composer.phar

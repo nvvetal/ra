@@ -1,0 +1,28 @@
+{
+    "name": "raks.com.ua",
+    "license": "MIT",
+    "type": "project",
+    "description": "raks.com.ua",
+    "autoload": {
+        "psr-4": { "": "src/" }
+    },
+    "require": {
+        "php": "=5.6.30",
+        "facebook/graph-sdk": "^5.4",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+    },
+    "scripts": {
+    },
+    "config": {
+        "bin-dir": "bin",
+        "platform": {
+            "php": "5.6.30"
+        }
+    },
+    "extra": {
+    },
+    "repositories" : [
+    ]
+}

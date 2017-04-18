@@ -565,7 +565,7 @@ class Smarty
     /**
      * The class constructor.
      */
-    function Smarty()
+    function __construct()
     {
       $this->assign('SCRIPT_NAME', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME']
                     : @$GLOBALS['HTTP_SERVER_VARS']['SCRIPT_NAME']);
@@ -579,7 +579,6 @@ class Smarty
      */
     function assign($tpl_var, $value = null)
     {
-
         if (is_array($tpl_var)){
             foreach ($tpl_var as $key => $val) {
                 if ($key != '') {
@@ -1637,7 +1636,9 @@ class Smarty
                 // use the first directory where the file is found
                 foreach ((array)$params['resource_base_path'] as $_curr_path) {
                     $_fullpath = $_curr_path . DIRECTORY_SEPARATOR . $params['resource_name'];
-                    if (file_exists($_fullpath) && is_file($_fullpath)) {
+                    
+                   
+                    if (is_file($_fullpath)) {
                         $params['resource_name'] = $_fullpath;
                         return true;
                     }
