@@ -102,7 +102,6 @@ $GLOBALS['HTTP_IMAGES_PATH'] = $GLOBALS['HTTP_PROJECT_ROOT']."i/";
 #DEBUG
 
 $GLOBALS['DEBUG'] = 0;
-
 if($_SERVER['HTTP_HOST'] == 'rakscom:8080') $_SERVER['HTTP_HOST'] = 'rakscom';
 if($_SERVER['HTTP_HOST'] == 'raks.com.ua:80') $_SERVER['HTTP_HOST'] = 'raks.com.ua';
 if(empty($_SERVER['HTTP_HOST'])) exit;
@@ -258,6 +257,7 @@ $CommentMaxNewPeriod = 600;
 Registry::set('CommentMaxNewPeriod', $CommentMaxNewPeriod);
 
 
+
 $userId = isset($_REQUEST['s']) && $Session->get_value($_REQUEST['s'], 'user_id') ? $Session->get_value($_REQUEST['s'], 'user_id') : '';
 if(!empty($userId)){
     $dir = $GLOBALS['PROJECT_ROOT']."/users/" . $userId . "/images/upload";
@@ -274,7 +274,13 @@ if(!empty($userId)){
 $mailer = new Mail($GLOBALS['mailParams']);
 Registry::set('mailer', $mailer);
 
-$smarty->assign("facebook_app_id", $GLOBALS['FACEBOOK_APP_ID']);
+$facebook = new Facebook();
+Registry::set('facebook', $facebook);
+
+
+$smarty->assign("facebook_app_id", $GLOBALS['FACEBOOK']['appId']);
+$smarty->assign("facebook_version", $GLOBALS['FACEBOOK']['version']);
+$smarty->assign("facebook_login_scope", $GLOBALS['FACEBOOK']['scope']['login']);
 $smarty->assign("vkontakte_app_id", $GLOBALS['VKONTAKTE_APP_ID']);
 
 $metaKeywords = 'восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс';

@@ -24,7 +24,6 @@ $(document).ready(function() {
 <p style="max-width: 691px">
     {"Main Page Content"|i18n}
 </p>
-
 {include file='modules/calendar/i_calendar.tpl'}
 {include file='i_photos_last.tpl'}
 {include file='i_videos_last.tpl'}

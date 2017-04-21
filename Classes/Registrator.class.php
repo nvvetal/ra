@@ -4,7 +4,7 @@ class Registrator {
 	
 	var $modules;
 	
-	function Registrator ($modules){
+	function __construct($modules){
 		$this->modules = $modules;
 		
 	}
@@ -86,5 +86,3 @@ class Registrator {
 	}
 
 }
-
-?>

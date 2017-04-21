@@ -895,6 +895,7 @@ class auth
 		include_once($phpbb_root_path . 'includes/auth/auth_' . $method . '.' . $phpEx);
 
 		$method = 'login_' . $method;
+		//echo $method;exit;
 		if (function_exists($method))
 		{
 			$login = $method($username, $password);

@@ -2,7 +2,7 @@
 class Cache {
     var $cache_dir = '';
 
-    function Cache ($cache_dir){
+    function __construct($cache_dir){
 		$this->cache_dir = $cache_dir;
     }
 

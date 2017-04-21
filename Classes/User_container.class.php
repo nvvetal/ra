@@ -137,5 +137,3 @@ class User_container extends ValidatorContainer {
         );
     }
 }
-
-?>

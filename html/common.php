@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."Geo.class.php");
 $Geo = new Geo($DBFactory->get_db_handle('rakscom'));
@@ -15,5 +17,3 @@ $xajax->registerFunction('get_subdivision_cities');
 
 $xjs=$xajax->getJavascript($GLOBALS['XAJAX_JS_PATH']);                                                                                                 
 $smarty->assign("xjs",$xjs);
-
-?>

@@ -35,4 +35,3 @@ $smarty->assign('user_id', $Session->get_value($s,'user_id'));
 
 $smarty->display($go.'.tpl');
 require_once($GLOBALS['LIB_ROOT'].'/debug.php');
-?>

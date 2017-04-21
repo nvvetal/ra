@@ -1,21 +1,20 @@
 <?php
 /**
-*
-* @package phpBB3
-* @version $Id: index.php,v 1.176 2007/10/05 14:30:06 acydburn Exp $
-* @copyright (c) 2005 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
-*/
+ *
+ * @package phpBB3
+ * @version $Id: index.php,v 1.176 2007/10/05 14:30:06 acydburn Exp $
+ * @copyright (c) 2005 phpBB Group
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ *
+ */
 
 /**
-*/
-
+ */
 
 
 /**
-* @ignore
-*/
+ * @ignore
+ */
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -30,25 +29,22 @@ $user->setup('viewforum');
 display_forums('', $config['load_moderators']);
 
 // Set some stats, get posts count from forums data if we... hum... retrieve all forums data
-$total_posts	= $config['num_posts'];
-$total_topics	= $config['num_topics'];
-$total_users	= $config['num_users'];
+$total_posts = $config['num_posts'];
+$total_topics = $config['num_topics'];
+$total_users = $config['num_users'];
 
 $l_total_user_s = ($total_users == 0) ? 'TOTAL_USERS_ZERO' : 'TOTAL_USERS_OTHER';
 $l_total_post_s = ($total_posts == 0) ? 'TOTAL_POSTS_ZERO' : 'TOTAL_POSTS_OTHER';
 $l_total_topic_s = ($total_topics == 0) ? 'TOTAL_TOPICS_ZERO' : 'TOTAL_TOPICS_OTHER';
 
 // Grab group details for legend display
-if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
-{
-	$sql = 'SELECT group_id, group_name, group_colour, group_type
+if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel')) {
+    $sql = 'SELECT group_id, group_name, group_colour, group_type
 		FROM ' . GROUPS_TABLE . '
 		WHERE group_legend = 1
 		ORDER BY group_name ASC';
-}
-else
-{
-	$sql = 'SELECT g.group_id, g.group_name, g.group_colour, g.group_type
+} else {
+    $sql = 'SELECT g.group_id, g.group_name, g.group_colour, g.group_type
 		FROM ' . GROUPS_TABLE . ' g
 		LEFT JOIN ' . USER_GROUP_TABLE . ' ug
 			ON (
@@ -63,19 +59,15 @@ else
 $result = $db->sql_query($sql);
 
 $legend = array();
-while ($row = $db->sql_fetchrow($result))
-{
-	$colour_text = ($row['group_colour']) ? ' style="color:#' . $row['group_colour'] . '"' : '';
-	$group_name = ($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name'];
+while ($row = $db->sql_fetchrow($result)) {
+    $colour_text = ($row['group_colour']) ? ' style="color:#' . $row['group_colour'] . '"' : '';
+    $group_name = ($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name'];
 
-	if ($row['group_name'] == 'BOTS' || ($user->data['user_id'] != ANONYMOUS && !$auth->acl_get('u_viewprofile')))
-	{
-		$legend[] = '<span' . $colour_text . '>' . $group_name . '</span>';
-	}
-	else
-	{
-		$legend[] = '<a' . $colour_text . ' href="' . append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=group&amp;g=' . $row['group_id']) . '">' . $group_name . '</a>';
-	}
+    if ($row['group_name'] == 'BOTS' || ($user->data['user_id'] != ANONYMOUS && !$auth->acl_get('u_viewprofile'))) {
+        $legend[] = '<span' . $colour_text . '>' . $group_name . '</span>';
+    } else {
+        $legend[] = '<a' . $colour_text . ' href="' . append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=group&amp;g=' . $row['group_id']) . '">' . $group_name . '</a>';
+    }
 }
 $db->sql_freeresult($result);
 
@@ -85,91 +77,89 @@ $legend = implode(', ', $legend);
 $birthday_list = '';
 $bd_list_ary = array();
 
-if ($config['load_birthdays'] && $config['allow_birthdays'])
-{
-	$now = getdate(time() + $user->timezone + $user->dst - date('Z'));
-	$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_birthday
+if ($config['load_birthdays'] && $config['allow_birthdays']) {
+    $now = getdate(time() + $user->timezone + $user->dst - date('Z'));
+    $sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_birthday
 		FROM ' . USERS_TABLE . ' u
 		LEFT JOIN ' . BANLIST_TABLE . " b ON (u.user_id = b.ban_userid)
 		WHERE (b.ban_id IS NULL
 			OR b.ban_exclude = 1)
 			AND u.user_birthday LIKE '" . $db->sql_escape(sprintf('%2d-%2d-', $now['mday'], $now['mon'])) . "%'
 			AND u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ')';
-	$result = $db->sql_query($sql);
+    $result = $db->sql_query($sql);
 
-	while ($row = $db->sql_fetchrow($result))
-	{
-		$birthday_list .= (($birthday_list != '') ? ', ' : '') . get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']);
+    while ($row = $db->sql_fetchrow($result)) {
+        $birthday_list .= (($birthday_list != '') ? ', ' : '') . get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']);
 
-		if ($age = (int) substr($row['user_birthday'], -4))
-		{
-			$birthday_list .= ' (' . ($now['year'] - $age) . ')';
-		}
-		if (trim($row['user_email']) && $config['birthday_emails'])
-		{
-			$bd_list_ary[] = array(
-				'method'	=> $row['user_notify_type'],
-				'email'		=> $row['user_email'],
-				'jabber'	=> $row['user_jabber'],
-				'name'		=> $row['username'],
-				'lang'		=> $row['user_lang']
-			);
-		}
-	}
-	$db->sql_freeresult($result);
+        if ($age = (int)substr($row['user_birthday'], -4)) {
+            $birthday_list .= ' (' . ($now['year'] - $age) . ')';
+        }
+        if (trim($row['user_email']) && $config['birthday_emails']) {
+            $bd_list_ary[] = array(
+                'method' => $row['user_notify_type'],
+                'email' => $row['user_email'],
+                'jabber' => $row['user_jabber'],
+                'name' => $row['username'],
+                'lang' => $row['user_lang']
+            );
+        }
+    }
+    $db->sql_freeresult($result);
 
-	$nowvar = getdate(time() + ($config['board_timezone'] + $config['board_dst'])*3600 - date('Z'));
+    $nowvar = getdate(time() + ($config['board_timezone'] + $config['board_dst']) * 3600 - date('Z'));
 
-	if ( sizeof($bd_list_ary) && $config['birthday_run'] < mktime(0, 0, 0, $nowvar['mon'], $nowvar['mday'], $nowvar['year']) && $config['birthday_emails'] )
-   {
-   set_config('birthday_run', mktime(0, 0, 0, $nowvar['mon'], $nowvar['mday'], $nowvar['year']));
+    if (sizeof($bd_list_ary) && $config['birthday_run'] < mktime(0, 0, 0, $nowvar['mon'], $nowvar['mday'], $nowvar['year']) && $config['birthday_emails']) {
+        set_config('birthday_run', mktime(0, 0, 0, $nowvar['mon'], $nowvar['mday'], $nowvar['year']));
 
-   include_once($phpbb_root_path . 'includes/functions_messenger.' . $phpEx);
-	$messenger = new messenger();
+        include_once($phpbb_root_path . 'includes/functions_messenger.' . $phpEx);
+        $messenger = new messenger();
 
-	foreach ($bd_list_ary as $pos => $addr)
-	{
-		$messenger->template('birthday_email', $addr['lang']);
+        foreach ($bd_list_ary as $pos => $addr) {
+            $messenger->template('birthday_email', $addr['lang']);
 
-		$messenger->to($addr['email'], $addr['name']);
-		$messenger->im($addr['jabber'], $addr['name']);
+            $messenger->to($addr['email'], $addr['name']);
+            $messenger->im($addr['jabber'], $addr['name']);
 
-		$messenger->assign_vars(array(
-			'USERNAME'		=> htmlspecialchars_decode($addr['name'])
-		));
+            $messenger->assign_vars(array(
+                'USERNAME' => htmlspecialchars_decode($addr['name'])
+            ));
 
-		$messenger->send($addr['method']);
-	}
-	unset($bd_list_ary);
+            $messenger->send($addr['method']);
+        }
+        unset($bd_list_ary);
 
-	$messenger->save_queue();
-	unset($messenger);
-	}
-	$cache->destroy('config');
+        $messenger->save_queue();
+        unset($messenger);
+    }
+    $cache->destroy('config');
 
 }
 
 
 // Assign index specific vars
 $template->assign_vars(array(
-	'TOTAL_POSTS'	=> sprintf($user->lang[$l_total_post_s], $total_posts),
-	'TOTAL_TOPICS'	=> sprintf($user->lang[$l_total_topic_s], $total_topics),
-	'TOTAL_USERS'	=> sprintf($user->lang[$l_total_user_s], $total_users),
-	'NEWEST_USER'	=> sprintf($user->lang['NEWEST_USER'], get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
+        'TOTAL_POSTS' => sprintf($user->lang[$l_total_post_s], $total_posts),
+        'TOTAL_TOPICS' => sprintf($user->lang[$l_total_topic_s], $total_topics),
+        'TOTAL_USERS' => sprintf($user->lang[$l_total_user_s], $total_users),
+        'NEWEST_USER' => sprintf($user->lang['NEWEST_USER'], get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
 
-	'LEGEND'		=> $legend,
-	'BIRTHDAY_LIST'	=> $birthday_list,
+        'LEGEND' => $legend,
+        'BIRTHDAY_LIST' => $birthday_list,
 
-	'FORUM_IMG'				=> $user->img('forum_read', 'NO_NEW_POSTS'),
-	'FORUM_NEW_IMG'			=> $user->img('forum_unread', 'NEW_POSTS'),
-	'FORUM_LOCKED_IMG'		=> $user->img('forum_read_locked', 'NO_NEW_POSTS_LOCKED'),
-	'FORUM_NEW_LOCKED_IMG'	=> $user->img('forum_unread_locked', 'NO_NEW_POSTS_LOCKED'),
+        'FORUM_IMG' => $user->img('forum_read', 'NO_NEW_POSTS'),
+        'FORUM_NEW_IMG' => $user->img('forum_unread', 'NEW_POSTS'),
+        'FORUM_LOCKED_IMG' => $user->img('forum_read_locked', 'NO_NEW_POSTS_LOCKED'),
+        'FORUM_NEW_LOCKED_IMG' => $user->img('forum_unread_locked', 'NO_NEW_POSTS_LOCKED'),
 
-	'S_LOGIN_ACTION'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
-	'S_DISPLAY_BIRTHDAY_LIST'	=> ($config['load_birthdays']) ? true : false,
+        'S_LOGIN_ACTION' => append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
+        'S_DISPLAY_BIRTHDAY_LIST' => ($config['load_birthdays']) ? true : false,
 
-		'U_MARK_FORUMS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
-	'U_MCP'				=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
+        'U_MARK_FORUMS' => ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
+        'U_MCP' => ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '',
+
+        'RAKS_FACEBOOK_ID' => RAKS_FACEBOOK_ID,
+        'RAKS_FACEBOOK_VERSION' => RAKS_FACEBOOK_VERSION,
+    )
 );
 
 sendRaksMoney($user->data['user_id'], 'forumEnter');
@@ -178,9 +168,7 @@ sendRaksMoney($user->data['user_id'], 'forumEnterDaily');
 page_header($user->lang['INDEX']);
 
 $template->set_filenames(array(
-	'body' => 'index_body.html')
+        'body' => 'index_body.html')
 );
 
 page_footer();
-
-?>

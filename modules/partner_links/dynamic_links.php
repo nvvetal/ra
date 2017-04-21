@@ -1,5 +1,4 @@
 <?php
-
 require_once('config.php');
 
 
@@ -51,10 +50,7 @@ $Validator = new Validator();
 $User = new User($DBFactory->get_db_handle("rakscom"));
 
 $Session = new Session($DBFactory->get_db_handle("rakscom"));
-
-
-
-$Images = new Images($DBFactory->get_db_handle('rakscom'),$GLOBALS['IMAGEMAGICK_PATH'],$image_rules);
+$Images = new Images($DBFactory->get_db_handle('rakscom'),$GLOBALS['IMAGEMAGICK_PATH'], $image_rules);
 
 $go = 'external_show_links';
 
@@ -62,9 +58,9 @@ $s = isset($_REQUEST['s']) ? $_REQUEST['s'] : '';
 
 
 
-sess_auth(&$s,&$Session);
+sess_auth($s, $Session);
 
-user_auth(&$s,&$User,&$Session);
+user_auth($s, $User, $Session);
 
 
 $partner_links = new partner_links($DBFactory->get_db_handle('rakscom'));
@@ -76,36 +72,22 @@ $params['Validator'] = $Validator;
 $params['User'] = &$User;
 $params['Session'] = &$Session;
 $params['smarty'] = &$smarty;
-$params['modules'] = $modules;
+//$params['modules'] = $modules;
 $params['s'] = $s;
 $params['DBFactory'] = &$DBFactory;
 $params['Images'] = &$Images;
 
-
-
 $smarty->assign('s',$s);
 $smarty->assign('partner_links',$partner_links);
 $smarty->assign('Geo',$Geo);
-$smarty->assign('Session',&$Session);
-$smarty->assign('User',&$User);
-$smarty->assign('Images',&$Images);
+$smarty->assign('Session', $Session);
+$smarty->assign('User', $User);
+$smarty->assign('Images', $Images);
 
 $smarty->assign('user_id',$Session->get_value($s,'user_id'));
-
 $smarty->assign("http_images_path",$GLOBALS['HTTP_IMAGES_PATH']);
 $smarty->assign("http_project_path",$GLOBALS['HTTP_PROJECT_PATH']);
 $smarty->assign("http_module_path",$GLOBALS['HTTP_PROJECT_PATH'].$module_name.'/');
-
-
-
-
-
 $smarty->assign("smarty_module_path","modules/$module_name/");
 
 $smarty->display("modules/$module_name/".$go.'.tpl');
-
-
-//require_once(LIB_ROOT.'/debug.php');
-
-
-?>

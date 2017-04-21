@@ -2,7 +2,7 @@
 
 class school_blog_container extends ValidatorContainer {
 	
-	function school_blog_container ($validator,$class){
+	function __construct($validator,$class){
 		$this->ValidatorContainer($validator,$class);
 	}
 	

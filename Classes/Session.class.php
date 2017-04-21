@@ -5,8 +5,9 @@ class Session{
 	var $sess_timeout;
 	var $sess_length;	
 	var $sess_values = array();
+
 	
-	function Session($dbh, $sess_timeout = 432000, $sess_length = 16){
+	function __construct($dbh, $sess_timeout = 432000, $sess_length = 16){
 		$this->dbh = $dbh;
 		$this->sess_timeout = $sess_timeout;
 		$this->sess_length = $sess_length;
@@ -191,4 +192,3 @@ class Session{
 		SQLQuery($query,$this->dbh);		
 	}	
 }
-?>

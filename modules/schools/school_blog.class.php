@@ -4,8 +4,8 @@ require_once($GLOBALS['CLASSES_DIR']."TableData.class.php");
 
 class school_blog extends TableData {
     
-    function school_blog ($table_name,$dbh){
-	$this->TableData($table_name,$dbh);
+    function __construct($table_name,$dbh){
+	    parent::__construct($table_name,$dbh);
     }
 
     function get_blogs($school_id){

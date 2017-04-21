@@ -6,9 +6,9 @@ class TableData{
     var $dbh;
     var $table_name;
 
-    function TableData($table_name,$dbh){
-	$this->dbh = $dbh;
-	$this->table_name = $table_name;
+    function __construct($table_name,$dbh){
+	    $this->dbh = $dbh;
+	    $this->table_name = $table_name;
     }
 
 

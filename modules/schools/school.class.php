@@ -3,7 +3,7 @@
 class school {
     var $dbh;
 
-    function school($dbh){
+    function __construct($dbh){
         $this->dbh = $dbh;
     }
 

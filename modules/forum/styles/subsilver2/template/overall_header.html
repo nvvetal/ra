@@ -1,400 +1,414 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" xml:lang="{S_USER_LANG}">
 <head>
 
-<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
-<meta http-equiv="content-language" content="{S_USER_LANG}" />
-<meta http-equiv="content-style-type" content="text/css" />
-<meta http-equiv="imagetoolbar" content="no" />
-<meta name="resource-type" content="document" />
-<meta name="distribution" content="global" />
-<meta name="copyright" content="2004-2020 Raks.com.ua" />
-<meta name="keywords" content="восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс, танец живота, восточный танец, танцы живота, школы восточного танца, школа танца живота, индийский танец, трайбл, танец живота видео, гавайский танец, танец хула" />
-<meta name="description" content="" />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<meta property="og:title" content="{SITENAME} &bull; {PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец" />
-<meta property="og:image" content="http://raks.com.ua/images/logo_real_krug_1024.png" />
-<!--meta property="og:url" content="http://raks.com.ua/forum/" /-->
-<!--meta property="og:description" content="{SITENAME} &bull; {PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец" /-->
-<meta property="og:type" content="website" />
+    <meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}"/>
+    <meta http-equiv="content-language" content="{S_USER_LANG}"/>
+    <meta http-equiv="content-style-type" content="text/css"/>
+    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta name="resource-type" content="document"/>
+    <meta name="distribution" content="global"/>
+    <meta name="copyright" content="2004-2020 Raks.com.ua"/>
+    <meta name="keywords"
+          content="восточные танцы, восточные танцы Украина, восточные танцы Киев, танец живота, беллиданс, танец живота, восточный танец, танцы живота, школы восточного танца, школа танца живота, индийский танец, трайбл, танец живота видео, гавайский танец, танец хула"/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta property="og:title"
+          content="{SITENAME} &bull; {PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец"/>
+    <meta property="og:image" content="http://raks.com.ua/images/logo_real_krug_1024.png"/>
+    <!--meta property="og:url" content="http://raks.com.ua/forum/" /-->
+    <!--meta property="og:description" content="{SITENAME} &bull; {PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец" /-->
+    <meta property="og:type" content="website"/>
 
-{META}
-<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец</title>
+    {META}
+    <title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->
+        {PAGE_TITLE} &bull; Танец живота, индийский танец, трайбл, восточный танец</title>
 
-<!-- IF S_ENABLE_FEEDS -->
-<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" />
-<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
-<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums" /><!-- ENDIF -->
-<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_TOPICS}" href="{U_FEED}?mode=topics" /><!-- ENDIF -->
-<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
-<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
-<!-- ENDIF -->
-
-
-
-<!--link rel="stylesheet" href="http://ra.localhost/forum/styles/subsilver2/theme/stylesheet.css" type="text/css" /-->
-<link rel="stylesheet" href="http://raks.com.ua/forum/styles/subsilver2/theme/stylesheet.css" type="text/css" />
-
-<script type="text/javascript">
-    // <![CDATA[
-    <!-- IF S_USER_PM_POPUP -->
-    if ({S_NEW_PM})
-    {
-        var url = '{UA_POPUP_PM}';
-        window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
-
-    }
+    <!-- IF S_ENABLE_FEEDS -->
+    <link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}"/>
+    <!-- IF S_ENABLE_FEEDS_NEWS -->
+    <link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news"/>
+    <!-- ENDIF -->
+    <!-- IF S_ENABLE_FEEDS_FORUMS -->
+    <link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums"/>
+    <!-- ENDIF -->
+    <!-- IF S_ENABLE_FEEDS_TOPICS -->
+    <link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_TOPICS}" href="{U_FEED}?mode=topics"/>
+    <!-- ENDIF -->
+    <!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID -->
+    <link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}"
+          href="{U_FEED}?f={S_FORUM_ID}"/><!-- ENDIF -->
+    <!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID -->
+    <link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}"
+          href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}"/><!-- ENDIF -->
     <!-- ENDIF -->
 
-    function popup(url, width, height, name)
-    {
-        if (!name)
-        {
-            name = '_popup';
+
+    <!--link rel="stylesheet" href="http://ra.localhost/forum/styles/subsilver2/theme/stylesheet.css" type="text/css" /-->
+    <link rel="stylesheet" href="http://raks.com.ua/forum/styles/subsilver2/theme/stylesheet.css" type="text/css"/>
+
+
+
+    <script type="text/javascript">
+        function afterFBLogin(){
+            window.location.href="./../?go=index&action=facebook&from=forum";
+        }
+    </script>
+
+    <script type="text/javascript">
+        // <![CDATA[
+        <!-- IF S_USER_PM_POPUP -->
+        if ({S_NEW_PM}) {
+            var url = '{UA_POPUP_PM}';
+            window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
+
+        }
+        <!-- ENDIF -->
+
+        function popup(url, width, height, name) {
+            if (!name) {
+                name = '_popup';
+            }
+
+            window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+            return false;
         }
 
-        window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
-        return false;
-    }
+        function jumpto() {
+            var page = prompt('{LA_JUMP_PAGE}:', '{ON_PAGE}');
+            var per_page = '{PER_PAGE}';
+            var base_url = '{A_BASE_URL}';
 
-    function jumpto()
-    {
-        var page = prompt('{LA_JUMP_PAGE}:', '{ON_PAGE}');
-        var per_page = '{PER_PAGE}';
-        var base_url = '{A_BASE_URL}';
-
-        if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
-        {
-        	if (base_url.indexOf('?') == -1)
-        	{
-        		document.location.href = base_url + '?start=' + ((page - 1) * per_page);
-        	}
-        	else
-        	{
-        		document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
-        	}
-        }
-    }
-
-    /**
-     * Find a member
-     */
-    function find_username(url)
-    {
-        popup(url, 760, 570, '_usersearch');
-        return false;
-    }
-
-    /**
-     * Mark/unmark checklist
-     * id = ID of parent container, name = name prefix, state = state [true/false]
-     */
-    function marklist(id, name, state)
-    {
-        var parent = document.getElementById(id);
-        if (!parent)
-        {
-            eval('parent = document.' + id);
-        }
-
-        if (!parent)
-        {
-            return;
-        }
-
-        var rb = parent.getElementsByTagName('input');
-
-        for (var r = 0; r < rb.length; r++)
-        {
-            if (rb[r].name.substr(0, name.length) == name)
-            {
-                rb[r].checked = state;
+            if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0) {
+                if (base_url.indexOf('?') == -1) {
+                    document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+                }
+                else {
+                    document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+                }
             }
         }
-    }
 
-    <!-- IF ._file -->
-
-    /**
-     * Play quicktime file by determining it's width/height
-     * from the displayed rectangle area
-     *
-     * Only defined if there is a file block present.
-     */
-    function play_qt_file(obj)
-    {
-        var rectangle = obj.GetRectangle();
-
-        if (rectangle)
-        {
-            rectangle = rectangle.split(',')
-            var x1 = parseInt(rectangle[0]);
-            var x2 = parseInt(rectangle[2]);
-            var y1 = parseInt(rectangle[1]);
-            var y2 = parseInt(rectangle[3]);
-
-            var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
-            var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
-        }
-        else
-        {
-            var width = 200;
-            var height = 0;
+        /**
+         * Find a member
+         */
+        function find_username(url) {
+            popup(url, 760, 570, '_usersearch');
+            return false;
         }
 
-        obj.width = width;
-        obj.height = height + 16;
+        /**
+         * Mark/unmark checklist
+         * id = ID of parent container, name = name prefix, state = state [true/false]
+         */
+        function marklist(id, name, state) {
+            var parent = document.getElementById(id);
+            if (!parent) {
+                eval('parent = document.' + id);
+            }
 
-        obj.SetControllerVisible(true);
+            if (!parent) {
+                return;
+            }
 
-        obj.Play();
-    }
-    <!-- ENDIF -->
+            var rb = parent.getElementsByTagName('input');
 
-    // ]]>
-
-
-</script>
-
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-17242506-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>
-<script type="text/javascript">
-
-    function setCookie(c_name, value, exdays)
-    {
-        var exdate=new Date();
-        exdate.setDate(exdate.getDate() + exdays);
-        var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-        document.cookie=c_name + "=" + c_value;
-    }
-
-    function getCookie(c_name)
-    {
-        var i,x,y,ARRcookies=document.cookie.split(";");
-        for (i=0;i<ARRcookies.length;i++)
-        {
-            x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-            y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
-            x=x.replace(/^\s+|\s+$/g,"");
-            if (x==c_name)
-            {
-                return unescape(y);
+            for (var r = 0; r < rb.length; r++) {
+                if (rb[r].name.substr(0, name.length) == name) {
+                    rb[r].checked = state;
+                }
             }
         }
-    }
 
-    function randomFromTo(from, to){
-        return Math.floor(Math.random() * (to - from + 1) + from);
-    }
+        <!-- IF ._file -->
 
+        /**
+         * Play quicktime file by determining it's width/height
+         * from the displayed rectangle area
+         *
+         * Only defined if there is a file block present.
+         */
+        function play_qt_file(obj) {
+            var rectangle = obj.GetRectangle();
 
-    function showBannerData(name, banners)
-    {
-        var currentId = getCookie(name);
-        var max = banners.length - 1;
-        if(max < 0) return false;
-        if(currentId != null){
+            if (rectangle) {
+                rectangle = rectangle.split(',')
+                var x1 = parseInt(rectangle[0]);
+                var x2 = parseInt(rectangle[2]);
+                var y1 = parseInt(rectangle[1]);
+                var y2 = parseInt(rectangle[3]);
 
-            if(currentId >= max ){
-                currentId = 0;
-            }else{
-                currentId++;
+                var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+                var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
             }
-        }else{
-            currentId = randomFromTo(0, max);
+            else {
+                var width = 200;
+                var height = 0;
+            }
+
+            obj.width = width;
+            obj.height = height + 16;
+
+            obj.SetControllerVisible(true);
+
+            obj.Play();
         }
-        if(banners[currentId][1] == 'html'){
-            document.getElementById(name).innerHTML = banners[currentId][0];
+        <!-- ENDIF -->
+
+        // ]]>
+
+
+    </script>
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-17242506-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    <script type="text/javascript">
+
+        function setCookie(c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
         }
-        if(banners[currentId][1] == 'swf'){
-            swfobject.embedSWF(banners[currentId][0], name+"_flash", banners[currentId][2], banners[currentId][3], "10.0.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
+
+        function getCookie(c_name) {
+            var i, x, y, ARRcookies = document.cookie.split(";");
+            for (i = 0; i < ARRcookies.length; i++) {
+                x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+                y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+                x = x.replace(/^\s+|\s+$/g, "");
+                if (x == c_name) {
+                    return unescape(y);
+                }
+            }
         }
-        if(banners[currentId][1] == 'container'){
-            document.getElementById(name).innerHTML = banners[currentId][0];
 
+        function randomFromTo(from, to) {
+            return Math.floor(Math.random() * (to - from + 1) + from);
         }
-        setCookie(name, currentId, 1);
-    }
-
-</script>
-
-<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'4a887d98-3a1a-4809-b813-dbf3ea3457f1'});</script>
-<script type="text/javascript" src="http://raks.com.ua/forum/swfobject/swfobject.js"></script>
-
-<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?34"></script>
-<script type="text/javascript">
-    VK.init({apiId: 2641240, onlyWidgets: true});
-</script>
-<!--script type="text/javascript" src="http://raks.com.ua/forum/snow.js"></script-->
-
-<script type="text/javascript">
-
-    function loadBanners(){
 
 
+        function showBannerData(name, banners) {
+            var currentId = getCookie(name);
+            var max = banners.length - 1;
+            if (max < 0) return false;
+            if (currentId != null) {
 
-        var banner_165_1  = new Array();
-        //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="images/sale.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16387" target="_blank"><img src="http://raks.com.ua/forum/images/banner_konk.jpg" alt=""/></a>', 'html', 165, 190);
+                if (currentId >= max) {
+                    currentId = 0;
+                } else {
+                    currentId++;
+                }
+            } else {
+                currentId = randomFromTo(0, max);
+            }
+            if (banners[currentId][1] == 'html') {
+                document.getElementById(name).innerHTML = banners[currentId][0];
+            }
+            if (banners[currentId][1] == 'swf') {
+                swfobject.embedSWF(banners[currentId][0], name + "_flash", banners[currentId][2], banners[currentId][3], "10.0.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
+            }
+            if (banners[currentId][1] == 'container') {
+                document.getElementById(name).innerHTML = banners[currentId][0];
+
+            }
+            setCookie(name, currentId, 1);
+        }
+
+    </script>
+
+    <script type="text/javascript">var switchTo5x = true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: '4a887d98-3a1a-4809-b813-dbf3ea3457f1'});</script>
+    <script type="text/javascript" src="http://raks.com.ua/forum/swfobject/swfobject.js"></script>
+
+    <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?34"></script>
+    <script type="text/javascript">
+        VK.init({apiId: 2641240, onlyWidgets: true});
+    </script>
+    <!--script type="text/javascript" src="http://raks.com.ua/forum/snow.js"></script-->
+
+    <script type="text/javascript">
+
+        function loadBanners() {
+
+
+            var banner_165_1 = new Array();
+            //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="images/sale.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16387" target="_blank"><img src="http://raks.com.ua/forum/images/banner_konk.jpg" alt=""/></a>', 'html', 165, 190);
 //        banner_165_1[0]   = new Array ('<a href="http://www.raks.com.ua/forum/viewtopic.php?f=148&t=16587" target="_blank"><img src="images/masr.gif" alt=""/></a>', 'html', 165, 190);
 //        banner_165_1[0]   = new Array ('<a href="http://vk.com/club81875606" target="_blank"><img src="http://raks.com.ua/forum/images/banner_gurova.gif" alt=""/></a>', 'html', 165, 190);
 //        banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=188770" target="_blank"><img src="http://raks.com.ua/forum/images/banner_poraksuem2.gif" alt=""/></a>', 'html', 165, 190);
 //        banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-        //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=189868" target="_blank"><img src="http://raks.com.ua/forum/images/banner_miss_2015_05_16.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_1[0]   = new Array ('<a href="https://vk.com/event92096058" target="_blank"><img src="http://raks.com.ua/forum/images/banner_gv.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16658" target="_blank"><img src="http://raks.com.ua/forum/images/ban2.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=189868" target="_blank"><img src="http://raks.com.ua/forum/images/banner_miss_2015_05_16.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="https://vk.com/event92096058" target="_blank"><img src="http://raks.com.ua/forum/images/banner_gv.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=16658" target="_blank"><img src="http://raks.com.ua/forum/images/ban2.gif" alt=""/></a>', 'html', 165, 190);
 //        banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
 //        banner_165_1[0]   = new Array ('http://raks.com.ua/forum/images/jm_raks.swf', 'swf', 165, 190);
-        //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18039" target="_blank"><img src="http://raks.com.ua/forum/images/banner_chulaevskaya.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198003" target="_blank"><img src="http://raks.com.ua/forum/images/solnce.gif" alt=""/></a>', 'html', 165, 190);
-        banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18091" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa3.gif" alt=""/></a>', 'html', 165, 190);
-        banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17899" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa2.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18039" target="_blank"><img src="http://raks.com.ua/forum/images/banner_chulaevskaya.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198003" target="_blank"><img src="http://raks.com.ua/forum/images/solnce.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[0] = new Array('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18091" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa3.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[1] = new Array('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17899" target="_blank"><img src="http://raks.com.ua/forum/images/banner_odessa2.gif" alt=""/></a>', 'html', 165, 190);
 
-        showBannerData('banner_165_1', banner_165_1);
+            showBannerData('banner_165_1', banner_165_1);
 
-        var banner_165_2  = new Array();
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-        banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=18118" target="_blank"><img src="http://raks.com.ua/forum/images/bellybel.gif" alt=""/></a>', 'html', 165, 190);
-        banner_165_2[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17854" target="_blank"><img src="http://raks.com.ua/forum/images/orient4.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=193553" target="_blank"><img src="http://raks.com.ua/forum/images/bekiki165_2.jpg" alt=""/></a>', 'html', 165, 190);
+            var banner_165_2 = new Array();
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[0] = new Array('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=18118" target="_blank"><img src="http://raks.com.ua/forum/images/bellybel.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_2[1] = new Array('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17854" target="_blank"><img src="http://raks.com.ua/forum/images/orient4.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=193553" target="_blank"><img src="http://raks.com.ua/forum/images/bekiki165_2.jpg" alt=""/></a>', 'html', 165, 190);
 
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&p=194945" target="_blank"><img src="http://raks.com.ua/forum/images/convention.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_2[0]   = new Array ('<a href="https://vk.com/rhinestone_shop" target="_blank"><img src="http://raks.com.ua/forum/images/banner_strazy.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=197941" target="_blank"><img src="http://raks.com.ua/forum/images/banner_rraks.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198461" target="_blank"><img src="http://raks.com.ua/forum/images/banner_hayat.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&p=194945" target="_blank"><img src="http://raks.com.ua/forum/images/convention.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="https://vk.com/rhinestone_shop" target="_blank"><img src="http://raks.com.ua/forum/images/banner_strazy.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=197941" target="_blank"><img src="http://raks.com.ua/forum/images/banner_rraks.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=198461" target="_blank"><img src="http://raks.com.ua/forum/images/banner_hayat.gif" alt=""/></a>', 'html', 165, 190);
 
-        //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=192809" target="_blank"><img src="http://raks.com.ua/forum/images/ban.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_2[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=192809" target="_blank"><img src="http://raks.com.ua/forum/images/ban.gif" alt=""/></a>', 'html', 165, 190);
 
-        showBannerData('banner_165_2', banner_165_2);
+            showBannerData('banner_165_2', banner_165_2);
 
-        var banner_165_3  = new Array();
+            var banner_165_3 = new Array();
 //        banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-        banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18109" target="_blank"><img src="http://raks.com.ua/forum/images/girl2.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_3[0] = new Array('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18109" target="_blank"><img src="http://raks.com.ua/forum/images/girl2.jpg" alt=""/></a>', 'html', 165, 190);
 
-        //banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=191743" target="_blank"><img src="http://raks.com.ua/forum/images/superdance2015.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17333" target="_blank"><img src="http://raks.com.ua/forum/images/banner_star_again.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_3[0]   = new Array ('<a href="http://shineart.com.ua/" target="_blank"><img src="http://raks.com.ua/forum/images/shineart.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18092" target="_blank"><img src="http://raks.com.ua/forum/images/train.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=191743" target="_blank"><img src="http://raks.com.ua/forum/images/superdance2015.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17333" target="_blank"><img src="http://raks.com.ua/forum/images/banner_star_again.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_3[0]   = new Array ('<a href="http://shineart.com.ua/" target="_blank"><img src="http://raks.com.ua/forum/images/shineart.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18092" target="_blank"><img src="http://raks.com.ua/forum/images/train.gif" alt=""/></a>', 'html', 165, 190);
 
-        //banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18043" target="_blank"><img src="http://raks.com.ua/forum/images/banner_esfir2.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18043" target="_blank"><img src="http://raks.com.ua/forum/images/banner_esfir2.gif" alt=""/></a>', 'html', 165, 190);
 
-        showBannerData('banner_165_3', banner_165_3);
+            showBannerData('banner_165_3', banner_165_3);
 
-        var banner_165_4  = new Array();
+            var banner_165_4 = new Array();
 //        banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
 //        banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17736" target="_blank"><img src="http://raks.com.ua/forum/images/gif_nn_cc_2.gif" alt=""/></a>', 'html', 165, 190);
 //        banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17967" target="_blank"><img src="http://raks.com.ua/forum/images/pervenstvo_gif_cc.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17743" target="_blank"><img src="http://raks.com.ua/forum/images/alla.gif" alt=""/></a>', 'html', 165, 190);
-        //banner_165_4[1]   = new Array ('<a href="http://class.soladance.com/" target="_blank"><img src="http://raks.com.ua/forum/images/vs_raks_banner.gif" alt=""/></a>', 'html', 165, 190);
-        banner_165_4[0]   = new Array ('http://raks.com.ua/forum/images/aj2-raks.swf', 'swf', 165, 190);
-        banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=195989" target="_blank"><img src="http://raks.com.ua/forum/images/banner_riker2.gif" alt=""/></a>', 'html', 165, 190);
-        showBannerData('banner_165_4', banner_165_4);
+            //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17743" target="_blank"><img src="http://raks.com.ua/forum/images/alla.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_4[1]   = new Array ('<a href="http://class.soladance.com/" target="_blank"><img src="http://raks.com.ua/forum/images/vs_raks_banner.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[0] = new Array('http://raks.com.ua/forum/images/aj2-raks.swf', 'swf', 165, 190);
+            banner_165_4[1] = new Array('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=195989" target="_blank"><img src="http://raks.com.ua/forum/images/banner_riker2.gif" alt=""/></a>', 'html', 165, 190);
+            showBannerData('banner_165_4', banner_165_4);
 
 
+            var banner_395_1 = new Array();
+            //banner_395_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="images/395_80.jpg" alt=""/></a>', 'html', 395, 80);
+            //banner_395_1[0]   = new Array ('<a href="http://himalayashop.com.ua/" target="_blank"><img src="images/himalaya.gif" alt=""/></a>', 'html', 395, 80);
+            //showBannerData('banner_395_1', banner_395_1);
 
-        var banner_395_1 = new Array();
-        //banner_395_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="images/395_80.jpg" alt=""/></a>', 'html', 395, 80);
-        //banner_395_1[0]   = new Array ('<a href="http://himalayashop.com.ua/" target="_blank"><img src="images/himalaya.gif" alt=""/></a>', 'html', 395, 80);
-        //showBannerData('banner_395_1', banner_395_1);
-
-        var banner_395_2 = new Array();
+            var banner_395_2 = new Array();
 //      showBannerData('banner_395_2', banner_395_2);
 
 
-        var banner_395_3 = new Array();
-        //showBannerData('banner_395_3', banner_395_3);
+            var banner_395_3 = new Array();
+            //showBannerData('banner_395_3', banner_395_3);
 
-        var banner_big_bottom  = new Array();
-        //banner_big_bottom[0]   = new Array ('<table width="100%"><tr align="center"><td align="center"><a href="http://himalayashop.com.ua/" target="_blank"><img src="images/himalaya.gif" alt=""/></a></td></tr></table>', 'container', 800, 60);
-        //showBannerData('banner_big_bottom', banner_big_bottom);
+            var banner_big_bottom = new Array();
+            //banner_big_bottom[0]   = new Array ('<table width="100%"><tr align="center"><td align="center"><a href="http://himalayashop.com.ua/" target="_blank"><img src="images/himalaya.gif" alt=""/></a></td></tr></table>', 'container', 800, 60);
+            //showBannerData('banner_big_bottom', banner_big_bottom);
 
 
-        var tmp = new Array();
-        var tmp2 = new Array();
-        var param = new Array();
-        var get = location.search;
-        if(get != '') {
-            tmp = (get.substr(1)).split('&');	// разделяем переменные
-            for(var i=0; i < tmp.length; i++) {
-                tmp2 = tmp[i].split('=');		// массив param будет содержать
-                param[tmp2[0]] = tmp2[1];		// пары ключ(имя переменной)->значение
+            var tmp = new Array();
+            var tmp2 = new Array();
+            var param = new Array();
+            var get = location.search;
+            if (get != '') {
+                tmp = (get.substr(1)).split('&');	// разделяем переменные
+                for (var i = 0; i < tmp.length; i++) {
+                    tmp2 = tmp[i].split('=');		// массив param будет содержать
+                    param[tmp2[0]] = tmp2[1];		// пары ключ(имя переменной)->значение
+                }
+                if ('t' in param && param['t'] == 13859) {
+                    //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&leftWidth=0&upHeight=0&apps=translations&cid=18917&autoplay=0", "sudak", "600", "400", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
+                }
+
+                if ('t' in param && param['t'] == 13843) {
+                    //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?upHeight=0&layout=2hor&leftWidth=512&apps=translations,chat&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
+                }
+
+                if ('t' in param && param['t'] == 14865) {
+                    var flashvars = {
+                        allowFullScreen: true
+                    };
+                    //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=2hor&leftWidth=512&upHeight=0&apps=translations,chat&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
+                    //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=2hor&leftWidth=512&upHeight=0&apps=translations,chat&cid=35097&autoplay=1", "sudak2", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
+
+                }
+
+                if ('t' in param && param['t'] == 15957) {
+
+                    var flashvars = {
+                        allowFullScreen: true
+                    };
+                    //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&leftWidth=0&upHeight=0&apps=translations&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
+                    //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&leftWidth=0&upHeight=0&apps=translations&cid=35097&autoplay=1", "sudak2", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
+
+                }
+
+                if ('t' in param && param['t'] == 16001) {
+
+                    var flashvars = {
+                        allowFullScreen: true
+                    };
+                    /*
+                     swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&apps=translations&cid=57211&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
+                     swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&apps=translations&cid=66859&autoplay=1", "sudak2", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
+                     */
+                }
+
+                //swfobject.embedSWF("http://embed.bambuser.com/channel/FeoTv", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
             }
-            if('t' in param && param['t'] == 13859){
-                //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&leftWidth=0&upHeight=0&apps=translations&cid=18917&autoplay=0", "sudak", "600", "400", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
-            }
+            //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=2hor&leftWidth=512&upHeight=0&apps=translations,chat&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
 
-            if('t' in param && param['t'] == 13843){
-                //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?upHeight=0&layout=2hor&leftWidth=512&apps=translations,chat&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
-            }
-
-            if('t' in param && param['t'] == 14865){
-                var flashvars = {
-                    allowFullScreen: true
-                };
-                //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=2hor&leftWidth=512&upHeight=0&apps=translations,chat&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
-                //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=2hor&leftWidth=512&upHeight=0&apps=translations,chat&cid=35097&autoplay=1", "sudak2", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
-
-            }
-
-            if('t' in param && param['t'] == 15957){
-
-                var flashvars = {
-                    allowFullScreen: true
-                };
-                //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&leftWidth=0&upHeight=0&apps=translations&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
-                //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&leftWidth=0&upHeight=0&apps=translations&cid=35097&autoplay=1", "sudak2", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
-
-            }
-
-            if('t' in param && param['t'] == 16001){
-
-                var flashvars = {
-                    allowFullScreen: true
-                };
-                /*
-                swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&apps=translations&cid=57211&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
-                swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=1full&apps=translations&cid=66859&autoplay=1", "sudak2", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
-*/
-            }
-
-            //swfobject.embedSWF("http://embed.bambuser.com/channel/FeoTv", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
         }
-        //swfobject.embedSWF("http://yatv.ru/files/swf/container.swf?layout=2hor&leftWidth=512&upHeight=0&apps=translations,chat&cid=35096&autoplay=1", "sudak", "800", "500", "10.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf", flashvars);
 
-    }
+    </script>
+    <script type="text/javascript">
 
-</script>
-<script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26367023-2']);
+        _gaq.push(['_setDomainName', '.com.ua']);
+        _gaq.push(['_trackPageview']);
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-26367023-2']);
-    _gaq.push(['_setDomainName', '.com.ua']);
-    _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
 
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>
+    </script>
 </head>
 <body class="{S_CONTENT_DIRECTION}">
-
+<script type="text/javascript">
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&version={RAKS_FACEBOOK_VERSION}&appId={RAKS_FACEBOOK_ID}";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 <!--script type="text/javascript" src="http://raks.com.ua/banners/banner.js"></script-->
 
 <a name="top"></a>
@@ -407,36 +421,85 @@
 
                         <a href="http://raks.com.ua/forum"><img src="http://raks.com.ua/forum/images/logo/logo_03.gif"/></a><br/>
                         <!--a href="http://raks.com.ua/forum"><img src="http://raks.com.ua/forum/images/loggo_03.gif"/></a><br/-->
-                        <h1 class="gen" style="color: #7eb5e8;">{SITE_DESCRIPTION}<br />&nbsp; </h1>
-                        <table width="101%"  cellspacing="0" cellpadding="0" border="0">
+                        <h1 class="gen" style="color: #7eb5e8;">{SITE_DESCRIPTION}<br/>&nbsp; </h1>
+                        <table width="101%" cellspacing="0" cellpadding="0" border="0">
                             <tr>
                                 <td align="center" valign="top">
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
-                                            <td align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;<a href="{U_FAQ}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12" height="13" border="0" alt="{L_FAQ}" hspace="3" />{L_FAQ}</a></span><span class="mainmenu">&nbsp; &nbsp;<a class="mainmenu" href="{U_MEDALS}"><img src="{T_THEME_PATH}/images/icon_medal.gif" width="12" height="13" alt="*" /> {L_MEDALS_VIEW}</a></span><span class="mainmenu">&nbsp; &nbsp;<a href="{U_SEARCH}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_search.gif" width="12" height="13" border="0" alt="{L_SEARCH}" hspace="3" />{L_SEARCH}</a>&nbsp; &nbsp;<a href="{U_MEMBERLIST}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_members.gif" width="12" height="13" border="0" alt="{L_MEMBERLIST}" hspace="3" />{L_MEMBERLIST}</a>&nbsp;
-						                  <!-- BEGIN switch_user_logged_out -->
-						                  <!-- END switch_user_logged_out -->
-						                  <a href="{U_LOGIN_LOGOUT}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" border="0" alt="{L_LOGIN_LOGOUT}" hspace="3" />{L_LOGIN_LOGOUT}</a>&nbsp;</span>
+                                            <td align="center" valign="top" nowrap="nowrap">
+                                                <span class="mainmenu">&nbsp;<a
+                                                        href="{U_FAQ}" class="mainmenu"><img
+                                                        src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12"
+                                                        height="13"
+                                                        border="0" alt="{L_FAQ}" hspace="3"/>{L_FAQ}</a>
+                                                </span>
+                                                <span class="mainmenu">&nbsp; &nbsp;
+                                                    <a class="mainmenu" href="{U_MEDALS}">
+                                                    <img src="{T_THEME_PATH}/images/icon_medal.gif" width="12" height="13"
+                                                        alt="*"/> {L_MEDALS_VIEW}</a>
+                                                </span>
+                                                <span class="mainmenu">&nbsp; &nbsp;
+                                                    <a
+                                                        href="{U_SEARCH}" class="mainmenu"><img
+                                                        src="{T_THEME_PATH}/images/icon_mini_search.gif" width="12"
+                                                        height="13" border="0" alt="{L_SEARCH}"
+                                                        hspace="3"/>{L_SEARCH}</a>&nbsp; &nbsp;
+                                                    <a
+                                                        href="{U_MEMBERLIST}" class="mainmenu"><img
+                                                        src="{T_THEME_PATH}/images/icon_mini_members.gif" width="12"
+                                                        height="13" border="0" alt="{L_MEMBERLIST}" hspace="3"/>{L_MEMBERLIST}</a>&nbsp;
+                                                    <!-- BEGIN switch_user_logged_out -->
+                                                    <!-- END switch_user_logged_out -->
+						                            <a href="{U_LOGIN_LOGOUT}" class="mainmenu">
+                                                        <img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" border="0" alt="{L_LOGIN_LOGOUT}" hspace="3"/>{L_LOGIN_LOGOUT}
+                                                    </a>&nbsp;
+                                                </span>
+                                                <!-- IF not S_USER_LOGGED_IN -->
+                                                <div class="fb-login-button" onlogin="afterFBLogin();" data-scope="public_profile,email,user_about_me" data-max-rows="1"
+                                                data-size="small" data-button-type="login_with" data-show-faces="false" style="top: 4px !important;"
+                                                data-auto-logout-link="false" data-use-continue-as="false"></div>
+                                                <!-- ENDIF -->
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td height="25" align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;
-						                  <!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
-						                  <a href="{U_PROFILE}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_profile.gif" width="12" height="13" border="0" alt="{L_PROFILE}" hspace="3" />{L_PROFILE}</a>&nbsp; &nbsp;<a href="{U_PRIVATEMSGS}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" border="0" alt="{PRIVATE_MESSAGE_INFO}" hspace="3" />{PRIVATE_MESSAGE_INFO}</a>&nbsp; &nbsp;
-                                          <!-- ELSEIF S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) -->
-                                          &nbsp;<a href="{U_REGISTER}" class="mainmenu"><img src="{T_THEME_PATH}/images/icon_mini_register.gif" width="12" height="13" border="0" alt="{L_REGISTER}" /> {L_REGISTER}</a>&nbsp;
+                                            <td height="25" align="center" valign="top" nowrap="nowrap"><span
+                                                    class="mainmenu">&nbsp;
+                                                <!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+						                  <a href="{U_PROFILE}" class="mainmenu"><img
+                                                  src="{T_THEME_PATH}/images/icon_mini_profile.gif" width="12"
+                                                  height="13" border="0" alt="{L_PROFILE}" hspace="3"/>{L_PROFILE}</a>&nbsp; &nbsp;<a
+                                                        href="{U_PRIVATEMSGS}" class="mainmenu"><img
+                                                        src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12"
+                                                        height="13" border="0" alt="{PRIVATE_MESSAGE_INFO}" hspace="3"/>{PRIVATE_MESSAGE_INFO}</a>&nbsp; &nbsp;
+                                                <!-- ELSEIF S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) -->
+                                          &nbsp;<a href="{U_REGISTER}" class="mainmenu"><img
+                                                        src="{T_THEME_PATH}/images/icon_mini_register.gif" width="12"
+                                                        height="13" border="0" alt="{L_REGISTER}"/> {L_REGISTER}</a>&nbsp;
 
                                                 <!-- ENDIF -->
                                                 &nbsp;<a href="disclaimer.html" target="_blank" class="mainmenu">Disclaimer</a>
-                                                &nbsp;<a href="http://raks.com.ua/" class="mainmenu" style="font-weight: bold;">ПОРТАЛ</a>
+                                                &nbsp;<a href="http://raks.com.ua/" class="mainmenu"
+                                                         style="font-weight: bold;">ПОРТАЛ</a>
                                             </td>
                                         </tr>
                                     </table>
                                     <div style="padding-top:30px;height: 190px;overflow:hidden" nowrap="nowrap">
-                                        <div id="banner_165_1" style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 60px;"><span id="banner_165_1_flash" style="padding:0px;margin:0px;"></span></div>
-                                        <div id="banner_165_2" style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 0px;"><div id="banner_165_2_flash" style="padding:0px;margin:0px;"></div></div>
-                                        <div id="banner_165_3" style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 0px;"><div id="banner_165_3_flash" style="padding:0px;margin:0px;"></div></div>
-                                        <div id="banner_165_4" style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 0px;"><div id="banner_165_4_flash" style="padding:0px;margin:0px;"></div></div>
+                                        <div id="banner_165_1"
+                                             style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 60px;">
+                                            <span id="banner_165_1_flash" style="padding:0px;margin:0px;"></span></div>
+                                        <div id="banner_165_2"
+                                             style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 0px;">
+                                            <div id="banner_165_2_flash" style="padding:0px;margin:0px;"></div>
+                                        </div>
+                                        <div id="banner_165_3"
+                                             style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 0px;">
+                                            <div id="banner_165_3_flash" style="padding:0px;margin:0px;"></div>
+                                        </div>
+                                        <div id="banner_165_4"
+                                             style="display:inline;float:left;width:165px;padding:0px;margin:0px 5px 0px 0px;">
+                                            <div id="banner_165_4_flash" style="padding:0px;margin:0px;"></div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -475,12 +538,15 @@
             </table>
             <br/>
             <center>
-                <div id="sudak" align="center"></div><br/>
-                <div id="sudak2" align="center"></div><br/>
-                <div id="sudak3" align="center"></div><br/>
+                <div id="sudak" align="center"></div>
+                <br/>
+                <div id="sudak2" align="center"></div>
+                <br/>
+                <div id="sudak3" align="center"></div>
+                <br/>
 
             </center>
             <!--iframe src="http://raks.com.ua/forum/banner_top.html" frameborder="0" width="100%" height="170px" scrolling="no" ></iframe-->
 
-            <script type="text/javascript" src="http://raks.com.ua/partner_links/dynamic_links.php"></script>
+            <script type="text/javascript" src="./../partner_links/dynamic_links.php"></script>
             </div>

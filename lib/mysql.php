@@ -93,6 +93,11 @@ function SQLConnect($params)
     return $dbh;
 }
 
+/**
+ * @param $query
+ * @param int $id
+ * @return array|null
+ */
 function SQLGet($query, $id = 0)
 {
     global $L3Config;
