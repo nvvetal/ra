@@ -1724,9 +1724,10 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
                     {
                         $template->assign_block_vars('postrow.medal.medal_row', array());
                     }
-
                     if ($medal['count'] > 1)
                     {
+                        $image = $phpbb_root_path . 'images/medals/' . $image ;
+/*
                         if ( $medal['dynamic'] )
                         {
                             $device = $phpbb_root_path . 'images/medals/devices/' . $medal['device'] . '-' . ($medal['count'] - 1) . '.gif' ;
@@ -1738,6 +1739,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
                             $image = substr_replace($image,$cluster, -4) . substr($image, -4) ;
                             $image = $phpbb_root_path . 'images/medals/' . $image ;
                         }
+*/
                     }
                     else
                     {
