@@ -8,7 +8,7 @@
 <body style="font-size: 20px; font-family: Verdana,Arial,Helvetica,sans-serif;">
 
 <center>
-    <img src="cid:logo" alt="" style="max-width: 600px; width: 600px;"/>
+    <img src="cid:logo" alt="" style="max-width: 800px; width: 800px;"/>
 </center>
 <br/><br/>
 
@@ -32,8 +32,8 @@
             </span>
         </span>
     </b><br/>
-    <img src="cid:who" alt="" style="max-width: 600px; width: 600px;"/><br/><br/>
-    <img src="cid:plan" alt="" style="max-width: 600px; width: 600px;"/>
+    <img src="cid:who" alt="" style="max-width: 800px; width: 800px;"/><br/><br/>
+    <img src="cid:plan" alt="" style="max-width: 800px; width: 800px;"/>
 </center>
 <br/><br/>
 
