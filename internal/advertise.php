@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv583';
+$advertise_company_id = 'adv585';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -71,7 +71,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 10,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise104.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise105.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -150,13 +150,13 @@ foreach ($users as $key=>$user){
 
 
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/express/Express.jpg", 'borisenko.gif', 'base64', 'image/gif');
-
+/*
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/sud/pologenie.docx", 'ПОЛОЖЕНИЕ МАКТУБ-2017.docx', 'base64', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/sud/songs.docx", 'songs_Orchestra Saafa Farid.docx', 'base64', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/sud/logo.jpg",'logo','logo.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/sud/who.jpg",'who','who.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/sud/plan.jpg",'plan','plan.jpg','base64','image/jpeg');
-
+*/
 
 //    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/faym/Polozhenie_festivalya_Osenniy_El-Fayum_2016_Obschee_33__33__33.doc",'положение.doc','base64','application/msword');
 //    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Fetisova.jpg",'fetisova','Fetisova.jpg','base64','image/jpeg');
@@ -164,9 +164,10 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha_sudi-gr.jpg",'img','sudi.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha-mk.jpg",'img2','afisha.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/yana/yana.jpg",'logo','yana.jpg','base64','image/jpeg');
 
 
-    $mail->Subject = '1-ый Международный Фестиваль Восточного Танца «МАКТУБ» 1 – 7 августа 2017г. Судак, Крым';
+    $mail->Subject = '10 дней МК с Raqia Hassan, H.Mahmoud, Kazafy, Aziza, H.Saber+Оркестр и др. - Пинск';
     //$mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
 
     $fileds = array(
