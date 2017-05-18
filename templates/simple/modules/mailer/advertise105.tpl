@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body style="font-size: 16px;">
+<body style="font-size: 14px;">
 
 Дорогие друзья, Приглашаем всех в <b>10-дневный Belly Camp с ведущими звёздами мирового Belly Dance.</b><br/>
 30 июня 2017 - по 9 июля 2017 (10 дней) в Пинске (Беларусь)<br/>
