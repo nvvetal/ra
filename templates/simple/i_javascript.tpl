@@ -61,7 +61,7 @@
 
     function refreshSocialButtons(){
         refreshFacebookButtons();
-        refreshVKButtons();
+
     }
 
     function refreshFacebookButtons(){
@@ -84,20 +84,6 @@
         FB.XFBML.parse();
     }
 
-    function refreshVKButtons(){
-        var vkShare = $('.vk_share');
-        vkShare.html('<div></div>');
-        $('.vk_share div').html(VK.Share.button({
-            url: vkShare.data('url'),
-            title: vkShare.data('title'),
-            description: vkShare.data('description'),
-            image: vkShare.data('image'),
-            noparse: vkShare.data('noparse')
-        },{
-            type: vkShare.data('type'),
-            text: vkShare.data('text')
-        }));
-    }
 
     function reloadSocialMetaTags(data)
     {
