@@ -41,7 +41,7 @@ function SQLQuery($query, $dbh = 0)
     //add_to_log( "[dbh ".var_export($dbh, true)."]", "mysql" );
     ##Run SQL Query
     $r = mysqli_query($dbh, $query);
-    add_to_log("[QUERY $query]", "mysqli_log");
+//    add_to_log("[QUERY $query]", "mysqli_log");
     $err = mysqli_error($dbh);
 
     if (!empty($err)) {
@@ -264,7 +264,7 @@ function SQLUpdate($table, $fields, $where = '', $id = 0)
     };
 
 
-    add_to_log($query . $where, "mysqli_update");
+    //add_to_log($query . $where, "mysqli_update");
     if ($id === 0) {
         $q = SQLQuery($query . $where);
         $err = mysqli_error();
