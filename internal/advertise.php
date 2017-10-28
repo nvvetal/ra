@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv591';
+$advertise_company_id = 'adv592';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
