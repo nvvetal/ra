@@ -7,10 +7,6 @@
 </head>
 <body style="font-size: 16px;font-weight: bold;">
 
-<center>
-    <img src="cid:logo" alt="" style="max-width: 1024px; width: 100%;"/>
-</center>
-<br/>
 Уважаемые танцовщицы и их родители!<br/><br/>
 
 Предлагаем вашему вниманию качественные костюмы на юниора, а также обувь и аксесуары.<br/>
@@ -19,6 +15,12 @@
 
 Более подробная информация и фото размещены в теме на форуме<br/>
 <a href="http://raks.com.ua/forum/viewtopic.php?f=146&t=18370&p=204382#p20438">http://raks.com.ua/forum/viewtopic.php?f=146&t=18370&p=204382#p204382</a>
+<br/><br/>
+<center>
+    <img src="cid:logo" alt="" style="max-width: 1024px; width: 100%;"/>
+</center>
+
+
 <br/><br/>
 -------------------------------<br/>
 Рассылка сделана при содействии форума <a href="http://raks.com.ua/forum/">RAKS.com.ua</a><br/>
