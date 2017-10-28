@@ -8,9 +8,9 @@
 <body style="font-size: 16px;font-weight: bold;">
 
 <center>
-    <img src="cid:logo" alt="" style="max-width: 100%; width: 100%;"/>
+    <img src="cid:logo" alt="" style="max-width: 1024px; width: 1024px;"/>
 </center>
-<br/><br/>
+<br/>
 Уважаемые танцовщицы и их родители!<br/><br/>
 
 Предлагаем вашему вниманию качественные костюмы на юниора, а также обувь и аксесуары.<br/>
