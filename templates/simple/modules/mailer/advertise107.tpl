@@ -8,7 +8,7 @@
 <body style="font-size: 16px;font-weight: bold;">
 
 <center>
-    <img src="cid:logo" alt="" style="max-width: 1024px; width: 1024px;"/>
+    <img src="cid:logo" alt="" style="max-width: 1024px; width: 100%;"/>
 </center>
 <br/>
 Уважаемые танцовщицы и их родители!<br/><br/>
