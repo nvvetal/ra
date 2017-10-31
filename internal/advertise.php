@@ -265,7 +265,7 @@ function isCampaignStarted($campaign, $dbh)
 
 function getCampaignRows($campaign, $cnt, $dbh)
 {
-    $q = 'SELECT * FROM mail WHERE campaign = '.SQLQuote($campaign). ' AND `status` = "new" LIMIT '.$cnt;
+    $q = 'SELECT * FROM mail WHERE campaign = '.SQLQuote($campaign). ' AND `status` = "new" AND email not like  "jhon.tho%@gmail.com" LIMIT '.$cnt;
     return SQLGetRows($q, $dbh);
 }
 
