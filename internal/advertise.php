@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv597';
+$advertise_company_id = 'adv598';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -169,6 +169,7 @@ foreach ($users as $key=>$user){
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/judges.jpg",'judges','judges.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/mk.jpg",'mk','mk.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/queen.jpg",'queen','queen.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/man.jpg",'man','man.jpg','base64','image/jpeg');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/star/pologenie.doc", 'Положение Звезда Востока 12.11.2017.doc', 'base64', 'application/msword');
 
     $mail->Subject = '11-12 ноября Кубок Восточной Украины "Звезда Востока"';

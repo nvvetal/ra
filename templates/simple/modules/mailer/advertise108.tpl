@@ -53,6 +53,10 @@
 </center>
 <br/><br/>
 <center>
+    <img src="cid:man" alt="" style="max-width: 1024px; width: 100%;"/>
+</center>
+<br/><br/>
+<center>
     <img src="cid:mk" alt="" style="max-width: 1024px; width: 100%;"/>
 </center>
 <br/><br/>
