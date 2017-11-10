@@ -11,7 +11,7 @@
                 <td align="center"id="banner_165_2">
                     <span id="banner_165_2_flash" style="padding:0px;margin:0px;"></span>
                 </td>
-                <td align="center"id="banner_165_3">
+                <td align="center"id="banner_165_3" style="max-width: 160px;max-height: 190px; ">
                     <span id="banner_165_3_flash" style="padding:0px;margin:0px;"></span>
                 </td>
                 <td align="center"id="banner_165_4">
