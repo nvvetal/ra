@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv602';
+$advertise_company_id = 'adv608';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -170,7 +170,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/mk.jpg",'mk','mk.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/queen.jpg",'queen','queen.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/man.jpg",'man','man.jpg','base64','image/jpeg');
-    //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/elf3/pologenie.doc", 'Положение фестиваля Зимний Эль-Фаюм 2018.doc', 'base64', 'application/msword');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/elf3/pologenie.doc", 'Положение фестиваля Зимний Эль-Фаюм 2018.doc', 'base64', 'application/msword');
 
     $mail->Subject = 'Зимний Эль фаюм 2018';
     //$mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
