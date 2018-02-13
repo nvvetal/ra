@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv610';
+$advertise_company_id = 'adv611';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -71,7 +71,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 10,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise109.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise110.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -162,18 +162,20 @@ foreach ($users as $key=>$user){
 //    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/super/Fetisova.jpg",'fetisova','Fetisova.jpg','base64','image/jpeg');
 
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha_sudi-gr.jpg",'img','sudi.jpg','base64','image/jpeg');
-    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha-mk.jpg",'img2','afisha.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/afisha-mk.jpg",'img2','pdfafisha.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/kha/arabic.jpg",'img3','arabic.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/junior/costumes.jpg",'logo','costumes.jpg','base64','image/jpeg');
 //    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/oriental2017/pologenie.pdf", 'Положение Запорожье (06ver10) Ориенталь 2-3 дек.pdf', 'base64', 'application/pdf.');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/judges.jpg",'judges','judges.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/mk.jpg",'mk','mk.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/queen.jpg",'queen','queen.jpg','base64','image/jpeg');
-    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/man.jpg",'man','man.jpg','base64','image/jpeg');
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/elf3/pologenie.doc", 'Положение фестиваля Зимний Эль-Фаюм 2018.doc', 'base64', 'application/msword');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/oasis1.jpg",'oasis1','oasis1.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/oasis3.jpg",'oasis3','oasis3.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/poster.jpg",'poster','poster.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/world_cup.jpg",'world_cup','world_cup.jpg','base64','image/jpeg');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/pologenie.pdf", 'Положение Золото Востока 19-22 апр.pdf', 'base64', 'application/pdf');
 
-    $mail->Subject = 'Зимний Эль фаюм 2018';
-    //$mail->Subject = 'Фестиваль восточного танца "Шамс эль Маср" 1-2.10.16 Киев';
+    $mail->Subject = '"Золото Востока" 19-22 апреля 2018, Киев';
 
     $fileds = array(
         "a_time"=>time(),
