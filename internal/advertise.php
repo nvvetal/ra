@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv611';
+$advertise_company_id = 'adv612';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -171,8 +171,8 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/queen.jpg",'queen','queen.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/oasis1.jpg",'oasis1','oasis1.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/oasis3.jpg",'oasis3','oasis3.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/poster.jpg",'poster','poster.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/world_cup.jpg",'world_cup','world_cup.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/half_poster.jpg",'poster','poster.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/half_world_cup.jpg",'world_cup','world_cup.jpg','base64','image/jpeg');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/gold3/pologenie.pdf", 'Положение Золото Востока 19-22 апр.pdf', 'base64', 'application/pdf');
 
     $mail->Subject = '"Золото Востока" 19-22 апреля 2018, Киев';
