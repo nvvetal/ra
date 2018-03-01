@@ -184,6 +184,7 @@
             //banner_165_4[0]   = new Array ('http://raks.com.ua/forum/images/aj2-raks.swf', 'swf', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18298" target="_blank"><img src="http://raks.com.ua/forum/images/CHAMP2_2.gif" alt=""/></a>', 'html', 165, 190);
             banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=18519" target="_blank"><img src="http://raks.com.ua/forum/images/belarus_4.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18251" target="_blank"><img src="http://raks.com.ua/forum/images/ju.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17971" target="_blank"><img src="http://raks.com.ua/forum/images/banner_enigma2.gif" alt=""/></a>', 'html', 165, 190);
 
             showBannerData('banner_165_4', banner_165_4);
