@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv617';
+$advertise_company_id = 'adv620';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -169,11 +169,11 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/judges.jpg",'judges','judges.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/mk.jpg",'mk','mk.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/star/queen.jpg",'queen','queen.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grid/afisha.jpg",'afisha','afisha.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grid/afisha_mk.jpg",'afisha_mk','afisha_mk.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grid/afisha_korona.jpg",'afisha_korona','afisha_korona.jpg','base64','image/jpeg');
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grid/pologenie.pdf", 'Положение Grand Orient (1ver18) 11-13 мая', 'base64', 'application/pdf');
-    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grid/zayava.xls",'Заявка бланк.xls','base64','application/vnd.ms-excel');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/half2_afisha.jpg",'afisha','afisha.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/half2_afisha_mk.jpg",'afisha_mk','afisha_mk.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/half2_afisha_korona.jpg",'afisha_korona','afisha_korona.jpg','base64','image/jpeg');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/pologenie.pdf", 'Положение Grand Orient (1ver18) 11-13 мая.pdf', 'base64', 'application/pdf');
+    $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/zayava.xls",'Заявка бланк.xls','base64','application/vnd.ms-excel');
     $mail->Subject = 'Grand Orient. Мировые звезды в Кривом Роге. 11-13 мая 2018 г.';
 
     $fileds = array(
