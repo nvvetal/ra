@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv621';
+$advertise_company_id = 'adv622';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -71,7 +71,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 10,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise111.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise112.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -174,7 +174,7 @@ foreach ($users as $key=>$user){
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/half2_afisha_korona.jpg",'afisha_korona','afisha_korona.jpg','base64','image/jpeg');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/pologenie.pdf", 'Положение Grand Orient (1ver18) 11-13 мая.pdf', 'base64', 'application/pdf');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/zayava.xls",'Заявка бланк.xls','base64','application/vnd.ms-excel');
-    $mail->Subject = 'Grand Orient. Мировые звезды в Кривом Роге. 11-13 мая 2018 г.';
+    $mail->Subject = 'Приглашаем Вас на фестиваль "Летний Эль Фаюм 2018"';
 
     $fileds = array(
         "a_time"=>time(),
