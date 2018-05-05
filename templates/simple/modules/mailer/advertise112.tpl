@@ -5,22 +5,22 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body style="font-size: 14px; font-family: arial,sans-serif;">
+<div style="font-size: 16px; font-family: arial,sans-serif;">
 <div style="text-align: center;">
     <b>
-    <div style="font-size: 13px;color: #e36c0a;">
+    <div style="font-size: 14px;color: #e36c0a;">
         Украинская Ассоциация Исполнителей Восточного Танца<br/><br/>
     </div>
-    <div style="font-size: 13px;color: #984806;">
-        Киевское Областное Отделение Украинской Ассоциации Исполнителей Восточного Танца<br/>
+    <div style="font-size: 14px;color: #984806;">
+        Киевское Областное Отделение Украинской Ассоциации Исполнителей Восточного Танца<br/><br/>
     </div>
-    <div style="font-size: 13px;color: #e36c0a;">
+    <div style="font-size: 14px;color: #e36c0a;">
         Центр восточной культуры «Роксана»<br/>
     </div>
 
     <br/>
 
-    <div style="font-size: 18px;">
+    <div style="font-size: 20px;">
         приглашают Вас принять участие<br/><br/>
 
         в фестивале восточных, индийских, цыганских танцев<br/><br/>
@@ -37,61 +37,63 @@
 
 <span style="font-family: 'Comic Sans MS'"><b><u>Дата проведения фестиваля 1-3 июня:</u></b></span>
 <br/><br/><br/>
-
-&nbsp;&nbsp;<b>2 июня 2018 года (суббота):<br/><br/>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> ЧЕМПИОНАТ КИЕВСКОЙ ОБЛАСТИ по восточным, индийским, цыганским танцам и
+<div style="margin-left: 15px;">
+    2 июня 2018 года (суббота):<br/><br/>
+    </div>
+<div style="margin-left: 30px;">
+    <span style="font-family:Wingdings">-</span> ЧЕМПИОНАТ КИЕВСКОЙ ОБЛАСТИ по восточным, индийским, цыганским танцам и
     танцам народов мира</b> (ОТБОРОЧНЫЙ НА ЧЕМПИОНАТ УКРАИНЫ)<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span><b> Показ дизайнеров восточных костюмов (5-10 моделей)</b><br/><br/><br/><br/>
-
+<span style="font-family:Wingdings">-</span><b> Показ дизайнеров восточных костюмов (5-10 моделей)</b><br/><br/><br/><br/>
+</div>
 <b>
-    &nbsp;&nbsp;1 и 3 июня 2018 года Обучающие мастер-классы:<br/><br/><br/>
+    <div style="margin-left: 15px;">
+    1 и 3 июня 2018 года Обучающие мастер-классы:<br/><br/><br/>
 
 
-    &nbsp;&nbsp;1 июня (пятница) 19:00-20:30 Сергей Алиферов «Импровизация под таблу»<br/><br/><br/>
+    1 июня (пятница) 19:00-20:30 Сергей Алиферов «Импровизация под таблу»<br/><br/><br/>
 
 
-    &nbsp;&nbsp;3 июня 13:00-15:00 Кристина Деркач «Шааби»<br/><br/><br/>
+    3 июня 13:00-15:00 Кристина Деркач «Шааби»<br/><br/><br/>
 
 
-    &nbsp;&nbsp;Место проведения мастер-классов: ул.Гарматная 26/2, ДК «Росток»<br/><br/>
+    Место проведения мастер-классов: ул.Гарматная 26/2, ДК «Росток»<br/><br/>
 
-    &nbsp;&nbsp;Стоимость участия в МК:<br/><br/>
+    Стоимость участия в МК:<br/><br/>
 
-    &nbsp;&nbsp;- Сергей Алиферов: дети до 10 лет 200 грн, старше 10 и взрослые – 250 грн<br/><br/>
+    - Сергей Алиферов: дети до 10 лет 200 грн, старше 10 и взрослые – 250 грн<br/><br/>
 
-    &nbsp;&nbsp;- Кристина Деркач: дети д 10 лет 250 грн, старше 10 и взрослые – 300 грн<br/><br/><br/><br/>
-
-
-    &nbsp;&nbsp;Регистрация на МК: <a href="mailto:931730@ukr.net">931730@ukr.net</a><br/><br/><br/><br/><br/>
+    - Кристина Деркач: дети д 10 лет 250 грн, старше 10 и взрослые – 300 грн<br/><br/><br/><br/>
 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: 'Comic Sans MS';"><u>Место проведения Чемпионата:</u></span><br/><br/>
+    Регистрация на МК: <a href="mailto:931730@ukr.net">931730@ukr.net</a><br/><br/><br/><br/><br/>
+    </div>
+    <div style="margin-left: 30px;">
+    <span style="font-family: 'Comic Sans MS';"><u>Место проведения Чемпионата:</u></span><br/><br/>
 </b>
-&nbsp;&nbsp;&nbsp;&nbsp;г.Киев, ул.Жмаченко 26, Колледж туризма и гостиничного хозяйства «Гостеприимство».<br/><br/><br/>
+г.Киев, ул.Жмаченко 26, Колледж туризма и гостиничного хозяйства «Гостеприимство».<br/><br/><br/>
 
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Организаторы:</u></b></span><br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Украинская Ассоциация Исполнителей Восточного Танца «УАВСТ»<br/><br/>
+<span style="font-family:Wingdings">-</span> Украинская Ассоциация Исполнителей Восточного Танца «УАВСТ»<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Киевское областное отделение УАВСТ<br/><br/>
+<span style="font-family:Wingdings">-</span> Киевское областное отделение УАВСТ<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Центр восточной культуры «Роксана»<br/><br/><br/>
+<span style="font-family:Wingdings">-</span> Центр восточной культуры «Роксана»<br/><br/><br/>
 
-
+</div>
 <span style="font-family: 'Comic Sans MS';"><b><u>Главный судья:</u></b></span><br/><br/>
-
-&nbsp;&nbsp;&nbsp;&nbsp;Сания Алиферова (Президент Киевского отделения УАВСТ, Руководитель Центра восточной культуры «Роксана»)<br/><br/><br/>
-
+<div style="margin-left: 30px;">
+Сания Алиферова (Президент Киевского отделения УАВСТ, Руководитель Центра восточной культуры «Роксана»)<br/><br/><br/>
+</div>
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Судейская коллегия:</u></b></span><br/><br/>
+<div style="margin-left: 30px;">
+Звезды Украины и лицензированные судьи УАВСТ и других танцевальных организаций<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;Звезды Украины и лицензированные судьи УАВСТ и других танцевальных организаций<br/><br/>
-
-&nbsp;&nbsp;&nbsp;&nbsp;Кристина Деркач, Ирина Шапоренко, Виктория Господинова и другие.<br/><br/><br/>
-
+Кристина Деркач, Ирина Шапоренко, Виктория Господинова и другие.<br/><br/><br/>
+</div>
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Информационный партнер фестиваля:</u></b></span><br/><br/>
 
@@ -100,53 +102,53 @@
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Цели и задачи фестиваля:</u></b></span><br/><br/><br/>
 
+<div style="margin-left: 30px;">
+<span style="font-family:Wingdings">-</span> Популяризация и развитие восточных, индийских и цыганских танцев, как сценического вида искусства<br/><br/>
+<span style="font-family:Wingdings">-</span> Ознакомление общественности с красотой восточных, индийских и цыганских танцев и тенденциями их развития в Украине<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Популяризация и развитие восточных, индийских и цыганских танцев, как сценического вида искусства<br/><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Ознакомление общественности с красотой восточных, индийских и цыганских танцев и тенденциями их развития в Украине<br/><br/>
-
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Развитие аматорского хореографического искусства среди детей, молодежи и
+<span style="font-family:Wingdings">-</span> Развитие аматорского хореографического искусства среди детей, молодежи и
 взрослых<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Утверждение существующих танцевальных коллективов восточных танцев и
+<span style="font-family:Wingdings">-</span> Утверждение существующих танцевальных коллективов восточных танцев и
 привлечение новых участников<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Выявление творчески одарённых личностей<br/><br/>
+<span style="font-family:Wingdings">-</span> Выявление творчески одарённых личностей<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Определение лучших исполнителей восточных, индийских и цыганских танцев
+<span style="font-family:Wingdings">-</span> Определение лучших исполнителей восточных, индийских и цыганских танцев
 среди любителей<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Обмен опытом среди руководителей общественных танцевальных организаций,
+<span style="font-family:Wingdings">-</span> Обмен опытом среди руководителей общественных танцевальных организаций,
 руководителей и тренеров школ восточных танцев<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Организация в рамках фестиваля обучающих мастер-классов по хореографии
+<span style="font-family:Wingdings">-</span> Организация в рамках фестиваля обучающих мастер-классов по хореографии
 восточного танца с целью повышения уровня профессионализма украинских исполнителей<br/><br/><br/>
-
+</div>
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Награждение:</u></b></span><br/><br/>
-
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Дипломами награждаются ВСЕ участники лиги «Дебют»; все финалисты остальных
+<div style="margin-left: 30px;">
+<span style="font-family:Wingdings">-</span> Дипломами награждаются ВСЕ участники лиги «Дебют»; все финалисты остальных
 лиг<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> В номинации «Дебют импровизация» и «Дебют минута славы» - медальный зачет<br/><br/>
+<span style="font-family:Wingdings">-</span> В номинации «Дебют импровизация» и «Дебют минута славы» - медальный зачет<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;Медалями награждаются призеры-солисты и дуэты (1,2,3 места), кубками награждаются победители в номинациях группы и
+Медалями награждаются призеры-солисты и дуэты (1,2,3 места), кубками награждаются победители в номинациях группы и
 формейшны<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">-</span> Самая массовая Школа Чемпионата (Школа, которая даст самое большое кол-во
+<span style="font-family:Wingdings">-</span> Самая массовая Школа Чемпионата (Школа, которая даст самое большое кол-во
 участий) награждается БОЛЬШИМ кубком фестиваля<br/><br/>
-
+</div>
 *Возможны дополнительные призы для участников на усмотрение спонсоров, организаторов и судей.<br/><br/><br/>
 
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Номинации конкурса:</u></b></span><br/><br/>
-
-&nbsp;&nbsp;&nbsp;&nbsp;- Соло<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- Дуэты, Дуэты-"Дочки-матери", Дуэты-«PRO-AM»<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- Трио, Трио-«PRO-AM»<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- Группы, Группы-«PRO-AM»<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- Формейшн (8-24 человек), Формейшн-«PRO-AM»<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- Продакшн (25 и более), Продакшн -«PRO-AM»<br/><br/><br/>
-
+<div style="margin-left: 30px;">
+- Соло<br/>
+- Дуэты, Дуэты-"Дочки-матери", Дуэты-«PRO-AM»<br/>
+- Трио, Трио-«PRO-AM»<br/>
+- Группы, Группы-«PRO-AM»<br/>
+- Формейшн (8-24 человек), Формейшн-«PRO-AM»<br/>
+- Продакшн (25 и более), Продакшн -«PRO-AM»<br/><br/><br/>
+</div>
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Стили (программа):</u></b></span><br/>
 <ul>
@@ -264,22 +266,23 @@
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Длительность композиций:</u></b></span></br/><br/>
 <span style="font-size: 80%">
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Конкурс «Импровизация»:</b> по 1 минуте для общего захода и по 30 секунд для индивидуального захода танцовщиц под музыку организаторов.<br/><br/><br/>
-
+    <div style="margin-left: 30px;">
+<b>Конкурс «Импровизация»:</b> по 1 минуте для общего захода и по 30 секунд для индивидуального захода танцовщиц под музыку организаторов.<br/><br/><br/>
+    </div>
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Полуфинал:</u></b></span><br/><br/>
+<div style="margin-left: 30px;">
+<span style="font-family:Wingdings">ü</span> Соло лига «Начинающие» - 1 минута<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">ü</span> Соло лига «Начинающие» - 1 минута<br/><br/>
+<span style="font-family:Wingdings">ü</span> Соло «Открытая лига» - 1,15 минуты<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">ü</span> Соло «Открытая лига» - 1,15 минуты<br/><br/>
+<span style="font-family:Wingdings">ü</span> Соло «Высшая лига» - 1,5 минуты<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">ü</span> Соло «Высшая лига» - 1,5 минуты<br/><br/>
+<span style="font-family:Wingdings">ü</span> Соло лига «Любители» - 2 минуты<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">ü</span> Соло лига «Любители» - 2 минуты<br/><br/>
+<span style="font-family:Wingdings">ü</span> Соло лига «Профессионалы» - 2,5 минуты<br/><br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">ü</span> Соло лига «Профессионалы» - 2,5 минуты<br/><br/>
-
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:Wingdings">ü</span> Соло лига «Суперстар» - 3 минуты<br/><br/><br/>
+<span style="font-family:Wingdings">ü</span> Соло лига «Суперстар» - 3 минуты<br/><br/><br/>
 
 
 <i>Полуфиналы не будут проводиться в том случае, если в категории зарегистрировано не более 10 участников.</i><br/><br/><br/>
