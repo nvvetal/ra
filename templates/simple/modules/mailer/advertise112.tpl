@@ -70,12 +70,15 @@
     </div>
     <div style="margin-left: 30px;">
     <span style="font-family: 'Comic Sans MS';"><u>Место проведения Чемпионата:</u></span><br/><br/>
+    </div>
 </b>
+    <div style="margin-left: 30px;">
 г.Киев, ул.Жмаченко 26, Колледж туризма и гостиничного хозяйства «Гостеприимство».<br/><br/><br/>
+    </div>
 
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Организаторы:</u></b></span><br/><br/>
-
+    <div style="margin-left: 30px;">
 <span style="font-family:Wingdings">-</span> Украинская Ассоциация Исполнителей Восточного Танца «УАВСТ»<br/><br/>
 
 <span style="font-family:Wingdings">-</span> Киевское областное отделение УАВСТ<br/><br/>
@@ -185,10 +188,10 @@
         исполнителей. Не допускается использование не арабской музыки или ремиксы!<br/>
     </li>
     <li><b>Фольклор для солистов (Костюм и музыка должны соответствовать исполняемому стилю):</b>
-        <ol>
+        <ul>
             <li><b>Египетский фольклор</b> – балади, шааби, саиди, нуба, александрия, гавейзи, фалляхи и т.п.</li>
             <li><b>Неегипетский фольклор</b> – халиджи, ираки, алжир, тунис, марокко, дабка, бандари и т.п.</li>
-        </ol><br/>
+        </ul><br/>
     </li>
     <li><b>Фольклор для дуэтов, групп и формейшнов (Костюм и музыка должны соответствовать исполняемому стилю)</b><br/></li>
     <li><b><span style="color: red">NEW!!!</span> СТРИТ-ШААБИ для солистов, дуэтов, групп и формейшнов</b><br/></li>
@@ -224,7 +227,7 @@
 </ul>
 <br/><br/>
 <span style="font-family: 'Comic Sans MS';"><b><u>Возрастные категории участников:</u></b></span><br/><br/>
-
+    <div style="margin-left: 30px;">
 <span style="font-family:Wingdings">ü</span> Супер-бэби (до 5 лет)<br/><br/>
 
 <span style="font-family:Wingdings">ü</span> Бэби (6-7 лет)<br/><br/>
@@ -242,10 +245,10 @@
 <span style="font-family:Wingdings">ü</span> Взрослые (22 - 35 лет)<br/><br/>
 
 <span style="font-family:Wingdings">ü</span> Сеньоры (36 лет и старше)<br/><br/><br/>
-
+    </div>
 
 <span style="font-family: 'Comic Sans MS';"><b><u>Лиги:</u></b></span><br/><br/>
-
+    <div style="margin-left: 30px;">
 <span style="font-family:Wingdings">ü</span> Дебют (1-й год обучения)<br/><br/>
 
 <span style="font-family:Wingdings">ü</span> Начинающие (1 - 2 года обучения)<br/><br/>
@@ -259,7 +262,7 @@
 <span style="font-family:Wingdings">ü</span> Профессионалы<br/><br/>
 
 <span style="font-family:Wingdings">ü</span> Супер-стар<br/><br/><br/>
-
+    </div>
 
 <b><u>Организаторы оставляют за собой право объединять категории, в случае малого количества заявок.</u></b><br/><br/><br/>
 <br/>
@@ -323,12 +326,12 @@
 
 
 <b>Предварительная заявка</b><br/><br/>
-
+    <div style="margin-left: 30px;">
 на e-mail <a href="">931730@ukr.net</a><br/><br/><br/>
-
+    </div>
 
 В заявке указать:<br/><br/>
-
+    <div style="margin-left: 30px;">
 1. Ф.И.О. исполнителя (исполнителей)<br/><br/>
 
 2. Контактный телефон<br/><br/>
@@ -336,12 +339,12 @@
 3. Город, Школа, Тренер<br/><br/>
 
 4. Лига, Возрастная категория, Стиль (Программа)<br/><br/>
-
+    </div>
 <b><u>В письмо вложить файл – вашу музыкальную композицию в mp3 формате. БЕЗ МУЗЫКИ ЗАЯВКА НЕ ПРИНИМАЕТСЯ!</u></b><br/><br/><br/>
 
-
+    <div style="margin-left: 30px;">
 <span style="color:red"><b>Внимание!</b></span><br/><br/>
-
+    </div>
 Заявка считается принятой ТОЛЬКО после подтверждения от организаторов!<br/><br/>
 
 <b>Предварительные заявки на участие в конкурсе принимаются до 27 мая 2018 г. включительно.</b><br/><br/><br/>
