@@ -235,7 +235,7 @@ function sendRaksMoney($forumUserId, $rule, $params = array())
         }
     }
     
-    $url = 'http://'.$_SERVER['HTTP_HOST'].'/forum/raksMoney.php?forumUserId='.$forumUserId.'&rule='.urlencode($rule).$pUrl;
+    $url = 'https://'.$_SERVER['HTTP_HOST'].'/forum/raksMoney.php?forumUserId='.$forumUserId.'&rule='.urlencode($rule).$pUrl;
     try {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
