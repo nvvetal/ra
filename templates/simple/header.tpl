@@ -112,7 +112,7 @@
                 document.getElementById(name).innerHTML = banners[currentId][0];
             }
             if (banners[currentId][1] == 'swf') {
-                swfobject.embedSWF(banners[currentId][0], name + "_flash", banners[currentId][2], banners[currentId][3], "10.0.0.0", "http://raks.com.ua/forum/swfobject/expressInstall.swf");
+                swfobject.embedSWF(banners[currentId][0], name + "_flash", banners[currentId][2], banners[currentId][3], "10.0.0.0", "https://raks.com.ua/forum/swfobject/expressInstall.swf");
             }
             if (banners[currentId][1] == 'container') {
                 document.getElementById(name).innerHTML = banners[currentId][0];
