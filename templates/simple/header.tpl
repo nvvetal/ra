@@ -34,7 +34,7 @@
     {if $use_module_css == 1}
         <link rel="stylesheet" href="{$http_css_path}{$module_name}.css" type="text/css" media="screen, projection"/>
     {/if}
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript"
             src="{$http_project_path}jQuery/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="{$http_project_path}ckeditor/ckeditor.js"></script>
