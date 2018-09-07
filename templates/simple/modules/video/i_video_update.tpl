@@ -3,7 +3,7 @@
 	<tr valign="top">
 		<td>{"Video link"|i18n}<span class="required">*</span></td>
 		<td width="500">
-			<textarea id="link" name="link" style="width:100%">http://youtube.com/watch?v={$video->youtube_id}</textarea>			
+			<textarea id="link" name="link" style="width:100%">https://youtube.com/watch?v={$video->youtube_id}</textarea>
 		</td>
 	</tr>
 	<tr valign="top">		

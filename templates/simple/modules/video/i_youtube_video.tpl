@@ -1,1 +1,1 @@
-<iframe width="{$videoWidth}" height="{$videoHeight}" src="http://www.youtube.com/embed/{$youtubeId}" frameborder="0" allowfullscreen></iframe>
+<iframe width="{$videoWidth}" height="{$videoHeight}" src="https://www.youtube.com/embed/{$youtubeId}" frameborder="0" allowfullscreen></iframe>
