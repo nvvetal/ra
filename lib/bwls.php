@@ -32,6 +32,7 @@ function bwls($go, $action, $params)
                     }
                     echo "<pre>";
                     var_dump($_POST);
+
                     $resp = recaptcha_verify($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], @$_POST["g_recaptcha_response"]);
                     if (!$resp) {
                         $params['smarty']->assign('errors', array('register' => array('message' => 'Wrong captcha!')));
