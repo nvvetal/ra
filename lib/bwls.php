@@ -30,6 +30,8 @@ function bwls($go, $action, $params)
                         add_to_log("[error pass not equals]" . prepare_array_to_log($u_params), "error_register");
                         return $go;
                     }
+                    echo "<pre>";
+                    var_dump($_POST);
                     $resp = recaptcha_verify($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], @$_POST["g_recaptcha_response"]);
                     if (!$resp) {
                         $params['smarty']->assign('errors', array('register' => array('message' => 'Wrong captcha!')));
