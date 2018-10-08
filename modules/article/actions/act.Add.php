@@ -6,7 +6,7 @@ function articleActionAdd( ActionProcessor $actionProcessor )
     $errors = array();
     //require_once("captcha/recaptchalib.php");
     require_once("captcha/recaptchalib2.php");
-    $resp = recaptcha_verify($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], $_POST["g_recaptcha_response"]);
+    $resp = recaptcha_verify($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], $_POST["g-recaptcha-response"]);
     if (!$resp) {
         $errors['captcha'] = array('message'=>'Wrong captcha!');
     }
