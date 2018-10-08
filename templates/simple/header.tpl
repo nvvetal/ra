@@ -141,8 +141,8 @@
 //            banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18272" target="_blank"><img src="http://raks.com.ua/forum/images/giphy.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_1[0]   = new Array ('<a href="https://www.sportandtour.com.ua/kalendar" target="_blank"><img src="http://raks.com.ua/forum/images/banner_nava.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18203" target="_blank"><img src="http://raks.com.ua/forum/images/amirrra.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=206471" target="_blank"><img src="http://raks.com.ua/forum/images/bagira3.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_1[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18674" target="_blank"><img src="http://raks.com.ua/forum/images/orient_empire.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&p=206471" target="_blank"><img src="http://raks.com.ua/forum/images/bagira3.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18674" target="_blank"><img src="http://raks.com.ua/forum/images/orient_empire.gif" alt=""/></a>', 'html', 165, 190);
 
 //
 
@@ -174,8 +174,8 @@
             //banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18043" target="_blank"><img src="http://raks.com.ua/forum/images/banner_esfir2.gif" alt=""/></a>', 'html', 165, 190);
 
             //banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18234" target="_blank"><img src="http://raks.com.ua/forum/images/cairo.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18327" target="_blank"><img src="http://raks.com.ua/forum/images/afalina.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=18706" target="_blank"><img src="http://raks.com.ua/forum/images/29_october.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18327" target="_blank"><img src="http://raks.com.ua/forum/images/afalina.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_3[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=164&t=18706" target="_blank"><img src="http://raks.com.ua/forum/images/29_october.gif" alt=""/></a>', 'html', 165, 190);
 
             //banner_165_3[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18149" target="_blank"><img src="http://raks.com.ua/forum/images/gold5.gif" alt=""/></a>', 'html', 165, 190);
 
@@ -194,9 +194,9 @@
 //            banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18251" target="_blank"><img src="http://raks.com.ua/forum/images/ju.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17971" target="_blank"><img src="http://raks.com.ua/forum/images/banner_enigma2.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18327" target="_blank"><img src="http://raks.com.ua/forum/images/afalina.gif" alt=""/></a>', 'html', 165, 190);
-            //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18659" target="_blank"><img src="http://raks.com.ua/forum/images/superstar_.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18702" target="_blank"><img src="http://raks.com.ua/forum/images/super_star.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18702" target="_blank"><img src="http://raks.com.ua/forum/images/super_star.gif" alt=""/></a>', 'html', 165, 190);
 
             showBannerData('banner_165_4', banner_165_4);
         }
