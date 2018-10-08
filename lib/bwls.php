@@ -10,7 +10,8 @@ function bwls($go, $action, $params)
             switch ($action) {
                 case "register_user":
                     require_once($GLOBALS['CLASSES_DIR'] . "User_container.class.php");
-                    require_once("captcha/recaptchalib.php");
+                    //require_once("captcha/recaptchalib.php");
+                    require_once("captcha/recaptchalib2.php");
                     $user_container_class = new User_container($params['Validator'], $params['User']);
                     $email = @$_REQUEST['register_email'];
                     $pass = isset($_REQUEST['register_password']) ? $_REQUEST['register_password'] : '';
@@ -29,8 +30,8 @@ function bwls($go, $action, $params)
                         add_to_log("[error pass not equals]" . prepare_array_to_log($u_params), "error_register");
                         return $go;
                     }
-                    $resp = recaptcha_check_answer($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
-                    if (!$resp->is_valid) {
+                    $resp = recaptcha_verify($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], @$_POST["g_recaptcha_response"]);
+                    if (!$resp) {
                         $params['smarty']->assign('errors', array('register' => array('message' => 'Wrong captcha!')));
                         add_to_log("[error wrong captcha]" . prepare_array_to_log($u_params), "error_register");
                         return $go;

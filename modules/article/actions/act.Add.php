@@ -4,9 +4,10 @@ function articleActionAdd( ActionProcessor $actionProcessor )
 {
     $templator = $actionProcessor->getParam('templator');
     $errors = array();
-    require_once("captcha/recaptchalib.php");
-    $resp = recaptcha_check_answer($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-    if (!$resp->is_valid) {
+    //require_once("captcha/recaptchalib.php");
+    require_once("captcha/recaptchalib2.php");
+    $resp = recaptcha_verify($GLOBALS['CAPTCHA']['private'], $_SERVER["REMOTE_ADDR"], $_POST["g_recaptcha_response"]);
+    if (!$resp) {
         $errors['captcha'] = array('message'=>'Wrong captcha!');
     }
     $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : '';
