@@ -52,14 +52,16 @@
     <script type="text/javascript" src="{$http_project_path}select2/select2.js"></script>
 
     {if $showCaptcha == 1}
-        <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     {literal}
         <script type="text/javascript">
             function showRecaptcha(element) {
+                /*
                 Recaptcha.create("{/literal}{$captcha.public}{literal}", element, {
                     theme: "white",
                     lang: "ru"
                 });
+                */
             }
             $(document).ready(function () {
                 showRecaptcha('recaptcha_div');

@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <div id="recaptcha_div"></div>
+                <div id="recaptcha_div" class="g-recaptcha" data-sitekey="{$captcha.public}"></div>
             </td>
         </tr>
         {if $is_use_form == 1}

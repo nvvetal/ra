@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center">
-                <div id="recaptcha_div" style="padding-left:100px;"></div>
+                <div id="recaptcha_div" class="g-recaptcha" data-sitekey="{$captcha.public}" style="padding-left:100px;"></div>
             </td>
         </tr>
         <tr>
