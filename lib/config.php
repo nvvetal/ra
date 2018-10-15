@@ -271,7 +271,7 @@ if(!empty($userId)){
 /**
  * @var $mailer Mail
  */
-$mailer = new Mail($GLOBALS['mailParams']);
+$mailer = new Mail($GLOBALS['mailParams2']);
 Registry::set('mailer', $mailer);
 
 $facebook = new Facebook();
