@@ -16,10 +16,10 @@ class Mail
         $this->mailer->CharSet = 'UTF-8';
         $this->mailer->Host       = $params['host']; // SMTP server example
         $this->mailer->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-        $this->mailer->SMTPAuth   = true;                  // enable SMTP authentication
+        $this->mailer->SMTPAuth   = false;                  // enable SMTP authentication
         $this->mailer->Port       = $params['port'];                    // set the SMTP port for the GMAIL server
-        $this->mailer->Username   = $params['username']; // SMTP account username example
-        $this->mailer->Password   = $params['password'];        // SMTP account password example
+        //$this->mailer->Username   = $params['username']; // SMTP account username example
+        //$this->mailer->Password   = $params['password'];        // SMTP account password example
     }
 
     /**
