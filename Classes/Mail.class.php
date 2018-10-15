@@ -69,7 +69,7 @@ class Mail
         try {
             if(!$this->mailer->send()) throw new \Exception($mailer->ErrorInfo);
         }catch(\Exception $e){
-            add_to_log('[error '.$e->getMessage().'][subject '.$mailer->Subject.'][params '.json_encode($params).']', 'error_mail');
+            add_to_log('[error '.$e->getMessage().'][subject '.$mailer->Subject.'][params '.json_encode($mailer).']', 'error_mail');
         }
     }
 
