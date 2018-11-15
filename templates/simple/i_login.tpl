@@ -57,7 +57,7 @@
                     </div>
                     <div  style="display: inline-block;">
                         <div>
-                            <img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt=""  style="cursor: pointer" />
+                            <img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt=""  style="cursor: pointer;margin-bottom: -7px;" />
                         </div>
                     </div>
                 </div>
