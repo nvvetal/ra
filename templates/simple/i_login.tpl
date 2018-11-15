@@ -6,7 +6,7 @@
 
     $(document).ready(function(){
         $('#fb').click(function(){
-            window.location.href='https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua/?go=index&action=facebook&after=1')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
+            window.location.href='https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua/?go=index&action=facebook')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
         });
         /*
         FB.Event.subscribe('auth.authResponseChange', function (response) {
