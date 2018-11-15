@@ -41,7 +41,8 @@
                 </div>
                 <div>
                     <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
-                    <div class="fb-login-button" data-scope="{$facebook_login_scope}" onlogin="afterFBLogin();"
+                    <div class="fb-login-button" data-scope="{$facebook_login_scope}"
+                         onlogin="window.location.href='https://raks.com.ua/?go=index&action=facebook'"
                          data-max-rows="1"
                          data-size="small" data-button-type="login_with" data-show-faces="false"
                          data-auto-logout-link="false" data-use-continue-as="false"></div>
