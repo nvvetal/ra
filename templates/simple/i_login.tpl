@@ -52,8 +52,12 @@
                     <a href="{$http_project_path}/?go=password_back&s={$s}">{"Password back"|i18n:'default'}</a>
                 </div>
                 <div>
-                    <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
-                    <img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt=""  style="cursor: pointer" />
+                    <div style="display: inline-block">
+                        <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
+                    </div>
+                    <div  style="display: inline-block;">
+                        <img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt=""  style="cursor: pointer" />
+                    </div>
                 </div>
 
             </div>
