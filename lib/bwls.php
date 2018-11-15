@@ -193,15 +193,15 @@ function bwls($go, $action, $params)
                         return $go;
                     }
                     $profile = $facebook->getMyProfile($accessToken);
-                    add_to_log('[accessToken '.$accessToken.']'.var_export($profile, true), "facebook_profile");
+                    add_to_log('[accessToken '.$accessToken.'][profile '.var_export($profile, true).']', "facebook_profile");
 
                     if (is_null($profile)) {
                         $params['smarty']->assign('errors', array('login' => array('message' => 'Cannot fetch facebook profile')));
                         $go = 'login';
                         return $go;
                     }
-
-                    if (!$profile->getField('verified')) {
+                    $email = $profile->getEmail();
+                    if (!$email) {
                         $params['smarty']->assign('errors', array('login' => array('message' => 'Please confirm facebook profile')));
                         $go = 'login';
                         return $go;
