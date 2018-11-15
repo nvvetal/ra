@@ -193,7 +193,7 @@ function bwls($go, $action, $params)
                         return $go;
                     }
                     $profile = $facebook->getMyProfile($accessToken);
-                    add_to_log(prepare_array_to_log($profile), "facebook_profile");
+                    add_to_log('[accessToken '.$accessToken.']'.var_export($profile, true), "facebook_profile");
 
                     if (is_null($profile)) {
                         $params['smarty']->assign('errors', array('login' => array('message' => 'Cannot fetch facebook profile')));
