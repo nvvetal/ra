@@ -53,7 +53,7 @@
                          data-size="small" data-button-type="login_with" data-show-faces="false"
                          data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-                    <button id="fb">FB login</button>
+                    <button type="button" id="fb">FB login</button>
                 </div>
 
             </div>
