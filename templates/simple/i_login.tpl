@@ -5,6 +5,10 @@
     }
 
     $(document).ready(function(){
+        $('#fb').click(function(){
+            window.location.href='https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri={"https://raks.com.ua/"}&state={"{go=index,action=facebook,after=1}"}&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
+        });
+        /*
         FB.Event.subscribe('auth.authResponseChange', function (response) {
             console.log('[RESP]', response);
             if (response.status === 'connected') {
@@ -15,6 +19,7 @@
 
             }
         });
+        */
     });
 </script>
 {/literal}
@@ -42,11 +47,11 @@
                 <div>
                     <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
                     <div class="fb-login-button" data-scope="{$facebook_login_scope}"
-                         onlogin="window.location.href='https://raks.com.ua/?go=index&action=facebook'"
                          data-max-rows="1"
                          data-size="small" data-button-type="login_with" data-show-faces="false"
                          data-auto-logout-link="false" data-use-continue-as="false"></div>
 
+                    <button id="fb">FB login</button>
                 </div>
 
             </div>
