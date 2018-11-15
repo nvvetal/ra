@@ -53,7 +53,7 @@
                 </div>
                 <div>
                     <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
-                    <div><img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt="" /></div>
+                    <div><img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt=""  style="cursor: pointer" /></div>
                 </div>
 
             </div>
