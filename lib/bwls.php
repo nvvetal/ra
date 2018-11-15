@@ -4,10 +4,12 @@ require_once('lib_auth.php');
 
 function bwls($go, $action, $params)
 {
+    /*
     if(isset($_REQUEST['state']) && isset($_REQUEST['code'])){
         $go = "index";
         //$action = "facebook";
     }
+    */
 
     switch ($go) {
         case "register_result":
@@ -162,6 +164,7 @@ function bwls($go, $action, $params)
 
                     if(!empty($from)) $params['Session']->set_value($params['s'], 'facebook_auth_from', $from);
 
+                    /*
                     $isFacebookRequested = $params['Session']->get_value($params['s'], 'facebook_token_requested');
                     $url = $GLOBALS['HTTP_PROJECT_ROOT'];
                     $url = str_replace('http:', 'https:', $url);
@@ -173,15 +176,17 @@ function bwls($go, $action, $params)
                         exit;
                     }
 
-                    //TODO: fix https to http somehow
-
+                    */
                     $params['Session']->set_value($params['s'], 'facebook_token_requested', false);
                     //echo $url;
                     $url = $GLOBALS['HTTP_PROJECT_ROOT'] . $_SERVER['REQUEST_URI'];
                     //echo $url;
                     $url = str_replace('http:', 'https:', $url);
-                    $accessToken = $facebook->getAccessToken($url);
-
+                    $accessToken = isset($_REQUEST['access_token']) ? $_REQUEST['access_token'] : null;
+                    if(!is_null($accessToken)) {
+                        $facebook->setAccessToken($accessToken);
+                        $accessToken = $facebook->getAccessToken($url);
+                    }
                     if (is_null($accessToken)) {
                         $params['smarty']->assign('errors', array('login' => array('message' => 'Access Token was not sent')));
                         $go = 'login';

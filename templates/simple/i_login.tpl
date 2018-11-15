@@ -1,12 +1,33 @@
 {literal}
 <script>
+
+    function appInit(){
+        var url = window.location.href;
+        var parts = url.split('#');
+        if(parts.length > 1 && parts[1].indexOf('state') === 0){
+            var newUrl = parts[0];
+            var items = parts[1].split('&');
+            items[0] = decodeURIComponent(items[0].substr(6)).split(',');
+            for(var i = 0; i < items[0].length; i++){
+                newUrl += items[0][i] + '&';
+
+            }
+            for(var i = 1; i < items.length; i++){
+                newUrl += items[i] + '&';
+            }
+            window.location = newUrl;
+        }
+    }
+
+    appInit();
+
     function afterFBLogin() {
         window.location.href = "{/literal}{$http_project_path}{literal}/?go=index&action=facebook";
     }
 
     $(document).ready(function(){
         $('#fb').click(function(){
-            var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua')+'&state='+encodeURI('go=index,action=facebook')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
+            var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua')+'&state='+encodeURI('go=index,action=facebook,s=facebook_token_requested')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
             console.log('[URL]', url);
             window.location.href = url ;
         });

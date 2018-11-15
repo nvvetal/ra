@@ -69,6 +69,10 @@ class Facebook
         return $loginUrl;
     }
 
+    public function setAccessToken($accessToken){
+        $this->facebook->setAccessToken($accessToken);
+    }
+
     /**
      * @param $url
      * @return AccessToken|null
