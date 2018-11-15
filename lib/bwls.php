@@ -6,7 +6,7 @@ function bwls($go, $action, $params)
 {
     if(isset($_REQUEST['state']) && isset($_REQUEST['code'])){
         $go = "index";
-        $action = "facebook";
+        //$action = "facebook";
     }
 
     switch ($go) {
@@ -163,7 +163,7 @@ function bwls($go, $action, $params)
                     if(!empty($from)) $params['Session']->set_value($params['s'], 'facebook_auth_from', $from);
 
                     $isFacebookRequested = $params['Session']->get_value($params['s'], 'facebook_token_requested');
-                    $url = $GLOBALS['HTTP_PROJECT_ROOT'] . '/index.php?go=index&action=facebook&after=1&s=' . $params['s'];
+                    $url = $GLOBALS['HTTP_PROJECT_ROOT'];
                     $url = str_replace('http:', 'https:', $url);
                     $url2 = $facebook->getLoginUrl($url);
 
