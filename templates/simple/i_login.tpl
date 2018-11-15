@@ -19,31 +19,20 @@
         }
     }
 
-    appInit();
 
-    function afterFBLogin() {
-        window.location.href = "{/literal}{$http_project_path}{literal}/?go=index&action=facebook";
-    }
-
-    $(document).ready(function(){
+    function setFB(){
         $('#fb').click(function(){
             var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua')+'&state='+encodeURI('go=index,action=facebook')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
             console.log('[URL]', url);
-            window.location.href = url ;
+            window.location.href = url;
         });
-        /*
-        FB.Event.subscribe('auth.authResponseChange', function (response) {
-            console.log('[RESP]', response);
-            if (response.status === 'connected') {
+    }
 
-            } else if (response.status === 'not_authorized') {
-
-            } else {
-
-            }
-        });
-        */
+    appInit();
+    $(document).ready(function(){
+        setFB();
     });
+
 </script>
 {/literal}
 {if $Session->get_value($s,'is_logged') == 0}
