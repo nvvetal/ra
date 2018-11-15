@@ -1,18 +1,18 @@
 {literal}
 <script>
 
-    function appInit(){
+    function appInit() {
         var url = window.location.href;
         var parts = url.split('#');
-        if(parts.length > 1 && parts[1].indexOf('state') === 0){
+        if (parts.length > 1 && parts[1].indexOf('state') === 0) {
             var newUrl = parts[0];
             var items = parts[1].split('&');
             items[0] = decodeURIComponent(items[0].substr(6)).split(',');
-            for(var i = 0; i < items[0].length; i++){
+            for (var i = 0; i < items[0].length; i++) {
                 newUrl += items[0][i] + '&';
 
             }
-            for(var i = 1; i < items.length; i++){
+            for (var i = 1; i < items.length; i++) {
                 newUrl += items[i] + '&';
             }
             window.location = newUrl;
@@ -20,18 +20,13 @@
     }
 
 
-    function setFB(){
-        $('#fb').click(function(){
-            var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua')+'&state='+encodeURI('go=index,action=facebook')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
-            console.log('[URL]', url);
-            window.location.href = url;
-        });
+    function loginFB() {
+        var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri=' + encodeURI('https://raks.com.ua') + '&state=' + encodeURI('go=index,action=facebook') + '&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
+        console.log('[URL]', url);
+        window.location.href = url;
     }
 
     appInit();
-    $(document).ready(function(){
-        setFB();
-    });
 
 </script>
 {/literal}
@@ -58,12 +53,7 @@
                 </div>
                 <div>
                     <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
-                    <div class="fb-login-button" data-scope="{$facebook_login_scope}"
-                         data-max-rows="1"
-                         data-size="small" data-button-type="login_with" data-show-faces="false"
-                         data-auto-logout-link="false" data-use-continue-as="false"></div>
-
-                    <button type="button" id="fb">FB login</button>
+                    <div><img src="https://raks.com.ua/forum/images/buttons/fb.png" onclick="loginFB()" alt="" /></div>
                 </div>
 
             </div>
