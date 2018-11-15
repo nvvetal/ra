@@ -1,15 +1,20 @@
 {literal}
-    <script>
-        function afterFBLogin(){
-            window.location.href="{/literal}{$http_project_path}{literal}/?go=index&action=facebook";
-        }
+<script>
+    function afterFBLogin() {
+        window.location.href = "{/literal}{$http_project_path}{literal}/?go=index&action=facebook";
+    }
 
-        function checkLoginState(){
-            FB.getLoginStatus(function(response) {
-                console.log(response);
-            });
+    FB.Event.subscribe('auth.authResponseChange', function (response) {
+        console.log('[RESP]', response);
+        if (response.status === 'connected') {
+
+        } else if (response.status === 'not_authorized') {
+
+        } else {
+
         }
-    </script>
+    });
+</script>
 {/literal}
 {if $Session->get_value($s,'is_logged') == 0}
     <div class="auth">
@@ -34,7 +39,8 @@
                 </div>
                 <div>
                     <a href="{$http_project_path}/?go=register&s={$s}">{"Register"|i18n:'default'}</a> &nbsp; &nbsp;
-                    <div class="fb-login-button" onlogin="afterFBLogin();" data-scope="{$facebook_login_scope}" data-max-rows="1"
+                    <div class="fb-login-button" data-scope="{$facebook_login_scope}"
+                         data-max-rows="1"
                          data-size="small" data-button-type="login_with" data-show-faces="false"
                          data-auto-logout-link="false" data-use-continue-as="false"></div>
 
