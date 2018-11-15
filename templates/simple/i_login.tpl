@@ -4,15 +4,17 @@
         window.location.href = "{/literal}{$http_project_path}{literal}/?go=index&action=facebook";
     }
 
-    FB.Event.subscribe('auth.authResponseChange', function (response) {
-        console.log('[RESP]', response);
-        if (response.status === 'connected') {
+    $(document).ready(function(){
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
+            console.log('[RESP]', response);
+            if (response.status === 'connected') {
 
-        } else if (response.status === 'not_authorized') {
+            } else if (response.status === 'not_authorized') {
 
-        } else {
+            } else {
 
-        }
+            }
+        });
     });
 </script>
 {/literal}
