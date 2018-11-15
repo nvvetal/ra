@@ -3,6 +3,12 @@
         function afterFBLogin(){
             window.location.href="{/literal}{$http_project_path}{literal}/?go=index&action=facebook";
         }
+
+        function checkLoginState(){
+            FB.getLoginStatus(function(response) {
+                console.log(response);
+            });
+        }
     </script>
 {/literal}
 {if $Session->get_value($s,'is_logged') == 0}
