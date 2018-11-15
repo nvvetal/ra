@@ -184,8 +184,8 @@ function bwls($go, $action, $params)
                     $url = str_replace('http:', 'https:', $url);
                     $accessToken = isset($_REQUEST['access_token']) ? $_REQUEST['access_token'] : null;
                     if(!is_null($accessToken)) {
-                        $facebook->setAccessToken($accessToken);
-                        $accessToken = $facebook->getAccessToken($url);
+                        //$facebook->setAccessToken($accessToken);
+                        //$accessToken = $facebook->getAccessToken($url);
                     }
                     if (is_null($accessToken)) {
                         $params['smarty']->assign('errors', array('login' => array('message' => 'Access Token was not sent')));
