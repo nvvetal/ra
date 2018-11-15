@@ -4,6 +4,10 @@ require_once('lib_auth.php');
 
 function bwls($go, $action, $params)
 {
+    if(isset($_REQUEST['state']) && isset($_REQUEST['code'])){
+        $go = "index";
+        $action = "facebook";
+    }
 
     switch ($go) {
         case "register_result":
