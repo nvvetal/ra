@@ -6,9 +6,9 @@
 
     $(document).ready(function(){
         $('#fb').click(function(){
-            var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri='+encodeURI('https://raks.com.ua/?go=index&action=facebook')+'&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
+            var url = 'https://www.facebook.com/{/literal}{$facebook_version}{literal}/dialog/oauth?client_id={/literal}{$facebook_app_id}{literal}&redirect_uri={"https://raks.com.ua"}&state={"{go=index,action=facebook}"}&scope={/literal}{$facebook_login_scope}{literal}&response_type=token';
             console.log('[URL]', url);
-            //window.location.href = url ;
+            window.location.href = url ;
         });
         /*
         FB.Event.subscribe('auth.authResponseChange', function (response) {
