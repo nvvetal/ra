@@ -43,6 +43,8 @@ class Video extends API_Item
         //http://youtu.be/tU2MFVILoRE
         }elseif(preg_match("/^http:\/\/youtu\.be\/(\w+)$/i", $link, $m)){
             $resLink = $m[1]; 
+        }elseif(preg_match("/^https:\/\/youtu\.be\/(\w+)$/i", $link, $m)){
+            $resLink = $m[1]; 
         //https://www.youtube.com/watch?v=QLVp_-EyAC4&feature=g-vrec
         }elseif(preg_match("/youtube\.com\/watch\?v=([^\&]+)\&/i", $link, $m)){
             $resLink = $m[1];
