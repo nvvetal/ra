@@ -147,6 +147,7 @@
             //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18674" target="_blank"><img src="http://raks.com.ua/forum/images/orient_empire.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18674" target="_blank"><img src="http://raks.com.ua/forum/images/orient_empire.gif" alt=""/></a>', 'html', 165, 190);
             banner_165_1[0]   = new Array ('<a href="https://www.facebook.com/groups/maminyposidelki/" target="_blank"><img src="http://raks.com.ua/forum/images/mamas.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[1] = new Array('<a href="https://raks.com.ua/forum/viewtopic.php?f=148&t=18902" target="_blank"><img src="http://raks.com.ua/forum/images/banner_palmyra.gif" alt=""/></a>', 'html', 165, 190);
 
 
 //
