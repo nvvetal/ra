@@ -146,7 +146,9 @@
 			<center><img id="img_{$image}" src="{$http_images_path}{$Images->get_image_url($image,200,200,'jpg')}" alt="" /><br/>
 			<input type="checkbox" name="image_downloaded[]" value="{$img_key}_{$image}" checked />
 			<br/>
-			<a href="javascript:void(0);" onmousedown="$('#full_info').tinymce().execCommand('mceInsertContent',false,'<img src=\''+$('#img_{$image}').attr('src')+'\' alt=\'\'>');">{"Add image to text"|i18n}</a>
+			<!--a href="javascript:void(0);" onmousedown="$('#full_info').tinymce().execCommand('mceInsertContent',false,'<img src=\''+$('#img_{$image}').attr('src')+'\' alt=\'\'>');">{"Add image to text"|i18n}</a-->
+			<a href="javascript:void(0);" onmousedown="$('#full_info').sceditor('instance').insert('[img]'+$('#img_{$image}').attr('src')+'[/img]');">{"Add image to text"|i18n}</a>
+
 			</center>
 		    </div>
 		{/foreach}
