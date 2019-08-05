@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv635';
+$advertise_company_id = 'adv636';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -94,10 +94,10 @@ foreach ($users as $key=>$user){
     file_put_contents($GLOBALS['PROJECT_ROOT'].'/cache/portal/mail/sent_'.$advertise_company_id, serialize($sent));
 
     echo $user['email']."<br/>";
-    $mail->From = "admin@marketing.raks.com.ua";
+    $mail->From = "admin@raks.com.ua";
     //$mail->message_type = 'alt_attachments';
     $mail->FromName = "RAKS.COM.UA - танец живота и индийский танец";
-    $mail->Sender  = "admin@marketing.raks.com.ua";
+    $mail->Sender  = "admin@raks.com.ua";
     $mail->addReplyTo("admin@marketing.raks.com.ua", "admin@marketing.raks.com.ua");
 
     $smarty->assign('user',$user);
