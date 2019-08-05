@@ -32,7 +32,7 @@
 <img src="cid:el_finger" alt=""/><img src="cid:el_fire" alt=""/> <a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
 <br/>
 <center>
-    <img src="cid:two" alt="" style="max-width: 1024px; width: 100%;"/>
+    <img src="cid:two" alt="" style="max-width: 500px; width: 100%;"/>
 </center>
 <br/>
 <br/>
@@ -56,7 +56,7 @@
 <br/>
 <br/>
 <center>
-    <img src="cid:three" alt="" style="max-width: 1024px; width: 100%;"/>
+    <img src="cid:three" alt="" style="max-width: 700px; width: 100%;"/>
 </center>
 <br/>
 -------------------------------------------------------------<br/>
