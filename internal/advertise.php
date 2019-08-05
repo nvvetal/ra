@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv633';
+$advertise_company_id = 'adv634';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -71,7 +71,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 10,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise114.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise115.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -177,13 +177,23 @@ foreach ($users as $key=>$user){
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/pologenie.pdf", 'Положение Grand Orient (1ver18) 11-13 мая.pdf', 'base64', 'application/pdf');
     $mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/grand/zayava.xls",'Заявка бланк.xls','base64','application/vnd.ms-excel');
     */
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia0.png",'rakia0','rakia0.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia1.png",'rakia1','rakia1.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia2.png",'rakia2','rakia2.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia3.png",'rakia3','rakia3.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia0.png",'rakia0','rakia0.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia1.png",'rakia1','rakia1.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia2.png",'rakia2','rakia2.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia3.png",'rakia3','rakia3.png','base64','image/png');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/trans/pologenie.doc",'Положение.doc','base64','application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/trans/priglashenie.docx",'Приглашение.docx','base64','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-    $mail->Subject = 'Ракия Хассан, Одесса 23-25 ноября. До 1 сент 150$ полный пакет МК';
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/1.jpg",'one','one.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/2.jpg",'two','two.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.jpg",'el_cake','el_cake.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.jpg",'el_finger','el_finger.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.jpg",'el_finger_left','el_finger_left.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.jpg",'el_fire','el_fire.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.jpg",'el_horray','el_horray.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.jpg",'el_mark','el_mark.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_warn.jpg",'el_warn','el_warn.jpg','base64','image/jpeg');
+    $mail->Subject = '7 шагов к успеху в танце! Бесплатный вебинар от Денисовой Жанны.';
 
     $fileds = array(
         "a_time"=>time(),
