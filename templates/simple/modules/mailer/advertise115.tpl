@@ -64,7 +64,7 @@
 Мной разработана уникальная авторская программа по систематизации правил и законов использования жестов в танце, и я Вам расскажу про эту методику.<br/>
 В результате Курса - вы сможете разобраться с вариантами работы с жестами в арабских танцах, выстроите собственную систему, и научитесь наполнять постановки смыслом и яркими эмоциями!<br/>
 -------------------------------------------------------------<br/>
-<img src="cid:el_horray" alt=""/>Поэтому – Приглашаю Вас отметить день рождения Академии Успешного танцора и преподавателя «Алиша- онлайн» ВМЕСТЕ!<br/>
+<img src="cid:el_horray" alt=""/> Поэтому – Приглашаю Вас отметить день рождения Академии Успешного танцора и преподавателя «Алиша- онлайн» ВМЕСТЕ!<br/>
 -------------------------------------------------------------<br/>
 Что нужно, что попасть на этот бесплатный вебинар ?<br/>
 Переходите по ссылке<br/>
@@ -78,13 +78,13 @@
 До встречи!<br/>
 -------------------------------------------------------------<br/>
 <b>ВКонтакте:</b><br/>
-<img src="cid:el_finger_left" alt=""/> https://vk.com/alishaonline<br/>
+<img src="cid:el_finger_left" alt=""/> <a href="https://vk.com/alishaonline">https://vk.com/alishaonline</a><br/>
 <b>Инстаграм:</b><br/>
-<img src="cid:el_finger_left" alt=""/> https://www.instagram.com/alisha_online_alisha/<br/>
+<img src="cid:el_finger_left" alt=""/> <a href="https://www.instagram.com/alisha_online_alisha/">https://www.instagram.com/alisha_online_alisha/</a><br/>
 <b>Фейсбук:</b><br/>
-<img src="cid:el_finger_left" alt=""/> https://www.facebook.com/onlinealisha/<br/>
+<img src="cid:el_finger_left" alt=""/> <a href="https://www.facebook.com/onlinealisha/">https://www.facebook.com/onlinealisha/</a><br/>
 <b>Youtube канал:</b><br/>
-<img src="cid:el_finger_left" alt=""/> https://www.youtube.com/channel/UCyCoQnSHLCqQ4CYdbc9-..<br/>
+<img src="cid:el_finger_left" alt=""/> <a href="https://www.youtube.com/channel/UCyCoQnSHLCqQ4CYdbc9-PxQ">https://www.youtube.com/channel/UCyCoQnSHLCqQ4CYdbc9-PxQ</a><br/>
 
 
 <br/><br/>
