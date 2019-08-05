@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv637';
+$advertise_company_id = 'adv670';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -30,11 +30,11 @@ $mail->CharSet = 'UTF-8';
 $mail->ContentType ="text/html";
 
 $mail->Host       = $GLOBALS['mailParams2']['host']; // SMTP server example
-$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
+$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
 $mail->Port       = $GLOBALS['mailParams2']['port'];                    // set the SMTP port for the GMAIL server
-//$mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
-//$mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
+$mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
+$mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
 
 //$mail->ContentType ="multipart/mixed";
 
@@ -186,13 +186,13 @@ foreach ($users as $key=>$user){
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/1.jpg",'one','one.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/2.jpg",'two','two.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.jpg",'el_cake','el_cake.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.jpg",'el_finger','el_finger.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.jpg",'el_finger_left','el_finger_left.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.jpg",'el_fire','el_fire.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.jpg",'el_horray','el_horray.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.jpg",'el_mark','el_mark.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_warn.jpg",'el_warn','el_warn.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.png",'el_finger_left','el_finger_left.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.png",'el_fire','el_fire.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.png",'el_horray','el_horray.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.png",'el_mark','el_mark.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_warn.png",'el_warn','el_warn.png','base64','image/png');
     $mail->Subject = '7 шагов к успеху в танце! Бесплатный вебинар от Денисовой Жанны.';
 
     $fileds = array(
