@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv634';
+$advertise_company_id = 'adv635';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -205,7 +205,7 @@ foreach ($users as $key=>$user){
     if(preg_match('/rambler\.ru/i', $user['email'])){
         $mail->Send();
     }else{
-     $verify = verifyEmail($user['email'], "admin@marketing.raks.com.ua", true);
+     $verify = verifyEmail($user['email'], "admin@raks.com.ua", true);
      if($verify[0] == 'valid') {
          $mail->Send();
      }else{
