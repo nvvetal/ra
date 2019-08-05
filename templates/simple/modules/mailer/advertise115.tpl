@@ -18,7 +18,7 @@
 Специально для Вас мы открываем Академию успешного танцора и преподавателя «Алиша- онлайн»!<br/>
 <br/>
 <br/>
-<img src="cid:el_finger" alt=""/>В честь открытия Академии - я проведу 11 августа, в 19.00 МСК самый главный вебинар в моей жизни!<br/>
+<img src="cid:el_finger" alt=""/> В честь открытия Академии - я проведу 11 августа, в 19.00 МСК самый главный вебинар в моей жизни!<br/>
 Он называется – «7 главных барьеров к успеху в восточном танце».<br/>
 -------------------------------------------------------------<br/>
 - Мы поговорим - как преодолеть эти барьеры.<br/>
@@ -29,7 +29,7 @@
 <br/>
 <br/>
 РЕГИСТРАЦИЯ НА САЙТЕ:<br/>
-<img src="cid:el_finger" alt=""/><img src="cid:el_fire" alt=""/><a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
+<img src="cid:el_finger" alt=""/><img src="cid:el_fire" alt=""/> <a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
 <br/>
 <center>
     <img src="cid:two" alt="" style="max-width: 1024px; width: 100%;"/>
@@ -41,18 +41,18 @@
 Меня зовут Жанна Денисова. Я судья Международной категории и преподаватель Высшей категории Лиги Профессионалов восточного танца.<br/>
 <br/>
 <b>Что будет на этом вебинаре:</b><br/>
-<img src="cid:el_mark" alt=""/>Я поделюсь 7 рецептами успеха, к которым я пришла за 18 лет непрерывной работы в своей школе восточного танца «Алиша».<br/>
-<img src="cid:el_mark" alt=""/>Некоторые из этих секретов Вы сами мне подсказали, задавая вопросы: после мастер классов, обучающих сессий и во время персональных занятий.<br/>
-<img src="cid:el_mark" alt=""/>Если бы мне кто-нибудь рассказал про эти правила жизни – я бы добилась того результата, который есть у меня сейчас - НА 10 ЛЕТ РАНЬШЕ!<br/>
-Но, лучше поздно, чем никогда. Тем более еще не поздно.<br/>
+<img src="cid:el_mark" alt=""/> Я поделюсь 7 рецептами успеха, к которым я пришла за 18 лет непрерывной работы в своей школе восточного танца «Алиша».<br/>
+<img src="cid:el_mark" alt=""/> Некоторые из этих секретов Вы сами мне подсказали, задавая вопросы: после мастер классов, обучающих сессий и во время персональных занятий.<br/>
+<img src="cid:el_mark" alt=""/> Если бы мне кто-нибудь рассказал про эти правила жизни – я бы добилась того результата, который есть у меня сейчас - НА 10 ЛЕТ РАНЬШЕ!<br/>
+<b>Но, лучше поздно, чем никогда. Тем более еще не поздно.</b><br/>
 —------------------------------------------------------------<br/>
 Я хочу поделиться с Вами своими самыми сокровенными инсайтами, которые я осознала на пути к успеху.<br/>
 Возможно, они сэкономят Вам годы жизни и огромное количество денег. Это точно!<br/>
 —------------------------------------------------------------<br/>
-<img src="cid:el_warn" alt=""/>Внимание!!! Свободного доступа к записи вебинара НЕ БУДЕТ!!!<br/>
+<img src="cid:el_warn" alt=""/> <b>Внимание!!! Свободного доступа к записи вебинара НЕ БУДЕТ!!!</b><br/>
 Поэтому обязательно приходите 11 августа в 19.00 мск на закрытый БЕСПЛАТНЫЙ вебинар! Будет супер полезно!<br/>
 РЕГИСТРАЦИЯ НА САЙТЕ:<br/>
-<img src="cid:el_finger" alt=""/><img src="cid:el_fire" alt=""/><a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
+<img src="cid:el_finger" alt=""/><img src="cid:el_fire" alt=""/> <a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
 <br/>
 <br/>
 <center>
@@ -68,23 +68,23 @@
 -------------------------------------------------------------<br/>
 Что нужно, что попасть на этот бесплатный вебинар ?<br/>
 Переходите по ссылке<br/>
-<img src="cid:el_finger_left" alt=""/><a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
+<img src="cid:el_finger_left" alt=""/> <a href="http://www.alishaonline.ru/alisha">www.alishaonline.ru/alisha</a><br/>
 – заполните форму регистрации на вебинар<br/>
 – и приходите 11 августа в 19.00 мск на закрытый вебинар!<br/>
 Будет очень интересно!<br/>
 -------------------------------------------------------------<br/>
-<img src="cid:el_cake" alt=""/><img src="cid:el_cake" alt=""/><img src="cid:el_cake" alt=""/>А еще всех участников вебинара в честь дня рождения Академии ждут ПОДАРКИ и СЮРПРИЗЫ (но только для тех, кто придёт на прямой эфир!).<br/>
+<img src="cid:el_cake" alt=""/><img src="cid:el_cake" alt=""/> <img src="cid:el_cake" alt=""/>А еще всех участников вебинара в честь дня рождения Академии ждут ПОДАРКИ и СЮРПРИЗЫ (но только для тех, кто придёт на прямой эфир!).<br/>
 Регистрируйтесь и мы начинаем в воскресение - 11 августа, в 19.00 мск.<br/>
 До встречи!<br/>
 -------------------------------------------------------------<br/>
 <b>ВКонтакте:</b><br/>
-<img src="cid:el_finger_left" alt=""/>https://vk.com/alishaonline<br/>
+<img src="cid:el_finger_left" alt=""/> https://vk.com/alishaonline<br/>
 <b>Инстаграм:</b><br/>
-<img src="cid:el_finger_left" alt=""/>https://www.instagram.com/alisha_online_alisha/<br/>
+<img src="cid:el_finger_left" alt=""/> https://www.instagram.com/alisha_online_alisha/<br/>
 <b>Фейсбук:</b><br/>
-<img src="cid:el_finger_left" alt=""/>https://www.facebook.com/onlinealisha/<br/>
+<img src="cid:el_finger_left" alt=""/> https://www.facebook.com/onlinealisha/<br/>
 <b>Youtube канал:</b><br/>
-<img src="cid:el_finger_left" alt=""/>https://www.youtube.com/channel/UCyCoQnSHLCqQ4CYdbc9-..<br/>
+<img src="cid:el_finger_left" alt=""/> https://www.youtube.com/channel/UCyCoQnSHLCqQ4CYdbc9-..<br/>
 
 
 <br/><br/>
