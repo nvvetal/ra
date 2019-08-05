@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv636';
+$advertise_company_id = 'adv637';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -30,8 +30,8 @@ $mail->CharSet = 'UTF-8';
 $mail->ContentType ="text/html";
 
 $mail->Host       = $GLOBALS['mailParams2']['host']; // SMTP server example
-$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-$mail->SMTPAuth   = false;                  // enable SMTP authentication
+$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
+$mail->SMTPAuth   = true;                  // enable SMTP authentication
 $mail->Port       = $GLOBALS['mailParams2']['port'];                    // set the SMTP port for the GMAIL server
 //$mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
 //$mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
