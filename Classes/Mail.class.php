@@ -15,8 +15,9 @@ class Mail
         $this->mailer->IsSMTP();
         $this->mailer->CharSet = 'UTF-8';
         $this->mailer->Host       = $params['host']; // SMTP server example
-        $this->mailer->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+        $this->mailer->SMTPDebug  = 3;                     // enables SMTP debug information (for testing)
         $this->mailer->SMTPAuth   = true;                  // enable SMTP authentication
+        $this->mailer->SMTPSecure = 'tls';
         $this->mailer->Port       = $params['port'];                    // set the SMTP port for the GMAIL server
         $this->mailer->Username   = $params['username']; // SMTP account username example
         $this->mailer->Password   = $params['password'];        // SMTP account password example
@@ -27,49 +28,27 @@ class Mail
      */
     public function sendMail($params)
     {
-        /*
-        $example = array(
-            'from' => 'mail@mail.com',
-            'fromName' => 'Peter',
-            'body' => '',
-            'altBody' => '',
-            'subject' => '',
-            'to'    => array(
-                array('email' => 'mail@mail.com', 'name' => 'Mary')
-            ),
-            'cc'    => array(
-                array('email' => 'mail@mail.com', 'name' => 'Mary')
-            ),
-            'bcc'    => array(
-                array('email' => 'mail@mail.com', 'name' => 'Mary')
-            ),
-            'replyTo'    => array(
-                array('email' => 'mail@mail.com', 'name' => 'Mary')
-            ),
-            'attachments' => array(
-                array('file' => '/var/tmp/file.tar.gz', 'name' => 'save.tar.gz')
-            ),
-            'isHTML' => true,
-            'wordWrap'  => 50,
-        );
-        */
         $mailer = $this->mailer;
         $mailer->From = $params['from'];
         $mailer->FromName = $params['fromName'];
+        $mailer->Host = 'email-smtp.us-east-1.amazonaws.com';
+
         $this->setTo($mailer, $params);
         $this->setReplyTo($mailer, $params);
         $this->setCC($mailer, $params);
         $this->setBCC($mailer, $params);
         $this->setAttachments($mailer, $params);
         $mailer->WordWrap = isset($params['wordWrap']) ? $params['wordWrap'] : 50;// Set word wrap to 50 characters
-        $mailer->isHTML(isset($params['isHTML']) && $params['isHTML'] == false ? false : true); // Set email format to HTML
+        $mailer->isHTML(true); // Set email format to HTML
         $mailer->Subject = $params['subject'];
         $mailer->Body    = $params['body'];
         $mailer->AltBody = isset($params['altBody']) ? $params['altBody'] : '';
+        $mailer->setFrom($params['from'], $params['fromName']);
         try {
-            if(!$this->mailer->send()) throw new \Exception($mailer->ErrorInfo);
+            if(!$mailer->send()) throw new \Exception($mailer->ErrorInfo);
+            //$mailer->send();
         }catch(\Exception $e){
-            add_to_log('[error '.$e->getMessage().'][subject '.$mailer->Subject.'][params '.json_encode($mailer).']', 'error_mail');
+            add_to_log('[error '.$e->getMessage().'][mail  '+$mailer->ErrorInfo+'][subject '.$mailer->Subject.'][params '.json_encode($mailer).']', 'error_mail');
         }
     }
 

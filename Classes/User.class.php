@@ -67,6 +67,7 @@ class User
         /** @var $mailer Mail */
         $mailer = Registry::get('mailer');
         $mailer->sendMail($mailParams);
+        
         return true;
     }
 
