@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv1001';
+$advertise_company_id = 'adv1002';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -71,7 +71,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -83,7 +83,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise115.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise116.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -183,17 +183,19 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/rakia/rakia3.png",'rakia3','rakia3.png','base64','image/png');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/trans/pologenie.doc",'Положение.doc','base64','application/msword');
     //$mail->AddAttachment($GLOBALS['PROJECT_ROOT']."/images/mailer/trans/priglashenie.docx",'Приглашение.docx','base64','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/1.jpg",'one','one.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/2.jpg",'two','two.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/1.jpg",'one','one.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/2.jpg",'two','two.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/4.jpg",'four','four.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/5.jpg",'five','five.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.png",'el_finger_left','el_finger_left.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.png",'el_fire','el_fire.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.png",'el_horray','el_horray.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.png",'el_mark','el_mark.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_warn.png",'el_warn','el_warn.png','base64','image/png');
-    $mail->Subject = '7 шагов к успеху в танце! Бесплатный вебинар от Денисовой Жанны.';
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.png",'el_fire','el_fire.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.png",'el_horray','el_horray.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.png",'el_mark','el_mark.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_warn.png",'el_warn','el_warn.png','base64','image/png');
+    $mail->Subject = 'БЕСПЛАТНЫЙ вебинар от Жанны Денисовой';
 
     $fileds = array(
         "a_time"=>time(),
@@ -248,7 +250,7 @@ function fillCampaign($campaign, $users, $dbh)
     $query = "
 	    SELECT email
 	    FROM mail
-	    WHERE status <> 'sent' AND (campaign = 'adv541' )
+	    WHERE status <> 'sent' AND (campaign = 'adv541' ) OR  data LIKE '%SMTP Error%'
     ";
 
     $rows = SQLGetRows($query, $dbh);
