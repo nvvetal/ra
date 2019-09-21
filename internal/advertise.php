@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv1002';
+$advertise_company_id = 'adv1005';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -25,7 +25,7 @@ $mail = new PHPMailer(true);
 $mail->SetLanguage('en',$GLOBALS['MODULES_DIR']."mailer/language/");
 
 
-$mail->IsSMTP();
+$mail->IsSMTP(true);
 $mail->CharSet = 'UTF-8';
 $mail->ContentType ="text/html";
 
@@ -35,6 +35,8 @@ $mail->SMTPAuth   = true;                  // enable SMTP authentication
 $mail->Port       = $GLOBALS['mailParams2']['port'];                    // set the SMTP port for the GMAIL server
 $mail->Username   = $GLOBALS['mailParams2']['username']; // SMTP account username example
 $mail->Password   = $GLOBALS['mailParams2']['password'];        // SMTP account password example
+$mail->SMTPSecure = 'tls';
+
 
 //$mail->ContentType ="multipart/mixed";
 
@@ -100,9 +102,9 @@ foreach ($users as $key=>$user){
     $mail->Sender  = "admin@raks.com.ua";
     $mail->addReplyTo("admin@marketing.raks.com.ua", "admin@marketing.raks.com.ua");
 
-    $smarty->assign('user',$user);
+    $smarty->assign('user', $user);
 
-    $mail->AddAddress($user['email'],$user['login']);
+    $mail->AddAddress($user['email'], $user['login']);
 
     $mail->Body = $mail_html_body;
 
@@ -250,7 +252,7 @@ function fillCampaign($campaign, $users, $dbh)
     $query = "
 	    SELECT email
 	    FROM mail
-	    WHERE status <> 'sent' AND (campaign = 'adv541' ) OR  data LIKE '%SMTP Error%'
+	    WHERE (status <> 'sent' AND (campaign = 'adv541' )) OR  ((campaign = 'adv541' ) AND data LIKE '%SMTP Error%')
     ";
 
     $rows = SQLGetRows($query, $dbh);
@@ -261,6 +263,7 @@ function fillCampaign($campaign, $users, $dbh)
             $banned[$row['email']] = $row['email'];
         }
     }
+    print_r($banned);
 
     foreach($users as $user){
         if(isset($banned[$user['email']])) continue;
