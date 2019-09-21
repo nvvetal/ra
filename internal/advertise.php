@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv1005';
+$advertise_company_id = 'adv1006';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -191,8 +191,8 @@ foreach ($users as $key=>$user){
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/4.jpg",'four','four.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/5.jpg",'five','five.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
-    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.png",'el_finger_left','el_finger_left.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.png",'el_finger_left','el_finger_left.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.png",'el_fire','el_fire.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.png",'el_horray','el_horray.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.png",'el_mark','el_mark.png','base64','image/png');
