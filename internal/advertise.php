@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv1009';
+$advertise_company_id = 'adv1010';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -73,7 +73,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
 if(!$isStarted){
@@ -85,7 +85,7 @@ if(!$isStarted){
 $users = getCampaignRows($advertise_company_id, 5,  $DBFactory->get_db_handle('rakscom'));
 
 
-$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise116.tpl');
+$mail_html_body = $smarty->fetch($GLOBALS['SMARTY_MODULES_DIR'].'mailer/advertise117.tpl');
 //$mail_subj = $smarty->fetch(SMARTY_MODULES_DIR.'mailer/advertise_subject.tpl');
 
 $cnt = 0;
@@ -188,9 +188,9 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/1.jpg",'one','one.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/2.jpg",'two','two.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/4.jpg",'four','four.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/5.jpg",'five','five.jpg','base64','image/jpeg');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/first.jpg",'first','first.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/second.jpg",'second','second.jpg','base64','image/jpeg');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger_left.png",'el_finger_left','el_finger_left.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_fire.png",'el_fire','el_fire.png','base64','image/png');
@@ -252,7 +252,8 @@ function fillCampaign($campaign, $users, $dbh)
     $query = "
 	    SELECT email
 	    FROM mail
-	    WHERE (status <> 'sent' AND (campaign = 'adv541' )) OR  ((campaign = 'adv541' ) AND data LIKE '%SMTP Error%')
+	    WHERE (status <> 'sent' AND (campaign = 'adv541' )) OR ((campaign = 'adv541' ) AND data LIKE '%SMTP Error%')
+	        OR (status <> 'sent' AND (campaign = 'adv1009' )) OR ((campaign = 'adv1009' ) AND data LIKE '%SMTP Error%')
     ";
 
     $rows = SQLGetRows($query, $dbh);
