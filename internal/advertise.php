@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv1010';
+$advertise_company_id = 'adv1011';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -261,6 +261,7 @@ function fillCampaign($campaign, $users, $dbh)
     $banned = array();
     if(count($rows) > 0) {
         foreach ($rows as $row) {
+            if($row['email'] === 'vitaliy.grinchishin@gmail.com') continue;
             $banned[$row['email']] = $row['email'];
         }
     }
