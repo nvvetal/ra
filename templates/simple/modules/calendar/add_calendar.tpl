@@ -44,11 +44,11 @@
     <table width="100%">
         <tr>
             <td>{"Select begin date"|i18n}</td>
-            <td>{html_select_date prefix=bdate_ time=$bdate end_year=+1}</td>
+            <td>{html_select_date prefix=bdate_ time=$bdate end_year=+3}</td>
         </tr>
         <tr>
             <td>{"Select end date"|i18n}</td>
-            <td>{html_select_date prefix=edate_ time=$edate end_year=+1}</td>
+            <td>{html_select_date prefix=edate_ time=$edate end_year=+3}</td>
         </tr>
         <tr>
             <td>{"Type address"|i18n}</td>
