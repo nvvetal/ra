@@ -23,9 +23,10 @@ function bwls($go, $action, $params)
                     $pass = isset($_REQUEST['register_password']) ? $_REQUEST['register_password'] : '';
                     $pass2 = isset($_REQUEST['register_password2']) ? $_REQUEST['register_password2'] : '';
                     $sex = isset($_REQUEST['p_sex']) ? $_REQUEST['p_sex'] : '';
+                    $login = htmlspecialchars(isset($_REQUEST['register_login']) ? $_REQUEST['register_login'] : '');
 
                     $u_params = array(
-                        'login' => isset($_REQUEST['register_login']) ? $_REQUEST['register_login'] : '',
+                        'login' => $login,
                         'password' => $pass,
                         'email' => $email,
                         'p_city_id' => isset($_REQUEST['city_id']) ? $_REQUEST['city_id'] : '',
@@ -132,9 +133,9 @@ function bwls($go, $action, $params)
                 case "login":
                     require_once($GLOBALS['CLASSES_DIR'] . "User_container.class.php");
                     $user_container_class = new User_container($params['Validator'], $params['User']);
-
+                    $login = htmlspecialchars(isset($_REQUEST['login']) ? $_REQUEST['login'] : '');
                     $u_params = array(
-                        'login' => isset($_REQUEST['login']) ? $_REQUEST['login'] : '',
+                        'login' => $login,
                         'password' => isset($_REQUEST['password']) ? $_REQUEST['password'] : '',
                     );
                     $user = $user_container_class->call_method("login", $u_params);
@@ -385,18 +386,18 @@ function page_content($go, $action, $params)
                 case "my_profile_save":
                     require_once($GLOBALS['CLASSES_DIR'] . "User_container.class.php");
                     $user_container_class = new User_container($params['Validator'], $params['User']);
-                    $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : '';
+                    $email = htmlspecialchars(isset($_REQUEST['email']) ? $_REQUEST['email'] : '');
                     $p_params = array(
-                        'p_sex' => @$_REQUEST['p_sex'],
-                        'p_first_name' => @$_REQUEST['p_first_name'],
-                        'p_last_name' => @$_REQUEST['p_last_name'],
+                        'p_sex' => htmlspecialchars(isset($_REQUEST['p_sex']) ? $_REQUEST['p_sex'] : ""),
+                        'p_first_name' => htmlspecialchars(isset($_REQUEST['p_first_name']) ? $_REQUEST['p_first_name'] : ""),
+                        'p_last_name' => htmlspecialchars(isset($_REQUEST['p_last_name']) ? $_REQUEST['p_last_name'] : ""),
                         'p_city_id' => @$_REQUEST['city_id'],
                         'p_birthday' => sprintf("%04d-%02d-%02d", @$_REQUEST['p_birthday_Year'], @$_REQUEST['p_birthday_Month'], @$_REQUEST['p_birthday_Day']),
-                        'p_profession' => @$_REQUEST['p_profession'],
-                        'p_hobby' => @$_REQUEST['p_hobby'],
+                        'p_profession' => htmlspecialchars(isset($_REQUEST['p_profession']) ? $_REQUEST['p_profession'] : ''),
+                        'p_hobby' => htmlspecialchars(isset($_REQUEST['p_hobby']) ? $_REQUEST['p_hobby'] : ""),
                         'p_url' => @$_REQUEST['p_url'],
-                        'p_icq' => @$_REQUEST['p_icq'],
-                        'p_skype' => @$_REQUEST['p_skype'],
+                        'p_icq' => htmlspecialchars(isset($_REQUEST['p_icq']) ? $_REQUEST['p_icq'] : ""),
+                        'p_skype' => htmlspecialchars(isset($_REQUEST['p_skype']) ? $_REQUEST['p_slype'] : ""),
                         'email' => $email,
                         'password' => @$_REQUEST['password'],
                     );
