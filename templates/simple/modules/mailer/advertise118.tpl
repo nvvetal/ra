@@ -16,7 +16,7 @@
 <img src="cid:question" alt=""/> Как действительно быстро добиться понимания всех особенностей стиля! !<br/>
 —------------------------------------------------<br/>
 Мы с Вами встречаемся 15 декабря -19:00 (МСК)<br/>
-www.alishaonline.ru/alisha_webinar<br/>
+<a href="http://www.alishaonline.ru/alisha_webinar">www.alishaonline.ru/alisha_webinar</a><br/>
 На вебинаре мы:<br/>
 Сами себе ответим на этот извечный вопрос «все таки балади - это фольклор или классический ориенталь?<br/>
 Какие балади? В каких случаях?<br/>
@@ -39,7 +39,7 @@ www.alishaonline.ru/alisha_webinar<br/>
 И очень важно!!!<br/>
 Запланируйте заранее участие в онлайн-вебинаре, наша встреча - 15 декабря в 19 МСК.<br/>
 Прямо сейчас регистрируйтесь на вебинар!<br/>
-www.alishaonline.ru/alisha_webinar<br/><br/>
+<a href="http://www.alishaonline.ru/alisha_webinar">www.alishaonline.ru/alisha_webinar</a><br/><br/>
 
 С уважением, Жанна Денисова. Академия успешного танцора и преподавателя "Алиша-онлайн".<br/>
 <br/>
