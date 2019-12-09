@@ -4,7 +4,7 @@
 ini_set('memory_limit', '500M');
 //$advertise_company_id = 'adv541';
 
-$advertise_company_id = 'adv1017';
+$advertise_company_id = 'adv1021';
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
 require_once($GLOBALS['CLASSES_DIR']."DBFactory.class.php");
@@ -196,6 +196,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/boom.png",'boom','boom.png','base64','image/png');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/question.png",'question','question.png','base64','image/png');
+
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next/1.jpg",'one','one.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next/2.jpg",'two','two.jpg','base64','image/jpeg');
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next/3.jpg",'three','three.jpg','base64','image/jpeg');
