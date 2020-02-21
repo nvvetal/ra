@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 </head>
-<body style="font-size: 20px;">
+<body style="font-size: 18px;">
 <center>
     <img src="cid:one" alt="" style="max-width: 700px; width: 100%;"/>
 </center>
