@@ -197,7 +197,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/2.jpg",'two','two.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/3.jpg",'three','three.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/boom.png",'boom','boom.png','base64','image/png');
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next2/hand.png",'hand','hand.png','base64','image/png');
+    //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next2/hand.png",'hand','hand.png','base64','image/png');
 
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next2/IMG-20200217-WA0003.jpg",'one','one.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/second.jpg",'second','second.jpg','base64','image/jpeg');
