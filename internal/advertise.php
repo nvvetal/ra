@@ -3,8 +3,8 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 
-$advertise_company_id = 'adv1028';
-$advertise_template = 119;
+$advertise_company_id = 'adv1029';
+$advertise_template = 120;
 
 require_once('verifyEmail.php');
 require_once('../lib/config.php');
@@ -74,7 +74,7 @@ $users = array(
     ),
 );
 
-$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $users[] = array(
     'login'=>'iude.com.ua@gmail.com',
@@ -199,7 +199,8 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/boom.png",'boom','boom.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next2/hand.png",'hand','hand.png','base64','image/png');
 
-    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next2/IMG-20200217-WA0003.jpg",'one','one.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next3/one.jpeg",'one','one.jpg','base64','image/jpeg');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next3/two.jpeg",'two','two.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/second.jpg",'second','second.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_finger.png",'el_finger','el_finger.png','base64','image/png');
@@ -208,7 +209,7 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_horray.png",'el_horray','el_horray.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_mark.png",'el_mark','el_mark.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_warn.png",'el_warn','el_warn.png','base64','image/png');
-    $mail->Subject = 'Уникальный бесплатный вебинар от Жанны Денисовой.';
+    $mail->Subject = 'БЕСПЛАТНЫЙ ВЕБИНАР Жанны Денисовой "Умение мыслить позитивно – основа счастливой жизни!"';
 
     $fileds = array(
         "a_time"=>time(),
