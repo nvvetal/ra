@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 
-$advertise_company_id = 'adv1029';
+$advertise_company_id = 'adv1030';
 $advertise_template = 120;
 
 require_once('verifyEmail.php');
@@ -74,7 +74,7 @@ $users = array(
     ),
 );
 
-//$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
+$users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $users[] = array(
     'login'=>'iude.com.ua@gmail.com',
