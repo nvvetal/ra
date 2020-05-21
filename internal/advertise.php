@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 
-$advertise_company_id = 'adv1037';
+$advertise_company_id = 'adv1038';
 $advertise_template = 121;
 
 require_once('verifyEmail.php');
@@ -74,14 +74,14 @@ $users = array(
     ),
 );
 
-/*
+
 $users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $users[] = array(
     'login'=>'iude.com.ua@gmail.com',
     'email'=>'iude.com.ua@gmail.com',
 );
-*/
+
 
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
