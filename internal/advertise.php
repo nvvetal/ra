@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 
-$advertise_company_id = 'adv1035';
+$advertise_company_id = 'adv1037';
 $advertise_template = 121;
 
 require_once('verifyEmail.php');
@@ -201,6 +201,19 @@ foreach ($users as $key=>$user){
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next2/hand.png",'hand','hand.png','base64','image/png');
 
     $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/one.jpg",'one','one.jpg','base64','image/jpeg');
+
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/boom.png",'boom','boom.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/cake.png",'cake','cake.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/finger.png",'finger','finger.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/flash.png",'flash','flash.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/like.png",'like','like.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/question.png",'question','question.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/rainbow.png",'rainbow','rainbow.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/rocket.png",'rocket','rocket.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/sad.png",'sad','sad.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/sad2.png",'sad2','sad2.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/tort.png",'tort','tort.png','base64','image/png');
+    $mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next4/2/write.png",'write','write.png','base64','image/png');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/next3/two.jpeg",'two','two.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/second.jpg",'second','second.jpg','base64','image/jpeg');
     //$mail->AddEmbeddedImage($GLOBALS['PROJECT_ROOT']."/images/mailer/janna/el_cake.png",'el_cake','el_cake.png','base64','image/png');
