@@ -212,7 +212,7 @@
 //            banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18251" target="_blank"><img src="http://raks.com.ua/forum/images/ju.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17971" target="_blank"><img src="http://raks.com.ua/forum/images/banner_enigma2.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18327" target="_blank"><img src="http://raks.com.ua/forum/images/afalina.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_4[0]   = new Array ('<a href="https://www.instagram.com/travels_boutique/?igshid=i8hdjafahzip" target="_blank"><img src="http://raks.com.ua/forum/images/received.gif" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[0]   = new Array ('<a href="https://www.instagram.com/superstarfestival/" target="_blank"><img src="http://raks.com.ua/forum/images/super_2020_165x190.gif" alt=""/></a>', 'html', 165, 190);
 
             //banner_165_4[0]   = new Array ('<a href="https://raks.com.ua/forum/viewtopic.php?f=148&t=19204" target="_blank"><img src="http://raks.com.ua/forum/images/br.gif" alt=""/></a>', 'html', 165, 190);
           //banner_165_4[0]   = new Array ('<a href="https://raks.com.ua/forum/viewtopic.php?f=148&t=19097" target="_blank"><img src="http://raks.com.ua/forum/images/zaharit2.gif" alt=""/></a>', 'html', 165, 190);
