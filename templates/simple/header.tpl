@@ -150,7 +150,8 @@
             //banner_165_1[0] = new Array('<a href="http://alishaonline.ru/alisha" target="_blank"><img src="http://raks.com.ua/forum/images/10_april.jpg" alt=""/></a>', 'html', 165, 190);
             //banner_165_1[1] = new Array('<a href="http://alishaonline.ru/alisha" target="_blank"><img src="http://raks.com.ua/forum/images/banner_denisova.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_1[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
-            banner_165_1[0]   = new Array ('<a href="https://www.instagram.com/gold_of_orient/" target="_blank"><img src="http://raks.com.ua/forum/images/academy.jpg" alt=""/></a>', 'html', 165, 190);
+            //banner_165_1[0]   = new Array ('<a href="https://www.instagram.com/gold_of_orient/" target="_blank"><img src="http://raks.com.ua/forum/images/academy.jpg" alt=""/></a>', 'html', 165, 190);
+            banner_165_1[0]   = new Array ('<a href="http://alishaonline.ru/alisha" target="_blank"><img src="http://raks.com.ua/forum/images/seminar.jpg" alt=""/></a>', 'html', 165, 190);
 
 
             showBannerData('banner_165_1', banner_165_1);
