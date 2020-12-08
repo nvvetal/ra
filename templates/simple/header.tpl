@@ -199,7 +199,7 @@
             showBannerData('banner_165_3', banner_165_3);
 
             var banner_165_4 = new Array();
-            //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
+            banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=73&t=14253" target="_blank"><img src="http://raks.com.ua/forum/images/165_190.png" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17736" target="_blank"><img src="http://raks.com.ua/forum/images/gif_nn_cc_2.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17967" target="_blank"><img src="http://raks.com.ua/forum/images/pervenstvo_gif_cc.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('http://raks.com.ua/forum/images/165_190_Zaporozhie_belly.swf', 'swf', 165, 190);
@@ -211,7 +211,7 @@
 //            banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18251" target="_blank"><img src="http://raks.com.ua/forum/images/ju.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[1]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=17971" target="_blank"><img src="http://raks.com.ua/forum/images/banner_enigma2.gif" alt=""/></a>', 'html', 165, 190);
             //banner_165_4[0]   = new Array ('<a href="http://raks.com.ua/forum/viewtopic.php?f=148&t=18327" target="_blank"><img src="http://raks.com.ua/forum/images/afalina.gif" alt=""/></a>', 'html', 165, 190);
-            banner_165_4[0]   = new Array ('<a href="https://www.instagram.com/superstarfestival/" target="_blank"><img src="http://raks.com.ua/forum/images/super_2020_165x190.gif" alt=""/></a>', 'html', 165, 190);
+            //banner_165_4[0]   = new Array ('<a href="https://www.instagram.com/superstarfestival/" target="_blank"><img src="http://raks.com.ua/forum/images/super_2020_165x190.gif" alt=""/></a>', 'html', 165, 190);
 
             //banner_165_4[0]   = new Array ('<a href="https://raks.com.ua/forum/viewtopic.php?f=148&t=19204" target="_blank"><img src="http://raks.com.ua/forum/images/br.gif" alt=""/></a>', 'html', 165, 190);
           //banner_165_4[0]   = new Array ('<a href="https://raks.com.ua/forum/viewtopic.php?f=148&t=19097" target="_blank"><img src="http://raks.com.ua/forum/images/zaharit2.gif" alt=""/></a>', 'html', 165, 190);
