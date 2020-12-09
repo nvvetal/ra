@@ -13,7 +13,7 @@
     </script>
 {/literal}
 {if $is_use_form == 1}
-<form method="post" action="{$http_project_path}">
+<form method="post" action="{$http_project_path}" onsubmit="return checkRegisterDisclaimer();">
     {/if}
 
 
@@ -84,7 +84,7 @@
         {if $is_use_form == 1}
         <tr>
             <td colspan="2" align="center"><input type="submit" name="btnSubmit" value="{"Register"|i18n}"
-                                                  onsubmit="return checkRegisterDisclaimer();"/></td>
+                                                  /></td>
         </tr>
     </table>
 
