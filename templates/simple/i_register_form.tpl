@@ -73,7 +73,7 @@
             <td>Условия использования (Disclaimer)<span class="required">*</span></td>
             <td>
                 <input type="checkbox" name="disclaimer" id="disclaimer" value="1"/> <a
-                        href="https://raks.com.ua/forum/disclaimer.html">Читать</a>
+                        href="https://raks.com.ua/forum/disclaimer.html" target="_blank">Читать</a>
             </td>
         </tr>
         <tr>
