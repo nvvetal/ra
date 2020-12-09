@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 
-$advertise_company_id = 'adv1040';
+$advertise_company_id = 'adv1041';
 $advertise_template = 122;
 
 require_once('verifyEmail.php');
