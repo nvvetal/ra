@@ -74,14 +74,14 @@ $users = array(
     ),
 );
 
-
+/*
 $users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $users[] = array(
     'login'=>'iude.com.ua@gmail.com',
     'email'=>'iude.com.ua@gmail.com',
 );
-
+*/
 
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
