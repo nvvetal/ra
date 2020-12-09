@@ -2,6 +2,7 @@
 {literal}
     <script>
         function checkRegisterDisclaimer(){
+            return false;
             if ($('#disclaimer').is(':checked')) {
                 return true;
             } else {
