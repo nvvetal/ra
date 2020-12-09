@@ -2,7 +2,7 @@
 {literal}
     <script>
         function checkRegisterDisclaimer(){
-            if ($('#disclaimer').attr('checked')) {
+            if ($('#disclaimer').is(':checked')) {
                 return true;
             } else {
                 alert("Пожалуйста прочитайте условия пользования! Please read disclaimer and accept!");
