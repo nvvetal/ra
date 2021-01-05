@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 ini_set('memory_limit', '500M');
 
-$advertise_company_id = 'adv1041';
+$advertise_company_id = 'adv1050';
 $advertise_template = 122;
 
 require_once('verifyEmail.php');
@@ -74,14 +74,13 @@ $users = array(
     ),
 );
 
-/*
+
 $users=SQLGetRows($query, $DBFactory->get_db_handle('forum'));
 
 $users[] = array(
     'login'=>'iude.com.ua@gmail.com',
     'email'=>'iude.com.ua@gmail.com',
 );
-*/
 
 
 $isStarted = isCampaignStarted($advertise_company_id, $DBFactory->get_db_handle('rakscom'));
@@ -106,9 +105,13 @@ foreach ($users as $key=>$user){
 
     echo $user['email']."<br/>";
     $mail->From = "admin@raks.com.ua";
+    $mail->From = "vitaliy.grinchishin@gmail.com";
+
     //$mail->message_type = 'alt_attachments';
     $mail->FromName = "RAKS.COM.UA - танец живота и индийский танец";
-    $mail->Sender  = "admin@raks.com.ua";
+//    $mail->Sender  = "admin@raks.com.ua";
+    $mail->Sender  = "vitaliy.grinchishin@gmail.com";
+
     $mail->addReplyTo("admin@marketing.raks.com.ua", "admin@marketing.raks.com.ua");
 
     $smarty->assign('user', $user);
